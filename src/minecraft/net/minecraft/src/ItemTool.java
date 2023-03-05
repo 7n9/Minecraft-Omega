@@ -11,7 +11,7 @@ public class ItemTool extends Item {
 		this.toolMaterial = enumToolMaterial3;
 		this.blocksEffectiveAgainst = block4;
 		this.maxStackSize = 1;
-		this.setMaxDamage(enumToolMaterial3.getMaxUses());
+		//this.setMaxDamage(enumToolMaterial3.getMaxUses());
 		this.efficiencyOnProperMaterial = enumToolMaterial3.getEfficiencyOnProperMaterial();
 		this.damageVsEntity = i2 + enumToolMaterial3.getDamageVsEntity();
 	}

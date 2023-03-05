@@ -4,7 +4,7 @@ public class ItemHoe extends Item {
 	public ItemHoe(int i1, EnumToolMaterial enumToolMaterial2) {
 		super(i1);
 		this.maxStackSize = 1;
-		this.setMaxDamage(enumToolMaterial2.getMaxUses());
+		//this.setMaxDamage(enumToolMaterial2.getMaxUses());
 	}
 
 	public boolean onItemUse(ItemStack itemStack1, EntityPlayer entityPlayer2, World world3, int i4, int i5, int i6, int i7) {

@@ -6,7 +6,7 @@ public class ItemSword extends Item {
 	public ItemSword(int i1, EnumToolMaterial enumToolMaterial2) {
 		super(i1);
 		this.maxStackSize = 1;
-		this.setMaxDamage(enumToolMaterial2.getMaxUses());
+		//this.setMaxDamage(enumToolMaterial2.getMaxUses());
 		this.weaponDamage = 4 + enumToolMaterial2.getDamageVsEntity() * 2;
 	}
 
