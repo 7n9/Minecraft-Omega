@@ -9,6 +9,7 @@ public enum Omega {
     INSTANCE;
 
     public EventManager eventManager;
+    private Mana manaSystem;
     public Minecraft mc;
 
     /**
@@ -17,12 +18,14 @@ public enum Omega {
     public void onInit() {
         eventManager = new EventManager();
         mc = Minecraft.getMinecraft();
+        manaSystem = new Mana();
 
         eventManager.register(this);
+        eventManager.register(manaSystem);
     }
 
     @EventTarget
-    public void onRender2D(EventRender2D eventRender2D) {
+    public void onRender(EventRender2D event) {
         //Example of an event.
     }
 }

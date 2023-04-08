@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.io.File;
 
 import com.owen2k6.omega.Omega;
+import com.owen2k6.omega.event.impl.EventTick;
 import net.minecraft.src.AchievementList;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
@@ -973,6 +974,8 @@ public abstract class Minecraft implements Runnable {
 		} else if(this.currentScreen != null && this.currentScreen instanceof GuiSleepMP && !this.thePlayer.isPlayerSleeping()) {
 			this.displayGuiScreen((GuiScreen)null);
 		}
+
+		new EventTick().call();
 
 		if(this.currentScreen != null) {
 			this.leftClickCounter = 10000;
