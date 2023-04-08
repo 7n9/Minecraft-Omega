@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.owen2k6.omega.event.impl.EventRender2D;
 import net.minecraft.client.Minecraft;
 
 import org.lwjgl.opengl.GL11;
@@ -221,6 +222,8 @@ public class GuiIngame extends Gui {
 			b26 = 20;
 			z31 = true;
 		}
+
+		new EventRender2D(scaledResolution5).call();
 
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

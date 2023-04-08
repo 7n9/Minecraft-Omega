@@ -166,6 +166,10 @@ public abstract class Minecraft implements Runnable {
 	long systemTime = System.currentTimeMillis();
 	private int joinPlayerCounter = 0;
 
+	public static Minecraft getMinecraft() {
+		return theMinecraft;
+	}
+
 	public Minecraft(Component component1, Canvas canvas2, MinecraftApplet minecraftApplet3, int i4, int i5, boolean z6) {
 		StatList.func_27360_a();
 		this.tempDisplayHeight = i5;
