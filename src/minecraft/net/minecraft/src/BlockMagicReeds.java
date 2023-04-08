@@ -2,8 +2,8 @@ package net.minecraft.src;
 
 import java.util.Random;
 
-public class BlockCrackReeds extends Block {
-	protected BlockCrackReeds(int i1, int i2) {
+public class BlockMagicReeds extends Block {
+	protected BlockMagicReeds(int i1, int i2) {
 		super(i1, Material.plants);
 		this.blockIndexInTexture = i2;
 		float f3 = 0.375F;

@@ -169,7 +169,7 @@ public class CraftingManager {
                 "#",
 
                 '#', Item.reed});
-        this.addRecipe(new ItemStack(Item.magic, 1), new Object[]{
+        this.addRecipe(new ItemStack(Item.magicDust, 1), new Object[]{
                 "#",
 
                 '#', Item.magicreed});

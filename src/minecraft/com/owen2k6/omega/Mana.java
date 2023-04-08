@@ -36,7 +36,7 @@ public class Mana {
             event.setCancelled(true);
             Omega.INSTANCE.mc.thePlayer.addChatMessage("You're too weak to jump... Mana: " + mana);
         } else {
-            Omega.INSTANCE.mc.thePlayer.addChatMessage("Your mana was decreased!");
+            Omega.INSTANCE.mc.thePlayer.addChatMessage("§cmana lost. Total: §e" + mana);
             mana -= 1;
         }
     }

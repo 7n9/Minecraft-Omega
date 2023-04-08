@@ -1,16 +1,16 @@
 package net.minecraft.src;
 
-public class ItemWand extends Item {
+public class ItemLightWand extends Item {
 	private int weaponDamage;
 
-	public ItemWand(int i1) {
+	public ItemLightWand(int i1) {
 		super(i1);
 		this.maxStackSize = 1;
 	}
 
-	public float getStrVsBlock(ItemStack itemStack1, Block block2) {
-		return block2.blockID == Block.web.blockID ? 15.0F : 1.5F;
-	}
+	//public float getStrVsBlock(ItemStack itemStack1, Block block2) {
+		//return block2.blockID == Block.web.blockID ? 15.0F : 1.5F;
+	//}
 
 	public boolean hitEntity(ItemStack itemStack1, EntityLiving entityLiving2, EntityLiving entityLiving3) {
 		itemStack1.damageItem(1, entityLiving3);
@@ -23,7 +23,7 @@ public class ItemWand extends Item {
 	}
 
 	public int getDamageVsEntity(Entity entity1) {
-		return 10000;
+		return 0;
 	}
 
 
@@ -37,7 +37,9 @@ public class ItemWand extends Item {
 //		entityFireball17.rotationYaw = entityPlayer3.rotationYaw;
 //		entityFireball17.setPositionAndRotation(entityPlayer3.posX, entityPlayer3.posY, entityPlayer3.posZ, entityPlayer3.rotationYaw, entityPlayer3.rotationPitch);
 //		entityPlayer3.worldObj.entityJoinedWorld(entityFireball17);
-		world2.entityJoinedWorld(new EntityArrow(world2, entityPlayer3));
+//		world2.entityJoinedWorld(new EntityArrow(world2, entityPlayer3));
+
+
 
 		return itemStack1;
 	}
