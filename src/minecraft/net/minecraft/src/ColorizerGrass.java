@@ -9,8 +9,8 @@ public class ColorizerGrass {
 
 	public static int getGrassColor(double d0, double d2) {
 		d2 *= d0;
-		int i4 = (int)((1.0D - d0) * 3.0D);
-		int i5 = (int)((1.0D - d2) * 4.0D);
+		int i4 = (int)((1.0D - d0) * 255D);
+		int i5 = (int)((1.0D - d2) * 255D);
 		return grassBuffer[i5 << 8 | i4];
 	}
 }
