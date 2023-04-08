@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import com.owen2k6.omega.event.impl.movement.EventPlayerJump;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -719,6 +721,11 @@ public abstract class EntityPlayer extends EntityLiving {
 	}
 
 	protected void jump() {
+		EventPlayerJump eventPlayerJump = new EventPlayerJump();
+		eventPlayerJump.call();
+		if(eventPlayerJump.isCancelled())
+			return;
+
 		super.jump();
 		this.addStat(StatList.jumpStat, 1);
 	}
