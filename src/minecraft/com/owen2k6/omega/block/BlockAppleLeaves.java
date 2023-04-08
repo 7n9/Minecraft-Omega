@@ -1,4 +1,6 @@
-package net.minecraft.src;
+package com.owen2k6.omega.block;
+
+import net.minecraft.src.*;
 
 import java.util.Random;
 

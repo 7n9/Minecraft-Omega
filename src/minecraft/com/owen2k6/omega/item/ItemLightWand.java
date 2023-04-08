@@ -1,4 +1,6 @@
-package net.minecraft.src;
+package com.owen2k6.omega.item;
+
+import net.minecraft.src.*;
 
 public class ItemLightWand extends Item {
 	private int weaponDamage;

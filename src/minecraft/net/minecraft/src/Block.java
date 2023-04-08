@@ -1,5 +1,9 @@
 package net.minecraft.src;
 
+import com.owen2k6.omega.block.BlockAppleLeaves;
+import com.owen2k6.omega.block.BlockAppleLog;
+import com.owen2k6.omega.block.BlockMagicReeds;
+
 import java.util.ArrayList;
 import java.util.Random;
 

@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import com.owen2k6.omega.item.ItemLightWand;
+
 import java.util.Random;
 
 public class Item {
