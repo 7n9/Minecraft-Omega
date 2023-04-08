@@ -7,6 +7,9 @@ public enum Omega {
 
     public EventManager eventManager;
 
+    /**
+     * Called post startup
+     */
     public void onInit() {
 
     }
