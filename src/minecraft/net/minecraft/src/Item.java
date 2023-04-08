@@ -9,7 +9,7 @@ public class Item {
 	public static Item pickaxeSteel = (new ItemPickaxe(1, EnumToolMaterial.IRON)).setIconCoord(2, 6).setItemName("pickaxeIron");
 	public static Item axeSteel = (new ItemAxe(2, EnumToolMaterial.IRON)).setIconCoord(2, 7).setItemName("hatchetIron");
 	public static Item flintAndSteel = (new ItemFlintAndSteel(3)).setIconCoord(5, 0).setItemName("flintAndSteel");
-	public static Item appleRed = (new ItemFood(4, 4, false)).setIconCoord(10, 0).setItemName("apple");
+	public static Item appleRed = (new ItemApple(4, 4, false)).setIconCoord(10, 0).setItemName("apple");
 	public static Item bow = (new ItemBow(5)).setIconCoord(5, 1).setItemName("bow");
 	public static Item arrow = (new Item(6)).setIconCoord(5, 2).setItemName("arrow");
 	public static Item coal = (new ItemCoal(7)).setIconCoord(7, 0).setItemName("coal");
@@ -71,7 +71,7 @@ public class Item {
 	public static Item porkRaw = (new ItemFood(63, 3, true)).setIconCoord(7, 5).setItemName("porkchopRaw");
 	public static Item porkCooked = (new ItemFood(64, 8, true)).setIconCoord(8, 5).setItemName("porkchopCooked");
 	public static Item painting = (new ItemPainting(65)).setIconCoord(10, 1).setItemName("painting");
-	public static Item appleGold = (new ItemFood(66, 42, false)).setIconCoord(11, 0).setItemName("appleGold");
+	public static Item appleGold = (new ItemApple(66, 42, false)).setIconCoord(11, 0).setItemName("appleGold");
 	public static Item sign = (new ItemSign(67)).setIconCoord(10, 2).setItemName("sign");
 	public static Item doorWood = (new ItemDoor(68, Material.wood)).setIconCoord(11, 2).setItemName("doorWood");
 	public static Item bucketEmpty = (new ItemBucket(69, 0)).setIconCoord(10, 4).setItemName("bucket");
@@ -88,6 +88,7 @@ public class Item {
 	public static Item brick = (new Item(80)).setIconCoord(6, 1).setItemName("brick");
 	public static Item clay = (new Item(81)).setIconCoord(9, 3).setItemName("clay");
 	public static Item reed = (new ItemReed(82, Block.reed)).setIconCoord(11, 1).setItemName("reeds");
+	public static Item magicreed = (new ItemMagicReed(178, Block.crackreed)).setIconCoord(10, 6).setItemName("magicreeds");
 	public static Item paper = (new Item(83)).setIconCoord(10, 3).setItemName("paper");
 	public static Item book = (new Item(84)).setIconCoord(11, 3).setItemName("book");
 	public static Item slimeBall = (new Item(85)).setIconCoord(14, 1).setItemName("slimeball");
@@ -103,6 +104,7 @@ public class Item {
 	public static Item dyePowder = (new ItemDye(95)).setIconCoord(14, 4).setItemName("dyePowder");
 	public static Item bone = (new Item(96)).setIconCoord(12, 1).setItemName("bone").setFull3D();
 	public static Item sugar = (new Item(97)).setIconCoord(13, 0).setItemName("sugar").setFull3D();
+	public static Item magic = (new Item(177)).setIconCoord(107, 0).setItemName("magicDust").setFull3D();
 	public static Item cake = (new ItemReed(98, Block.cake)).setMaxStackSize(1).setIconCoord(13, 1).setItemName("cake");
 	public static Item bed = (new ItemBed(99)).setMaxStackSize(1).setIconCoord(13, 2).setItemName("bed");
 	public static Item redstoneRepeater = (new ItemReed(100, Block.redstoneRepeaterIdle)).setIconCoord(6, 5).setItemName("diode");
@@ -111,6 +113,7 @@ public class Item {
 	public static ItemShears shears = (ItemShears)(new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
 	public static Item record13 = (new ItemRecord(2000, "13")).setIconCoord(0, 15).setItemName("record");
 	public static Item recordCat = (new ItemRecord(2001, "cat")).setIconCoord(1, 15).setItemName("record");
+	public static Item wand = (new ItemWand(300)).setIconCoord(108, 0).setItemName("Wand");
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;
 	private int maxDamage = 0;

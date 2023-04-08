@@ -169,6 +169,10 @@ public class CraftingManager {
                 "#",
 
                 '#', Item.reed});
+        this.addRecipe(new ItemStack(Item.magic, 1), new Object[]{
+                "#",
+
+                '#', Item.magicreed});
 
         this.addRecipe(new ItemStack(Block.planks, 4), new Object[]{
                 "#",

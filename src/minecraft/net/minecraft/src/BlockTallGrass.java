@@ -26,7 +26,7 @@ public class BlockTallGrass extends BlockFlower {
 			iBlockAccess1.getWorldChunkManager().func_4069_a(i2, i4, 1, 1);
 			double d8 = iBlockAccess1.getWorldChunkManager().temperature[0];
 			double d10 = iBlockAccess1.getWorldChunkManager().humidity[0];
-			return ColorizerGrass.getGrassColor(d8, d10);
+			return 65535;
 		}
 	}
 

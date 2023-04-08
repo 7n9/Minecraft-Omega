@@ -62,7 +62,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 					double d30 = (this.field_4180_q[((i11 + 1) * i10 + i12 + 1) * b9 + i13 + 1] - d22) * d14;
 
 					for(int i32 = 0; i32 < 8; ++i32) {
-						double d33 = 0.25D;
+						double d33 = 0.32D;
 						double d35 = d16;
 						double d37 = d18;
 						double d39 = (d20 - d16) * d33;
@@ -71,7 +71,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 						for(int i43 = 0; i43 < 4; ++i43) {
 							int i44 = i43 + i11 * 4 << 11 | 0 + i12 * 4 << 7 | i13 * 8 + i32;
 							short s45 = 128;
-							double d46 = 0.25D;
+							double d46 = 0.32D;
 							double d48 = d35;
 							double d50 = (d37 - d35) * d46;
 
@@ -213,8 +213,8 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		double[] d12 = this.worldObj.getWorldChunkManager().temperature;
 		double[] d13 = this.worldObj.getWorldChunkManager().humidity;
 		this.field_4182_g = this.field_922_a.func_4109_a(this.field_4182_g, i2, i4, i5, i7, 1.121D, 1.121D, 0.5D);
-		this.field_4181_h = this.field_921_b.func_4109_a(this.field_4181_h, i2, i4, i5, i7, 200.0D, 200.0D, 0.5D);
-		this.field_4185_d = this.field_910_m.generateNoiseOctaves(this.field_4185_d, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8 / 80.0D, d10 / 160.0D, d8 / 80.0D);
+		this.field_4181_h = this.field_921_b.func_4109_a(this.field_4181_h, i2, i4, i5, i7, 190.0D, 190.0D, 0.5D);
+		this.field_4185_d = this.field_910_m.generateNoiseOctaves(this.field_4185_d, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8 / 80.0D, d10 / 140.0D, d8 / 90.0D);
 		this.field_4184_e = this.field_912_k.generateNoiseOctaves(this.field_4184_e, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
 		this.field_4183_f = this.field_911_l.generateNoiseOctaves(this.field_4183_f, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
 		int i14 = 0;

@@ -32,7 +32,7 @@ public class BlockReed extends Block {
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
 		int i5 = world1.getBlockId(i2, i3 - 1, i4);
-		return i5 == this.blockID ? true : (i5 != Block.grass.blockID && i5 != Block.dirt.blockID ? false : (world1.getBlockMaterial(i2 - 1, i3 - 1, i4) == Material.water ? true : (world1.getBlockMaterial(i2 + 1, i3 - 1, i4) == Material.water ? true : (world1.getBlockMaterial(i2, i3 - 1, i4 - 1) == Material.water ? true : world1.getBlockMaterial(i2, i3 - 1, i4 + 1) == Material.water))));
+		return i5 == this.blockID ? true : (i5 != Block.grass.blockID && i5 != Block.dirt.blockID && i5 != Block.sand.blockID ? false : (world1.getBlockMaterial(i2 - 1, i3 - 1, i4) == Material.water ? true : (world1.getBlockMaterial(i2 + 1, i3 - 1, i4) == Material.water ? true : (world1.getBlockMaterial(i2, i3 - 1, i4 - 1) == Material.water ? true : world1.getBlockMaterial(i2, i3 - 1, i4 + 1) == Material.water))));
 	}
 
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {

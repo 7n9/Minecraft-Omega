@@ -172,7 +172,7 @@ public class GuiIngame extends Gui {
 				GL11.glTranslatef(0.0F, 32.0F, 0.0F);
 			}
 
-			fontRenderer8.drawStringWithShadow("Minecraft Beta 1.7.3 (" + this.mc.debug + ")", 2, 2, 0xFFFFFF);
+			fontRenderer8.drawStringWithShadow("Minecraft Omega (" + this.mc.debug + ")", 2, 2, 0xFFFFFF);
 			fontRenderer8.drawStringWithShadow(this.mc.func_6241_m(), 2, 12, 0xFFFFFF);
 			fontRenderer8.drawStringWithShadow(this.mc.func_6262_n(), 2, 22, 0xFFFFFF);
 			fontRenderer8.drawStringWithShadow(this.mc.func_6245_o(), 2, 32, 0xFFFFFF);

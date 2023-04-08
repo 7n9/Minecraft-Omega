@@ -13,20 +13,20 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public int getRenderColor(int i1) {
-		return (i1 & 1) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((i1 & 2) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.func_31073_c());
+		return 65535/* (i1 & 1) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((i1 & 2) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.func_31073_c()) */;
 	}
 
 	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		int i5 = iBlockAccess1.getBlockMetadata(i2, i3, i4);
 		if((i5 & 1) == 1) {
-			return ColorizerFoliage.getFoliageColorPine();
+			return -23296;
 		} else if((i5 & 2) == 2) {
 			return ColorizerFoliage.getFoliageColorBirch();
 		} else {
 			iBlockAccess1.getWorldChunkManager().func_4069_a(i2, i4, 1, 1);
 			double d6 = iBlockAccess1.getWorldChunkManager().temperature[0];
 			double d8 = iBlockAccess1.getWorldChunkManager().humidity[0];
-			return ColorizerFoliage.getFoliageColor(d6, d8);
+			return 32896;
 		}
 	}
 
@@ -149,11 +149,23 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public int quantityDropped(Random random1) {
-		return random1.nextInt(20) == 0 ? 1 : 0;
+		return random1.nextInt(4) == 0 ? 1 : 0;
 	}
 
 	public int idDropped(int i1, Random random2) {
-		return Block.sapling.blockID;
+		Random random = new Random();
+
+		// Generate a random integer between 0 and 9
+		int randomNumber = random.nextInt(3);
+		if(randomNumber == 0){
+			return Block.sapling.blockID;
+		}
+		else if(randomNumber == 1){
+			return Item.stick.shiftedIndex;
+		} else{
+			return Block.sapling.blockID;
+
+		}
 	}
 
 	public void harvestBlock(World world1, EntityPlayer entityPlayer2, int i3, int i4, int i5, int i6) {
