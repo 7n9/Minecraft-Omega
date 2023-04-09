@@ -9,7 +9,8 @@ public enum Omega {
     INSTANCE;
 
     public EventManager eventManager;
-    private Mana manaSystem;
+    public Mana manaSystem;
+    public Stamina staminaSystem;
     public Minecraft mc;
 
     /**
@@ -19,9 +20,12 @@ public enum Omega {
         eventManager = new EventManager();
         mc = Minecraft.getMinecraft();
         manaSystem = new Mana();
+        staminaSystem = new Stamina();
+
 
         eventManager.register(this);
         eventManager.register(manaSystem);
+        eventManager.register(staminaSystem);
     }
 
     @EventTarget

@@ -8,7 +8,7 @@ import net.minecraft.src.World;
 import java.util.Random;
 
 public class BlockAppleLog extends Block {
-	protected BlockAppleLog(int i1) {
+	public BlockAppleLog(int i1) {
 		super(i1, Material.wood);
 		this.blockIndexInTexture = 138;
 	}

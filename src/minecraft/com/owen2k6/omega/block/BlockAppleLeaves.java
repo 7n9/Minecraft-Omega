@@ -8,7 +8,7 @@ public class BlockAppleLeaves extends BlockLeavesBase {
 	private int baseIndexInPNG;
 	int[] adjacentTreeBlocks;
 
-	protected BlockAppleLeaves(int i1, int i2) {
+	public BlockAppleLeaves(int i1, int i2) {
 		super(i1, i2, Material.leaves, true);
 		this.baseIndexInPNG = i2;
 		this.setTickOnLoad(true);

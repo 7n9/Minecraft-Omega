@@ -154,7 +154,8 @@ public class GuiScreen extends Gui {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float f3 = 32.0F;
 		tessellator2.startDrawingQuads();
-		tessellator2.setColorOpaque_I(4210752);
+		//tessellator2.setColorOpaque_I(4210752);
+		tessellator2.setColorOpaque_I(2016);
 		tessellator2.addVertexWithUV(0.0D, (double)this.height, 0.0D, 0.0D, (double)((float)this.height / f3 + (float)i1));
 		tessellator2.addVertexWithUV((double)this.width, (double)this.height, 0.0D, (double)((float)this.width / f3), (double)((float)this.height / f3 + (float)i1));
 		tessellator2.addVertexWithUV((double)this.width, 0.0D, 0.0D, (double)((float)this.width / f3), (double)(0 + i1));

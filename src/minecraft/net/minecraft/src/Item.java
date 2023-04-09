@@ -1,5 +1,8 @@
 package net.minecraft.src;
 
+import com.owen2k6.omega.item.ItemBloodWand;
+import com.owen2k6.omega.item.ItemGrowthWand;
+import com.owen2k6.omega.item.ItemIceWand;
 import com.owen2k6.omega.item.ItemLightWand;
 
 import java.util.Random;
@@ -115,7 +118,12 @@ public class Item {
 	public static ItemShears shears = (ItemShears)(new ItemShears(103)).setIconCoord(13, 5).setItemName("shears");
 	public static Item record13 = (new ItemRecord(2000, "13")).setIconCoord(0, 15).setItemName("record");
 	public static Item recordCat = (new ItemRecord(2001, "cat")).setIconCoord(1, 15).setItemName("record");
+
+	//Magical Wands
 	public static Item lightWand = (new ItemLightWand(300)).setIconCoord(108, 0).setItemName("lightWand");
+	public static Item growthWand = (new ItemGrowthWand(301)).setIconCoord(108, 1).setItemName("growthWand");
+	public static Item bloodWand = (new ItemBloodWand(302)).setIconCoord(108, 2).setItemName("bloodWand");
+	public static Item iceWand = (new ItemIceWand(303)).setIconCoord(108, 3).setItemName("iceWand");
 	public final int shiftedIndex;
 	protected int maxStackSize = 64;
 	private int maxDamage = 0;

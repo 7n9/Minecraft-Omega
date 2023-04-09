@@ -72,6 +72,7 @@ public class ItemDye extends Item {
 
 				return true;
 			}
+
 		}
 
 		return false;

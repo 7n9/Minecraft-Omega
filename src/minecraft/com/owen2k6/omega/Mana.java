@@ -10,14 +10,16 @@ public class Mana {
     int mana = 20;
     short counter = 0;
 
+    short target = 60;
+
     @EventTarget
     public void onTick(EventTick event) {
         counter++;
 
-        if(counter > 60)
+        if (counter > target)
             counter = 0;
 
-        if (counter == 60 && mana < 20) {
+        if (counter == target && mana < maxMana) {
             mana = mana + 5;
             counter = 0;
         }
@@ -32,48 +34,56 @@ public class Mana {
 
     @EventTarget
     public void onJump(EventPlayerJump event) {
-        if(mana < 5) {
-            event.setCancelled(true);
-            Omega.INSTANCE.mc.thePlayer.addChatMessage("You're too weak to jump... Mana: " + mana);
-        } else {
-            Omega.INSTANCE.mc.thePlayer.addChatMessage("§cmana lost. Total: §e" + mana);
-            mana -= 1;
-        }
+        //if (mana < 5) {
+        //    event.setCancelled(true);
+        //    Omega.INSTANCE.mc.thePlayer.addChatMessage("You're too weak to jump... Mana: " + mana);
+        //} else {
+        //    Omega.INSTANCE.mc.thePlayer.addChatMessage("§cmana lost. Total: §e" + mana);
+        //    mana -= 1;
+        //}
     }
 
-    public int getMana() {
+    public int get() {
         return mana;
     }
 
-    public int getMaxMana() {
+    public int getMax() {
         return maxMana;
     }
 
-    public void setMana(int mana) {
+    public void set(int mana) {
         this.mana = mana;
     }
 
-    public void setMaxMana(int maxmana) {
+    public void setMax(int maxmana) {
         this.maxMana = maxmana;
     }
 
-    public void addMana(int mana) {
+    public void add(int mana) {
         this.mana = this.mana + mana;
     }
 
-    public void addMaxMana(int maxmana) {
+    public void addMax(int maxmana) {
         this.maxMana = this.maxMana + maxmana;
     }
 
-    public void removeMana(int mana) {
-        this.mana = this.mana - mana;
-    }
+    public void remove(int mana) {
+        if (this.mana - mana < 0) {
+            this.mana = 0;
+            Omega.INSTANCE.mc.thePlayer.addChatMessage("§cinsufficient mana. Total: §e" + this.mana);
+        }
+        this.mana =this.mana -mana;
+}
 
-    public void removeMaxMana(int maxmana) {
+    public void removeMax(int maxmana) {
         this.maxMana = this.maxMana - maxmana;
     }
 
-    public void setManaToMax() {
+    public void setToMax() {
         this.mana = this.maxMana;
+    }
+
+    public void setTarget(short i) {
+        this.target = i;
     }
 }
