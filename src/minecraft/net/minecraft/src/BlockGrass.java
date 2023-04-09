@@ -24,7 +24,7 @@ public class BlockGrass extends Block {
 		iBlockAccess1.getWorldChunkManager().func_4069_a(i2, i4, 1, 1);
 		double d5 = iBlockAccess1.getWorldChunkManager().temperature[0];
 		double d7 = iBlockAccess1.getWorldChunkManager().humidity[0];
-		return 65535;
+		return ColorizerGrass.getGrassColor(d5, d7);
 	}
 
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
