@@ -50,7 +50,8 @@ public class BlockGrass extends Block {
 
 	public int idDropped(int i1, Random random2) {
 		//return Block.dirt.idDropped(0, random2);
-		return Item.iceWand.shiftedIndex;
+		//return Item.iceWand.shiftedIndex;
+		return Block.corruptedGround.blockID;
 	}
 
 	public int quantityDropped(Random random1) {

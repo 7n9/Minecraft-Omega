@@ -2,6 +2,7 @@ package net.minecraft.src;
 
 import com.owen2k6.omega.block.BlockAppleLeaves;
 import com.owen2k6.omega.block.BlockAppleLog;
+import com.owen2k6.omega.block.BlockCorruptedGround;
 import com.owen2k6.omega.block.BlockMagicReeds;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class Block {
 	public static final Block applewood = (new BlockAppleLog(99)).setHardness(2.0F).setStepSound(soundWoodFootstep).setBlockName("log").disableNeighborNotifyOnMetadataChange();
 	public static final BlockLeaves leaves = (BlockLeaves)(new BlockLeaves(18, 52)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep).setBlockName("leaves").disableStats().disableNeighborNotifyOnMetadataChange();
 	public static final BlockAppleLeaves appleleaves = (BlockAppleLeaves)(new BlockAppleLeaves(98, 139)).setHardness(0.2F).setLightOpacity(1).setStepSound(soundGrassFootstep).setBlockName("leaves").disableStats().disableNeighborNotifyOnMetadataChange();
+	public static final BlockCorruptedGround corruptedGround = (BlockCorruptedGround)(new BlockCorruptedGround(101)).setHardness(0.5F).setLightOpacity(1).setLightValue(0.5F).setStepSound(soundGrassFootstep).setBlockName("corruptedGround").disableNeighborNotifyOnMetadataChange();
 	public static final Block sponge = (new BlockSponge(19)).setHardness(0.6F).setStepSound(soundGrassFootstep).setBlockName("sponge");
 	public static final Block glass = (new BlockGlass(20, 49, Material.glass, false)).setHardness(0.3F).setStepSound(soundGlassFootstep).setBlockName("glass");
 	public static final Block oreLapis = (new BlockOre(21, 160)).setHardness(3.0F).setResistance(5.0F).setStepSound(soundStoneFootstep).setBlockName("oreLapis");

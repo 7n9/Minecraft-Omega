@@ -14,6 +14,7 @@ public class BiomeGenBase {
 	public static final BiomeGenBase shrubland = (new BiomeGenBase()).setColor(10595616).setBiomeName("Shrubland");
 	public static final BiomeGenBase taiga = (new BiomeGenTaiga()).setColor(3060051).setBiomeName("Taiga").setEnableSnow().func_4124_a(8107825);
 	public static final BiomeGenBase desert = (new BiomeGenDesert()).setColor(16421912).setBiomeName("Desert").setDisableRain();
+	public static final BiomeGenBase corruption = (new BiomeGenDesert()).setColor(-16213292).setBiomeName("Corruption");
 	public static final BiomeGenBase plains = (new BiomeGenDesert()).setColor(16767248).setBiomeName("Plains");
 	public static final BiomeGenBase iceDesert = (new BiomeGenDesert()).setColor(16772499).setBiomeName("Ice Desert").setEnableSnow().setDisableRain().func_4124_a(12899129);
 	public static final BiomeGenBase tundra = (new BiomeGenBase()).setColor(5762041).setBiomeName("Tundra").setEnableSnow().func_4124_a(12899129);
@@ -58,6 +59,8 @@ public class BiomeGenBase {
 
 		desert.topBlock = desert.fillerBlock = (byte)Block.sand.blockID;
 		iceDesert.topBlock = iceDesert.fillerBlock = (byte)Block.sand.blockID;
+		//TODO: Add corruption
+		corruption.topBlock = corruption.fillerBlock = (byte)Block.sand.blockID;
 	}
 
 	public WorldGenerator getRandomWorldGenForTrees(Random random1) {
