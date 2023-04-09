@@ -13,20 +13,20 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public int getRenderColor(int i1) {
-		return 65535/* (i1 & 1) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((i1 & 2) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.func_31073_c()) */;
+		return (i1 & 1) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((i1 & 2) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.func_31073_c());
 	}
 
 	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		int i5 = iBlockAccess1.getBlockMetadata(i2, i3, i4);
 		if((i5 & 1) == 1) {
-			return -23296;
+			return ColorizerFoliage.getFoliageColorPine();
 		} else if((i5 & 2) == 2) {
 			return ColorizerFoliage.getFoliageColorBirch();
 		} else {
 			iBlockAccess1.getWorldChunkManager().func_4069_a(i2, i4, 1, 1);
 			double d6 = iBlockAccess1.getWorldChunkManager().temperature[0];
 			double d8 = iBlockAccess1.getWorldChunkManager().humidity[0];
-			return 32896;
+			return ColorizerFoliage.getFoliageColor(d6, d8);
 		}
 	}
 
