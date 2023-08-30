@@ -49,9 +49,9 @@ public class Stamina {
     public void onJump(EventPlayerJump event) {
         if (stamina <= 5) {
             event.setCancelled(true);
-            Omega.INSTANCE.mc.thePlayer.addChatMessage("You're too weak to jump... stamina: " + stamina);
+            Omega.INSTANCE.mc.thePlayer.addChatMessage("§cYou're too tired to jump...");
         } else {
-            Omega.INSTANCE.mc.thePlayer.addChatMessage("§cStamina lost. Total: §e" + stamina);
+            //Omega.INSTANCE.mc.thePlayer.addChatMessage("§cStamina lost. Total: §e" + stamina);
             stamina -= 5;
         }
     }

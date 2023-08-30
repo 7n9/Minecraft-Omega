@@ -59,13 +59,10 @@ public class GuiMainMenu extends GuiScreen {
 		int i4 = this.height / 4 + 48;
 		this.controlList.add(new GuiButton(1, this.width / 2 - 100, i4, stringTranslate2.translateKey("menu.singleplayer")));
 		this.controlList.add(this.multiplayerButton = new GuiButton(2, this.width / 2 - 100, i4 + 24, stringTranslate2.translateKey("menu.multiplayer")));
-		this.controlList.add(new GuiButton(3, this.width / 2 - 100, i4 + 48, stringTranslate2.translateKey("menu.mods")));
-		if(this.mc.hideQuitButton) {
-			this.controlList.add(new GuiButton(0, this.width / 2 - 100, i4 + 72, stringTranslate2.translateKey("menu.options")));
-		} else {
-			this.controlList.add(new GuiButton(0, this.width / 2 - 100, i4 + 72 + 12, 98, 20, stringTranslate2.translateKey("menu.options")));
-			this.controlList.add(new GuiButton(4, this.width / 2 + 2, i4 + 72 + 12, 98, 20, stringTranslate2.translateKey("menu.quit")));
-		}
+		this.controlList.add(new GuiButton(3, this.width / 2 - 100, i4 + 48 + 12, 98,20, "Texture Packs"));
+		this.controlList.add(new GuiButton(5, this.width / 2 + 2, i4 + 48 + 12, 98,20, "Owen2k6 Connect"));
+		this.controlList.add(new GuiButton(0, this.width / 2 - 100, i4 + 72 + 12, 98, 20, stringTranslate2.translateKey("menu.options")));
+		this.controlList.add(new GuiButton(4, this.width / 2 + 2, i4 + 72 + 12, 98, 20, stringTranslate2.translateKey("menu.quit")));
 
 		if(this.mc.session == null) {
 			this.multiplayerButton.enabled = false;
