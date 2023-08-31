@@ -7,8 +7,8 @@ public class RecipesIngots {
 		for(int i2 = 0; i2 < this.recipeItems.length; ++i2) {
 			Block block3 = (Block)this.recipeItems[i2][0];
 			ItemStack itemStack4 = (ItemStack)this.recipeItems[i2][1];
-			craftingManager1.addRecipe(new ItemStack(block3), new Object[]{"###", "###", "###", '#', itemStack4});
-			craftingManager1.addRecipe(itemStack4, new Object[]{"#", '#', block3});
+			craftingManager1.addRecipe(new ItemStack(block3), "###", "###", "###", '#', itemStack4);
+			craftingManager1.addRecipe(itemStack4, "#", '#', block3);
 		}
 
 	}

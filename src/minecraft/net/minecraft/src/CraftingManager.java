@@ -1,7 +1,6 @@
 package net.minecraft.src;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class CraftingManager {
     private static final CraftingManager instance = new CraftingManager();
     private final List<IRecipe> recipes = new ArrayList<IRecipe>();
 
-    public static final CraftingManager getInstance() {
+    public static CraftingManager getInstance() {
         return instance;
     }
 

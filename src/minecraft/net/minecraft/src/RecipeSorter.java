@@ -10,7 +10,7 @@ class RecipeSorter implements Comparator {
 	}
 
 	public int compareRecipes(IRecipe iRecipe1, IRecipe iRecipe2) {
-		return iRecipe1 instanceof ShapelessRecipes && iRecipe2 instanceof ShapedRecipes ? 1 : (iRecipe2 instanceof ShapelessRecipes && iRecipe1 instanceof ShapedRecipes ? -1 : (iRecipe2.getRecipeSize() < iRecipe1.getRecipeSize() ? -1 : (iRecipe2.getRecipeSize() > iRecipe1.getRecipeSize() ? 1 : 0)));
+		return iRecipe1 instanceof ShapelessRecipes && iRecipe2 instanceof ShapedRecipes ? 1 : (iRecipe2 instanceof ShapelessRecipes && iRecipe1 instanceof ShapedRecipes ? -1 : (Integer.compare(iRecipe2.getRecipeSize(), iRecipe1.getRecipeSize())));
 	}
 
 	public int compare(Object object1, Object object2) {
