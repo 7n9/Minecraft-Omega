@@ -33,7 +33,7 @@ public class ThreadDownloadResources extends Thread {
 
 	public void run() {
 		try {
-			URL uRL1 = new URL("http://s3.amazonaws.com/MinecraftResources/");
+			URL uRL1 = new URL("http://resourceproxy.pymcl.net/MinecraftResources/");
 			DocumentBuilderFactory documentBuilderFactory2 = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder3 = documentBuilderFactory2.newDocumentBuilder();
 			Document document4 = documentBuilder3.parse(uRL1.openStream());

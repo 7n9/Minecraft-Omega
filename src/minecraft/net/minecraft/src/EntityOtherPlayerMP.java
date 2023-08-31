@@ -15,7 +15,7 @@ public class EntityOtherPlayerMP extends EntityPlayer {
 		this.yOffset = 0.0F;
 		this.stepHeight = 0.0F;
 		if(string2 != null && string2.length() > 0) {
-			this.skinUrl = "http://s3.amazonaws.com/MinecraftSkins/" + string2 + ".png";
+			this.skinUrl = "https://minotar.net/skin/" + string2 + ".png";
 		}
 
 		this.noClip = true;

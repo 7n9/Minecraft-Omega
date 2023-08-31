@@ -15,6 +15,7 @@ public class GuiMainMenu extends GuiScreen {
 	private float updateCounter = 0.0F;
 	private String splashText = "missingno";
 	private GuiButton multiplayerButton;
+	private GuiButton cButton;
 
 	public GuiMainMenu() {
 		try {
@@ -60,13 +61,14 @@ public class GuiMainMenu extends GuiScreen {
 		this.controlList.add(new GuiButton(1, this.width / 2 - 100, i4, stringTranslate2.translateKey("menu.singleplayer")));
 		this.controlList.add(this.multiplayerButton = new GuiButton(2, this.width / 2 - 100, i4 + 24, stringTranslate2.translateKey("menu.multiplayer")));
 		this.controlList.add(new GuiButton(3, this.width / 2 - 100, i4 + 48 + 12, 98,20, "Texture Packs"));
-		this.controlList.add(new GuiButton(5, this.width / 2 + 2, i4 + 48 + 12, 98,20, "Owen2k6 Connect"));
+		this.controlList.add(this.cButton = new GuiButton(5, this.width / 2 + 2, i4 + 48 + 12, 98,20, "Coming Soon"));
 		this.controlList.add(new GuiButton(0, this.width / 2 - 100, i4 + 72 + 12, 98, 20, stringTranslate2.translateKey("menu.options")));
 		this.controlList.add(new GuiButton(4, this.width / 2 + 2, i4 + 72 + 12, 98, 20, stringTranslate2.translateKey("menu.quit")));
 
 		if(this.mc.session == null) {
 			this.multiplayerButton.enabled = false;
 		}
+		cButton.enabled = false;
 
 	}
 
@@ -89,6 +91,9 @@ public class GuiMainMenu extends GuiScreen {
 
 		if(guiButton1.id == 4) {
 			this.mc.shutdown();
+		}
+
+		if(guiButton1.id == 5){
 		}
 
 	}

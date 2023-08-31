@@ -14,8 +14,10 @@ public class ThreadCheckHasPaid extends Thread {
 
 	public void run() {
 		try {
-			HttpURLConnection httpURLConnection1 = (HttpURLConnection)(new URL("https://login.minecraft.net/session?name=" + this.field_28146_a.session.username + "&session=" + this.field_28146_a.session.sessionId)).openConnection();
+			HttpURLConnection httpURLConnection1 = (HttpURLConnection)(new URL("http://session.minecraft.net/game/joinserver.jsp?user=" + this.field_28146_a.session.username + "&session=" + this.field_28146_a.session.sessionId)).openConnection();
 			httpURLConnection1.connect();
+			System.out.println("Checking has paid: " + httpURLConnection1.getResponseCode());
+			System.out.println("Checking has paid: " + httpURLConnection1.getContent());
 			if(httpURLConnection1.getResponseCode() == 400) {
 				Minecraft.hasPaidCheckTime = System.currentTimeMillis();
 			}
