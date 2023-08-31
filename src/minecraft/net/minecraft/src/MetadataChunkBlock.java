@@ -58,8 +58,8 @@ public class MetadataChunkBlock {
 							this.field_1304_c = 0;
 						}
 
-						if(this.field_1301_f >= 128) {
-							this.field_1301_f = 127;
+						if(this.field_1301_f >= 256) {
+							this.field_1301_f = 255;
 						}
 
 						for(int i27 = this.field_1304_c; i27 <= this.field_1301_f; ++i27) {

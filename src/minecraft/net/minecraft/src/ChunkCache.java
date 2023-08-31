@@ -25,7 +25,7 @@ public class ChunkCache implements IBlockAccess {
 	public int getBlockId(int i1, int i2, int i3) {
 		if(i2 < 0) {
 			return 0;
-		} else if(i2 >= 128) {
+		} else if(i2 >= 256) {
 			return 0;
 		} else {
 			int i4 = (i1 >> 4) - this.chunkX;
@@ -96,7 +96,7 @@ public class ChunkCache implements IBlockAccess {
 
 			if(i2 < 0) {
 				return 0;
-			} else if(i2 >= 128) {
+			} else if(i2 >= 256) {
 				i5 = 15 - this.worldObj.skylightSubtracted;
 				if(i5 < 0) {
 					i5 = 0;
@@ -116,7 +116,7 @@ public class ChunkCache implements IBlockAccess {
 	public int getBlockMetadata(int i1, int i2, int i3) {
 		if(i2 < 0) {
 			return 0;
-		} else if(i2 >= 128) {
+		} else if(i2 >= 256) {
 			return 0;
 		} else {
 			int i4 = (i1 >> 4) - this.chunkX;

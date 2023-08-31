@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="budget decompiling">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/budget decompiling" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/budget decompiling" recursive="false" />
+  </library>
+</component>

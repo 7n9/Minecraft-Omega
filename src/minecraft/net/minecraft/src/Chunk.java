@@ -60,11 +60,11 @@ public class Chunk {
 	}
 
 	public void generateHeightMap() {
-		int i1 = 127;
+		int i1 = 255;
 
 		for(int i2 = 0; i2 < 16; ++i2) {
 			for(int i3 = 0; i3 < 16; ++i3) {
-				int i4 = 127;
+				int i4 = 255;
 
 				for(int i5 = i2 << 11 | i3 << 7; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
 				}
@@ -81,13 +81,13 @@ public class Chunk {
 	}
 
 	public void func_1024_c() {
-		int i1 = 127;
+		int i1 = 255;
 
 		int i2;
 		int i3;
 		for(i2 = 0; i2 < 16; ++i2) {
 			for(i3 = 0; i3 < 16; ++i3) {
-				int i4 = 127;
+				int i4 = 255;
 
 				int i5;
 				for(i5 = i2 << 11 | i3 << 7; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
@@ -100,7 +100,7 @@ public class Chunk {
 
 				if(!Objects.requireNonNull(this.worldObj.worldProvider).hasNoSky) {
 					int i6 = 15;
-					int i7 = 127;
+					int i7 = 255;
 
 					do {
 						i6 -= Block.lightOpacity[this.blocks[i5 + i7] & 255];
@@ -166,7 +166,7 @@ public class Chunk {
 			if(i5 < this.lowestBlockHeight) {
 				this.lowestBlockHeight = i5;
 			} else {
-				i7 = 127;
+				i7 = 255;
 
 				for(i8 = 0; i8 < 16; ++i8) {
 					for(i9 = 0; i9 < 16; ++i9) {
