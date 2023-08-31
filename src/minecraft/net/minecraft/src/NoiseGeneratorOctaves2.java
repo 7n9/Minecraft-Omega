@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class NoiseGeneratorOctaves2 extends NoiseGenerator {
-	private NoiseGenerator2[] field_4234_a;
-	private int field_4233_b;
+	private final NoiseGenerator2[] field_4234_a;
+	private final int field_4233_b;
 
 	public NoiseGeneratorOctaves2(Random random1, int i2) {
 		this.field_4233_b = i2;

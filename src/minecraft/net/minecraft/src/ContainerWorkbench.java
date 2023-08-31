@@ -3,10 +3,10 @@ package net.minecraft.src;
 public class ContainerWorkbench extends Container {
 	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	public IInventory craftResult = new InventoryCraftResult();
-	private World field_20133_c;
-	private int field_20132_h;
-	private int field_20131_i;
-	private int field_20130_j;
+	private final World field_20133_c;
+	private final int field_20132_h;
+	private final int field_20131_i;
+	private final int field_20130_j;
 
 	public ContainerWorkbench(InventoryPlayer inventoryPlayer1, World world2, int i3, int i4, int i5) {
 		this.field_20133_c = world2;
@@ -54,7 +54,7 @@ public class ContainerWorkbench extends Container {
 	}
 
 	public boolean isUsableByPlayer(EntityPlayer entityPlayer1) {
-		return this.field_20133_c.getBlockId(this.field_20132_h, this.field_20131_i, this.field_20130_j) != Block.workbench.blockID ? false : entityPlayer1.getDistanceSq((double)this.field_20132_h + 0.5D, (double)this.field_20131_i + 0.5D, (double)this.field_20130_j + 0.5D) <= 64.0D;
+		return this.field_20133_c.getBlockId(this.field_20132_h, this.field_20131_i, this.field_20130_j) == Block.workbench.blockID && entityPlayer1.getDistanceSq((double) this.field_20132_h + 0.5D, (double) this.field_20131_i + 0.5D, (double) this.field_20130_j + 0.5D) <= 64.0D;
 	}
 
 	public ItemStack getStackInSlot(int i1) {
@@ -74,7 +74,7 @@ public class ContainerWorkbench extends Container {
 			}
 
 			if(itemStack4.stackSize == 0) {
-				slot3.putStack((ItemStack)null);
+				slot3.putStack(null);
 			} else {
 				slot3.onSlotChanged();
 			}

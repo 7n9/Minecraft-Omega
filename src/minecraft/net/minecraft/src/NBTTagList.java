@@ -44,7 +44,7 @@ public class NBTTagList extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.tagList.size() + " entries of type " + NBTBase.getTagName(this.tagType);
+		return this.tagList.size() + " entries of type " + NBTBase.getTagName(this.tagType);
 	}
 
 	public void setTag(NBTBase nBTBase1) {

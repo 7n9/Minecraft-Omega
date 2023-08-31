@@ -33,7 +33,7 @@ public class BlockJukeBox extends BlockContainer {
 			int i6 = tileEntityRecordPlayer5.record;
 			if(i6 != 0) {
 				world1.func_28106_e(1005, i2, i3, i4, 0);
-				world1.playRecord((String)null, i2, i3, i4);
+				world1.playRecord(null, i2, i3, i4);
 				tileEntityRecordPlayer5.record = 0;
 				tileEntityRecordPlayer5.onInventoryChanged();
 				world1.setBlockMetadataWithNotify(i2, i3, i4, 0);

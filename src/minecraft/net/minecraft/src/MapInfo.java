@@ -4,8 +4,8 @@ public class MapInfo {
 	public final EntityPlayer entityplayerObj;
 	public int[] field_28119_b;
 	public int[] field_28124_c;
-	private int field_28122_e;
-	private int field_28121_f;
+	private final int field_28122_e;
+	private final int field_28121_f;
 	final MapData mapDataObj;
 
 	public MapInfo(MapData mapData1, EntityPlayer entityPlayer2) {

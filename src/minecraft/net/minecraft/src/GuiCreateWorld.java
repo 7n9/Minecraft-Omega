@@ -5,7 +5,7 @@ import java.util.Random;
 import org.lwjgl.input.Keyboard;
 
 public class GuiCreateWorld extends GuiScreen {
-	private GuiScreen field_22131_a;
+	private final GuiScreen field_22131_a;
 	private GuiTextField textboxWorldName;
 	private GuiTextField textboxSeed;
 	private String folderName;
@@ -67,7 +67,7 @@ public class GuiCreateWorld extends GuiScreen {
 			if(guiButton1.id == 1) {
 				this.mc.displayGuiScreen(this.field_22131_a);
 			} else if(guiButton1.id == 0) {
-				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.displayGuiScreen(null);
 				if(this.createClicked) {
 					return;
 				}
@@ -82,13 +82,13 @@ public class GuiCreateWorld extends GuiScreen {
 							j2 = j5;
 						}
 					} catch (NumberFormatException numberFormatException7) {
-						j2 = (long)string4.hashCode();
+						j2 = string4.hashCode();
 					}
 				}
 
 				this.mc.playerController = new PlayerControllerSP(this.mc);
 				this.mc.startWorld(this.folderName, this.textboxWorldName.getText(), j2);
-				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.displayGuiScreen(null);
 			}
 
 		}

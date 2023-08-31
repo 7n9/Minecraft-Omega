@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5String {
-	private String field_27370_a;
+	private final String field_27370_a;
 
 	public MD5String(String string1) {
 		this.field_27370_a = string1;

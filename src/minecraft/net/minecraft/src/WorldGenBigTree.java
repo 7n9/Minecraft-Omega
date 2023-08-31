@@ -57,7 +57,7 @@ public class WorldGenBigTree extends WorldGenerator {
 						int[] i18 = new int[]{i15, i3 + this.field_869_n, i16};
 						if(this.func_524_a(i17, i18) == -1) {
 							int[] i19 = new int[]{this.basePos[0], this.basePos[1], this.basePos[2]};
-							double d20 = Math.sqrt(Math.pow((double)Math.abs(this.basePos[0] - i17[0]), 2.0D) + Math.pow((double)Math.abs(this.basePos[2] - i17[2]), 2.0D));
+							double d20 = Math.sqrt(Math.pow(Math.abs(this.basePos[0] - i17[0]), 2.0D) + Math.pow(Math.abs(this.basePos[2] - i17[2]), 2.0D));
 							double d22 = d20 * this.field_874_i;
 							if((double)i17[1] - d22 > (double)i5) {
 								i19[1] = i5;
@@ -137,7 +137,7 @@ public class WorldGenBigTree extends WorldGenerator {
 			} else if(Math.abs(f3) >= f2) {
 				f4 = 0.0F;
 			} else {
-				f4 = (float)Math.sqrt(Math.pow((double)Math.abs(f2), 2.0D) - Math.pow((double)Math.abs(f3), 2.0D));
+				f4 = (float)Math.sqrt(Math.pow(Math.abs(f2), 2.0D) - Math.pow(Math.abs(f3), 2.0D));
 			}
 
 			f4 *= 0.5F;

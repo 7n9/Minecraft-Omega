@@ -6,10 +6,10 @@ import java.util.Iterator;
 import org.lwjgl.opengl.GL11;
 
 public class MapItemRenderer {
-	private int[] field_28159_a = new int[16384];
-	private int field_28158_b;
-	private GameSettings field_28161_c;
-	private FontRenderer field_28160_d;
+	private final int[] field_28159_a = new int[16384];
+	private final int field_28158_b;
+	private final GameSettings field_28161_c;
+	private final FontRenderer field_28160_d;
 
 	public MapItemRenderer(FontRenderer fontRenderer1, GameSettings gameSettings2, RenderEngine renderEngine3) {
 		this.field_28161_c = gameSettings2;
@@ -64,10 +64,10 @@ public class MapItemRenderer {
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		tessellator17.startDrawingQuads();
-		tessellator17.addVertexWithUV((double)((float)(b15 + 0) + f18), (double)((float)(b16 + 128) - f18), -0.009999999776482582D, 0.0D, 1.0D);
-		tessellator17.addVertexWithUV((double)((float)(b15 + 128) - f18), (double)((float)(b16 + 128) - f18), -0.009999999776482582D, 1.0D, 1.0D);
-		tessellator17.addVertexWithUV((double)((float)(b15 + 128) - f18), (double)((float)(b16 + 0) + f18), -0.009999999776482582D, 1.0D, 0.0D);
-		tessellator17.addVertexWithUV((double)((float)(b15 + 0) + f18), (double)((float)(b16 + 0) + f18), -0.009999999776482582D, 0.0D, 0.0D);
+		tessellator17.addVertexWithUV((float)(b15) + f18, (float)(b16 + 128) - f18, -0.009999999776482582D, 0.0D, 1.0D);
+		tessellator17.addVertexWithUV((float)(b15 + 128) - f18, (float)(b16 + 128) - f18, -0.009999999776482582D, 1.0D, 1.0D);
+		tessellator17.addVertexWithUV((float)(b15 + 128) - f18, (float)(b16) + f18, -0.009999999776482582D, 1.0D, 0.0D);
+		tessellator17.addVertexWithUV((float)(b15) + f18, (float)(b16) + f18, -0.009999999776482582D, 0.0D, 0.0D);
 		tessellator17.draw();
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		GL11.glDisable(GL11.GL_BLEND);
@@ -81,15 +81,15 @@ public class MapItemRenderer {
 			GL11.glRotatef((float)(mapCoord20.field_28219_d * 360) / 16.0F, 0.0F, 0.0F, 1.0F);
 			GL11.glScalef(4.0F, 4.0F, 3.0F);
 			GL11.glTranslatef(-0.125F, 0.125F, 0.0F);
-			float f21 = (float)(mapCoord20.field_28217_a % 4 + 0) / 4.0F;
-			float f22 = (float)(mapCoord20.field_28217_a / 4 + 0) / 4.0F;
+			float f21 = (float)(mapCoord20.field_28217_a % 4) / 4.0F;
+			float f22 = (float)(mapCoord20.field_28217_a / 4) / 4.0F;
 			float f23 = (float)(mapCoord20.field_28217_a % 4 + 1) / 4.0F;
 			float f24 = (float)(mapCoord20.field_28217_a / 4 + 1) / 4.0F;
 			tessellator17.startDrawingQuads();
-			tessellator17.addVertexWithUV(-1.0D, 1.0D, 0.0D, (double)f21, (double)f22);
-			tessellator17.addVertexWithUV(1.0D, 1.0D, 0.0D, (double)f23, (double)f22);
-			tessellator17.addVertexWithUV(1.0D, -1.0D, 0.0D, (double)f23, (double)f24);
-			tessellator17.addVertexWithUV(-1.0D, -1.0D, 0.0D, (double)f21, (double)f24);
+			tessellator17.addVertexWithUV(-1.0D, 1.0D, 0.0D, f21, f22);
+			tessellator17.addVertexWithUV(1.0D, 1.0D, 0.0D, f23, f22);
+			tessellator17.addVertexWithUV(1.0D, -1.0D, 0.0D, f23, f24);
+			tessellator17.addVertexWithUV(-1.0D, -1.0D, 0.0D, f21, f24);
 			tessellator17.draw();
 			GL11.glPopMatrix();
 		}

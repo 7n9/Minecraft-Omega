@@ -10,7 +10,7 @@ public class WorldProviderHell extends WorldProvider {
 	}
 
 	public Vec3D func_4096_a(float f1, float f2) {
-		return Vec3D.createVector((double)0.2F, (double)0.03F, (double)0.03F);
+		return Vec3D.createVector(0.2F, 0.03F, 0.03F);
 	}
 
 	protected void generateLightBrightnessTable() {

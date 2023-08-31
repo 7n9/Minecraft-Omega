@@ -11,12 +11,12 @@ public abstract class Container {
 	public int windowId = 0;
 	private short field_20917_a = 0;
 	protected List field_20121_g = new ArrayList();
-	private Set field_20918_b = new HashSet();
+	private final Set field_20918_b = new HashSet();
 
 	protected void addSlot(Slot slot1) {
 		slot1.slotNumber = this.slots.size();
 		this.slots.add(slot1);
-		this.field_20123_d.add((Object)null);
+		this.field_20123_d.add(null);
 	}
 
 	public void updateCraftingResults() {
@@ -52,13 +52,13 @@ public abstract class Container {
 				if(inventoryPlayer6.getItemStack() != null && i1 == -999) {
 					if(i2 == 0) {
 						entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack());
-						inventoryPlayer6.setItemStack((ItemStack)null);
+						inventoryPlayer6.setItemStack(null);
 					}
 
 					if(i2 == 1) {
 						entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack().splitStack(1));
 						if(inventoryPlayer6.getItemStack().stackSize == 0) {
-							inventoryPlayer6.setItemStack((ItemStack)null);
+							inventoryPlayer6.setItemStack(null);
 						}
 					}
 				}
@@ -96,7 +96,7 @@ public abstract class Container {
 
 								slot12.putStack(itemStack14.splitStack(i10));
 								if(itemStack14.stackSize == 0) {
-									inventoryPlayer6.setItemStack((ItemStack)null);
+									inventoryPlayer6.setItemStack(null);
 								}
 							}
 						} else if(itemStack14 == null) {
@@ -104,7 +104,7 @@ public abstract class Container {
 							ItemStack itemStack11 = slot12.decrStackSize(i10);
 							inventoryPlayer6.setItemStack(itemStack11);
 							if(itemStack13.stackSize == 0) {
-								slot12.putStack((ItemStack)null);
+								slot12.putStack(null);
 							}
 
 							slot12.onPickupFromSlot(inventoryPlayer6.getItemStack());
@@ -121,7 +121,7 @@ public abstract class Container {
 
 								itemStack14.splitStack(i10);
 								if(itemStack14.stackSize == 0) {
-									inventoryPlayer6.setItemStack((ItemStack)null);
+									inventoryPlayer6.setItemStack(null);
 								}
 
 								itemStack13.stackSize += i10;
@@ -135,7 +135,7 @@ public abstract class Container {
 								itemStack14.stackSize += i10;
 								itemStack13.splitStack(i10);
 								if(itemStack13.stackSize == 0) {
-									slot12.putStack((ItemStack)null);
+									slot12.putStack(null);
 								}
 
 								slot12.onPickupFromSlot(inventoryPlayer6.getItemStack());
@@ -153,7 +153,7 @@ public abstract class Container {
 		InventoryPlayer inventoryPlayer2 = entityPlayer1.inventory;
 		if(inventoryPlayer2.getItemStack() != null) {
 			entityPlayer1.dropPlayerItem(inventoryPlayer2.getItemStack());
-			inventoryPlayer2.setItemStack((ItemStack)null);
+			inventoryPlayer2.setItemStack(null);
 		}
 
 	}

@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockLeaves extends BlockLeavesBase {
-	private int baseIndexInPNG;
+	private final int baseIndexInPNG;
 	int[] adjacentTreeBlocks;
 
 	protected BlockLeaves(int i1, int i2) {

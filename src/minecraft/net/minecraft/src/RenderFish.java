@@ -24,17 +24,17 @@ public class RenderFish extends Render {
 		GL11.glRotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 		tessellator12.startDrawingQuads();
 		tessellator12.setNormal(0.0F, 1.0F, 0.0F);
-		tessellator12.addVertexWithUV((double)(0.0F - f18), (double)(0.0F - f19), 0.0D, (double)f13, (double)f16);
-		tessellator12.addVertexWithUV((double)(f17 - f18), (double)(0.0F - f19), 0.0D, (double)f14, (double)f16);
-		tessellator12.addVertexWithUV((double)(f17 - f18), (double)(1.0F - f19), 0.0D, (double)f14, (double)f15);
-		tessellator12.addVertexWithUV((double)(0.0F - f18), (double)(1.0F - f19), 0.0D, (double)f13, (double)f15);
+		tessellator12.addVertexWithUV(0.0F - f18, 0.0F - f19, 0.0D, f13, f16);
+		tessellator12.addVertexWithUV(f17 - f18, 0.0F - f19, 0.0D, f14, f16);
+		tessellator12.addVertexWithUV(f17 - f18, 1.0F - f19, 0.0D, f14, f15);
+		tessellator12.addVertexWithUV(0.0F - f18, 1.0F - f19, 0.0D, f13, f15);
 		tessellator12.draw();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glPopMatrix();
 		if(entityFish1.angler != null) {
 			float f20 = (entityFish1.angler.prevRotationYaw + (entityFish1.angler.rotationYaw - entityFish1.angler.prevRotationYaw) * f9) * (float)Math.PI / 180.0F;
-			double d21 = (double)MathHelper.sin(f20);
-			double d23 = (double)MathHelper.cos(f20);
+			double d21 = MathHelper.sin(f20);
+			double d23 = MathHelper.cos(f20);
 			float f25 = entityFish1.angler.getSwingProgress(f9);
 			float f26 = MathHelper.sin(MathHelper.sqrt_float(f25) * (float)Math.PI);
 			Vec3D vec3D27 = Vec3D.createVector(-0.5D, 0.03D, 0.8D);
@@ -47,8 +47,8 @@ public class RenderFish extends Render {
 			double d32 = entityFish1.angler.prevPosZ + (entityFish1.angler.posZ - entityFish1.angler.prevPosZ) * (double)f9 + vec3D27.zCoord;
 			if(this.renderManager.options.thirdPersonView) {
 				f20 = (entityFish1.angler.prevRenderYawOffset + (entityFish1.angler.renderYawOffset - entityFish1.angler.prevRenderYawOffset) * f9) * (float)Math.PI / 180.0F;
-				d21 = (double)MathHelper.sin(f20);
-				d23 = (double)MathHelper.cos(f20);
+				d21 = MathHelper.sin(f20);
+				d23 = MathHelper.cos(f20);
 				d28 = entityFish1.angler.prevPosX + (entityFish1.angler.posX - entityFish1.angler.prevPosX) * (double)f9 - d23 * 0.35D - d21 * 0.85D;
 				d30 = entityFish1.angler.prevPosY + (entityFish1.angler.posY - entityFish1.angler.prevPosY) * (double)f9 - 0.45D;
 				d32 = entityFish1.angler.prevPosZ + (entityFish1.angler.posZ - entityFish1.angler.prevPosZ) * (double)f9 - d21 * 0.35D + d23 * 0.85D;
@@ -57,9 +57,9 @@ public class RenderFish extends Render {
 			double d34 = entityFish1.prevPosX + (entityFish1.posX - entityFish1.prevPosX) * (double)f9;
 			double d36 = entityFish1.prevPosY + (entityFish1.posY - entityFish1.prevPosY) * (double)f9 + 0.25D;
 			double d38 = entityFish1.prevPosZ + (entityFish1.posZ - entityFish1.prevPosZ) * (double)f9;
-			double d40 = (double)((float)(d28 - d34));
-			double d42 = (double)((float)(d30 - d36));
-			double d44 = (double)((float)(d32 - d38));
+			double d40 = (float)(d28 - d34);
+			double d42 = (float)(d30 - d36);
+			double d44 = (float)(d32 - d38);
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glDisable(GL11.GL_LIGHTING);
 			tessellator12.startDrawing(3);

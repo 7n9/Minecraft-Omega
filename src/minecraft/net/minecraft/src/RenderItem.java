@@ -103,10 +103,10 @@ public class RenderItem extends Render {
 				GL11.glRotatef(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
 				tessellator15.startDrawingQuads();
 				tessellator15.setNormal(0.0F, 1.0F, 0.0F);
-				tessellator15.addVertexWithUV((double)(0.0F - f21), (double)(0.0F - f22), 0.0D, (double)f16, (double)f19);
-				tessellator15.addVertexWithUV((double)(f20 - f21), (double)(0.0F - f22), 0.0D, (double)f17, (double)f19);
-				tessellator15.addVertexWithUV((double)(f20 - f21), (double)(1.0F - f22), 0.0D, (double)f17, (double)f18);
-				tessellator15.addVertexWithUV((double)(0.0F - f21), (double)(1.0F - f22), 0.0D, (double)f16, (double)f18);
+				tessellator15.addVertexWithUV(0.0F - f21, 0.0F - f22, 0.0D, f16, f19);
+				tessellator15.addVertexWithUV(f20 - f21, 0.0F - f22, 0.0D, f17, f19);
+				tessellator15.addVertexWithUV(f20 - f21, 1.0F - f22, 0.0D, f17, f18);
+				tessellator15.addVertexWithUV(0.0F - f21, 1.0F - f22, 0.0D, f16, f18);
 				tessellator15.draw();
 				GL11.glPopMatrix();
 			}
@@ -205,10 +205,10 @@ public class RenderItem extends Render {
 	private void renderQuad(Tessellator tessellator1, int i2, int i3, int i4, int i5, int i6) {
 		tessellator1.startDrawingQuads();
 		tessellator1.setColorOpaque_I(i6);
-		tessellator1.addVertex((double)(i2), (double)(i3), 0.0D);
-		tessellator1.addVertex((double)(i2), (double)(i3 + i5), 0.0D);
-		tessellator1.addVertex((double)(i2 + i4), (double)(i3 + i5), 0.0D);
-		tessellator1.addVertex((double)(i2 + i4), (double)(i3), 0.0D);
+		tessellator1.addVertex(i2, i3, 0.0D);
+		tessellator1.addVertex(i2, i3 + i5, 0.0D);
+		tessellator1.addVertex(i2 + i4, i3 + i5, 0.0D);
+		tessellator1.addVertex(i2 + i4, i3, 0.0D);
 		tessellator1.draw();
 	}
 
@@ -218,10 +218,10 @@ public class RenderItem extends Render {
 		float f9 = 0.00390625F;
 		Tessellator tessellator10 = Tessellator.instance;
 		tessellator10.startDrawingQuads();
-		tessellator10.addVertexWithUV((double)(i1), (double)(i2 + i6), (double)f7, (double)((float)(i3) * f8), (double)((float)(i4 + i6) * f9));
-		tessellator10.addVertexWithUV((double)(i1 + i5), (double)(i2 + i6), (double)f7, (double)((float)(i3 + i5) * f8), (double)((float)(i4 + i6) * f9));
-		tessellator10.addVertexWithUV((double)(i1 + i5), (double)(i2), (double)f7, (double)((float)(i3 + i5) * f8), (double)((float)(i4) * f9));
-		tessellator10.addVertexWithUV((double)(i1), (double)(i2), (double)f7, (double)((float)(i3) * f8), (double)((float)(i4) * f9));
+		tessellator10.addVertexWithUV(i1, i2 + i6, f7, (float)(i3) * f8, (float)(i4 + i6) * f9);
+		tessellator10.addVertexWithUV(i1 + i5, i2 + i6, f7, (float)(i3 + i5) * f8, (float)(i4 + i6) * f9);
+		tessellator10.addVertexWithUV(i1 + i5, i2, f7, (float)(i3 + i5) * f8, (float)(i4) * f9);
+		tessellator10.addVertexWithUV(i1, i2, f7, (float)(i3) * f8, (float)(i4) * f9);
 		tessellator10.draw();
 	}
 

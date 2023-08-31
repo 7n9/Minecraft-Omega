@@ -100,22 +100,22 @@ public class EntitySquid extends EntityWaterMob {
 			}
 
 			if(!this.isMultiplayerEntity) {
-				this.motionX = (double)(this.randomMotionVecX * this.randomMotionSpeed);
-				this.motionY = (double)(this.randomMotionVecY * this.randomMotionSpeed);
-				this.motionZ = (double)(this.randomMotionVecZ * this.randomMotionSpeed);
+				this.motionX = this.randomMotionVecX * this.randomMotionSpeed;
+				this.motionY = this.randomMotionVecY * this.randomMotionSpeed;
+				this.motionZ = this.randomMotionVecZ * this.randomMotionSpeed;
 			}
 
 			f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.renderYawOffset += (-((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
 			this.rotationYaw = this.renderYawOffset;
 			this.field_21087_c += (float)Math.PI * this.field_21079_m * 1.5F;
-			this.field_21089_a += (-((float)Math.atan2((double)f1, this.motionY)) * 180.0F / (float)Math.PI - this.field_21089_a) * 0.1F;
+			this.field_21089_a += (-((float)Math.atan2(f1, this.motionY)) * 180.0F / (float)Math.PI - this.field_21089_a) * 0.1F;
 		} else {
 			this.field_21083_i = MathHelper.abs(MathHelper.sin(this.field_21085_g)) * (float)Math.PI * 0.25F;
 			if(!this.isMultiplayerEntity) {
 				this.motionX = 0.0D;
 				this.motionY -= 0.08D;
-				this.motionY *= (double)0.98F;
+				this.motionY *= 0.98F;
 				this.motionZ = 0.0D;
 			}
 

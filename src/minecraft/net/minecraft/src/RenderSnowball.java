@@ -28,10 +28,10 @@ public class RenderSnowball extends Render {
 		GL11.glRotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 		tessellator10.startDrawingQuads();
 		tessellator10.setNormal(0.0F, 1.0F, 0.0F);
-		tessellator10.addVertexWithUV((double)(0.0F - f16), (double)(0.0F - f17), 0.0D, (double)f11, (double)f14);
-		tessellator10.addVertexWithUV((double)(f15 - f16), (double)(0.0F - f17), 0.0D, (double)f12, (double)f14);
-		tessellator10.addVertexWithUV((double)(f15 - f16), (double)(1.0F - f17), 0.0D, (double)f12, (double)f13);
-		tessellator10.addVertexWithUV((double)(0.0F - f16), (double)(1.0F - f17), 0.0D, (double)f11, (double)f13);
+		tessellator10.addVertexWithUV(0.0F - f16, 0.0F - f17, 0.0D, f11, f14);
+		tessellator10.addVertexWithUV(f15 - f16, 0.0F - f17, 0.0D, f12, f14);
+		tessellator10.addVertexWithUV(f15 - f16, 1.0F - f17, 0.0D, f12, f13);
+		tessellator10.addVertexWithUV(0.0F - f16, 1.0F - f17, 0.0D, f11, f13);
 		tessellator10.draw();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glPopMatrix();

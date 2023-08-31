@@ -272,7 +272,7 @@ public class InventoryPlayer implements IInventory {
 			return true;
 		} else {
 			ItemStack itemStack2 = this.getStackInSlot(this.currentItem);
-			return itemStack2 != null ? itemStack2.canHarvestBlock(block1) : false;
+			return itemStack2 != null && itemStack2.canHarvestBlock(block1);
 		}
 	}
 
@@ -349,7 +349,7 @@ public class InventoryPlayer implements IInventory {
 	}
 
 	public boolean canInteractWith(EntityPlayer entityPlayer1) {
-		return this.player.isDead ? false : entityPlayer1.getDistanceSqToEntity(this.player) <= 64.0D;
+		return !this.player.isDead && entityPlayer1.getDistanceSqToEntity(this.player) <= 64.0D;
 	}
 
 	public boolean func_28018_c(ItemStack itemStack1) {

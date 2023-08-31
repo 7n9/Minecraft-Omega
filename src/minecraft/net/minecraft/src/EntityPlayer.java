@@ -45,7 +45,7 @@ public abstract class EntityPlayer extends EntityLiving {
 		this.craftingInventory = this.inventorySlots;
 		this.yOffset = 1.62F;
 		ChunkCoordinates chunkCoordinates2 = world1.getSpawnPoint();
-		this.setLocationAndAngles((double)chunkCoordinates2.x + 0.5D, (double)(chunkCoordinates2.y + 1), (double)chunkCoordinates2.z + 0.5D, 0.0F, 0.0F);
+		this.setLocationAndAngles((double)chunkCoordinates2.x + 0.5D, chunkCoordinates2.y + 1, (double)chunkCoordinates2.z + 0.5D, 0.0F, 0.0F);
 		this.health = 20;
 		this.field_9351_C = "humanoid";
 		this.field_9353_B = 180.0F;
@@ -221,15 +221,15 @@ public abstract class EntityPlayer extends EntityLiving {
 		super.onDeath(entity1);
 		this.setSize(0.2F, 0.2F);
 		this.setPosition(this.posX, this.posY, this.posZ);
-		this.motionY = (double)0.1F;
+		this.motionY = 0.1F;
 		if(this.username.equals("Notch")) {
 			this.dropPlayerItemWithRandomChoice(new ItemStack(Item.appleRed, 1), true);
 		}
 
 		this.inventory.dropAllItems();
 		if(entity1 != null) {
-			this.motionX = (double)(-MathHelper.cos((this.attackedAtYaw + this.rotationYaw) * (float)Math.PI / 180.0F) * 0.1F);
-			this.motionZ = (double)(-MathHelper.sin((this.attackedAtYaw + this.rotationYaw) * (float)Math.PI / 180.0F) * 0.1F);
+			this.motionX = -MathHelper.cos((this.attackedAtYaw + this.rotationYaw) * (float)Math.PI / 180.0F) * 0.1F;
+			this.motionZ = -MathHelper.sin((this.attackedAtYaw + this.rotationYaw) * (float)Math.PI / 180.0F) * 0.1F;
 		} else {
 			this.motionX = this.motionZ = 0.0D;
 		}
@@ -265,20 +265,20 @@ public abstract class EntityPlayer extends EntityLiving {
 			if(z2) {
 				f5 = this.rand.nextFloat() * 0.5F;
 				float f6 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
-				entityItem3.motionX = (double)(-MathHelper.sin(f6) * f5);
-				entityItem3.motionZ = (double)(MathHelper.cos(f6) * f5);
-				entityItem3.motionY = (double)0.2F;
+				entityItem3.motionX = -MathHelper.sin(f6) * f5;
+				entityItem3.motionZ = MathHelper.cos(f6) * f5;
+				entityItem3.motionY = 0.2F;
 			} else {
 				f4 = 0.3F;
-				entityItem3.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f4);
-				entityItem3.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f4);
-				entityItem3.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI) * f4 + 0.1F);
+				entityItem3.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f4;
+				entityItem3.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI) * f4;
+				entityItem3.motionY = -MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI) * f4 + 0.1F;
 				f4 = 0.02F;
 				f5 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
 				f4 *= this.rand.nextFloat();
-				entityItem3.motionX += Math.cos((double)f5) * (double)f4;
-				entityItem3.motionY += (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F);
-				entityItem3.motionZ += Math.sin((double)f5) * (double)f4;
+				entityItem3.motionX += Math.cos(f5) * (double)f4;
+				entityItem3.motionY += (this.rand.nextFloat() - this.rand.nextFloat()) * 0.1F;
+				entityItem3.motionZ += Math.sin(f5) * (double)f4;
 			}
 
 			this.joinEntityItemWithWorld(entityItem3);
@@ -475,11 +475,11 @@ public abstract class EntityPlayer extends EntityLiving {
 	}
 
 	public void destroyCurrentEquippedItem() {
-		this.inventory.setInventorySlotContents(this.inventory.currentItem, (ItemStack)null);
+		this.inventory.setInventorySlotContents(this.inventory.currentItem, null);
 	}
 
 	public double getYOffset() {
-		return (double)(this.yOffset - 0.5F);
+		return this.yOffset - 0.5F;
 	}
 
 	public void swingItem() {
@@ -581,9 +581,9 @@ public abstract class EntityPlayer extends EntityLiving {
 			}
 
 			this.func_22052_e(i5);
-			this.setPosition((double)((float)i1 + f6), (double)((float)i2 + 0.9375F), (double)((float)i3 + f7));
+			this.setPosition((float)i1 + f6, (float)i2 + 0.9375F, (float)i3 + f7);
 		} else {
-			this.setPosition((double)((float)i1 + 0.5F), (double)((float)i2 + 0.9375F), (double)((float)i3 + 0.5F));
+			this.setPosition((float)i1 + 0.5F, (float)i2 + 0.9375F, (float)i3 + 0.5F);
 		}
 
 		this.sleeping = true;
@@ -628,7 +628,7 @@ public abstract class EntityPlayer extends EntityLiving {
 				chunkCoordinates5 = new ChunkCoordinates(chunkCoordinates4.x, chunkCoordinates4.y + 1, chunkCoordinates4.z);
 			}
 
-			this.setPosition((double)((float)chunkCoordinates5.x + 0.5F), (double)((float)chunkCoordinates5.y + this.yOffset + 0.1F), (double)((float)chunkCoordinates5.z + 0.5F));
+			this.setPosition((float)chunkCoordinates5.x + 0.5F, (float)chunkCoordinates5.y + this.yOffset + 0.1F, (float)chunkCoordinates5.z + 0.5F);
 		}
 
 		this.sleeping = false;

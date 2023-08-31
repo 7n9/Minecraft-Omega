@@ -29,7 +29,7 @@ public class WorldChunkManager {
 	}
 
 	public double getTemperature(int i1, int i2) {
-		this.temperature = this.field_4194_e.func_4112_a(this.temperature, (double)i1, (double)i2, 1, 1, 0.02500000037252903D, 0.02500000037252903D, 0.5D);
+		this.temperature = this.field_4194_e.func_4112_a(this.temperature, i1, i2, 1, 1, 0.02500000037252903D, 0.02500000037252903D, 0.5D);
 		return this.temperature[0];
 	}
 
@@ -43,8 +43,8 @@ public class WorldChunkManager {
 			d1 = new double[i4 * i5];
 		}
 
-		d1 = this.field_4194_e.func_4112_a(d1, (double)i2, (double)i3, i4, i5, 0.02500000037252903D, 0.02500000037252903D, 0.25D);
-		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, (double)i2, (double)i3, i4, i5, 0.25D, 0.25D, 0.5882352941176471D);
+		d1 = this.field_4194_e.func_4112_a(d1, i2, i3, i4, i5, 0.02500000037252903D, 0.02500000037252903D, 0.25D);
+		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, i2, i3, i4, i5, 0.25D, 0.25D, 0.5882352941176471D);
 		int i6 = 0;
 
 		for(int i7 = 0; i7 < i4; ++i7) {
@@ -75,9 +75,9 @@ public class WorldChunkManager {
 			biomeGenBase1 = new BiomeGenBase[i4 * i5];
 		}
 
-		this.temperature = this.field_4194_e.func_4112_a(this.temperature, (double)i2, (double)i3, i4, i4, 0.02500000037252903D, 0.02500000037252903D, 0.25D);
-		this.humidity = this.field_4193_f.func_4112_a(this.humidity, (double)i2, (double)i3, i4, i4, (double)0.05F, (double)0.05F, 0.3333333333333333D);
-		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, (double)i2, (double)i3, i4, i4, 0.25D, 0.25D, 0.5882352941176471D);
+		this.temperature = this.field_4194_e.func_4112_a(this.temperature, i2, i3, i4, i4, 0.02500000037252903D, 0.02500000037252903D, 0.25D);
+		this.humidity = this.field_4193_f.func_4112_a(this.humidity, i2, i3, i4, i4, 0.05F, 0.05F, 0.3333333333333333D);
+		this.field_4196_c = this.field_4192_g.func_4112_a(this.field_4196_c, i2, i3, i4, i4, 0.25D, 0.25D, 0.5882352941176471D);
 		int i6 = 0;
 
 		for(int i7 = 0; i7 < i4; ++i7) {

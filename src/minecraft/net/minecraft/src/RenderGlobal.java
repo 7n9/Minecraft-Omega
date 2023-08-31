@@ -939,8 +939,7 @@ public class RenderGlobal implements IWorldAccess {
 			if(!z2) {
 				if(worldRenderer11.distanceToEntitySquared(entityLiving1) > 256.0F) {
 					for(i12 = 0; i12 < b4 && (worldRenderer6[i12] == null || renderSorter5.doCompare(worldRenderer6[i12], worldRenderer11) <= 0); ++i12) {
-						;
-					}
+                    }
 
 					--i12;
 					if(i12 <= 0) {

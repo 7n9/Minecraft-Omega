@@ -1,10 +1,10 @@
 package net.minecraft.src;
 
 public class EntityPortalFX extends EntityFX {
-	private float field_4083_a;
-	private double field_4086_p;
-	private double field_4085_q;
-	private double field_4084_r;
+	private final float field_4083_a;
+	private final double field_4086_p;
+	private final double field_4085_q;
+	private final double field_4084_r;
 
 	public EntityPortalFX(World world1, double d2, double d4, double d6, double d8, double d10, double d12) {
 		super(world1, d2, d4, d6, d8, d10, d12);
@@ -16,7 +16,7 @@ public class EntityPortalFX extends EntityFX {
 		this.field_4084_r = this.posZ = d6;
 		float f14 = this.rand.nextFloat() * 0.6F + 0.4F;
 		this.field_4083_a = this.particleScale = this.rand.nextFloat() * 0.2F + 0.5F;
-		this.particleRed = this.particleGreen = this.particleBlue = 1.0F * f14;
+		this.particleRed = this.particleGreen = this.particleBlue = f14;
 		this.particleGreen *= 0.3F;
 		this.particleRed *= 0.9F;
 		this.particleMaxAge = (int)(Math.random() * 10.0D) + 40;

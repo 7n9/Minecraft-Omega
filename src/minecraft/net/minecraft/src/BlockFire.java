@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockFire extends Block {
-	private int[] chanceToEncourageFire = new int[256];
-	private int[] abilityToCatchFire = new int[256];
+	private final int[] chanceToEncourageFire = new int[256];
+	private final int[] abilityToCatchFire = new int[256];
 
 	protected BlockFire(int i1, int i2) {
 		super(i1, i2, Material.fire);
@@ -135,7 +135,7 @@ public class BlockFire extends Block {
 	}
 
 	private boolean func_263_h(World world1, int i2, int i3, int i4) {
-		return this.canBlockCatchFire(world1, i2 + 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2 - 1, i3, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 - 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3 + 1, i4) ? true : (this.canBlockCatchFire(world1, i2, i3, i4 - 1) ? true : this.canBlockCatchFire(world1, i2, i3, i4 + 1)))));
+		return this.canBlockCatchFire(world1, i2 + 1, i3, i4) || (this.canBlockCatchFire(world1, i2 - 1, i3, i4) || (this.canBlockCatchFire(world1, i2, i3 - 1, i4) || (this.canBlockCatchFire(world1, i2, i3 + 1, i4) || (this.canBlockCatchFire(world1, i2, i3, i4 - 1) || this.canBlockCatchFire(world1, i2, i3, i4 + 1)))));
 	}
 
 	private int getChanceOfNeighborsEncouragingFire(World world1, int i2, int i3, int i4) {
@@ -188,7 +188,7 @@ public class BlockFire extends Block {
 
 	public void randomDisplayTick(World world1, int i2, int i3, int i4, Random random5) {
 		if(random5.nextInt(24) == 0) {
-			world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "fire.fire", 1.0F + random5.nextFloat(), random5.nextFloat() * 0.7F + 0.3F);
+			world1.playSoundEffect((float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F, "fire.fire", 1.0F + random5.nextFloat(), random5.nextFloat() * 0.7F + 0.3F);
 		}
 
 		int i6;
@@ -201,7 +201,7 @@ public class BlockFire extends Block {
 					f7 = (float)i2 + random5.nextFloat() * 0.1F;
 					f8 = (float)i3 + random5.nextFloat();
 					f9 = (float)i4 + random5.nextFloat();
-					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+					world1.spawnParticle("largesmoke", f7, f8, f9, 0.0D, 0.0D, 0.0D);
 				}
 			}
 
@@ -210,7 +210,7 @@ public class BlockFire extends Block {
 					f7 = (float)(i2 + 1) - random5.nextFloat() * 0.1F;
 					f8 = (float)i3 + random5.nextFloat();
 					f9 = (float)i4 + random5.nextFloat();
-					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+					world1.spawnParticle("largesmoke", f7, f8, f9, 0.0D, 0.0D, 0.0D);
 				}
 			}
 
@@ -219,7 +219,7 @@ public class BlockFire extends Block {
 					f7 = (float)i2 + random5.nextFloat();
 					f8 = (float)i3 + random5.nextFloat();
 					f9 = (float)i4 + random5.nextFloat() * 0.1F;
-					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+					world1.spawnParticle("largesmoke", f7, f8, f9, 0.0D, 0.0D, 0.0D);
 				}
 			}
 
@@ -228,7 +228,7 @@ public class BlockFire extends Block {
 					f7 = (float)i2 + random5.nextFloat();
 					f8 = (float)i3 + random5.nextFloat();
 					f9 = (float)(i4 + 1) - random5.nextFloat() * 0.1F;
-					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+					world1.spawnParticle("largesmoke", f7, f8, f9, 0.0D, 0.0D, 0.0D);
 				}
 			}
 
@@ -237,7 +237,7 @@ public class BlockFire extends Block {
 					f7 = (float)i2 + random5.nextFloat();
 					f8 = (float)(i3 + 1) - random5.nextFloat() * 0.1F;
 					f9 = (float)i4 + random5.nextFloat();
-					world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+					world1.spawnParticle("largesmoke", f7, f8, f9, 0.0D, 0.0D, 0.0D);
 				}
 			}
 		} else {
@@ -245,7 +245,7 @@ public class BlockFire extends Block {
 				f7 = (float)i2 + random5.nextFloat();
 				f8 = (float)i3 + random5.nextFloat() * 0.5F + 0.5F;
 				f9 = (float)i4 + random5.nextFloat();
-				world1.spawnParticle("largesmoke", (double)f7, (double)f8, (double)f9, 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("largesmoke", f7, f8, f9, 0.0D, 0.0D, 0.0D);
 			}
 		}
 

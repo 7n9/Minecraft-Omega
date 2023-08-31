@@ -30,7 +30,7 @@ public class BiomeGenBase {
 	protected List spawnableWaterCreatureList = new ArrayList();
 	private boolean enableSnow;
 	private boolean enableRain = true;
-	private static BiomeGenBase[] biomeLookupTable = new BiomeGenBase[4096];
+	private static final BiomeGenBase[] biomeLookupTable = new BiomeGenBase[4096];
 
 	protected BiomeGenBase() {
 		this.spawnableMonsterList.add(new SpawnListEntry(EntitySpider.class, 10));
@@ -64,7 +64,7 @@ public class BiomeGenBase {
 	}
 
 	public WorldGenerator getRandomWorldGenForTrees(Random random1) {
-		return (WorldGenerator)(random1.nextInt(10) == 0 ? new WorldGenBigTree() : new WorldGenTrees());
+		return random1.nextInt(10) == 0 ? new WorldGenBigTree() : new WorldGenTrees();
 	}
 
 	protected BiomeGenBase setEnableSnow() {
@@ -120,7 +120,7 @@ public class BiomeGenBase {
 	}
 
 	public boolean canSpawnLightningBolt() {
-		return this.enableSnow ? false : this.enableRain;
+		return !this.enableSnow && this.enableRain;
 	}
 
 	static {

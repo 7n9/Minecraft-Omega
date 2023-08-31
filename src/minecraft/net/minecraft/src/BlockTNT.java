@@ -33,7 +33,7 @@ public class BlockTNT extends Block {
 	}
 
 	public void onBlockDestroyedByExplosion(World world1, int i2, int i3, int i4) {
-		EntityTNTPrimed entityTNTPrimed5 = new EntityTNTPrimed(world1, (double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F));
+		EntityTNTPrimed entityTNTPrimed5 = new EntityTNTPrimed(world1, (float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F);
 		entityTNTPrimed5.fuse = world1.rand.nextInt(entityTNTPrimed5.fuse / 4) + entityTNTPrimed5.fuse / 8;
 		world1.entityJoinedWorld(entityTNTPrimed5);
 	}
@@ -43,7 +43,7 @@ public class BlockTNT extends Block {
 			if((i5 & 1) == 0) {
 				this.dropBlockAsItem_do(world1, i2, i3, i4, new ItemStack(Block.tnt.blockID, 1, 0));
 			} else {
-				EntityTNTPrimed entityTNTPrimed6 = new EntityTNTPrimed(world1, (double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F));
+				EntityTNTPrimed entityTNTPrimed6 = new EntityTNTPrimed(world1, (float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F);
 				world1.entityJoinedWorld(entityTNTPrimed6);
 				world1.playSoundAtEntity(entityTNTPrimed6, "random.fuse", 1.0F, 1.0F);
 			}

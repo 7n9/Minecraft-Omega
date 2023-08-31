@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class MathHelper {
-	private static float[] SIN_TABLE = new float[65536];
+	private static final float[] SIN_TABLE = new float[65536];
 
 	public static final float sin(float f0) {
 		return SIN_TABLE[(int)(f0 * 10430.378F) & 65535];
@@ -12,7 +12,7 @@ public class MathHelper {
 	}
 
 	public static final float sqrt_float(float f0) {
-		return (float)Math.sqrt((double)f0);
+		return (float)Math.sqrt(f0);
 	}
 
 	public static final float sqrt_double(double d0) {

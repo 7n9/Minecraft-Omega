@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import java.util.Objects;
+
 class MCHashEntry {
 	final int hashEntry;
 	Object valueEntry;
@@ -28,12 +30,10 @@ class MCHashEntry {
 			MCHashEntry mCHashEntry2 = (MCHashEntry)object1;
 			Integer integer3 = this.getHash();
 			Integer integer4 = mCHashEntry2.getHash();
-			if(integer3 == integer4 || integer3 != null && integer3.equals(integer4)) {
+			if(Objects.equals(integer3, integer4)) {
 				Object object5 = this.getValue();
 				Object object6 = mCHashEntry2.getValue();
-				if(object5 == object6 || object5 != null && object5.equals(object6)) {
-					return true;
-				}
+                return Objects.equals(object5, object6);
 			}
 
 			return false;

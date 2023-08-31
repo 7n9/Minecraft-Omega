@@ -228,7 +228,7 @@ class StaticCodeBook {
 	}
 
 	private int maptype1_quantvals() {
-		int i1 = MathHelper.floor_double(Math.pow((double)this.entries, 1.0D / (double)this.dim));
+		int i1 = MathHelper.floor_double(Math.pow(this.entries, 1.0D / (double)this.dim));
 
 		while(true) {
 			int i2 = 1;
@@ -313,10 +313,10 @@ class StaticCodeBook {
 			f0 = -f0;
 		}
 
-		int i2 = MathHelper.floor_double(Math.log((double)f0) / Math.log(2.0D));
-		int i3 = (int)Math.rint(Math.pow((double)f0, (double)(20 - i2)));
+		int i2 = MathHelper.floor_double(Math.log(f0) / Math.log(2.0D));
+		int i3 = (int)Math.rint(Math.pow(f0, 20 - i2));
 		i2 = i2 + 768 << 21;
-		return (long)(i1 | i2 | i3);
+		return i1 | i2 | i3;
 	}
 
 	static float float32_unpack(int i0) {
@@ -330,6 +330,6 @@ class StaticCodeBook {
 	}
 
 	static float ldexp(float f0, int i1) {
-		return (float)((double)f0 * Math.pow(2.0D, (double)i1));
+		return (float)((double)f0 * Math.pow(2.0D, i1));
 	}
 }

@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockFurnace extends BlockContainer {
-	private Random furnaceRand = new Random();
+	private final Random furnaceRand = new Random();
 	private final boolean isActive;
 	private static boolean keepFurnaceInventory = false;
 
@@ -69,17 +69,17 @@ public class BlockFurnace extends BlockContainer {
 			float f10 = 0.52F;
 			float f11 = random5.nextFloat() * 0.6F - 0.3F;
 			if(i6 == 4) {
-				world1.spawnParticle("smoke", (double)(f7 - f10), (double)f8, (double)(f9 + f11), 0.0D, 0.0D, 0.0D);
-				world1.spawnParticle("flame", (double)(f7 - f10), (double)f8, (double)(f9 + f11), 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("smoke", f7 - f10, f8, f9 + f11, 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("flame", f7 - f10, f8, f9 + f11, 0.0D, 0.0D, 0.0D);
 			} else if(i6 == 5) {
-				world1.spawnParticle("smoke", (double)(f7 + f10), (double)f8, (double)(f9 + f11), 0.0D, 0.0D, 0.0D);
-				world1.spawnParticle("flame", (double)(f7 + f10), (double)f8, (double)(f9 + f11), 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("smoke", f7 + f10, f8, f9 + f11, 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("flame", f7 + f10, f8, f9 + f11, 0.0D, 0.0D, 0.0D);
 			} else if(i6 == 2) {
-				world1.spawnParticle("smoke", (double)(f7 + f11), (double)f8, (double)(f9 - f10), 0.0D, 0.0D, 0.0D);
-				world1.spawnParticle("flame", (double)(f7 + f11), (double)f8, (double)(f9 - f10), 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("smoke", f7 + f11, f8, f9 - f10, 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("flame", f7 + f11, f8, f9 - f10, 0.0D, 0.0D, 0.0D);
 			} else if(i6 == 3) {
-				world1.spawnParticle("smoke", (double)(f7 + f11), (double)f8, (double)(f9 + f10), 0.0D, 0.0D, 0.0D);
-				world1.spawnParticle("flame", (double)(f7 + f11), (double)f8, (double)(f9 + f10), 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("smoke", f7 + f11, f8, f9 + f10, 0.0D, 0.0D, 0.0D);
+				world1.spawnParticle("flame", f7 + f11, f8, f9 + f10, 0.0D, 0.0D, 0.0D);
 			}
 
 		}
@@ -157,11 +157,11 @@ public class BlockFurnace extends BlockContainer {
 						}
 
 						itemStack7.stackSize -= i11;
-						EntityItem entityItem12 = new EntityItem(world1, (double)((float)i2 + f8), (double)((float)i3 + f9), (double)((float)i4 + f10), new ItemStack(itemStack7.itemID, i11, itemStack7.getItemDamage()));
+						EntityItem entityItem12 = new EntityItem(world1, (float)i2 + f8, (float)i3 + f9, (float)i4 + f10, new ItemStack(itemStack7.itemID, i11, itemStack7.getItemDamage()));
 						float f13 = 0.05F;
-						entityItem12.motionX = (double)((float)this.furnaceRand.nextGaussian() * f13);
-						entityItem12.motionY = (double)((float)this.furnaceRand.nextGaussian() * f13 + 0.2F);
-						entityItem12.motionZ = (double)((float)this.furnaceRand.nextGaussian() * f13);
+						entityItem12.motionX = (float)this.furnaceRand.nextGaussian() * f13;
+						entityItem12.motionY = (float)this.furnaceRand.nextGaussian() * f13 + 0.2F;
+						entityItem12.motionZ = (float)this.furnaceRand.nextGaussian() * f13;
 						world1.entityJoinedWorld(entityItem12);
 					}
 				}

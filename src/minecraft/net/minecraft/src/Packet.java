@@ -10,13 +10,13 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class Packet {
-	private static Map packetIdToClassMap = new HashMap();
-	private static Map packetClassToIdMap = new HashMap();
-	private static Set clientPacketIdList = new HashSet();
-	private static Set serverPacketIdList = new HashSet();
+	private static final Map packetIdToClassMap = new HashMap();
+	private static final Map packetClassToIdMap = new HashMap();
+	private static final Set clientPacketIdList = new HashSet();
+	private static final Set serverPacketIdList = new HashSet();
 	public final long creationTimeMillis = System.currentTimeMillis();
 	public boolean isChunkDataPacket = false;
-	private static HashMap packetStats;
+	private static final HashMap packetStats;
 	private static int totalPacketsCount;
 
 	static void addIdClassMapping(int i0, boolean z1, boolean z2, Class class3) {
@@ -81,15 +81,14 @@ public abstract class Packet {
 
 		PacketCounter packetCounter4 = (PacketCounter)packetStats.get(i6);
 		if(packetCounter4 == null) {
-			packetCounter4 = new PacketCounter((Empty1)null);
+			packetCounter4 = new PacketCounter(null);
 			packetStats.put(i6, packetCounter4);
 		}
 
 		packetCounter4.addPacket(packet3.getPacketSize());
 		++totalPacketsCount;
 		if(totalPacketsCount % 1000 == 0) {
-			;
-		}
+        }
 
 		return packet3;
 	}

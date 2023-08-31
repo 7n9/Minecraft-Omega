@@ -27,6 +27,6 @@ public class NBTTagByte extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.byteValue;
+		return String.valueOf(this.byteValue);
 	}
 }

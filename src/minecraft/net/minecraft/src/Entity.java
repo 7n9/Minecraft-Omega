@@ -86,7 +86,7 @@ public abstract class Entity {
 	}
 
 	public boolean equals(Object object1) {
-		return object1 instanceof Entity ? ((Entity)object1).entityId == this.entityId : false;
+		return object1 instanceof Entity && ((Entity) object1).entityId == this.entityId;
 	}
 
 	public int hashCode() {
@@ -181,13 +181,13 @@ public abstract class Entity {
 				for(i3 = 0; (float)i3 < 1.0F + this.width * 20.0F; ++i3) {
 					f4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
 					f5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-					this.worldObj.spawnParticle("bubble", this.posX + (double)f4, (double)(f2 + 1.0F), this.posZ + (double)f5, this.motionX, this.motionY - (double)(this.rand.nextFloat() * 0.2F), this.motionZ);
+					this.worldObj.spawnParticle("bubble", this.posX + (double)f4, f2 + 1.0F, this.posZ + (double)f5, this.motionX, this.motionY - (double)(this.rand.nextFloat() * 0.2F), this.motionZ);
 				}
 
 				for(i3 = 0; (float)i3 < 1.0F + this.width * 20.0F; ++i3) {
 					f4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
 					f5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width;
-					this.worldObj.spawnParticle("splash", this.posX + (double)f4, (double)(f2 + 1.0F), this.posZ + (double)f5, this.motionX, this.motionY, this.motionZ);
+					this.worldObj.spawnParticle("splash", this.posX + (double)f4, f2 + 1.0F, this.posZ + (double)f5, this.motionX, this.motionY, this.motionZ);
 				}
 			}
 
@@ -208,7 +208,7 @@ public abstract class Entity {
 				}
 			} else {
 				if(this.fire % 20 == 0) {
-					this.attackEntityFrom((Entity)null, 1);
+					this.attackEntityFrom(null, 1);
 				}
 
 				--this.fire;
@@ -233,7 +233,7 @@ public abstract class Entity {
 
 	protected void setOnFireFromLava() {
 		if(!this.isImmuneToFire) {
-			this.attackEntityFrom((Entity)null, 4);
+			this.attackEntityFrom(null, 4);
 			this.fire = 600;
 		}
 
@@ -246,7 +246,7 @@ public abstract class Entity {
 	public boolean isOffsetPositionInLiquid(double d1, double d3, double d5) {
 		AxisAlignedBB axisAlignedBB7 = this.boundingBox.getOffsetBoundingBox(d1, d3, d5);
 		List list8 = this.worldObj.getCollidingBoundingBoxes(this, axisAlignedBB7);
-		return list8.size() > 0 ? false : !this.worldObj.getIsAnyLiquid(axisAlignedBB7);
+		return list8.size() <= 0 && !this.worldObj.getIsAnyLiquid(axisAlignedBB7);
 	}
 
 	public void moveEntity(double d1, double d3, double d5) {
@@ -262,7 +262,7 @@ public abstract class Entity {
 			if(this.isInWeb) {
 				this.isInWeb = false;
 				d1 *= 0.25D;
-				d3 *= (double)0.05F;
+				d3 *= 0.05F;
 				d5 *= 0.25D;
 				this.motionX = 0.0D;
 				this.motionY = 0.0D;
@@ -343,7 +343,7 @@ public abstract class Entity {
 				d23 = d3;
 				double d25 = d5;
 				d1 = d11;
-				d3 = (double)this.stepHeight;
+				d3 = this.stepHeight;
 				d5 = d15;
 				AxisAlignedBB axisAlignedBB27 = this.boundingBox.copy();
 				this.boundingBox.setBB(axisAlignedBB17);
@@ -387,7 +387,7 @@ public abstract class Entity {
 					d3 = 0.0D;
 					d1 = 0.0D;
 				} else {
-					d3 = (double)(-this.stepHeight);
+					d3 = -this.stepHeight;
 
 					for(i28 = 0; i28 < list35.size(); ++i28) {
 						d3 = ((AxisAlignedBB)list35.get(i28)).calculateYOffset(this.boundingBox, d3);
@@ -520,7 +520,7 @@ public abstract class Entity {
 
 	protected void dealFireDamage(int i1) {
 		if(!this.isImmuneToFire) {
-			this.attackEntityFrom((Entity)null, i1);
+			this.attackEntityFrom(null, i1);
 		}
 
 	}
@@ -579,8 +579,8 @@ public abstract class Entity {
 			f2 *= f4;
 			float f5 = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F);
 			float f6 = MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F);
-			this.motionX += (double)(f1 * f6 - f2 * f5);
-			this.motionZ += (double)(f2 * f6 + f1 * f5);
+			this.motionX += f1 * f6 - f2 * f5;
+			this.motionZ += f2 * f6 + f1 * f5;
 		}
 	}
 
@@ -612,7 +612,7 @@ public abstract class Entity {
 		this.prevRotationYaw = this.rotationYaw = f7;
 		this.prevRotationPitch = this.rotationPitch = f8;
 		this.ySize = 0.0F;
-		double d9 = (double)(this.prevRotationYaw - f7);
+		double d9 = this.prevRotationYaw - f7;
 		if(d9 < -180.0D) {
 			this.prevRotationYaw += 360.0F;
 		}
@@ -652,7 +652,7 @@ public abstract class Entity {
 		double d7 = this.posX - d1;
 		double d9 = this.posY - d3;
 		double d11 = this.posZ - d5;
-		return (double)MathHelper.sqrt_double(d7 * d7 + d9 * d9 + d11 * d11);
+		return MathHelper.sqrt_double(d7 * d7 + d9 * d9 + d11 * d11);
 	}
 
 	public double getDistanceSqToEntity(Entity entity1) {
@@ -671,7 +671,7 @@ public abstract class Entity {
 			double d4 = entity1.posZ - this.posZ;
 			double d6 = MathHelper.abs_max(d2, d4);
 			if(d6 >= (double)0.01F) {
-				d6 = (double)MathHelper.sqrt_double(d6);
+				d6 = MathHelper.sqrt_double(d6);
 				d2 /= d6;
 				d4 /= d6;
 				double d8 = 1.0D / d6;
@@ -681,10 +681,10 @@ public abstract class Entity {
 
 				d2 *= d8;
 				d4 *= d8;
-				d2 *= (double)0.05F;
-				d4 *= (double)0.05F;
-				d2 *= (double)(1.0F - this.entityCollisionReduction);
-				d4 *= (double)(1.0F - this.entityCollisionReduction);
+				d2 *= 0.05F;
+				d4 *= 0.05F;
+				d2 *= 1.0F - this.entityCollisionReduction;
+				d4 *= 1.0F - this.entityCollisionReduction;
 				this.addVelocity(-d2, 0.0D, -d4);
 				entity1.addVelocity(d2, 0.0D, d4);
 			}
@@ -748,9 +748,9 @@ public abstract class Entity {
 	}
 
 	public void writeToNBT(NBTTagCompound nBTTagCompound1) {
-		nBTTagCompound1.setTag("Pos", this.newDoubleNBTList(new double[]{this.posX, this.posY + (double)this.ySize, this.posZ}));
-		nBTTagCompound1.setTag("Motion", this.newDoubleNBTList(new double[]{this.motionX, this.motionY, this.motionZ}));
-		nBTTagCompound1.setTag("Rotation", this.newFloatNBTList(new float[]{this.rotationYaw, this.rotationPitch}));
+		nBTTagCompound1.setTag("Pos", this.newDoubleNBTList(this.posX, this.posY + (double)this.ySize, this.posZ));
+		nBTTagCompound1.setTag("Motion", this.newDoubleNBTList(this.motionX, this.motionY, this.motionZ));
+		nBTTagCompound1.setTag("Rotation", this.newFloatNBTList(this.rotationYaw, this.rotationPitch));
 		nBTTagCompound1.setFloat("FallDistance", this.fallDistance);
 		nBTTagCompound1.setShort("Fire", (short)this.fire);
 		nBTTagCompound1.setShort("Air", (short)this.air);
@@ -882,9 +882,9 @@ public abstract class Entity {
 			this.onUpdate();
 			if(this.ridingEntity != null) {
 				this.ridingEntity.updateRiderPosition();
-				this.entityRiderYawDelta += (double)(this.ridingEntity.rotationYaw - this.ridingEntity.prevRotationYaw);
+				this.entityRiderYawDelta += this.ridingEntity.rotationYaw - this.ridingEntity.prevRotationYaw;
 
-				for(this.entityRiderPitchDelta += (double)(this.ridingEntity.rotationPitch - this.ridingEntity.prevRotationPitch); this.entityRiderYawDelta >= 180.0D; this.entityRiderYawDelta -= 360.0D) {
+				for(this.entityRiderPitchDelta += this.ridingEntity.rotationPitch - this.ridingEntity.prevRotationPitch; this.entityRiderYawDelta >= 180.0D; this.entityRiderYawDelta -= 360.0D) {
 				}
 
 				while(this.entityRiderYawDelta < -180.0D) {
@@ -903,19 +903,19 @@ public abstract class Entity {
 				double d3 = this.entityRiderPitchDelta * 0.5D;
 				float f5 = 10.0F;
 				if(d1 > (double)f5) {
-					d1 = (double)f5;
+					d1 = f5;
 				}
 
 				if(d1 < (double)(-f5)) {
-					d1 = (double)(-f5);
+					d1 = -f5;
 				}
 
 				if(d3 > (double)f5) {
-					d3 = (double)f5;
+					d3 = f5;
 				}
 
 				if(d3 < (double)(-f5)) {
-					d3 = (double)(-f5);
+					d3 = -f5;
 				}
 
 				this.entityRiderYawDelta -= d1;
@@ -931,7 +931,7 @@ public abstract class Entity {
 	}
 
 	public double getYOffset() {
-		return (double)this.yOffset;
+		return this.yOffset;
 	}
 
 	public double getMountedYOffset() {
@@ -1101,27 +1101,27 @@ public abstract class Entity {
 
 			float f25 = this.rand.nextFloat() * 0.2F + 0.1F;
 			if(b22 == 0) {
-				this.motionX = (double)(-f25);
+				this.motionX = -f25;
 			}
 
 			if(b22 == 1) {
-				this.motionX = (double)f25;
+				this.motionX = f25;
 			}
 
 			if(b22 == 2) {
-				this.motionY = (double)(-f25);
+				this.motionY = -f25;
 			}
 
 			if(b22 == 3) {
-				this.motionY = (double)f25;
+				this.motionY = f25;
 			}
 
 			if(b22 == 4) {
-				this.motionZ = (double)(-f25);
+				this.motionZ = -f25;
 			}
 
 			if(b22 == 5) {
-				this.motionZ = (double)f25;
+				this.motionZ = f25;
 			}
 		}
 

@@ -9,9 +9,9 @@ public class EntityReddustFX extends EntityFX {
 
 	public EntityReddustFX(World world1, double d2, double d4, double d6, float f8, float f9, float f10, float f11) {
 		super(world1, d2, d4, d6, 0.0D, 0.0D, 0.0D);
-		this.motionX *= (double)0.1F;
-		this.motionY *= (double)0.1F;
-		this.motionZ *= (double)0.1F;
+		this.motionX *= 0.1F;
+		this.motionY *= 0.1F;
+		this.motionZ *= 0.1F;
 		if(f9 == 0.0F) {
 			f9 = 1.0F;
 		}
@@ -57,12 +57,12 @@ public class EntityReddustFX extends EntityFX {
 			this.motionZ *= 1.1D;
 		}
 
-		this.motionX *= (double)0.96F;
-		this.motionY *= (double)0.96F;
-		this.motionZ *= (double)0.96F;
+		this.motionX *= 0.96F;
+		this.motionY *= 0.96F;
+		this.motionZ *= 0.96F;
 		if(this.onGround) {
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 		}
 
 	}

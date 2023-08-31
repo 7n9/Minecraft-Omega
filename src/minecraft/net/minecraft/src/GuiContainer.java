@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public abstract class GuiContainer extends GuiScreen {
-	private static RenderItem itemRenderer = new RenderItem();
+	private static final RenderItem itemRenderer = new RenderItem();
 	protected int xSize = 176;
 	protected int ySize = 166;
 	public Container inventorySlots;
@@ -64,7 +64,7 @@ public abstract class GuiContainer extends GuiScreen {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		this.drawGuiContainerForegroundLayer();
 		if(inventoryPlayer12.getItemStack() == null && slot6 != null && slot6.getHasStack()) {
-			String string13 = ("" + StringTranslate.getInstance().translateNamedKey(slot6.getStack().getItemName())).trim();
+			String string13 = (StringTranslate.getInstance().translateNamedKey(slot6.getStack().getItemName())).trim();
 			if(string13.length() > 0) {
 				i9 = i1 - i4 + 12;
 				i10 = i2 - i5 - 12;
@@ -149,8 +149,7 @@ public abstract class GuiContainer extends GuiScreen {
 
 	protected void mouseMovedOrUp(int i1, int i2, int i3) {
 		if(i3 == 0) {
-			;
-		}
+        }
 
 	}
 

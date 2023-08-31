@@ -24,10 +24,10 @@ public class RenderFireball extends Render {
 		GL11.glRotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 		tessellator12.startDrawingQuads();
 		tessellator12.setNormal(0.0F, 1.0F, 0.0F);
-		tessellator12.addVertexWithUV((double)(0.0F - f18), (double)(0.0F - f19), 0.0D, (double)f13, (double)f16);
-		tessellator12.addVertexWithUV((double)(f17 - f18), (double)(0.0F - f19), 0.0D, (double)f14, (double)f16);
-		tessellator12.addVertexWithUV((double)(f17 - f18), (double)(1.0F - f19), 0.0D, (double)f14, (double)f15);
-		tessellator12.addVertexWithUV((double)(0.0F - f18), (double)(1.0F - f19), 0.0D, (double)f13, (double)f15);
+		tessellator12.addVertexWithUV(0.0F - f18, 0.0F - f19, 0.0D, f13, f16);
+		tessellator12.addVertexWithUV(f17 - f18, 0.0F - f19, 0.0D, f14, f16);
+		tessellator12.addVertexWithUV(f17 - f18, 1.0F - f19, 0.0D, f14, f15);
+		tessellator12.addVertexWithUV(0.0F - f18, 1.0F - f19, 0.0D, f13, f15);
 		tessellator12.draw();
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glPopMatrix();

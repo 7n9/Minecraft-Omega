@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class GuiDownloadTerrain extends GuiScreen {
-	private NetClientHandler netHandler;
+	private final NetClientHandler netHandler;
 	private int updateCounter = 0;
 
 	public GuiDownloadTerrain(NetClientHandler netClientHandler1) {

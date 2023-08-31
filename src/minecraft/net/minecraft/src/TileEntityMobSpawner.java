@@ -25,13 +25,13 @@ public class TileEntityMobSpawner extends TileEntity {
 	public void updateEntity() {
 		this.yaw2 = this.yaw;
 		if(this.anyPlayerInRange()) {
-			double d1 = (double)((float)this.xCoord + this.worldObj.rand.nextFloat());
-			double d3 = (double)((float)this.yCoord + this.worldObj.rand.nextFloat());
-			double d5 = (double)((float)this.zCoord + this.worldObj.rand.nextFloat());
+			double d1 = (float)this.xCoord + this.worldObj.rand.nextFloat();
+			double d3 = (float)this.yCoord + this.worldObj.rand.nextFloat();
+			double d5 = (float)this.zCoord + this.worldObj.rand.nextFloat();
 			this.worldObj.spawnParticle("smoke", d1, d3, d5, 0.0D, 0.0D, 0.0D);
 			this.worldObj.spawnParticle("flame", d1, d3, d5, 0.0D, 0.0D, 0.0D);
 
-			for(this.yaw += (double)(1000.0F / ((float)this.delay + 200.0F)); this.yaw > 360.0D; this.yaw2 -= 360.0D) {
+			for(this.yaw += 1000.0F / ((float)this.delay + 200.0F); this.yaw > 360.0D; this.yaw2 -= 360.0D) {
 				this.yaw -= 360.0D;
 			}
 
@@ -48,19 +48,19 @@ public class TileEntityMobSpawner extends TileEntity {
 				byte b7 = 4;
 
 				for(int i8 = 0; i8 < b7; ++i8) {
-					EntityLiving entityLiving9 = (EntityLiving)((EntityLiving)EntityList.createEntityInWorld(this.mobID, this.worldObj));
+					EntityLiving entityLiving9 = (EntityLiving) EntityList.createEntityInWorld(this.mobID, this.worldObj);
 					if(entityLiving9 == null) {
 						return;
 					}
 
-					int i10 = this.worldObj.getEntitiesWithinAABB(entityLiving9.getClass(), AxisAlignedBB.getBoundingBoxFromPool((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)(this.xCoord + 1), (double)(this.yCoord + 1), (double)(this.zCoord + 1)).expand(8.0D, 4.0D, 8.0D)).size();
+					int i10 = this.worldObj.getEntitiesWithinAABB(entityLiving9.getClass(), AxisAlignedBB.getBoundingBoxFromPool(this.xCoord, this.yCoord, this.zCoord, this.xCoord + 1, this.yCoord + 1, this.zCoord + 1).expand(8.0D, 4.0D, 8.0D)).size();
 					if(i10 >= 6) {
 						this.updateDelay();
 						return;
 					}
 
 					double d11 = (double) this.xCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 4.0D;
-					double d13 = (double)(this.yCoord + this.worldObj.rand.nextInt(3) - 1);
+					double d13 = this.yCoord + this.worldObj.rand.nextInt(3) - 1;
 					double d15 = (double)this.zCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 4.0D;
 					entityLiving9.setLocationAndAngles(d11, d13, d15, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
 					if(entityLiving9.getCanSpawnHere()) {

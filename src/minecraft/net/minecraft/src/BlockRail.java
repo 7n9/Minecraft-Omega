@@ -90,12 +90,9 @@ public class BlockRail extends Block {
 				i7 = i6 & 7;
 			}
 
-			boolean z8 = false;
-			if(!world1.isBlockNormalCube(i2, i3 - 1, i4)) {
-				z8 = true;
-			}
+			boolean z8 = !world1.isBlockNormalCube(i2, i3 - 1, i4);
 
-			if(i7 == 2 && !world1.isBlockNormalCube(i2 + 1, i3, i4)) {
+            if(i7 == 2 && !world1.isBlockNormalCube(i2 + 1, i3, i4)) {
 				z8 = true;
 			}
 
@@ -211,7 +208,7 @@ public class BlockRail extends Block {
 				i8 = 0;
 			}
 
-			return this.func_27043_a(world1, i2, i3, i4, z6, i7, i8) ? true : z9 && this.func_27043_a(world1, i2, i3 - 1, i4, z6, i7, i8);
+			return this.func_27043_a(world1, i2, i3, i4, z6, i7, i8) || z9 && this.func_27043_a(world1, i2, i3 - 1, i4, z6, i7, i8);
 		}
 	}
 

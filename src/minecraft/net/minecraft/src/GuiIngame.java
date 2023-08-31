@@ -12,10 +12,10 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class GuiIngame extends Gui {
-	private static RenderItem itemRenderer = new RenderItem();
-	private List chatMessageList = new ArrayList();
-	private Random rand = new Random();
-	private Minecraft mc;
+	private static final RenderItem itemRenderer = new RenderItem();
+	private final List chatMessageList = new ArrayList();
+	private final Random rand = new Random();
+	private final Minecraft mc;
 	public String field_933_a = null;
 	private int updateCounter = 0;
 	private String recordPlaying = "";
@@ -67,7 +67,7 @@ public class GuiIngame extends Gui {
 
 		int i13 = this.mc.thePlayer.health;
 		int i14 = this.mc.thePlayer.prevHealth;
-		this.rand.setSeed((long)(this.updateCounter * 312871));
+		this.rand.setSeed(this.updateCounter * 312871L);
 		int i15;
 		int i16;
 		int i17;
@@ -275,9 +275,9 @@ public class GuiIngame extends Gui {
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("%blur%/misc/pumpkinblur.png"));
 		Tessellator tessellator3 = Tessellator.instance;
 		tessellator3.startDrawingQuads();
-		tessellator3.addVertexWithUV(0.0D, (double)i2, -90.0D, 0.0D, 1.0D);
-		tessellator3.addVertexWithUV((double)i1, (double)i2, -90.0D, 1.0D, 1.0D);
-		tessellator3.addVertexWithUV((double)i1, 0.0D, -90.0D, 1.0D, 0.0D);
+		tessellator3.addVertexWithUV(0.0D, i2, -90.0D, 0.0D, 1.0D);
+		tessellator3.addVertexWithUV(i1, i2, -90.0D, 1.0D, 1.0D);
+		tessellator3.addVertexWithUV(i1, 0.0D, -90.0D, 1.0D, 0.0D);
 		tessellator3.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
 		tessellator3.draw();
 		GL11.glDepthMask(true);
@@ -304,9 +304,9 @@ public class GuiIngame extends Gui {
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("%blur%/misc/vignette.png"));
 		Tessellator tessellator4 = Tessellator.instance;
 		tessellator4.startDrawingQuads();
-		tessellator4.addVertexWithUV(0.0D, (double)i3, -90.0D, 0.0D, 1.0D);
-		tessellator4.addVertexWithUV((double)i2, (double)i3, -90.0D, 1.0D, 1.0D);
-		tessellator4.addVertexWithUV((double)i2, 0.0D, -90.0D, 1.0D, 0.0D);
+		tessellator4.addVertexWithUV(0.0D, i3, -90.0D, 0.0D, 1.0D);
+		tessellator4.addVertexWithUV(i2, i3, -90.0D, 1.0D, 1.0D);
+		tessellator4.addVertexWithUV(i2, 0.0D, -90.0D, 1.0D, 0.0D);
 		tessellator4.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
 		tessellator4.draw();
 		GL11.glDepthMask(true);
@@ -334,10 +334,10 @@ public class GuiIngame extends Gui {
 		float f7 = (float)(Block.portal.blockIndexInTexture / 16 + 1) / 16.0F;
 		Tessellator tessellator8 = Tessellator.instance;
 		tessellator8.startDrawingQuads();
-		tessellator8.addVertexWithUV(0.0D, (double)i3, -90.0D, (double)f4, (double)f7);
-		tessellator8.addVertexWithUV((double)i2, (double)i3, -90.0D, (double)f6, (double)f7);
-		tessellator8.addVertexWithUV((double)i2, 0.0D, -90.0D, (double)f6, (double)f5);
-		tessellator8.addVertexWithUV(0.0D, 0.0D, -90.0D, (double)f4, (double)f5);
+		tessellator8.addVertexWithUV(0.0D, i3, -90.0D, f4, f7);
+		tessellator8.addVertexWithUV(i2, i3, -90.0D, f6, f7);
+		tessellator8.addVertexWithUV(i2, 0.0D, -90.0D, f6, f5);
+		tessellator8.addVertexWithUV(0.0D, 0.0D, -90.0D, f4, f5);
 		tessellator8.draw();
 		GL11.glDepthMask(true);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);

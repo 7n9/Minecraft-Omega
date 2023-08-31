@@ -3,7 +3,7 @@ package net.minecraft.src;
 import org.lwjgl.input.Keyboard;
 
 public class GuiMultiplayer extends GuiScreen {
-	private GuiScreen parentScreen;
+	private final GuiScreen parentScreen;
 	private GuiTextField field_22111_h;
 
 	public GuiMultiplayer(GuiScreen guiScreen1) {
@@ -90,7 +90,7 @@ public class GuiMultiplayer extends GuiScreen {
 		StringTranslate stringTranslate4 = StringTranslate.getInstance();
 		this.drawDefaultBackground();
 		this.drawCenteredString(this.fontRenderer, stringTranslate4.translateKey("multiplayer.title"), this.width / 2, this.height / 4 - 60 + 20, 0xFFFFFF);
-		this.drawString(this.fontRenderer, stringTranslate4.translateKey("multiplayer.info1"), this.width / 2 - 140, this.height / 4 - 60 + 60 + 0, 10526880);
+		this.drawString(this.fontRenderer, stringTranslate4.translateKey("multiplayer.info1"), this.width / 2 - 140, this.height / 4 - 60 + 60, 10526880);
 		this.drawString(this.fontRenderer, stringTranslate4.translateKey("multiplayer.info2"), this.width / 2 - 140, this.height / 4 - 60 + 60 + 9, 10526880);
 		this.drawString(this.fontRenderer, stringTranslate4.translateKey("multiplayer.ipinfo"), this.width / 2 - 140, this.height / 4 - 60 + 60 + 36, 10526880);
 		this.field_22111_h.drawTextBox();

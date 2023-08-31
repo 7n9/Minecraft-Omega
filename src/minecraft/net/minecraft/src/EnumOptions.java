@@ -33,7 +33,7 @@ public enum EnumOptions {
 		return null;
 	}
 
-	private EnumOptions(String string3, boolean z4, boolean z5) {
+	EnumOptions(String string3, boolean z4, boolean z5) {
 		this.enumString = string3;
 		this.enumFloat = z4;
 		this.enumBoolean = z5;

@@ -6,13 +6,13 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class GuiStats extends GuiScreen {
-	private static RenderItem field_27153_j = new RenderItem();
+	private static final RenderItem field_27153_j = new RenderItem();
 	protected GuiScreen field_27152_a;
 	protected String field_27154_i = "Select world";
 	private GuiSlotStatsGeneral field_27151_l;
 	private GuiSlotStatsItem field_27150_m;
 	private GuiSlotStatsBlock field_27157_n;
-	private StatFileWriter field_27156_o;
+	private final StatFileWriter field_27156_o;
 	private GuiSlot field_27155_p = null;
 
 	public GuiStats(GuiScreen guiScreen1, StatFileWriter statFileWriter2) {
@@ -95,10 +95,10 @@ public class GuiStats extends GuiScreen {
 		this.mc.renderEngine.bindTexture(i5);
 		Tessellator tessellator10 = Tessellator.instance;
 		tessellator10.startDrawingQuads();
-		tessellator10.addVertexWithUV((double)(i1 + 0), (double)(i2 + 18), (double)this.zLevel, (double)((float)(i3 + 0) * 0.0078125F), (double)((float)(i4 + 18) * 0.0078125F));
-		tessellator10.addVertexWithUV((double)(i1 + 18), (double)(i2 + 18), (double)this.zLevel, (double)((float)(i3 + 18) * 0.0078125F), (double)((float)(i4 + 18) * 0.0078125F));
-		tessellator10.addVertexWithUV((double)(i1 + 18), (double)(i2 + 0), (double)this.zLevel, (double)((float)(i3 + 18) * 0.0078125F), (double)((float)(i4 + 0) * 0.0078125F));
-		tessellator10.addVertexWithUV((double)(i1 + 0), (double)(i2 + 0), (double)this.zLevel, (double)((float)(i3 + 0) * 0.0078125F), (double)((float)(i4 + 0) * 0.0078125F));
+		tessellator10.addVertexWithUV(i1, i2 + 18, this.zLevel, (float)(i3) * 0.0078125F, (float)(i4 + 18) * 0.0078125F);
+		tessellator10.addVertexWithUV(i1 + 18, i2 + 18, this.zLevel, (float)(i3 + 18) * 0.0078125F, (float)(i4 + 18) * 0.0078125F);
+		tessellator10.addVertexWithUV(i1 + 18, i2, this.zLevel, (float)(i3 + 18) * 0.0078125F, (float)(i4) * 0.0078125F);
+		tessellator10.addVertexWithUV(i1, i2, this.zLevel, (float)(i3) * 0.0078125F, (float)(i4) * 0.0078125F);
 		tessellator10.draw();
 	}
 

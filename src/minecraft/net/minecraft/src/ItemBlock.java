@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class ItemBlock extends Item {
-	private int blockID;
+	private final int blockID;
 
 	public ItemBlock(int i1) {
 		super(i1);
@@ -47,7 +47,7 @@ public class ItemBlock extends Item {
 			if(world3.setBlockAndMetadataWithNotify(i4, i5, i6, this.blockID, this.getPlacedBlockMetadata(itemStack1.getItemDamage()))) {
 				Block.blocksList[this.blockID].onBlockPlaced(world3, i4, i5, i6, i7);
 				Block.blocksList[this.blockID].onBlockPlacedBy(world3, i4, i5, i6, entityPlayer2);
-				world3.playSoundEffect((double)((float)i4 + 0.5F), (double)((float)i5 + 0.5F), (double)((float)i6 + 0.5F), block8.stepSound.func_1145_d(), (block8.stepSound.getVolume() + 1.0F) / 2.0F, block8.stepSound.getPitch() * 0.8F);
+				world3.playSoundEffect((float)i4 + 0.5F, (float)i5 + 0.5F, (float)i6 + 0.5F, block8.stepSound.func_1145_d(), (block8.stepSound.getVolume() + 1.0F) / 2.0F, block8.stepSound.getPitch() * 0.8F);
 				--itemStack1.stackSize;
 			}
 

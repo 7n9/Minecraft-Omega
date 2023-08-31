@@ -9,9 +9,9 @@ public class EntitySnowShovelFX extends EntityFX {
 
 	public EntitySnowShovelFX(World world1, double d2, double d4, double d6, double d8, double d10, double d12, float f14) {
 		super(world1, d2, d4, d6, d8, d10, d12);
-		this.motionX *= (double)0.1F;
-		this.motionY *= (double)0.1F;
-		this.motionZ *= (double)0.1F;
+		this.motionX *= 0.1F;
+		this.motionY *= 0.1F;
+		this.motionZ *= 0.1F;
 		this.motionX += d8;
 		this.motionY += d10;
 		this.motionZ += d12;
@@ -49,12 +49,12 @@ public class EntitySnowShovelFX extends EntityFX {
 		this.particleTextureIndex = 7 - this.particleAge * 8 / this.particleMaxAge;
 		this.motionY -= 0.03D;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= (double)0.99F;
-		this.motionY *= (double)0.99F;
-		this.motionZ *= (double)0.99F;
+		this.motionX *= 0.99F;
+		this.motionY *= 0.99F;
+		this.motionZ *= 0.99F;
 		if(this.onGround) {
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 		}
 
 	}

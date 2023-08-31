@@ -13,7 +13,7 @@ public class MapData extends MapDataBase {
 	public byte[] field_28176_f = new byte[16384];
 	public int field_28175_g;
 	public List field_28174_h = new ArrayList();
-	private Map field_28172_j = new HashMap();
+	private final Map field_28172_j = new HashMap();
 	public List field_28173_i = new ArrayList();
 
 	public MapData(String string1) {

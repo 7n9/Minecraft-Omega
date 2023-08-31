@@ -27,6 +27,6 @@ public class NBTTagShort extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.shortValue;
+		return String.valueOf(this.shortValue);
 	}
 }

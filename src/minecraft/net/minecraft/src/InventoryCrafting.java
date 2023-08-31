@@ -1,9 +1,9 @@
 package net.minecraft.src;
 
 public class InventoryCrafting implements IInventory {
-	private ItemStack[] stackList;
-	private int field_21104_b;
-	private Container eventHandler;
+	private final ItemStack[] stackList;
+	private final int field_21104_b;
+	private final Container eventHandler;
 
 	public InventoryCrafting(Container container1, int i2, int i3) {
 		int i4 = i2 * i3;

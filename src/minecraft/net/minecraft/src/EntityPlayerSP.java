@@ -5,9 +5,9 @@ import net.minecraft.client.Minecraft;
 public class EntityPlayerSP extends EntityPlayer {
 	public MovementInput movementInput;
 	protected Minecraft mc;
-	private MouseFilter field_21903_bJ = new MouseFilter();
-	private MouseFilter field_21904_bK = new MouseFilter();
-	private MouseFilter field_21902_bL = new MouseFilter();
+	private final MouseFilter field_21903_bJ = new MouseFilter();
+	private final MouseFilter field_21904_bK = new MouseFilter();
+	private final MouseFilter field_21902_bL = new MouseFilter();
 
 	public EntityPlayerSP(Minecraft minecraft1, World world2, Session session3, int i4) {
 		super(world2);
@@ -39,11 +39,11 @@ public class EntityPlayerSP extends EntityPlayer {
 		this.prevTimeInPortal = this.timeInPortal;
 		if(this.inPortal) {
 			if(!this.worldObj.multiplayerWorld && this.ridingEntity != null) {
-				this.mountEntity((Entity)null);
+				this.mountEntity(null);
 			}
 
 			if(this.mc.currentScreen != null) {
-				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.displayGuiScreen(null);
 			}
 
 			if(this.timeInPortal == 0.0F) {
@@ -107,7 +107,7 @@ public class EntityPlayerSP extends EntityPlayer {
 
 	public void closeScreen() {
 		super.closeScreen();
-		this.mc.displayGuiScreen((GuiScreen)null);
+		this.mc.displayGuiScreen(null);
 	}
 
 	public void displayGUIEditSign(TileEntitySign tileEntitySign1) {
@@ -230,19 +230,19 @@ public class EntityPlayerSP extends EntityPlayer {
 
 			float f21 = 0.1F;
 			if(b18 == 0) {
-				this.motionX = (double)(-f21);
+				this.motionX = -f21;
 			}
 
 			if(b18 == 1) {
-				this.motionX = (double)f21;
+				this.motionX = f21;
 			}
 
 			if(b18 == 4) {
-				this.motionZ = (double)(-f21);
+				this.motionZ = -f21;
 			}
 
 			if(b18 == 5) {
-				this.motionZ = (double)f21;
+				this.motionZ = f21;
 			}
 		}
 

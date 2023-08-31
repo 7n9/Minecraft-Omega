@@ -41,7 +41,7 @@ public class ItemBloodWand extends Item {
 			Omega.INSTANCE.mc.thePlayer.addChatMessage("You like killing things with me dont you?");
 			Omega.INSTANCE.mc.thePlayer.addChatMessage("Im afraid that you can't use me again until you are rested.");
 			Omega.INSTANCE.mc.thePlayer.addChatMessage("Since you awoke me, i will take some of your life.");
-			Omega.INSTANCE.mc.thePlayer.attackEntityFrom((Entity)null, 1);
+			Omega.INSTANCE.mc.thePlayer.attackEntityFrom(null, 1);
 			return 0;
 		}
 		if(Omega.INSTANCE.manaSystem.get() < 20){

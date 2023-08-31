@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class ChunkLoader implements IChunkLoader {
-	private File saveDir;
-	private boolean createIfNecessary;
+	private final File saveDir;
+	private final boolean createIfNecessary;
 
 	public ChunkLoader(File file1, boolean z2) {
 		this.saveDir = file1;

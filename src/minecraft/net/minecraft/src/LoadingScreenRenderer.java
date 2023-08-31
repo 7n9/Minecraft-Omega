@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 public class LoadingScreenRenderer implements IProgressUpdate {
 	private String field_1004_a = "";
-	private Minecraft mc;
+	private final Minecraft mc;
 	private String field_1007_c = "";
 	private long field_1006_d = System.currentTimeMillis();
 	private boolean field_1005_e = false;
@@ -83,9 +83,9 @@ public class LoadingScreenRenderer implements IProgressUpdate {
 				float f9 = 32.0F;
 				tessellator7.startDrawingQuads();
 				tessellator7.setColorOpaque_I(4210752);
-				tessellator7.addVertexWithUV(0.0D, (double)i6, 0.0D, 0.0D, (double)((float)i6 / f9));
-				tessellator7.addVertexWithUV((double)i5, (double)i6, 0.0D, (double)((float)i5 / f9), (double)((float)i6 / f9));
-				tessellator7.addVertexWithUV((double)i5, 0.0D, 0.0D, (double)((float)i5 / f9), 0.0D);
+				tessellator7.addVertexWithUV(0.0D, i6, 0.0D, 0.0D, (float)i6 / f9);
+				tessellator7.addVertexWithUV(i5, i6, 0.0D, (float)i5 / f9, (float)i6 / f9);
+				tessellator7.addVertexWithUV(i5, 0.0D, 0.0D, (float)i5 / f9, 0.0D);
 				tessellator7.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 				tessellator7.draw();
 				if(i1 >= 0) {
@@ -96,15 +96,15 @@ public class LoadingScreenRenderer implements IProgressUpdate {
 					GL11.glDisable(GL11.GL_TEXTURE_2D);
 					tessellator7.startDrawingQuads();
 					tessellator7.setColorOpaque_I(8421504);
-					tessellator7.addVertex((double)i12, (double)i13, 0.0D);
-					tessellator7.addVertex((double)i12, (double)(i13 + b11), 0.0D);
-					tessellator7.addVertex((double)(i12 + b10), (double)(i13 + b11), 0.0D);
-					tessellator7.addVertex((double)(i12 + b10), (double)i13, 0.0D);
+					tessellator7.addVertex(i12, i13, 0.0D);
+					tessellator7.addVertex(i12, i13 + b11, 0.0D);
+					tessellator7.addVertex(i12 + b10, i13 + b11, 0.0D);
+					tessellator7.addVertex(i12 + b10, i13, 0.0D);
 					tessellator7.setColorOpaque_I(8454016);
-					tessellator7.addVertex((double)i12, (double)i13, 0.0D);
-					tessellator7.addVertex((double)i12, (double)(i13 + b11), 0.0D);
-					tessellator7.addVertex((double)(i12 + i1), (double)(i13 + b11), 0.0D);
-					tessellator7.addVertex((double)(i12 + i1), (double)i13, 0.0D);
+					tessellator7.addVertex(i12, i13, 0.0D);
+					tessellator7.addVertex(i12, i13 + b11, 0.0D);
+					tessellator7.addVertex(i12 + i1, i13 + b11, 0.0D);
+					tessellator7.addVertex(i12 + i1, i13, 0.0D);
 					tessellator7.draw();
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
 				}

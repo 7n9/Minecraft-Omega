@@ -192,10 +192,10 @@ public abstract class GuiSlot {
 		float f17 = 32.0F;
 		tessellator16.startDrawingQuads();
 		tessellator16.setColorOpaque_I(2105376);
-		tessellator16.addVertexWithUV((double)this.left, (double)this.bottom, 0.0D, (double)((float)this.left / f17), (double)((float)(this.bottom + (int)this.amountScrolled) / f17));
-		tessellator16.addVertexWithUV((double)this.right, (double)this.bottom, 0.0D, (double)((float)this.right / f17), (double)((float)(this.bottom + (int)this.amountScrolled) / f17));
-		tessellator16.addVertexWithUV((double)this.right, (double)this.top, 0.0D, (double)((float)this.right / f17), (double)((float)(this.top + (int)this.amountScrolled) / f17));
-		tessellator16.addVertexWithUV((double)this.left, (double)this.top, 0.0D, (double)((float)this.left / f17), (double)((float)(this.top + (int)this.amountScrolled) / f17));
+		tessellator16.addVertexWithUV(this.left, this.bottom, 0.0D, (float)this.left / f17, (float)(this.bottom + (int)this.amountScrolled) / f17);
+		tessellator16.addVertexWithUV(this.right, this.bottom, 0.0D, (float)this.right / f17, (float)(this.bottom + (int)this.amountScrolled) / f17);
+		tessellator16.addVertexWithUV(this.right, this.top, 0.0D, (float)this.right / f17, (float)(this.top + (int)this.amountScrolled) / f17);
+		tessellator16.addVertexWithUV(this.left, this.top, 0.0D, (float)this.left / f17, (float)(this.top + (int)this.amountScrolled) / f17);
 		tessellator16.draw();
 		i9 = this.width / 2 - 92 - 16;
 		i10 = this.top + 4 - (int)this.amountScrolled;
@@ -215,15 +215,15 @@ public abstract class GuiSlot {
 					GL11.glDisable(GL11.GL_TEXTURE_2D);
 					tessellator16.startDrawingQuads();
 					tessellator16.setColorOpaque_I(8421504);
-					tessellator16.addVertexWithUV((double)i14, (double)(i19 + i13 + 2), 0.0D, 0.0D, 1.0D);
-					tessellator16.addVertexWithUV((double)i15, (double)(i19 + i13 + 2), 0.0D, 1.0D, 1.0D);
-					tessellator16.addVertexWithUV((double)i15, (double)(i19 - 2), 0.0D, 1.0D, 0.0D);
-					tessellator16.addVertexWithUV((double)i14, (double)(i19 - 2), 0.0D, 0.0D, 0.0D);
+					tessellator16.addVertexWithUV(i14, i19 + i13 + 2, 0.0D, 0.0D, 1.0D);
+					tessellator16.addVertexWithUV(i15, i19 + i13 + 2, 0.0D, 1.0D, 1.0D);
+					tessellator16.addVertexWithUV(i15, i19 - 2, 0.0D, 1.0D, 0.0D);
+					tessellator16.addVertexWithUV(i14, i19 - 2, 0.0D, 0.0D, 0.0D);
 					tessellator16.setColorOpaque_I(0);
-					tessellator16.addVertexWithUV((double)(i14 + 1), (double)(i19 + i13 + 1), 0.0D, 0.0D, 1.0D);
-					tessellator16.addVertexWithUV((double)(i15 - 1), (double)(i19 + i13 + 1), 0.0D, 1.0D, 1.0D);
-					tessellator16.addVertexWithUV((double)(i15 - 1), (double)(i19 - 1), 0.0D, 1.0D, 0.0D);
-					tessellator16.addVertexWithUV((double)(i14 + 1), (double)(i19 - 1), 0.0D, 0.0D, 0.0D);
+					tessellator16.addVertexWithUV(i14 + 1, i19 + i13 + 1, 0.0D, 0.0D, 1.0D);
+					tessellator16.addVertexWithUV(i15 - 1, i19 + i13 + 1, 0.0D, 1.0D, 1.0D);
+					tessellator16.addVertexWithUV(i15 - 1, i19 - 1, 0.0D, 1.0D, 0.0D);
+					tessellator16.addVertexWithUV(i14 + 1, i19 - 1, 0.0D, 0.0D, 0.0D);
 					tessellator16.draw();
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
 				}
@@ -243,19 +243,19 @@ public abstract class GuiSlot {
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		tessellator16.startDrawingQuads();
 		tessellator16.setColorRGBA_I(0, 0);
-		tessellator16.addVertexWithUV((double)this.left, (double)(this.top + b18), 0.0D, 0.0D, 1.0D);
-		tessellator16.addVertexWithUV((double)this.right, (double)(this.top + b18), 0.0D, 1.0D, 1.0D);
+		tessellator16.addVertexWithUV(this.left, this.top + b18, 0.0D, 0.0D, 1.0D);
+		tessellator16.addVertexWithUV(this.right, this.top + b18, 0.0D, 1.0D, 1.0D);
 		tessellator16.setColorRGBA_I(0, 255);
-		tessellator16.addVertexWithUV((double)this.right, (double)this.top, 0.0D, 1.0D, 0.0D);
-		tessellator16.addVertexWithUV((double)this.left, (double)this.top, 0.0D, 0.0D, 0.0D);
+		tessellator16.addVertexWithUV(this.right, this.top, 0.0D, 1.0D, 0.0D);
+		tessellator16.addVertexWithUV(this.left, this.top, 0.0D, 0.0D, 0.0D);
 		tessellator16.draw();
 		tessellator16.startDrawingQuads();
 		tessellator16.setColorRGBA_I(0, 255);
-		tessellator16.addVertexWithUV((double)this.left, (double)this.bottom, 0.0D, 0.0D, 1.0D);
-		tessellator16.addVertexWithUV((double)this.right, (double)this.bottom, 0.0D, 1.0D, 1.0D);
+		tessellator16.addVertexWithUV(this.left, this.bottom, 0.0D, 0.0D, 1.0D);
+		tessellator16.addVertexWithUV(this.right, this.bottom, 0.0D, 1.0D, 1.0D);
 		tessellator16.setColorRGBA_I(0, 0);
-		tessellator16.addVertexWithUV((double)this.right, (double)(this.bottom - b18), 0.0D, 1.0D, 0.0D);
-		tessellator16.addVertexWithUV((double)this.left, (double)(this.bottom - b18), 0.0D, 0.0D, 0.0D);
+		tessellator16.addVertexWithUV(this.right, this.bottom - b18, 0.0D, 1.0D, 0.0D);
+		tessellator16.addVertexWithUV(this.left, this.bottom - b18, 0.0D, 0.0D, 0.0D);
 		tessellator16.draw();
 		i19 = this.getContentHeight() - (this.bottom - this.top - 4);
 		if(i19 > 0) {
@@ -275,24 +275,24 @@ public abstract class GuiSlot {
 
 			tessellator16.startDrawingQuads();
 			tessellator16.setColorRGBA_I(0, 255);
-			tessellator16.addVertexWithUV((double)i5, (double)this.bottom, 0.0D, 0.0D, 1.0D);
-			tessellator16.addVertexWithUV((double)i6, (double)this.bottom, 0.0D, 1.0D, 1.0D);
-			tessellator16.addVertexWithUV((double)i6, (double)this.top, 0.0D, 1.0D, 0.0D);
-			tessellator16.addVertexWithUV((double)i5, (double)this.top, 0.0D, 0.0D, 0.0D);
+			tessellator16.addVertexWithUV(i5, this.bottom, 0.0D, 0.0D, 1.0D);
+			tessellator16.addVertexWithUV(i6, this.bottom, 0.0D, 1.0D, 1.0D);
+			tessellator16.addVertexWithUV(i6, this.top, 0.0D, 1.0D, 0.0D);
+			tessellator16.addVertexWithUV(i5, this.top, 0.0D, 0.0D, 0.0D);
 			tessellator16.draw();
 			tessellator16.startDrawingQuads();
 			tessellator16.setColorRGBA_I(8421504, 255);
-			tessellator16.addVertexWithUV((double)i5, (double)(i14 + i13), 0.0D, 0.0D, 1.0D);
-			tessellator16.addVertexWithUV((double)i6, (double)(i14 + i13), 0.0D, 1.0D, 1.0D);
-			tessellator16.addVertexWithUV((double)i6, (double)i14, 0.0D, 1.0D, 0.0D);
-			tessellator16.addVertexWithUV((double)i5, (double)i14, 0.0D, 0.0D, 0.0D);
+			tessellator16.addVertexWithUV(i5, i14 + i13, 0.0D, 0.0D, 1.0D);
+			tessellator16.addVertexWithUV(i6, i14 + i13, 0.0D, 1.0D, 1.0D);
+			tessellator16.addVertexWithUV(i6, i14, 0.0D, 1.0D, 0.0D);
+			tessellator16.addVertexWithUV(i5, i14, 0.0D, 0.0D, 0.0D);
 			tessellator16.draw();
 			tessellator16.startDrawingQuads();
 			tessellator16.setColorRGBA_I(12632256, 255);
-			tessellator16.addVertexWithUV((double)i5, (double)(i14 + i13 - 1), 0.0D, 0.0D, 1.0D);
-			tessellator16.addVertexWithUV((double)(i6 - 1), (double)(i14 + i13 - 1), 0.0D, 1.0D, 1.0D);
-			tessellator16.addVertexWithUV((double)(i6 - 1), (double)i14, 0.0D, 1.0D, 0.0D);
-			tessellator16.addVertexWithUV((double)i5, (double)i14, 0.0D, 0.0D, 0.0D);
+			tessellator16.addVertexWithUV(i5, i14 + i13 - 1, 0.0D, 0.0D, 1.0D);
+			tessellator16.addVertexWithUV(i6 - 1, i14 + i13 - 1, 0.0D, 1.0D, 1.0D);
+			tessellator16.addVertexWithUV(i6 - 1, i14, 0.0D, 1.0D, 0.0D);
+			tessellator16.addVertexWithUV(i5, i14, 0.0D, 0.0D, 0.0D);
 			tessellator16.draw();
 		}
 
@@ -310,11 +310,11 @@ public abstract class GuiSlot {
 		float f6 = 32.0F;
 		tessellator5.startDrawingQuads();
 		tessellator5.setColorRGBA_I(4210752, i4);
-		tessellator5.addVertexWithUV(0.0D, (double)i2, 0.0D, 0.0D, (double)((float)i2 / f6));
-		tessellator5.addVertexWithUV((double)this.width, (double)i2, 0.0D, (double)((float)this.width / f6), (double)((float)i2 / f6));
+		tessellator5.addVertexWithUV(0.0D, i2, 0.0D, 0.0D, (float)i2 / f6);
+		tessellator5.addVertexWithUV(this.width, i2, 0.0D, (float)this.width / f6, (float)i2 / f6);
 		tessellator5.setColorRGBA_I(4210752, i3);
-		tessellator5.addVertexWithUV((double)this.width, (double)i1, 0.0D, (double)((float)this.width / f6), (double)((float)i1 / f6));
-		tessellator5.addVertexWithUV(0.0D, (double)i1, 0.0D, 0.0D, (double)((float)i1 / f6));
+		tessellator5.addVertexWithUV(this.width, i1, 0.0D, (float)this.width / f6, (float)i1 / f6);
+		tessellator5.addVertexWithUV(0.0D, i1, 0.0D, 0.0D, (float)i1 / f6);
 		tessellator5.draw();
 	}
 }

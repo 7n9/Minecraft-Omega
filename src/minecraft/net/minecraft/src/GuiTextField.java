@@ -11,7 +11,7 @@ public class GuiTextField extends Gui {
 	private int cursorCounter;
 	public boolean isFocused = false;
 	public boolean isEnabled = true;
-	private GuiScreen parentGuiScreen;
+	private final GuiScreen parentGuiScreen;
 
 	public GuiTextField(GuiScreen guiScreen1, FontRenderer fontRenderer2, int i3, int i4, int i5, int i6, String string7) {
 		this.parentGuiScreen = guiScreen1;

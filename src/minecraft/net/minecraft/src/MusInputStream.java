@@ -6,7 +6,7 @@ import java.net.URL;
 
 class MusInputStream extends InputStream {
 	private int hash;
-	private InputStream inputStream;
+	private final InputStream inputStream;
 	byte[] buffer;
 	final CodecMus codec;
 

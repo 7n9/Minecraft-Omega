@@ -3,21 +3,21 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class ChunkProviderGenerate implements IChunkProvider {
-	private Random rand;
-	private NoiseGeneratorOctaves field_912_k;
-	private NoiseGeneratorOctaves field_911_l;
-	private NoiseGeneratorOctaves field_910_m;
-	private NoiseGeneratorOctaves field_909_n;
-	private NoiseGeneratorOctaves field_908_o;
+	private final Random rand;
+	private final NoiseGeneratorOctaves field_912_k;
+	private final NoiseGeneratorOctaves field_911_l;
+	private final NoiseGeneratorOctaves field_910_m;
+	private final NoiseGeneratorOctaves field_909_n;
+	private final NoiseGeneratorOctaves field_908_o;
 	public NoiseGeneratorOctaves field_922_a;
 	public NoiseGeneratorOctaves field_921_b;
 	public NoiseGeneratorOctaves mobSpawnerNoise;
-	private World worldObj;
+	private final World worldObj;
 	private double[] field_4180_q;
 	private double[] sandNoise = new double[256];
 	private double[] gravelNoise = new double[256];
 	private double[] stoneNoise = new double[256];
-	private MapGenBase field_902_u = new MapGenCaves();
+	private final MapGenBase field_902_u = new MapGenCaves();
 	private BiomeGenBase[] biomesForGeneration;
 	double[] field_4185_d;
 	double[] field_4184_e;
@@ -52,13 +52,13 @@ public class ChunkProviderGenerate implements IChunkProvider {
 			for(int i12 = 0; i12 < b6; ++i12) {
 				for(int i13 = 0; i13 < 16; ++i13) {
 					double d14 = 0.125D;
-					double d16 = this.field_4180_q[((i11 + 0) * i10 + i12 + 0) * b9 + i13 + 0];
-					double d18 = this.field_4180_q[((i11 + 0) * i10 + i12 + 1) * b9 + i13 + 0];
-					double d20 = this.field_4180_q[((i11 + 1) * i10 + i12 + 0) * b9 + i13 + 0];
-					double d22 = this.field_4180_q[((i11 + 1) * i10 + i12 + 1) * b9 + i13 + 0];
-					double d24 = (this.field_4180_q[((i11 + 0) * i10 + i12 + 0) * b9 + i13 + 1] - d16) * d14;
-					double d26 = (this.field_4180_q[((i11 + 0) * i10 + i12 + 1) * b9 + i13 + 1] - d18) * d14;
-					double d28 = (this.field_4180_q[((i11 + 1) * i10 + i12 + 0) * b9 + i13 + 1] - d20) * d14;
+					double d16 = this.field_4180_q[((i11) * i10 + i12) * b9 + i13];
+					double d18 = this.field_4180_q[((i11) * i10 + i12 + 1) * b9 + i13];
+					double d20 = this.field_4180_q[((i11 + 1) * i10 + i12) * b9 + i13];
+					double d22 = this.field_4180_q[((i11 + 1) * i10 + i12 + 1) * b9 + i13];
+					double d24 = (this.field_4180_q[((i11) * i10 + i12) * b9 + i13 + 1] - d16) * d14;
+					double d26 = (this.field_4180_q[((i11) * i10 + i12 + 1) * b9 + i13 + 1] - d18) * d14;
+					double d28 = (this.field_4180_q[((i11 + 1) * i10 + i12) * b9 + i13 + 1] - d20) * d14;
 					double d30 = (this.field_4180_q[((i11 + 1) * i10 + i12 + 1) * b9 + i13 + 1] - d22) * d14;
 
 					for(int i32 = 0; i32 < 8; ++i32) {
@@ -69,7 +69,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 						double d41 = (d22 - d18) * d33;
 
 						for(int i43 = 0; i43 < 4; ++i43) {
-							int i44 = i43 + i11 * 4 << 11 | 0 + i12 * 4 << 7 | i13 * 8 + i32;
+							int i44 = i43 + i11 * 4 << 11 | i12 * 4 << 7 | i13 * 8 + i32;
 							short s45 = 128;
 							double d46 = 0.32D;
 							double d48 = d35;
@@ -113,9 +113,9 @@ public class ChunkProviderGenerate implements IChunkProvider {
 	public void replaceBlocksForBiome(int i1, int i2, byte[] b3, BiomeGenBase[] biomeGenBase4) {
 		byte b5 = 64;
 		double d6 = 8.0D / 256D;
-		this.sandNoise = this.field_909_n.generateNoiseOctaves(this.sandNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6, d6, 1.0D);
-		this.gravelNoise = this.field_909_n.generateNoiseOctaves(this.gravelNoise, (double)(i1 * 16), 109.0134D, (double)(i2 * 16), 16, 1, 16, d6, 1.0D, d6);
-		this.stoneNoise = this.field_908_o.generateNoiseOctaves(this.stoneNoise, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d6 * 2.0D, d6 * 2.0D, d6 * 2.0D);
+		this.sandNoise = this.field_909_n.generateNoiseOctaves(this.sandNoise, i1 * 16, i2 * 16, 0.0D, 16, 16, 1, d6, d6, 1.0D);
+		this.gravelNoise = this.field_909_n.generateNoiseOctaves(this.gravelNoise, i1 * 16, 109.0134D, i2 * 16, 16, 1, 16, d6, 1.0D, d6);
+		this.stoneNoise = this.field_908_o.generateNoiseOctaves(this.stoneNoise, i1 * 16, i2 * 16, 0.0D, 16, 16, 1, d6 * 2.0D, d6 * 2.0D, d6 * 2.0D);
 
 		for(int i8 = 0; i8 < 16; ++i8) {
 			for(int i9 = 0; i9 < 16; ++i9) {
@@ -129,7 +129,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 				for(int i17 = 127; i17 >= 0; --i17) {
 					int i18 = (i9 * 16 + i8) * 128 + i17;
-					if(i17 <= 0 + this.rand.nextInt(5)) {
+					if(i17 <= this.rand.nextInt(5)) {
 						b3[i18] = (byte)Block.bedrock.blockID;
 					} else {
 						byte b19 = b3[i18];
@@ -214,9 +214,9 @@ public class ChunkProviderGenerate implements IChunkProvider {
 		double[] d13 = this.worldObj.getWorldChunkManager().humidity;
 		this.field_4182_g = this.field_922_a.func_4109_a(this.field_4182_g, i2, i4, i5, i7, 1.121D, 1.121D, 0.5D);
 		this.field_4181_h = this.field_921_b.func_4109_a(this.field_4181_h, i2, i4, i5, i7, 190.0D, 190.0D, 0.5D);
-		this.field_4185_d = this.field_910_m.generateNoiseOctaves(this.field_4185_d, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8 / 80.0D, d10 / 140.0D, d8 / 90.0D);
-		this.field_4184_e = this.field_912_k.generateNoiseOctaves(this.field_4184_e, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
-		this.field_4183_f = this.field_911_l.generateNoiseOctaves(this.field_4183_f, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
+		this.field_4185_d = this.field_910_m.generateNoiseOctaves(this.field_4185_d, i2, i3, i4, i5, i6, i7, d8 / 80.0D, d10 / 140.0D, d8 / 90.0D);
+		this.field_4184_e = this.field_912_k.generateNoiseOctaves(this.field_4184_e, i2, i3, i4, i5, i6, i7, d8, d10, d8);
+		this.field_4183_f = this.field_911_l.generateNoiseOctaves(this.field_4183_f, i2, i3, i4, i5, i6, i7, d8, d10, d8);
 		int i14 = 0;
 		int i15 = 0;
 		int i16 = 16 / i5;
@@ -290,7 +290,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 					d34 -= d36;
 					if(i33 > i6 - 4) {
-						double d44 = (double)((float)(i33 - (i6 - 4)) / 3.0F);
+						double d44 = (float)(i33 - (i6 - 4)) / 3.0F;
 						d34 = d34 * (1.0D - d44) + -10.0D * d44;
 					}
 

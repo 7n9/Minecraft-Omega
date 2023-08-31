@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class FurnaceRecipes {
 	private static final FurnaceRecipes smeltingBase = new FurnaceRecipes();
-	private Map smeltingList = new HashMap();
+	private final Map smeltingList = new HashMap();
 
 	public static final FurnaceRecipes smelting() {
 		return smeltingBase;

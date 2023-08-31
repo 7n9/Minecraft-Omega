@@ -19,17 +19,13 @@ class CodeBook {
 	int errorv(float[] f1) {
 		int i2 = this.best(f1, 1);
 
-		for(int i3 = 0; i3 < this.dim; ++i3) {
-			f1[i3] = this.valuelist[i2 * this.dim + i3];
-		}
+        if (this.dim >= 0) System.arraycopy(this.valuelist, i2 * this.dim + 0, f1, 0, this.dim);
 
 		return i2;
 	}
 
 	int encodev(int i1, float[] f2, Buffer buffer3) {
-		for(int i4 = 0; i4 < this.dim; ++i4) {
-			f2[i4] = this.valuelist[i1 * this.dim + i4];
-		}
+        if (this.dim >= 0) System.arraycopy(this.valuelist, i1 * this.dim + 0, f2, 0, this.dim);
 
 		return this.encode(i1, buffer3);
 	}

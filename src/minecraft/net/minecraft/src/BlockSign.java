@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockSign extends BlockContainer {
-	private Class signEntityClass;
-	private boolean isFreestanding;
+	private final Class signEntityClass;
+	private final boolean isFreestanding;
 
 	protected BlockSign(int i1, Class class2, boolean z3) {
 		super(i1, Material.wood);
@@ -85,10 +85,7 @@ public class BlockSign extends BlockContainer {
 			}
 		} else {
 			int i7 = world1.getBlockMetadata(i2, i3, i4);
-			z6 = true;
-			if(i7 == 2 && world1.getBlockMaterial(i2, i3, i4 + 1).isSolid()) {
-				z6 = false;
-			}
+            z6 = i7 != 2 || !world1.getBlockMaterial(i2, i3, i4 + 1).isSolid();
 
 			if(i7 == 3 && world1.getBlockMaterial(i2, i3, i4 - 1).isSolid()) {
 				z6 = false;

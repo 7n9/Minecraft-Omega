@@ -10,8 +10,8 @@ import java.util.List;
 import org.lwjgl.opengl.GL11;
 
 public class GLAllocation {
-	private static List displayLists = new ArrayList();
-	private static List textureNames = new ArrayList();
+	private static final List displayLists = new ArrayList();
+	private static final List textureNames = new ArrayList();
 
 	public static synchronized int generateDisplayLists(int i0) {
 		int i1 = GL11.glGenLists(i0);

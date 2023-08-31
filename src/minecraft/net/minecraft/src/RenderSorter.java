@@ -17,8 +17,8 @@ public class RenderSorter implements Comparator {
 		} else if(z4 && !z3) {
 			return -1;
 		} else {
-			double d5 = (double)worldRenderer1.distanceToEntitySquared(this.baseEntity);
-			double d7 = (double)worldRenderer2.distanceToEntitySquared(this.baseEntity);
+			double d5 = worldRenderer1.distanceToEntitySquared(this.baseEntity);
+			double d7 = worldRenderer2.distanceToEntitySquared(this.baseEntity);
 			return d5 < d7 ? 1 : (d5 > d7 ? -1 : (worldRenderer1.chunkIndex < worldRenderer2.chunkIndex ? 1 : -1));
 		}
 	}

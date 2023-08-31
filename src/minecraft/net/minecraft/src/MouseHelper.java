@@ -8,11 +8,11 @@ import org.lwjgl.input.Cursor;
 import org.lwjgl.input.Mouse;
 
 public class MouseHelper {
-	private Component field_1117_c;
+	private final Component field_1117_c;
 	private Cursor cursor;
 	public int deltaX;
 	public int deltaY;
-	private int field_1115_e = 10;
+	private final int field_1115_e = 10;
 
 	public MouseHelper(Component component1) {
 		this.field_1117_c = component1;

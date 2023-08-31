@@ -35,7 +35,7 @@ public class ScreenShotHelper {
 			buffer.clear();
 			GL11.glReadPixels(0, 0, i1, i2, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, buffer);
 			buffer.clear();
-			String string4 = "" + dateFormat.format(new Date());
+			String string4 = dateFormat.format(new Date());
 
 			File file5;
 			for(int i6 = 1; (file5 = new File(file3, string4 + (i6 == 1 ? "" : "_" + i6) + ".png")).exists(); ++i6) {

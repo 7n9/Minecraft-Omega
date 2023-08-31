@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockDispenser extends BlockContainer {
-	private Random random = new Random();
+	private final Random random = new Random();
 
 	protected BlockDispenser(int i1) {
 		super(i1, Material.rock);
@@ -99,25 +99,25 @@ public class BlockDispenser extends BlockContainer {
 		} else {
 			if(itemStack12.itemID == Item.arrow.shiftedIndex) {
 				EntityArrow entityArrow19 = new EntityArrow(world1, d13, d15, d17);
-				entityArrow19.setArrowHeading((double)b9, (double)0.1F, (double)b10, 1.1F, 6.0F);
+				entityArrow19.setArrowHeading(b9, 0.1F, b10, 1.1F, 6.0F);
 				entityArrow19.doesArrowBelongToPlayer = true;
 				world1.entityJoinedWorld(entityArrow19);
 				world1.func_28106_e(1002, i2, i3, i4, 0);
 			} else if(itemStack12.itemID == Item.egg.shiftedIndex) {
 				EntityEgg entityEgg22 = new EntityEgg(world1, d13, d15, d17);
-				entityEgg22.setEggHeading((double)b9, (double)0.1F, (double)b10, 1.1F, 6.0F);
+				entityEgg22.setEggHeading(b9, 0.1F, b10, 1.1F, 6.0F);
 				world1.entityJoinedWorld(entityEgg22);
 				world1.func_28106_e(1002, i2, i3, i4, 0);
 			} else if(itemStack12.itemID == Item.snowball.shiftedIndex) {
 				EntitySnowball entitySnowball23 = new EntitySnowball(world1, d13, d15, d17);
-				entitySnowball23.setSnowballHeading((double)b9, (double)0.1F, (double)b10, 1.1F, 6.0F);
+				entitySnowball23.setSnowballHeading(b9, 0.1F, b10, 1.1F, 6.0F);
 				world1.entityJoinedWorld(entitySnowball23);
 				world1.func_28106_e(1002, i2, i3, i4, 0);
 			} else {
 				EntityItem entityItem24 = new EntityItem(world1, d13, d15 - 0.3D, d17, itemStack12);
 				double d20 = random5.nextDouble() * 0.1D + 0.2D;
 				entityItem24.motionX = (double)b9 * d20;
-				entityItem24.motionY = (double)0.2F;
+				entityItem24.motionY = 0.2F;
 				entityItem24.motionZ = (double)b10 * d20;
 				entityItem24.motionX += random5.nextGaussian() * (double)0.0075F * 6.0D;
 				entityItem24.motionY += random5.nextGaussian() * (double)0.0075F * 6.0D;
@@ -189,11 +189,11 @@ public class BlockDispenser extends BlockContainer {
 					}
 
 					itemStack7.stackSize -= i11;
-					EntityItem entityItem12 = new EntityItem(world1, (double)((float)i2 + f8), (double)((float)i3 + f9), (double)((float)i4 + f10), new ItemStack(itemStack7.itemID, i11, itemStack7.getItemDamage()));
+					EntityItem entityItem12 = new EntityItem(world1, (float)i2 + f8, (float)i3 + f9, (float)i4 + f10, new ItemStack(itemStack7.itemID, i11, itemStack7.getItemDamage()));
 					float f13 = 0.05F;
-					entityItem12.motionX = (double)((float)this.random.nextGaussian() * f13);
-					entityItem12.motionY = (double)((float)this.random.nextGaussian() * f13 + 0.2F);
-					entityItem12.motionZ = (double)((float)this.random.nextGaussian() * f13);
+					entityItem12.motionX = (float)this.random.nextGaussian() * f13;
+					entityItem12.motionY = (float)this.random.nextGaussian() * f13 + 0.2F;
+					entityItem12.motionZ = (float)this.random.nextGaussian() * f13;
 					world1.entityJoinedWorld(entityItem12);
 				}
 			}

@@ -12,7 +12,7 @@ class Mdct {
 	void init(int i1) {
 		this.bitrev = new int[i1 / 4];
 		this.trig = new float[i1 + i1 / 4];
-		this.log2n = (int)Math.rint(Math.log((double)i1) / Math.log(2.0D));
+		this.log2n = (int)Math.rint(Math.log(i1) / Math.log(2.0D));
 		this.n = i1;
 		byte b2 = 0;
 		byte b3 = 1;

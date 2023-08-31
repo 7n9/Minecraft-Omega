@@ -1,9 +1,9 @@
 package net.minecraft.src;
 
 public class ItemTool extends Item {
-	private Block[] blocksEffectiveAgainst;
+	private final Block[] blocksEffectiveAgainst;
 	private float efficiencyOnProperMaterial = 4.0F;
-	private int damageVsEntity;
+	private final int damageVsEntity;
 	protected EnumToolMaterial toolMaterial;
 
 	protected ItemTool(int i1, int i2, EnumToolMaterial enumToolMaterial3, Block[] block4) {

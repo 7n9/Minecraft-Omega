@@ -30,12 +30,12 @@ public class GuiIngameMenu extends GuiScreen {
 				this.mc.theWorld.sendQuittingDisconnectingPacket();
 			}
 
-			this.mc.changeWorld1((World)null);
+			this.mc.changeWorld1(null);
 			this.mc.displayGuiScreen(new GuiMainMenu());
 		}
 
 		if(guiButton1.id == 4) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 			this.mc.setIngameFocus();
 		}
 

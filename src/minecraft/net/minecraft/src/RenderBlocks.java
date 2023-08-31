@@ -1249,7 +1249,7 @@ public class RenderBlocks {
 		double d20 = i3;
 		double d15 = i4;
 		if(block1 == Block.tallGrass) {
-			long j17 = (long)(i2 * 3129871L) ^ (long)i4 * 116129781L ^ (long)i3;
+			long j17 = (i2 * 3129871L) ^ (long)i4 * 116129781L ^ (long)i3;
 			j17 = j17 * j17 * 42317861L + j17 * 11L;
 			d19 += ((double)((float)(j17 >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;
 			d20 += ((double)((float)(j17 >> 20 & 15L) / 15.0F) - 1.0D) * 0.2D;

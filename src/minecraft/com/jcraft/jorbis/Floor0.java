@@ -152,7 +152,7 @@ class Floor0 extends FuncFloor {
 		Floor0.InfoFloor0 floor0$InfoFloor05 = floor0$LookFloor04.vi;
 		float[] f6 = null;
 		if(object3 instanceof float[]) {
-			f6 = (float[])((float[])object3);
+			f6 = (float[]) object3;
 		}
 
 		int i7 = block1.opb.read(floor0$InfoFloor05.ampbits);
@@ -197,7 +197,7 @@ class Floor0 extends FuncFloor {
 		Floor0.LookFloor0 floor0$LookFloor05 = (Floor0.LookFloor0)object2;
 		Floor0.InfoFloor0 floor0$InfoFloor06 = floor0$LookFloor05.vi;
 		if(object3 != null) {
-			float[] f9 = (float[])((float[])object3);
+			float[] f9 = (float[]) object3;
 			float f8 = f9[floor0$LookFloor05.m];
 			Lsp.lsp_to_curve(f4, floor0$LookFloor05.linearmap, floor0$LookFloor05.n, floor0$LookFloor05.ln, f9, floor0$LookFloor05.m, f8, (float)floor0$InfoFloor06.ampdB);
 			return 1;
@@ -225,8 +225,8 @@ class Floor0 extends FuncFloor {
 
 		int i3;
 		for(i3 = 0; i3 < i5; ++i3) {
-			f6[i3] = (float)(-2.0D * Math.cos((double)f0[i3 * 2]));
-			f7[i3] = (float)(-2.0D * Math.cos((double)f0[i3 * 2 + 1]));
+			f6[i3] = (float)(-2.0D * Math.cos(f0[i3 * 2]));
+			f7[i3] = (float)(-2.0D * Math.cos(f0[i3 * 2 + 1]));
 		}
 
 		int i4;

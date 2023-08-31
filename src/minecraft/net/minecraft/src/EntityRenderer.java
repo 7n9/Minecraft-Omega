@@ -15,34 +15,34 @@ import org.lwjgl.util.glu.GLU;
 public class EntityRenderer {
 	public static boolean field_28135_a = false;
 	public static int anaglyphField;
-	private Minecraft mc;
+	private final Minecraft mc;
 	private float farPlaneDistance = 0.0F;
 	public ItemRenderer itemRenderer;
 	private int rendererUpdateCount;
 	private Entity pointedEntity = null;
-	private MouseFilter mouseFilterXAxis = new MouseFilter();
-	private MouseFilter mouseFilterYAxis = new MouseFilter();
-	private MouseFilter mouseFilterDummy1 = new MouseFilter();
-	private MouseFilter mouseFilterDummy2 = new MouseFilter();
-	private MouseFilter mouseFilterDummy3 = new MouseFilter();
-	private MouseFilter mouseFilterDummy4 = new MouseFilter();
-	private float field_22228_r = 4.0F;
+	private final MouseFilter mouseFilterXAxis = new MouseFilter();
+	private final MouseFilter mouseFilterYAxis = new MouseFilter();
+	private final MouseFilter mouseFilterDummy1 = new MouseFilter();
+	private final MouseFilter mouseFilterDummy2 = new MouseFilter();
+	private final MouseFilter mouseFilterDummy3 = new MouseFilter();
+	private final MouseFilter mouseFilterDummy4 = new MouseFilter();
+	private final float field_22228_r = 4.0F;
 	private float field_22227_s = 4.0F;
-	private float field_22226_t = 0.0F;
+	private final float field_22226_t = 0.0F;
 	private float field_22225_u = 0.0F;
-	private float field_22224_v = 0.0F;
+	private final float field_22224_v = 0.0F;
 	private float field_22223_w = 0.0F;
-	private float field_22222_x = 0.0F;
+	private final float field_22222_x = 0.0F;
 	private float field_22221_y = 0.0F;
-	private float field_22220_z = 0.0F;
+	private final float field_22220_z = 0.0F;
 	private float field_22230_A = 0.0F;
 	private boolean cloudFog = false;
-	private double cameraZoom = 1.0D;
-	private double cameraYaw = 0.0D;
-	private double cameraPitch = 0.0D;
+	private final double cameraZoom = 1.0D;
+	private final double cameraYaw = 0.0D;
+	private final double cameraPitch = 0.0D;
 	private long prevFrameTime = System.currentTimeMillis();
 	private long field_28133_I = 0L;
-	private Random random = new Random();
+	private final Random random = new Random();
 	private int rainSoundCounter = 0;
 	volatile int field_1394_b = 0;
 	volatile int field_1393_c = 0;
@@ -81,7 +81,7 @@ public class EntityRenderer {
 	public void getMouseOver(float f1) {
 		if(this.mc.renderViewEntity != null) {
 			if(this.mc.theWorld != null) {
-				double d2 = (double)this.mc.playerController.getBlockReachDistance();
+				double d2 = this.mc.playerController.getBlockReachDistance();
 				this.mc.objectMouseOver = this.mc.renderViewEntity.rayTrace(d2, f1);
 				double d4 = d2;
 				Vec3D vec3D6 = this.mc.renderViewEntity.getPosition(f1);
@@ -104,14 +104,14 @@ public class EntityRenderer {
 				Vec3D vec3D8 = vec3D6.addVector(vec3D7.xCoord * d2, vec3D7.yCoord * d2, vec3D7.zCoord * d2);
 				this.pointedEntity = null;
 				float f9 = 1.0F;
-				List list10 = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec3D7.xCoord * d2, vec3D7.yCoord * d2, vec3D7.zCoord * d2).expand((double)f9, (double)f9, (double)f9));
+				List list10 = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec3D7.xCoord * d2, vec3D7.yCoord * d2, vec3D7.zCoord * d2).expand(f9, f9, f9));
 				double d11 = 0.0D;
 
 				for(int i13 = 0; i13 < list10.size(); ++i13) {
 					Entity entity14 = (Entity)list10.get(i13);
 					if(entity14.canBeCollidedWith()) {
 						float f15 = entity14.getCollisionBorderSize();
-						AxisAlignedBB axisAlignedBB16 = entity14.boundingBox.expand((double)f15, (double)f15, (double)f15);
+						AxisAlignedBB axisAlignedBB16 = entity14.boundingBox.expand(f15, f15, f15);
 						MovingObjectPosition movingObjectPosition17 = axisAlignedBB16.func_1169_a(vec3D6, vec3D8);
 						if(axisAlignedBB16.isVecInside(vec3D6)) {
 							if(0.0D < d11 || d11 == 0.0D) {
@@ -206,7 +206,7 @@ public class EntityRenderer {
 				GL11.glRotatef(entityLiving2.prevRotationPitch + (entityLiving2.rotationPitch - entityLiving2.prevRotationPitch) * f1, -1.0F, 0.0F, 0.0F);
 			}
 		} else if(this.mc.gameSettings.thirdPersonView) {
-			double d27 = (double)(this.field_22227_s + (this.field_22228_r - this.field_22227_s) * f1);
+			double d27 = this.field_22227_s + (this.field_22228_r - this.field_22227_s) * f1;
 			float f13;
 			float f28;
 			if(this.mc.gameSettings.field_22273_E) {
@@ -497,7 +497,7 @@ public class EntityRenderer {
 			GL11.glEnable(GL11.GL_FOG);
 			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/terrain.png"));
 			RenderHelper.disableStandardItemLighting();
-			renderGlobal5.sortAndRender(entityLiving4, 0, (double)f1);
+			renderGlobal5.sortAndRender(entityLiving4, 0, f1);
 			GL11.glShadeModel(GL11.GL_FLAT);
 			RenderHelper.enableStandardItemLighting();
 			renderGlobal5.renderEntities(entityLiving4.getPosition(f1), frustrum19, f1);
@@ -525,7 +525,7 @@ public class EntityRenderer {
 				}
 
 				GL11.glColorMask(false, false, false, false);
-				i16 = renderGlobal5.sortAndRender(entityLiving4, 1, (double)f1);
+				i16 = renderGlobal5.sortAndRender(entityLiving4, 1, f1);
 				if(this.mc.gameSettings.anaglyph) {
 					if(anaglyphField == 0) {
 						GL11.glColorMask(false, true, true, true);
@@ -542,7 +542,7 @@ public class EntityRenderer {
 
 				GL11.glShadeModel(GL11.GL_FLAT);
 			} else {
-				renderGlobal5.sortAndRender(entityLiving4, 1, (double)f1);
+				renderGlobal5.sortAndRender(entityLiving4, 1, f1);
 			}
 
 			GL11.glDepthMask(true);
@@ -559,7 +559,6 @@ public class EntityRenderer {
 			this.renderRainSnow(f1);
 			GL11.glDisable(GL11.GL_FOG);
 			if(this.pointedEntity != null) {
-				;
 			}
 
 			this.setupFog(0, f1);
@@ -609,16 +608,16 @@ public class EntityRenderer {
 					float f21 = this.random.nextFloat();
 					if(i19 > 0) {
 						if(Block.blocksList[i19].blockMaterial == Material.lava) {
-							this.mc.effectRenderer.addEffect(new EntitySmokeFX(world3, (double)((float)i16 + f20), (double)((float)i18 + 0.1F) - Block.blocksList[i19].minY, (double)((float)i17 + f21), 0.0D, 0.0D, 0.0D));
+							this.mc.effectRenderer.addEffect(new EntitySmokeFX(world3, (float)i16 + f20, (double)((float)i18 + 0.1F) - Block.blocksList[i19].minY, (float)i17 + f21, 0.0D, 0.0D, 0.0D));
 						} else {
 							++i14;
 							if(this.random.nextInt(i14) == 0) {
-								d8 = (double)((float)i16 + f20);
+								d8 = (float)i16 + f20;
 								d10 = (double)((float)i18 + 0.1F) - Block.blocksList[i19].minY;
-								d12 = (double)((float)i17 + f21);
+								d12 = (float)i17 + f21;
 							}
 
-							this.mc.effectRenderer.addEffect(new EntityRainFX(world3, (double)((float)i16 + f20), (double)((float)i18 + 0.1F) - Block.blocksList[i19].minY, (double)((float)i17 + f21)));
+							this.mc.effectRenderer.addEffect(new EntityRainFX(world3, (float)i16 + f20, (double)((float)i18 + 0.1F) - Block.blocksList[i19].minY, (float)i17 + f21));
 						}
 					}
 				}
@@ -696,7 +695,7 @@ public class EntityRenderer {
 
 						f26 = 1.0F;
 						if(i24 != i25) {
-							this.random.setSeed((long)(i19 * i19 * 3121 + i19 * 45238971 + i20 * i20 * 418711 + i20 * 13761));
+							this.random.setSeed((long) i19 * i19 * 3121 + i19 * 45238971L + (long) i20 * i20 * 418711 + i20 * 13761L);
 							float f27 = (float)this.rendererUpdateCount + f1;
 							float f28 = ((float)(this.rendererUpdateCount & 511) + f1) / 512.0F;
 							float f29 = this.random.nextFloat() + f27 * 0.01F * (float)this.random.nextGaussian();
@@ -707,15 +706,15 @@ public class EntityRenderer {
 							tessellator8.startDrawingQuads();
 							float f36 = world4.getLightBrightness(i19, i23, i20);
 							GL11.glColor4f(f36, f36, f36, ((1.0F - f35 * f35) * 0.3F + 0.5F) * f2);
-							tessellator8.setTranslationD(-d9 * 1.0D, -d11 * 1.0D, -d13 * 1.0D);
-							tessellator8.addVertexWithUV((double)(i19 + 0), (double)i24, (double)i20 + 0.5D, (double)(0.0F * f26 + f29), (double)((float)i24 * f26 / 4.0F + f28 * f26 + f30));
-							tessellator8.addVertexWithUV((double)(i19 + 1), (double)i24, (double)i20 + 0.5D, (double)(1.0F * f26 + f29), (double)((float)i24 * f26 / 4.0F + f28 * f26 + f30));
-							tessellator8.addVertexWithUV((double)(i19 + 1), (double)i25, (double)i20 + 0.5D, (double)(1.0F * f26 + f29), (double)((float)i25 * f26 / 4.0F + f28 * f26 + f30));
-							tessellator8.addVertexWithUV((double)(i19 + 0), (double)i25, (double)i20 + 0.5D, (double)(0.0F * f26 + f29), (double)((float)i25 * f26 / 4.0F + f28 * f26 + f30));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i24, (double)(i20 + 0), (double)(0.0F * f26 + f29), (double)((float)i24 * f26 / 4.0F + f28 * f26 + f30));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i24, (double)(i20 + 1), (double)(1.0F * f26 + f29), (double)((float)i24 * f26 / 4.0F + f28 * f26 + f30));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i25, (double)(i20 + 1), (double)(1.0F * f26 + f29), (double)((float)i25 * f26 / 4.0F + f28 * f26 + f30));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i25, (double)(i20 + 0), (double)(0.0F * f26 + f29), (double)((float)i25 * f26 / 4.0F + f28 * f26 + f30));
+							tessellator8.setTranslationD(-d9, -d11, -d13);
+							tessellator8.addVertexWithUV(i19, i24, (double)i20 + 0.5D, 0.0F * f26 + f29, (float)i24 * f26 / 4.0F + f28 * f26 + f30);
+							tessellator8.addVertexWithUV(i19 + 1, i24, (double)i20 + 0.5D, f26 + f29, (float)i24 * f26 / 4.0F + f28 * f26 + f30);
+							tessellator8.addVertexWithUV(i19 + 1, i25, (double)i20 + 0.5D, f26 + f29, (float)i25 * f26 / 4.0F + f28 * f26 + f30);
+							tessellator8.addVertexWithUV(i19, i25, (double)i20 + 0.5D, 0.0F * f26 + f29, (float)i25 * f26 / 4.0F + f28 * f26 + f30);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i24, i20, 0.0F * f26 + f29, (float)i24 * f26 / 4.0F + f28 * f26 + f30);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i24, i20 + 1, f26 + f29, (float)i24 * f26 / 4.0F + f28 * f26 + f30);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i25, i20 + 1, f26 + f29, (float)i25 * f26 / 4.0F + f28 * f26 + f30);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i25, i20, 0.0F * f26 + f29, (float)i25 * f26 / 4.0F + f28 * f26 + f30);
 							tessellator8.setTranslationD(0.0D, 0.0D, 0.0D);
 							tessellator8.draw();
 						}
@@ -747,7 +746,7 @@ public class EntityRenderer {
 
 						float f37 = 1.0F;
 						if(i23 != i24) {
-							this.random.setSeed((long)(i19 * i19 * 3121 + i19 * 45238971 + i20 * i20 * 418711 + i20 * 13761));
+							this.random.setSeed((long) i19 * i19 * 3121 + i19 * 45238971L + (long) i20 * i20 * 418711 + i20 * 13761L);
 							f26 = ((float)(this.rendererUpdateCount + i19 * i19 * 3121 + i19 * 45238971 + i20 * i20 * 418711 + i20 * 13761 & 31) + f1) / 32.0F * (3.0F + this.random.nextFloat());
 							double d38 = (double)((float)i19 + 0.5F) - entityLiving3.posX;
 							double d39 = (double)((float)i20 + 0.5F) - entityLiving3.posZ;
@@ -755,15 +754,15 @@ public class EntityRenderer {
 							tessellator8.startDrawingQuads();
 							float f32 = world4.getLightBrightness(i19, 128, i20) * 0.85F + 0.15F;
 							GL11.glColor4f(f32, f32, f32, ((1.0F - f40 * f40) * 0.5F + 0.5F) * f2);
-							tessellator8.setTranslationD(-d9 * 1.0D, -d11 * 1.0D, -d13 * 1.0D);
-							tessellator8.addVertexWithUV((double)(i19 + 0), (double)i23, (double)i20 + 0.5D, (double)(0.0F * f37), (double)((float)i23 * f37 / 4.0F + f26 * f37));
-							tessellator8.addVertexWithUV((double)(i19 + 1), (double)i23, (double)i20 + 0.5D, (double)(1.0F * f37), (double)((float)i23 * f37 / 4.0F + f26 * f37));
-							tessellator8.addVertexWithUV((double)(i19 + 1), (double)i24, (double)i20 + 0.5D, (double)(1.0F * f37), (double)((float)i24 * f37 / 4.0F + f26 * f37));
-							tessellator8.addVertexWithUV((double)(i19 + 0), (double)i24, (double)i20 + 0.5D, (double)(0.0F * f37), (double)((float)i24 * f37 / 4.0F + f26 * f37));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i23, (double)(i20 + 0), (double)(0.0F * f37), (double)((float)i23 * f37 / 4.0F + f26 * f37));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i23, (double)(i20 + 1), (double)(1.0F * f37), (double)((float)i23 * f37 / 4.0F + f26 * f37));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i24, (double)(i20 + 1), (double)(1.0F * f37), (double)((float)i24 * f37 / 4.0F + f26 * f37));
-							tessellator8.addVertexWithUV((double)i19 + 0.5D, (double)i24, (double)(i20 + 0), (double)(0.0F * f37), (double)((float)i24 * f37 / 4.0F + f26 * f37));
+							tessellator8.setTranslationD(-d9, -d11, -d13);
+							tessellator8.addVertexWithUV(i19, i23, (double)i20 + 0.5D, 0.0F * f37, (float)i23 * f37 / 4.0F + f26 * f37);
+							tessellator8.addVertexWithUV(i19 + 1, i23, (double)i20 + 0.5D, f37, (float)i23 * f37 / 4.0F + f26 * f37);
+							tessellator8.addVertexWithUV(i19 + 1, i24, (double)i20 + 0.5D, f37, (float)i24 * f37 / 4.0F + f26 * f37);
+							tessellator8.addVertexWithUV(i19, i24, (double)i20 + 0.5D, 0.0F * f37, (float)i24 * f37 / 4.0F + f26 * f37);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i23, i20, 0.0F * f37, (float)i23 * f37 / 4.0F + f26 * f37);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i23, i20 + 1, f37, (float)i23 * f37 / 4.0F + f26 * f37);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i24, i20 + 1, f37, (float)i24 * f37 / 4.0F + f26 * f37);
+							tessellator8.addVertexWithUV((double)i19 + 0.5D, i24, i20, 0.0F * f37, (float)i24 * f37 / 4.0F + f26 * f37);
 							tessellator8.setTranslationD(0.0D, 0.0D, 0.0D);
 							tessellator8.draw();
 						}
@@ -792,7 +791,7 @@ public class EntityRenderer {
 		World world2 = this.mc.theWorld;
 		EntityLiving entityLiving3 = this.mc.renderViewEntity;
 		float f4 = 1.0F / (float)(4 - this.mc.gameSettings.renderDistance);
-		f4 = 1.0F - (float)Math.pow((double)f4, 0.25D);
+		f4 = 1.0F - (float)Math.pow(f4, 0.25D);
 		Vec3D vec3D5 = world2.func_4079_a(this.mc.renderViewEntity, f1);
 		float f6 = (float)vec3D5.xCoord;
 		float f7 = (float)vec3D5.yCoord;

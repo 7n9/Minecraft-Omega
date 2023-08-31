@@ -42,11 +42,11 @@ public class EntityFallingSand extends Entity {
 			this.prevPosY = this.posY;
 			this.prevPosZ = this.posZ;
 			++this.fallTime;
-			this.motionY -= (double)0.04F;
+			this.motionY -= 0.04F;
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= (double)0.98F;
-			this.motionY *= (double)0.98F;
-			this.motionZ *= (double)0.98F;
+			this.motionX *= 0.98F;
+			this.motionY *= 0.98F;
+			this.motionZ *= 0.98F;
 			int i1 = MathHelper.floor_double(this.posX);
 			int i2 = MathHelper.floor_double(this.posY);
 			int i3 = MathHelper.floor_double(this.posZ);
@@ -55,8 +55,8 @@ public class EntityFallingSand extends Entity {
 			}
 
 			if(this.onGround) {
-				this.motionX *= (double)0.7F;
-				this.motionZ *= (double)0.7F;
+				this.motionX *= 0.7F;
+				this.motionZ *= 0.7F;
 				this.motionY *= -0.5D;
 				this.setEntityDead();
 				if((!this.worldObj.canBlockBePlacedAt(this.blockID, i1, i2, i3, true, 1) || BlockSand.canFallBelow(this.worldObj, i1, i2 - 1, i3) || !this.worldObj.setBlockWithNotify(i1, i2, i3, this.blockID)) && !this.worldObj.multiplayerWorld) {

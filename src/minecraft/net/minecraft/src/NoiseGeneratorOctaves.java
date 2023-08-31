@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class NoiseGeneratorOctaves extends NoiseGenerator {
-	private NoiseGeneratorPerlin[] generatorCollection;
-	private int field_1191_b;
+	private final NoiseGeneratorPerlin[] generatorCollection;
+	private final int field_1191_b;
 
 	public NoiseGeneratorOctaves(Random random1, int i2) {
 		this.field_1191_b = i2;
@@ -48,6 +48,6 @@ public class NoiseGeneratorOctaves extends NoiseGenerator {
 	}
 
 	public double[] func_4109_a(double[] d1, int i2, int i3, int i4, int i5, double d6, double d8, double d10) {
-		return this.generateNoiseOctaves(d1, (double)i2, 10.0D, (double)i3, i4, 1, i5, d6, 1.0D, d8);
+		return this.generateNoiseOctaves(d1, i2, 10.0D, i3, i4, 1, i5, d6, 1.0D, d8);
 	}
 }

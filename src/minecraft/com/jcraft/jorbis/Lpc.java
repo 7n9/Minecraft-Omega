@@ -90,7 +90,7 @@ class Lpc {
 	}
 
 	static float FAST_HYPOT(float f0, float f1) {
-		return (float)Math.sqrt((double)(f0 * f0 + f1 * f1));
+		return (float)Math.sqrt(f0 * f0 + f1 * f1);
 	}
 
 	void lpc_to_curve(float[] f1, float[] f2, float f3) {

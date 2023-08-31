@@ -18,11 +18,11 @@ public class BlockRedstoneRepeater extends Block {
 	}
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
-		return !world1.isBlockNormalCube(i2, i3 - 1, i4) ? false : super.canPlaceBlockAt(world1, i2, i3, i4);
+		return world1.isBlockNormalCube(i2, i3 - 1, i4) && super.canPlaceBlockAt(world1, i2, i3, i4);
 	}
 
 	public boolean canBlockStay(World world1, int i2, int i3, int i4) {
-		return !world1.isBlockNormalCube(i2, i3 - 1, i4) ? false : super.canBlockStay(world1, i2, i3, i4);
+		return world1.isBlockNormalCube(i2, i3 - 1, i4) && super.canBlockStay(world1, i2, i3, i4);
 	}
 
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
@@ -65,7 +65,7 @@ public class BlockRedstoneRepeater extends Block {
 			return false;
 		} else {
 			int i6 = iBlockAccess1.getBlockMetadata(i2, i3, i4) & 3;
-			return i6 == 0 && i5 == 3 ? true : (i6 == 1 && i5 == 4 ? true : (i6 == 2 && i5 == 2 ? true : i6 == 3 && i5 == 5));
+			return i6 == 0 && i5 == 3 || (i6 == 1 && i5 == 4 || (i6 == 2 && i5 == 2 || i6 == 3 && i5 == 5));
 		}
 	}
 

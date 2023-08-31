@@ -114,7 +114,7 @@ public abstract class Minecraft implements Runnable {
 	public int displayWidth;
 	public int displayHeight;
 	private OpenGlCapsChecker glCapabilities;
-	private Timer timer = new Timer(20.0F);
+	private final Timer timer = new Timer(20.0F);
 	public World theWorld;
 	public RenderGlobal renderGlobal;
 	public EntityPlayerSP thePlayer;
@@ -134,7 +134,7 @@ public abstract class Minecraft implements Runnable {
 	private int ticksRan = 0;
 	private int leftClickCounter = 0;
 	private int tempDisplayWidth;
-	private int tempDisplayHeight;
+	private final int tempDisplayHeight;
 	public GuiAchievement guiAchievement = new GuiAchievement(this);
 	public GuiIngame ingameGUI;
 	public boolean skipRenderWorld = false;
@@ -154,8 +154,8 @@ public abstract class Minecraft implements Runnable {
 	public StatFileWriter statFileWriter;
 	private String serverName;
 	private int serverPort;
-	private TextureWaterFX textureWaterFX = new TextureWaterFX();
-	private TextureLavaFX textureLavaFX = new TextureLavaFX();
+	private final TextureWaterFX textureWaterFX = new TextureWaterFX();
+	private final TextureLavaFX textureLavaFX = new TextureLavaFX();
 	private static File minecraftDir = null;
 	public volatile boolean running = true;
 	public String debug = "";
@@ -327,9 +327,9 @@ public abstract class Minecraft implements Runnable {
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.renderEngine.getTexture("/title/mojang.png"));
 		tessellator2.startDrawingQuads();
 		tessellator2.setColorOpaque_I(0xFFFFFF);
-		tessellator2.addVertexWithUV(0.0D, (double)this.displayHeight, 0.0D, 0.0D, 0.0D);
-		tessellator2.addVertexWithUV((double)this.displayWidth, (double)this.displayHeight, 0.0D, 0.0D, 0.0D);
-		tessellator2.addVertexWithUV((double)this.displayWidth, 0.0D, 0.0D, 0.0D, 0.0D);
+		tessellator2.addVertexWithUV(0.0D, this.displayHeight, 0.0D, 0.0D, 0.0D);
+		tessellator2.addVertexWithUV(this.displayWidth, this.displayHeight, 0.0D, 0.0D, 0.0D);
+		tessellator2.addVertexWithUV(this.displayWidth, 0.0D, 0.0D, 0.0D, 0.0D);
 		tessellator2.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
 		tessellator2.draw();
 		short s3 = 256;
@@ -349,10 +349,10 @@ public abstract class Minecraft implements Runnable {
 		float f8 = 0.00390625F;
 		Tessellator tessellator9 = Tessellator.instance;
 		tessellator9.startDrawingQuads();
-		tessellator9.addVertexWithUV((double)(i1 + 0), (double)(i2 + i6), 0.0D, (double)((float)(i3 + 0) * f7), (double)((float)(i4 + i6) * f8));
-		tessellator9.addVertexWithUV((double)(i1 + i5), (double)(i2 + i6), 0.0D, (double)((float)(i3 + i5) * f7), (double)((float)(i4 + i6) * f8));
-		tessellator9.addVertexWithUV((double)(i1 + i5), (double)(i2 + 0), 0.0D, (double)((float)(i3 + i5) * f7), (double)((float)(i4 + 0) * f8));
-		tessellator9.addVertexWithUV((double)(i1 + 0), (double)(i2 + 0), 0.0D, (double)((float)(i3 + 0) * f7), (double)((float)(i4 + 0) * f8));
+		tessellator9.addVertexWithUV(i1, i2 + i6, 0.0D, (float)(i3) * f7, (float)(i4 + i6) * f8);
+		tessellator9.addVertexWithUV(i1 + i5, i2 + i6, 0.0D, (float)(i3 + i5) * f7, (float)(i4 + i6) * f8);
+		tessellator9.addVertexWithUV(i1 + i5, i2, 0.0D, (float)(i3 + i5) * f7, (float)(i4) * f8);
+		tessellator9.addVertexWithUV(i1, i2, 0.0D, (float)(i3) * f7, (float)(i4) * f8);
 		tessellator9.draw();
 	}
 
@@ -424,13 +424,13 @@ public abstract class Minecraft implements Runnable {
 				this.ingameGUI.clearChatMessages();
 			}
 
-			this.currentScreen = (GuiScreen)guiScreen1;
+			this.currentScreen = guiScreen1;
 			if(guiScreen1 != null) {
 				this.setIngameNotInFocus();
 				ScaledResolution scaledResolution2 = new ScaledResolution(this.gameSettings, this.displayWidth, this.displayHeight);
 				int i3 = scaledResolution2.getScaledWidth();
 				int i4 = scaledResolution2.getScaledHeight();
-				((GuiScreen)guiScreen1).setWorldAndResolution(this, i3, i4);
+				guiScreen1.setWorldAndResolution(this, i3, i4);
 				this.skipRenderWorld = false;
 			} else {
 				this.setIngameFocus();
@@ -468,7 +468,7 @@ public abstract class Minecraft implements Runnable {
 			System.out.println("Stopping!");
 
 			try {
-				this.changeWorld1((World)null);
+				this.changeWorld1(null);
 			} catch (Throwable throwable8) {
 			}
 
@@ -535,7 +535,7 @@ public abstract class Minecraft implements Runnable {
 							this.runTick();
 						} catch (MinecraftException minecraftException16) {
 							this.theWorld = null;
-							this.changeWorld1((World)null);
+							this.changeWorld1(null);
 							this.displayGuiScreen(new GuiConflictWarning());
 						}
 					}
@@ -610,7 +610,7 @@ public abstract class Minecraft implements Runnable {
 					}
 				} catch (MinecraftException minecraftException18) {
 					this.theWorld = null;
-					this.changeWorld1((World)null);
+					this.changeWorld1(null);
 					this.displayGuiScreen(new GuiConflictWarning());
 				} catch (OutOfMemoryError outOfMemoryError19) {
 					this.func_28002_e();
@@ -645,7 +645,7 @@ public abstract class Minecraft implements Runnable {
 
 		try {
 			System.gc();
-			this.changeWorld1((World)null);
+			this.changeWorld1(null);
 		} catch (Throwable throwable2) {
 		}
 
@@ -677,7 +677,7 @@ public abstract class Minecraft implements Runnable {
 		GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0.0D, (double)this.displayWidth, (double)this.displayHeight, 0.0D, 1000.0D, 3000.0D);
+		GL11.glOrtho(0.0D, this.displayWidth, this.displayHeight, 0.0D, 1000.0D, 3000.0D);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 		GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
@@ -687,15 +687,15 @@ public abstract class Minecraft implements Runnable {
 		tessellator7.startDrawing(7);
 		int i8 = (int)(j3 / 200000L);
 		tessellator7.setColorOpaque_I(536870912);
-		tessellator7.addVertex(0.0D, (double)(this.displayHeight - i8), 0.0D);
-		tessellator7.addVertex(0.0D, (double)this.displayHeight, 0.0D);
-		tessellator7.addVertex((double)frameTimes.length, (double)this.displayHeight, 0.0D);
-		tessellator7.addVertex((double)frameTimes.length, (double)(this.displayHeight - i8), 0.0D);
+		tessellator7.addVertex(0.0D, this.displayHeight - i8, 0.0D);
+		tessellator7.addVertex(0.0D, this.displayHeight, 0.0D);
+		tessellator7.addVertex(frameTimes.length, this.displayHeight, 0.0D);
+		tessellator7.addVertex(frameTimes.length, this.displayHeight - i8, 0.0D);
 		tessellator7.setColorOpaque_I(0x20200000);
-		tessellator7.addVertex(0.0D, (double)(this.displayHeight - i8 * 2), 0.0D);
-		tessellator7.addVertex(0.0D, (double)(this.displayHeight - i8), 0.0D);
-		tessellator7.addVertex((double)frameTimes.length, (double)(this.displayHeight - i8), 0.0D);
-		tessellator7.addVertex((double)frameTimes.length, (double)(this.displayHeight - i8 * 2), 0.0D);
+		tessellator7.addVertex(0.0D, this.displayHeight - i8 * 2, 0.0D);
+		tessellator7.addVertex(0.0D, this.displayHeight - i8, 0.0D);
+		tessellator7.addVertex(frameTimes.length, this.displayHeight - i8, 0.0D);
+		tessellator7.addVertex(frameTimes.length, this.displayHeight - i8 * 2, 0.0D);
 		tessellator7.draw();
 		long j9 = 0L;
 
@@ -707,10 +707,10 @@ public abstract class Minecraft implements Runnable {
 		i11 = (int)(j9 / 200000L / (long)frameTimes.length);
 		tessellator7.startDrawing(7);
 		tessellator7.setColorOpaque_I(0x20400000);
-		tessellator7.addVertex(0.0D, (double)(this.displayHeight - i11), 0.0D);
-		tessellator7.addVertex(0.0D, (double)this.displayHeight, 0.0D);
-		tessellator7.addVertex((double)frameTimes.length, (double)this.displayHeight, 0.0D);
-		tessellator7.addVertex((double)frameTimes.length, (double)(this.displayHeight - i11), 0.0D);
+		tessellator7.addVertex(0.0D, this.displayHeight - i11, 0.0D);
+		tessellator7.addVertex(0.0D, this.displayHeight, 0.0D);
+		tessellator7.addVertex(frameTimes.length, this.displayHeight, 0.0D);
+		tessellator7.addVertex(frameTimes.length, this.displayHeight - i11, 0.0D);
 		tessellator7.draw();
 		tessellator7.startDrawing(1);
 
@@ -728,11 +728,11 @@ public abstract class Minecraft implements Runnable {
 
 			long j16 = frameTimes[i12] / 200000L;
 			long j18 = tickTimes[i12] / 200000L;
-			tessellator7.addVertex((double)((float)i12 + 0.5F), (double)((float)((long)this.displayHeight - j16) + 0.5F), 0.0D);
-			tessellator7.addVertex((double)((float)i12 + 0.5F), (double)((float)this.displayHeight + 0.5F), 0.0D);
-			tessellator7.setColorOpaque_I(0xFF000000 + i14 * 65536 + i14 * 256 + i14 * 1);
-			tessellator7.addVertex((double)((float)i12 + 0.5F), (double)((float)((long)this.displayHeight - j16) + 0.5F), 0.0D);
-			tessellator7.addVertex((double)((float)i12 + 0.5F), (double)((float)((long)this.displayHeight - (j16 - j18)) + 0.5F), 0.0D);
+			tessellator7.addVertex((float)i12 + 0.5F, (float)((long)this.displayHeight - j16) + 0.5F, 0.0D);
+			tessellator7.addVertex((float)i12 + 0.5F, (float)this.displayHeight + 0.5F, 0.0D);
+			tessellator7.setColorOpaque_I(0xFF000000 + i14 * 65536 + i14 * 256 + i14);
+			tessellator7.addVertex((float)i12 + 0.5F, (float)((long)this.displayHeight - j16) + 0.5F, 0.0D);
+			tessellator7.addVertex((float)i12 + 0.5F, (float)((long)this.displayHeight - (j16 - j18)) + 0.5F, 0.0D);
 		}
 
 		tessellator7.draw();
@@ -748,7 +748,7 @@ public abstract class Minecraft implements Runnable {
 			if(!this.inGameHasFocus) {
 				this.inGameHasFocus = true;
 				this.mouseHelper.grabMouseCursor();
-				this.displayGuiScreen((GuiScreen)null);
+				this.displayGuiScreen(null);
 				this.leftClickCounter = 10000;
 				this.mouseTicksRan = this.ticksRan + 10000;
 			}
@@ -967,12 +967,12 @@ public abstract class Minecraft implements Runnable {
 
 		if(this.currentScreen == null && this.thePlayer != null) {
 			if(this.thePlayer.health <= 0) {
-				this.displayGuiScreen((GuiScreen)null);
+				this.displayGuiScreen(null);
 			} else if(this.thePlayer.isPlayerSleeping() && this.theWorld != null && this.theWorld.multiplayerWorld) {
 				this.displayGuiScreen(new GuiSleepMP());
 			}
 		} else if(this.currentScreen != null && this.currentScreen instanceof GuiSleepMP && !this.thePlayer.isPlayerSleeping()) {
-			this.displayGuiScreen((GuiScreen)null);
+			this.displayGuiScreen(null);
 		}
 
 		new EventTick().call();
@@ -1186,7 +1186,7 @@ public abstract class Minecraft implements Runnable {
 	}
 
 	public void startWorld(String string1, String string2, long j3) {
-		this.changeWorld1((World)null);
+		this.changeWorld1(null);
 		System.gc();
 		if(this.saveLoader.isOldMapFormat(string1)) {
 			this.convertMapFormat(string1, string2);
@@ -1259,7 +1259,7 @@ public abstract class Minecraft implements Runnable {
 	}
 
 	public void changeWorld2(World world1, String string2) {
-		this.changeWorld(world1, string2, (EntityPlayer)null);
+		this.changeWorld(world1, string2, null);
 	}
 
 	public void changeWorld(World world1, String string2, EntityPlayer entityPlayer3) {
@@ -1268,7 +1268,7 @@ public abstract class Minecraft implements Runnable {
 		this.renderViewEntity = null;
 		this.loadingScreen.printText(string2);
 		this.loadingScreen.displayLoadingString("");
-		this.sndManager.playStreaming((String)null, 0.0F, 0.0F, 0.0F, 0.0F);
+		this.sndManager.playStreaming(null, 0.0F, 0.0F, 0.0F, 0.0F);
 		if(this.theWorld != null) {
 			this.theWorld.saveWorldIndirectly(this.loadingScreen);
 		}
@@ -1456,7 +1456,7 @@ public abstract class Minecraft implements Runnable {
 		this.thePlayer.preparePlayerToSpawn();
 		if(z5) {
 			this.thePlayer.setPlayerSpawnCoordinate(chunkCoordinates3);
-			this.thePlayer.setLocationAndAngles((double)((float)chunkCoordinates4.x + 0.5F), (double)((float)chunkCoordinates4.y + 0.1F), (double)((float)chunkCoordinates4.z + 0.5F), 0.0F, 0.0F);
+			this.thePlayer.setLocationAndAngles((float)chunkCoordinates4.x + 0.5F, (float)chunkCoordinates4.y + 0.1F, (float)chunkCoordinates4.z + 0.5F, 0.0F, 0.0F);
 		}
 
 		this.playerController.flipPlayer(this.thePlayer);
@@ -1467,13 +1467,13 @@ public abstract class Minecraft implements Runnable {
 		this.playerController.func_6473_b(this.thePlayer);
 		this.func_6255_d("Respawning");
 		if(this.currentScreen instanceof GuiGameOver) {
-			this.displayGuiScreen((GuiScreen)null);
+			this.displayGuiScreen(null);
 		}
 
 	}
 
 	public static void func_6269_a(String string0, String string1) {
-		startMainThread(string0, string1, (String)null);
+		startMainThread(string0, string1, null);
 	}
 
 	public static void startMainThread(String string0, String string1, String string2) {
@@ -1484,8 +1484,8 @@ public abstract class Minecraft implements Runnable {
 		frame5.add(canvas6, "Center");
 		canvas6.setPreferredSize(new Dimension(854, 480));
 		frame5.pack();
-		frame5.setLocationRelativeTo((Component)null);
-		MinecraftImpl minecraftImpl7 = new MinecraftImpl(frame5, canvas6, (MinecraftApplet)null, 854, 480, z3, frame5);
+		frame5.setLocationRelativeTo(null);
+		MinecraftImpl minecraftImpl7 = new MinecraftImpl(frame5, canvas6, null, 854, 480, z3, frame5);
 		Thread thread8 = new Thread(minecraftImpl7, "Minecraft main thread");
 		thread8.setPriority(10);
 		minecraftImpl7.minecraftUri = "www.minecraft.net";
@@ -1543,8 +1543,7 @@ public abstract class Minecraft implements Runnable {
 
 	public boolean lineIsCommand(String string1) {
 		if(string1.startsWith("/")) {
-			;
-		}
+        }
 
 		return false;
 	}

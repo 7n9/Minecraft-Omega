@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockPressurePlate extends Block {
-	private EnumMobType triggerMobType;
+	private final EnumMobType triggerMobType;
 
 	protected BlockPressurePlate(int i1, int i2, EnumMobType enumMobType3, Material material4) {
 		super(i1, i2, material4);
@@ -38,12 +38,9 @@ public class BlockPressurePlate extends Block {
 	}
 
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
-		boolean z6 = false;
-		if(!world1.isBlockNormalCube(i2, i3 - 1, i4)) {
-			z6 = true;
-		}
+		boolean z6 = !world1.isBlockNormalCube(i2, i3 - 1, i4);
 
-		if(z6) {
+        if(z6) {
 			this.dropBlockAsItem(world1, i2, i3, i4, world1.getBlockMetadata(i2, i3, i4));
 			world1.setBlockWithNotify(i2, i3, i4, 0);
 		}
@@ -72,15 +69,15 @@ public class BlockPressurePlate extends Block {
 		float f7 = 0.125F;
 		List list8 = null;
 		if(this.triggerMobType == EnumMobType.everything) {
-			list8 = world1.getEntitiesWithinAABBExcludingEntity((Entity)null, AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f7), (double)i3, (double)((float)i4 + f7), (double)((float)(i2 + 1) - f7), (double)i3 + 0.25D, (double)((float)(i4 + 1) - f7)));
+			list8 = world1.getEntitiesWithinAABBExcludingEntity(null, AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f7, i3, (float)i4 + f7, (float)(i2 + 1) - f7, (double)i3 + 0.25D, (float)(i4 + 1) - f7));
 		}
 
 		if(this.triggerMobType == EnumMobType.mobs) {
-			list8 = world1.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f7), (double)i3, (double)((float)i4 + f7), (double)((float)(i2 + 1) - f7), (double)i3 + 0.25D, (double)((float)(i4 + 1) - f7)));
+			list8 = world1.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f7, i3, (float)i4 + f7, (float)(i2 + 1) - f7, (double)i3 + 0.25D, (float)(i4 + 1) - f7));
 		}
 
 		if(this.triggerMobType == EnumMobType.players) {
-			list8 = world1.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f7), (double)i3, (double)((float)i4 + f7), (double)((float)(i2 + 1) - f7), (double)i3 + 0.25D, (double)((float)(i4 + 1) - f7)));
+			list8 = world1.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f7, i3, (float)i4 + f7, (float)(i2 + 1) - f7, (double)i3 + 0.25D, (float)(i4 + 1) - f7));
 		}
 
 		if(list8.size() > 0) {
@@ -135,7 +132,7 @@ public class BlockPressurePlate extends Block {
 	}
 
 	public boolean isIndirectlyPoweringTo(World world1, int i2, int i3, int i4, int i5) {
-		return world1.getBlockMetadata(i2, i3, i4) == 0 ? false : i5 == 1;
+		return world1.getBlockMetadata(i2, i3, i4) != 0 && i5 == 1;
 	}
 
 	public boolean canProvidePower() {

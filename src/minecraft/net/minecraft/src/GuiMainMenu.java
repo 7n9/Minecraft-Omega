@@ -3,6 +3,7 @@ package net.minecraft.src;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,7 +21,7 @@ public class GuiMainMenu extends GuiScreen {
 	public GuiMainMenu() {
 		try {
 			ArrayList arrayList1 = new ArrayList();
-			BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(GuiMainMenu.class.getResourceAsStream("/title/splashes.txt"), Charset.forName("UTF-8")));
+			BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(GuiMainMenu.class.getResourceAsStream("/title/splashes.txt"), StandardCharsets.UTF_8));
 			String string3 = "";
 
 			while((string3 = bufferedReader2.readLine()) != null) {
@@ -106,8 +107,8 @@ public class GuiMainMenu extends GuiScreen {
 		byte b7 = 30;
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.mc.renderEngine.getTexture("/title/mclogo.png"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.drawTexturedModalRect(i6 + 0, b7 + 0, 0, 0, 155, 44);
-		this.drawTexturedModalRect(i6 + 155, b7 + 0, 0, 45, 155, 44);
+		this.drawTexturedModalRect(i6, b7, 0, 0, 155, 44);
+		this.drawTexturedModalRect(i6 + 155, b7, 0, 45, 155, 44);
 		tessellator4.setColorOpaque_I(0xFFFFFF);
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)(this.width / 2 + 90), 70.0F, 0.0F);

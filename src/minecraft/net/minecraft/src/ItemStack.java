@@ -7,7 +7,7 @@ public final class ItemStack {
 	private int itemDamage;
 
 	public ItemStack(Block block1) {
-		this((Block)block1, 1);
+		this(block1, 1);
 	}
 
 	public ItemStack(Block block1, int i2) {
@@ -176,11 +176,11 @@ public final class ItemStack {
 	}
 
 	public static boolean areItemStacksEqual(ItemStack itemStack0, ItemStack itemStack1) {
-		return itemStack0 == null && itemStack1 == null ? true : (itemStack0 != null && itemStack1 != null ? itemStack0.isItemStackEqual(itemStack1) : false);
+		return itemStack0 == null && itemStack1 == null || (itemStack0 != null && itemStack1 != null && itemStack0.isItemStackEqual(itemStack1));
 	}
 
 	private boolean isItemStackEqual(ItemStack itemStack1) {
-		return this.stackSize != itemStack1.stackSize ? false : (this.itemID != itemStack1.itemID ? false : this.itemDamage == itemStack1.itemDamage);
+		return this.stackSize == itemStack1.stackSize && (this.itemID == itemStack1.itemID && this.itemDamage == itemStack1.itemDamage);
 	}
 
 	public boolean isItemEqual(ItemStack itemStack1) {

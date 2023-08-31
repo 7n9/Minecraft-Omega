@@ -24,6 +24,6 @@ class CanvasMojangLogo extends Canvas {
 
 	public void paint(Graphics graphics1) {
 		super.paint(graphics1);
-		graphics1.drawImage(this.logo, this.getWidth() / 2 - this.logo.getWidth() / 2, 32, (ImageObserver)null);
+		graphics1.drawImage(this.logo, this.getWidth() / 2 - this.logo.getWidth() / 2, 32, null);
 	}
 }

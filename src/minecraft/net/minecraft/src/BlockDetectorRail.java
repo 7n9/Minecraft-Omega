@@ -40,14 +40,14 @@ public class BlockDetectorRail extends BlockRail {
 	}
 
 	public boolean isIndirectlyPoweringTo(World world1, int i2, int i3, int i4, int i5) {
-		return (world1.getBlockMetadata(i2, i3, i4) & 8) == 0 ? false : i5 == 1;
+		return (world1.getBlockMetadata(i2, i3, i4) & 8) != 0 && i5 == 1;
 	}
 
 	private void setStateIfMinecartInteractsWithRail(World world1, int i2, int i3, int i4, int i5) {
 		boolean z6 = (i5 & 8) != 0;
 		boolean z7 = false;
 		float f8 = 0.125F;
-		List list9 = world1.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f8), (double)i3, (double)((float)i4 + f8), (double)((float)(i2 + 1) - f8), (double)i3 + 0.25D, (double)((float)(i4 + 1) - f8)));
+		List list9 = world1.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f8, i3, (float)i4 + f8, (float)(i2 + 1) - f8, (double)i3 + 0.25D, (float)(i4 + 1) - f8));
 		if(list9.size() > 0) {
 			z7 = true;
 		}

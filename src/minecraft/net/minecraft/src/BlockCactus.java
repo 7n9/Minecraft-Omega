@@ -29,12 +29,12 @@ public class BlockCactus extends Block {
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
 		float f5 = 0.0625F;
-		return AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f5), (double)i3, (double)((float)i4 + f5), (double)((float)(i2 + 1) - f5), (double)((float)(i3 + 1) - f5), (double)((float)(i4 + 1) - f5));
+		return AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f5, i3, (float)i4 + f5, (float)(i2 + 1) - f5, (float)(i3 + 1) - f5, (float)(i4 + 1) - f5);
 	}
 
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
 		float f5 = 0.0625F;
-		return AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f5), (double)i3, (double)((float)i4 + f5), (double)((float)(i2 + 1) - f5), (double)(i3 + 1), (double)((float)(i4 + 1) - f5));
+		return AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f5, i3, (float)i4 + f5, (float)(i2 + 1) - f5, i3 + 1, (float)(i4 + 1) - f5);
 	}
 
 	public int getBlockTextureFromSide(int i1) {
@@ -54,7 +54,7 @@ public class BlockCactus extends Block {
 	}
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
-		return !super.canPlaceBlockAt(world1, i2, i3, i4) ? false : this.canBlockStay(world1, i2, i3, i4);
+		return super.canPlaceBlockAt(world1, i2, i3, i4) && this.canBlockStay(world1, i2, i3, i4);
 	}
 
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
@@ -81,6 +81,6 @@ public class BlockCactus extends Block {
 	}
 
 	public void onEntityCollidedWithBlock(World world1, int i2, int i3, int i4, Entity entity5) {
-		entity5.attackEntityFrom((Entity)null, 1);
+		entity5.attackEntityFrom(null, 1);
 	}
 }

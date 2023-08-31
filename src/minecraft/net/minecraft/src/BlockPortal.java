@@ -127,7 +127,7 @@ public class BlockPortal extends BlockBreakable {
 			boolean z9 = iBlockAccess1.getBlockId(i2, i3, i4 + 1) == this.blockID && iBlockAccess1.getBlockId(i2, i3, i4 + 2) != this.blockID;
 			boolean z10 = z6 || z7;
 			boolean z11 = z8 || z9;
-			return z10 && i5 == 4 ? true : (z10 && i5 == 5 ? true : (z11 && i5 == 2 ? true : z11 && i5 == 3));
+			return z10 && i5 == 4 || (z10 && i5 == 5 || (z11 && i5 == 2 || z11 && i5 == 3));
 		}
 	}
 
@@ -152,9 +152,9 @@ public class BlockPortal extends BlockBreakable {
 		}
 
 		for(int i6 = 0; i6 < 4; ++i6) {
-			double d7 = (double)((float)i2 + random5.nextFloat());
-			double d9 = (double)((float)i3 + random5.nextFloat());
-			double d11 = (double)((float)i4 + random5.nextFloat());
+			double d7 = (float)i2 + random5.nextFloat();
+			double d9 = (float)i3 + random5.nextFloat();
+			double d11 = (float)i4 + random5.nextFloat();
 			double d13 = 0.0D;
 			double d15 = 0.0D;
 			double d17 = 0.0D;
@@ -164,10 +164,10 @@ public class BlockPortal extends BlockBreakable {
 			d17 = ((double)random5.nextFloat() - 0.5D) * 0.5D;
 			if(world1.getBlockId(i2 - 1, i3, i4) != this.blockID && world1.getBlockId(i2 + 1, i3, i4) != this.blockID) {
 				d7 = (double)i2 + 0.5D + 0.25D * (double)i19;
-				d13 = (double)(random5.nextFloat() * 2.0F * (float)i19);
+				d13 = random5.nextFloat() * 2.0F * (float)i19;
 			} else {
 				d11 = (double)i4 + 0.5D + 0.25D * (double)i19;
-				d17 = (double)(random5.nextFloat() * 2.0F * (float)i19);
+				d17 = random5.nextFloat() * 2.0F * (float)i19;
 			}
 
 			world1.spawnParticle("portal", d7, d9, d11, d13, d15, d17);

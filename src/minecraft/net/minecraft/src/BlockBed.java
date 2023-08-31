@@ -42,7 +42,7 @@ public class BlockBed extends Block {
 					d11 = (d11 + (double)i4 + 0.5D) / 2.0D;
 				}
 
-				world1.newExplosion((Entity)null, (double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), 5.0F, true);
+				world1.newExplosion(null, (float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F, 5.0F, true);
 				return true;
 			} else {
 				if(isBedOccupied(i6)) {

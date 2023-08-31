@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class ItemBucket extends Item {
-	private int isFull;
+	private final int isFull;
 
 	public ItemBucket(int i1, int i2) {
 		super(i1);

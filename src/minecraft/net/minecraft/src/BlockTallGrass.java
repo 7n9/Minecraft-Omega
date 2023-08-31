@@ -18,7 +18,7 @@ public class BlockTallGrass extends BlockFlower {
 		if(i5 == 0) {
 			return 0xFFFFFF;
 		} else {
-			long j6 = (long)(i2 * 3129871 + i4 * 6129781 + i3);
+			long j6 = i2 * 3129871L + i4 * 6129781L + i3;
 			j6 = j6 * j6 * 42317861L + j6 * 11L;
 			i2 = (int)((long)i2 + (j6 >> 14 & 31L));
 			i3 = (int)((long)i3 + (j6 >> 19 & 31L));

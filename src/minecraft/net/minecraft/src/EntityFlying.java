@@ -12,9 +12,9 @@ public class EntityFlying extends EntityLiving {
 		if(this.isInWater()) {
 			this.moveFlying(f1, f2, 0.02F);
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= (double)0.8F;
-			this.motionY *= (double)0.8F;
-			this.motionZ *= (double)0.8F;
+			this.motionX *= 0.8F;
+			this.motionY *= 0.8F;
+			this.motionZ *= 0.8F;
 		} else if(this.handleLavaMovement()) {
 			this.moveFlying(f1, f2, 0.02F);
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
@@ -43,9 +43,9 @@ public class EntityFlying extends EntityLiving {
 			}
 
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= (double)f3;
-			this.motionY *= (double)f3;
-			this.motionZ *= (double)f3;
+			this.motionX *= f3;
+			this.motionY *= f3;
+			this.motionZ *= f3;
 		}
 
 		this.field_705_Q = this.field_704_R;

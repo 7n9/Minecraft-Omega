@@ -41,7 +41,7 @@ public class ChunkCoordinates implements Comparable {
 		int i4 = this.x - i1;
 		int i5 = this.y - i2;
 		int i6 = this.z - i3;
-		return Math.sqrt((double)(i4 * i4 + i5 * i5 + i6 * i6));
+		return Math.sqrt(i4 * i4 + i5 * i5 + i6 * i6);
 	}
 
 	public int compareTo(Object object1) {

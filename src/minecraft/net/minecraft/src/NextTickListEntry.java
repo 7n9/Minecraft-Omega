@@ -7,7 +7,7 @@ public class NextTickListEntry implements Comparable {
 	public int zCoord;
 	public int blockID;
 	public long scheduledTime;
-	private long tickEntryID = nextTickEntryID++;
+	private final long tickEntryID = nextTickEntryID++;
 
 	public NextTickListEntry(int i1, int i2, int i3, int i4) {
 		this.xCoord = i1;

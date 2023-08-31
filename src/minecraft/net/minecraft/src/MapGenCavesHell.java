@@ -8,8 +8,8 @@ public class MapGenCavesHell extends MapGenBase {
 	}
 
 	protected void func_4128_a(int i1, int i2, byte[] b3, double d4, double d6, double d8, float f10, float f11, float f12, int i13, int i14, double d15) {
-		double d17 = (double)(i1 * 16 + 8);
-		double d19 = (double)(i2 * 16 + 8);
+		double d17 = i1 * 16 + 8;
+		double d19 = i2 * 16 + 8;
 		float f21 = 0.0F;
 		float f22 = 0.0F;
 		Random random23 = new Random(this.rand.nextLong());
@@ -31,9 +31,9 @@ public class MapGenCavesHell extends MapGenBase {
 			double d29 = d27 * d15;
 			float f31 = MathHelper.cos(f12);
 			float f32 = MathHelper.sin(f12);
-			d4 += (double)(MathHelper.cos(f11) * f31);
-			d6 += (double)f32;
-			d8 += (double)(MathHelper.sin(f11) * f31);
+			d4 += MathHelper.cos(f11) * f31;
+			d6 += f32;
+			d8 += MathHelper.sin(f11) * f31;
 			if(z26) {
 				f12 *= 0.92F;
 			} else {
@@ -55,8 +55,8 @@ public class MapGenCavesHell extends MapGenBase {
 			if(z51 || random23.nextInt(4) != 0) {
 				double d33 = d4 - d17;
 				double d35 = d8 - d19;
-				double d37 = (double)(i14 - i13);
-				double d39 = (double)(f10 + 2.0F + 16.0F);
+				double d37 = i14 - i13;
+				double d39 = f10 + 2.0F + 16.0F;
 				if(d33 * d33 + d35 * d35 - d37 * d37 > d39 * d39) {
 					return;
 				}
@@ -152,9 +152,9 @@ public class MapGenCavesHell extends MapGenBase {
 		}
 
 		for(int i8 = 0; i8 < i7; ++i8) {
-			double d9 = (double)(i2 * 16 + this.rand.nextInt(16));
-			double d11 = (double)this.rand.nextInt(128);
-			double d13 = (double)(i3 * 16 + this.rand.nextInt(16));
+			double d9 = i2 * 16 + this.rand.nextInt(16);
+			double d11 = this.rand.nextInt(128);
+			double d13 = i3 * 16 + this.rand.nextInt(16);
 			int i15 = 1;
 			if(this.rand.nextInt(4) == 0) {
 				this.func_4129_a(i4, i5, b6, d9, d11, d13);

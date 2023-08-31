@@ -3,7 +3,7 @@ package net.minecraft.src;
 import org.lwjgl.input.Keyboard;
 
 public class GuiRenameWorld extends GuiScreen {
-	private GuiScreen field_22112_a;
+	private final GuiScreen field_22112_a;
 	private GuiTextField field_22114_h;
 	private final String field_22113_i;
 

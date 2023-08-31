@@ -15,9 +15,9 @@ public class EntityItem extends Entity {
 		this.setPosition(d2, d4, d6);
 		this.item = itemStack8;
 		this.rotationYaw = (float)(Math.random() * 360.0D);
-		this.motionX = (double)((float)(Math.random() * (double)0.2F - (double)0.1F));
-		this.motionY = (double)0.2F;
-		this.motionZ = (double)((float)(Math.random() * (double)0.2F - (double)0.1F));
+		this.motionX = (float)(Math.random() * (double)0.2F - (double)0.1F);
+		this.motionY = 0.2F;
+		this.motionZ = (float)(Math.random() * (double)0.2F - (double)0.1F);
 	}
 
 	protected boolean canTriggerWalking() {
@@ -42,11 +42,11 @@ public class EntityItem extends Entity {
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		this.motionY -= (double)0.04F;
+		this.motionY -= 0.04F;
 		if(this.worldObj.getBlockMaterial(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)) == Material.lava) {
-			this.motionY = (double)0.2F;
-			this.motionX = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-			this.motionZ = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+			this.motionY = 0.2F;
+			this.motionX = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
+			this.motionZ = (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F;
 			this.worldObj.playSoundAtEntity(this, "random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
 		}
 
@@ -61,9 +61,9 @@ public class EntityItem extends Entity {
 			}
 		}
 
-		this.motionX *= (double)f1;
-		this.motionY *= (double)0.98F;
-		this.motionZ *= (double)f1;
+		this.motionX *= f1;
+		this.motionY *= 0.98F;
+		this.motionZ *= f1;
 		if(this.onGround) {
 			this.motionY *= -0.5D;
 		}
@@ -81,7 +81,7 @@ public class EntityItem extends Entity {
 	}
 
 	protected void dealFireDamage(int i1) {
-		this.attackEntityFrom((Entity)null, i1);
+		this.attackEntityFrom(null, i1);
 	}
 
 	public boolean attackEntityFrom(Entity entity1, int i2) {
@@ -95,7 +95,7 @@ public class EntityItem extends Entity {
 	}
 
 	public void writeEntityToNBT(NBTTagCompound nBTTagCompound1) {
-		nBTTagCompound1.setShort("Health", (short)((byte)this.health));
+		nBTTagCompound1.setShort("Health", (byte)this.health);
 		nBTTagCompound1.setShort("Age", (short)this.age);
 		nBTTagCompound1.setCompoundTag("Item", this.item.writeToNBT(new NBTTagCompound()));
 	}

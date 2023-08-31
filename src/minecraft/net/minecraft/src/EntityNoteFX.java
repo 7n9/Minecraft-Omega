@@ -9,9 +9,9 @@ public class EntityNoteFX extends EntityFX {
 
 	public EntityNoteFX(World world1, double d2, double d4, double d6, double d8, double d10, double d12, float f14) {
 		super(world1, d2, d4, d6, 0.0D, 0.0D, 0.0D);
-		this.motionX *= (double)0.01F;
-		this.motionY *= (double)0.01F;
-		this.motionZ *= (double)0.01F;
+		this.motionX *= 0.01F;
+		this.motionY *= 0.01F;
+		this.motionZ *= 0.01F;
 		this.motionY += 0.2D;
 		this.particleRed = MathHelper.sin(((float)d8 + 0.0F) * (float)Math.PI * 2.0F) * 0.65F + 0.35F;
 		this.particleGreen = MathHelper.sin(((float)d8 + 0.33333334F) * (float)Math.PI * 2.0F) * 0.65F + 0.35F;
@@ -52,12 +52,12 @@ public class EntityNoteFX extends EntityFX {
 			this.motionZ *= 1.1D;
 		}
 
-		this.motionX *= (double)0.66F;
-		this.motionY *= (double)0.66F;
-		this.motionZ *= (double)0.66F;
+		this.motionX *= 0.66F;
+		this.motionY *= 0.66F;
+		this.motionZ *= 0.66F;
 		if(this.onGround) {
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 		}
 
 	}

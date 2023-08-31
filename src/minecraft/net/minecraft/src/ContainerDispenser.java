@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class ContainerDispenser extends Container {
-	private TileEntityDispenser field_21149_a;
+	private final TileEntityDispenser field_21149_a;
 
 	public ContainerDispenser(IInventory iInventory1, TileEntityDispenser tileEntityDispenser2) {
 		this.field_21149_a = tileEntityDispenser2;

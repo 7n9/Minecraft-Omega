@@ -49,10 +49,10 @@ public class Gui {
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glColor4f(f7, f8, f9, f11);
 		tessellator10.startDrawingQuads();
-		tessellator10.addVertex((double)i1, (double)i4, 0.0D);
-		tessellator10.addVertex((double)i3, (double)i4, 0.0D);
-		tessellator10.addVertex((double)i3, (double)i2, 0.0D);
-		tessellator10.addVertex((double)i1, (double)i2, 0.0D);
+		tessellator10.addVertex(i1, i4, 0.0D);
+		tessellator10.addVertex(i3, i4, 0.0D);
+		tessellator10.addVertex(i3, i2, 0.0D);
+		tessellator10.addVertex(i1, i2, 0.0D);
 		tessellator10.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
@@ -75,11 +75,11 @@ public class Gui {
 		Tessellator tessellator15 = Tessellator.instance;
 		tessellator15.startDrawingQuads();
 		tessellator15.setColorRGBA_F(f8, f9, f10, f7);
-		tessellator15.addVertex((double)i3, (double)i2, 0.0D);
-		tessellator15.addVertex((double)i1, (double)i2, 0.0D);
+		tessellator15.addVertex(i3, i2, 0.0D);
+		tessellator15.addVertex(i1, i2, 0.0D);
 		tessellator15.setColorRGBA_F(f12, f13, f14, f11);
-		tessellator15.addVertex((double)i1, (double)i4, 0.0D);
-		tessellator15.addVertex((double)i3, (double)i4, 0.0D);
+		tessellator15.addVertex(i1, i4, 0.0D);
+		tessellator15.addVertex(i3, i4, 0.0D);
 		tessellator15.draw();
 		GL11.glShadeModel(GL11.GL_FLAT);
 		GL11.glDisable(GL11.GL_BLEND);
@@ -100,10 +100,10 @@ public class Gui {
 		float f8 = 0.00390625F;
 		Tessellator tessellator9 = Tessellator.instance;
 		tessellator9.startDrawingQuads();
-		tessellator9.addVertexWithUV((double)(i1 + 0), (double)(i2 + i6), (double)this.zLevel, (double)((float)(i3 + 0) * f7), (double)((float)(i4 + i6) * f8));
-		tessellator9.addVertexWithUV((double)(i1 + i5), (double)(i2 + i6), (double)this.zLevel, (double)((float)(i3 + i5) * f7), (double)((float)(i4 + i6) * f8));
-		tessellator9.addVertexWithUV((double)(i1 + i5), (double)(i2 + 0), (double)this.zLevel, (double)((float)(i3 + i5) * f7), (double)((float)(i4 + 0) * f8));
-		tessellator9.addVertexWithUV((double)(i1 + 0), (double)(i2 + 0), (double)this.zLevel, (double)((float)(i3 + 0) * f7), (double)((float)(i4 + 0) * f8));
+		tessellator9.addVertexWithUV(i1, i2 + i6, this.zLevel, (float)(i3) * f7, (float)(i4 + i6) * f8);
+		tessellator9.addVertexWithUV(i1 + i5, i2 + i6, this.zLevel, (float)(i3 + i5) * f7, (float)(i4 + i6) * f8);
+		tessellator9.addVertexWithUV(i1 + i5, i2, this.zLevel, (float)(i3 + i5) * f7, (float)(i4) * f8);
+		tessellator9.addVertexWithUV(i1, i2, this.zLevel, (float)(i3) * f7, (float)(i4) * f8);
 		tessellator9.draw();
 	}
 }

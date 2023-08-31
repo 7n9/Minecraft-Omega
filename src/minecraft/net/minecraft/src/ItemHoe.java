@@ -14,7 +14,7 @@ public class ItemHoe extends Item {
 			return false;
 		} else {
 			Block block10 = Block.tilledField;
-			world3.playSoundEffect((double)((float)i4 + 0.5F), (double)((float)i5 + 0.5F), (double)((float)i6 + 0.5F), block10.stepSound.func_1145_d(), (block10.stepSound.getVolume() + 1.0F) / 2.0F, block10.stepSound.getPitch() * 0.8F);
+			world3.playSoundEffect((float)i4 + 0.5F, (float)i5 + 0.5F, (float)i6 + 0.5F, block10.stepSound.func_1145_d(), (block10.stepSound.getVolume() + 1.0F) / 2.0F, block10.stepSound.getPitch() * 0.8F);
 			if(world3.multiplayerWorld) {
 				return true;
 			} else {

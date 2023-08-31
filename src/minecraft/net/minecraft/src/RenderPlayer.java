@@ -83,10 +83,10 @@ public class RenderPlayer extends RenderLiving {
 					tessellator14.startDrawingQuads();
 					int i15 = fontRenderer13.getStringWidth(string12) / 2;
 					tessellator14.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
-					tessellator14.addVertex((double)(-i15 - 1), -1.0D, 0.0D);
-					tessellator14.addVertex((double)(-i15 - 1), 8.0D, 0.0D);
-					tessellator14.addVertex((double)(i15 + 1), 8.0D, 0.0D);
-					tessellator14.addVertex((double)(i15 + 1), -1.0D, 0.0D);
+					tessellator14.addVertex(-i15 - 1, -1.0D, 0.0D);
+					tessellator14.addVertex(-i15 - 1, 8.0D, 0.0D);
+					tessellator14.addVertex(i15 + 1, 8.0D, 0.0D);
+					tessellator14.addVertex(i15 + 1, -1.0D, 0.0D);
 					tessellator14.draw();
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
 					GL11.glDepthMask(true);
@@ -118,7 +118,7 @@ public class RenderPlayer extends RenderLiving {
 		}
 
 		float f5;
-		if(entityPlayer1.username.equals("deadmau5") && this.loadDownloadableImageTexture(entityPlayer1.skinUrl, (String)null)) {
+		if(entityPlayer1.username.equals("deadmau5") && this.loadDownloadableImageTexture(entityPlayer1.skinUrl, null)) {
 			for(int i19 = 0; i19 < 2; ++i19) {
 				f5 = entityPlayer1.prevRotationYaw + (entityPlayer1.rotationYaw - entityPlayer1.prevRotationYaw) * f2 - (entityPlayer1.prevRenderYawOffset + (entityPlayer1.renderYawOffset - entityPlayer1.prevRenderYawOffset) * f2);
 				float f6 = entityPlayer1.prevRotationPitch + (entityPlayer1.rotationPitch - entityPlayer1.prevRotationPitch) * f2;
@@ -136,15 +136,15 @@ public class RenderPlayer extends RenderLiving {
 			}
 		}
 
-		if(this.loadDownloadableImageTexture(entityPlayer1.playerCloakUrl, (String)null)) {
+		if(this.loadDownloadableImageTexture(entityPlayer1.playerCloakUrl, null)) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0.0F, 0.0F, 0.125F);
 			double d20 = entityPlayer1.field_20066_r + (entityPlayer1.field_20063_u - entityPlayer1.field_20066_r) * (double)f2 - (entityPlayer1.prevPosX + (entityPlayer1.posX - entityPlayer1.prevPosX) * (double)f2);
 			double d22 = entityPlayer1.field_20065_s + (entityPlayer1.field_20062_v - entityPlayer1.field_20065_s) * (double)f2 - (entityPlayer1.prevPosY + (entityPlayer1.posY - entityPlayer1.prevPosY) * (double)f2);
 			double d8 = entityPlayer1.field_20064_t + (entityPlayer1.field_20061_w - entityPlayer1.field_20064_t) * (double)f2 - (entityPlayer1.prevPosZ + (entityPlayer1.posZ - entityPlayer1.prevPosZ) * (double)f2);
 			float f10 = entityPlayer1.prevRenderYawOffset + (entityPlayer1.renderYawOffset - entityPlayer1.prevRenderYawOffset) * f2;
-			double d11 = (double)MathHelper.sin(f10 * (float)Math.PI / 180.0F);
-			double d13 = (double)(-MathHelper.cos(f10 * (float)Math.PI / 180.0F));
+			double d11 = MathHelper.sin(f10 * (float)Math.PI / 180.0F);
+			double d13 = -MathHelper.cos(f10 * (float)Math.PI / 180.0F);
 			float f15 = (float)d22 * 10.0F;
 			if(f15 < -6.0F) {
 				f15 = -6.0F;

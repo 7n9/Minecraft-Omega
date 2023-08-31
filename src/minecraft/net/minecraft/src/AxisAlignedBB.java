@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AxisAlignedBB {
-	private static List boundingBoxes = new ArrayList();
+	private static final List boundingBoxes = new ArrayList();
 	private static int numBoundingBoxesInUse = 0;
 	public double minX;
 	public double minY;
@@ -183,7 +183,7 @@ public class AxisAlignedBB {
 	}
 
 	public boolean intersectsWith(AxisAlignedBB axisAlignedBB1) {
-		return axisAlignedBB1.maxX > this.minX && axisAlignedBB1.minX < this.maxX ? (axisAlignedBB1.maxY > this.minY && axisAlignedBB1.minY < this.maxY ? axisAlignedBB1.maxZ > this.minZ && axisAlignedBB1.minZ < this.maxZ : false) : false;
+		return axisAlignedBB1.maxX > this.minX && axisAlignedBB1.minX < this.maxX && (axisAlignedBB1.maxY > this.minY && axisAlignedBB1.minY < this.maxY && axisAlignedBB1.maxZ > this.minZ && axisAlignedBB1.minZ < this.maxZ);
 	}
 
 	public AxisAlignedBB offset(double d1, double d3, double d5) {
@@ -197,7 +197,7 @@ public class AxisAlignedBB {
 	}
 
 	public boolean isVecInside(Vec3D vec3D1) {
-		return vec3D1.xCoord > this.minX && vec3D1.xCoord < this.maxX ? (vec3D1.yCoord > this.minY && vec3D1.yCoord < this.maxY ? vec3D1.zCoord > this.minZ && vec3D1.zCoord < this.maxZ : false) : false;
+		return vec3D1.xCoord > this.minX && vec3D1.xCoord < this.maxX && (vec3D1.yCoord > this.minY && vec3D1.yCoord < this.maxY && vec3D1.zCoord > this.minZ && vec3D1.zCoord < this.maxZ);
 	}
 
 	public double getAverageEdgeLength() {
@@ -310,15 +310,15 @@ public class AxisAlignedBB {
 	}
 
 	private boolean isVecInYZ(Vec3D vec3D1) {
-		return vec3D1 == null ? false : vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
+		return vec3D1 != null && vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
 	}
 
 	private boolean isVecInXZ(Vec3D vec3D1) {
-		return vec3D1 == null ? false : vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
+		return vec3D1 != null && vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
 	}
 
 	private boolean isVecInXY(Vec3D vec3D1) {
-		return vec3D1 == null ? false : vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY;
+		return vec3D1 != null && vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY;
 	}
 
 	public void setBB(AxisAlignedBB axisAlignedBB1) {

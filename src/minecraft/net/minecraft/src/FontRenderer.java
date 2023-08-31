@@ -8,10 +8,10 @@ import javax.imageio.ImageIO;
 import org.lwjgl.opengl.GL11;
 
 public class FontRenderer {
-	private int[] charWidth = new int[256];
+	private final int[] charWidth = new int[256];
 	public int fontTextureName = 0;
-	private int fontDisplayLists;
-	private IntBuffer buffer = GLAllocation.createDirectIntBuffer(1024);
+	private final int fontDisplayLists;
+	private final IntBuffer buffer = GLAllocation.createDirectIntBuffer(1024);
 
 	public FontRenderer(GameSettings gameSettings1, String string2, RenderEngine renderEngine3) {
 		BufferedImage bufferedImage4;
@@ -72,10 +72,10 @@ public class FontRenderer {
 			float f20 = 7.99F;
 			float f21 = 0.0F;
 			float f23 = 0.0F;
-			tessellator19.addVertexWithUV(0.0D, (double)(0.0F + f20), 0.0D, (double)((float)i10 / 128.0F + f21), (double)(((float)i11 + f20) / 128.0F + f23));
-			tessellator19.addVertexWithUV((double)(0.0F + f20), (double)(0.0F + f20), 0.0D, (double)(((float)i10 + f20) / 128.0F + f21), (double)(((float)i11 + f20) / 128.0F + f23));
-			tessellator19.addVertexWithUV((double)(0.0F + f20), 0.0D, 0.0D, (double)(((float)i10 + f20) / 128.0F + f21), (double)((float)i11 / 128.0F + f23));
-			tessellator19.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)((float)i10 / 128.0F + f21), (double)((float)i11 / 128.0F + f23));
+			tessellator19.addVertexWithUV(0.0D, 0.0F + f20, 0.0D, (float)i10 / 128.0F + f21, ((float)i11 + f20) / 128.0F + f23);
+			tessellator19.addVertexWithUV(0.0F + f20, 0.0F + f20, 0.0D, ((float)i10 + f20) / 128.0F + f21, ((float)i11 + f20) / 128.0F + f23);
+			tessellator19.addVertexWithUV(0.0F + f20, 0.0D, 0.0D, ((float)i10 + f20) / 128.0F + f21, (float)i11 / 128.0F + f23);
+			tessellator19.addVertexWithUV(0.0D, 0.0D, 0.0D, (float)i10 / 128.0F + f21, (float)i11 / 128.0F + f23);
 			tessellator19.draw();
 			GL11.glTranslatef((float)this.charWidth[i9], 0.0F, 0.0F);
 			GL11.glEndList();

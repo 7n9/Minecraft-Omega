@@ -22,11 +22,11 @@ public class BlockLever extends Block {
 	}
 
 	public boolean canPlaceBlockOnSide(World world1, int i2, int i3, int i4, int i5) {
-		return i5 == 1 && world1.isBlockNormalCube(i2, i3 - 1, i4) ? true : (i5 == 2 && world1.isBlockNormalCube(i2, i3, i4 + 1) ? true : (i5 == 3 && world1.isBlockNormalCube(i2, i3, i4 - 1) ? true : (i5 == 4 && world1.isBlockNormalCube(i2 + 1, i3, i4) ? true : i5 == 5 && world1.isBlockNormalCube(i2 - 1, i3, i4))));
+		return i5 == 1 && world1.isBlockNormalCube(i2, i3 - 1, i4) || (i5 == 2 && world1.isBlockNormalCube(i2, i3, i4 + 1) || (i5 == 3 && world1.isBlockNormalCube(i2, i3, i4 - 1) || (i5 == 4 && world1.isBlockNormalCube(i2 + 1, i3, i4) || i5 == 5 && world1.isBlockNormalCube(i2 - 1, i3, i4))));
 	}
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
-		return world1.isBlockNormalCube(i2 - 1, i3, i4) ? true : (world1.isBlockNormalCube(i2 + 1, i3, i4) ? true : (world1.isBlockNormalCube(i2, i3, i4 - 1) ? true : (world1.isBlockNormalCube(i2, i3, i4 + 1) ? true : world1.isBlockNormalCube(i2, i3 - 1, i4))));
+		return world1.isBlockNormalCube(i2 - 1, i3, i4) || (world1.isBlockNormalCube(i2 + 1, i3, i4) || (world1.isBlockNormalCube(i2, i3, i4 - 1) || (world1.isBlockNormalCube(i2, i3, i4 + 1) || world1.isBlockNormalCube(i2, i3 - 1, i4))));
 	}
 
 	public void onBlockPlaced(World world1, int i2, int i3, int i4, int i5) {
@@ -65,12 +65,9 @@ public class BlockLever extends Block {
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
 		if(this.checkIfAttachedToBlock(world1, i2, i3, i4)) {
 			int i6 = world1.getBlockMetadata(i2, i3, i4) & 7;
-			boolean z7 = false;
-			if(!world1.isBlockNormalCube(i2 - 1, i3, i4) && i6 == 1) {
-				z7 = true;
-			}
+			boolean z7 = !world1.isBlockNormalCube(i2 - 1, i3, i4) && i6 == 1;
 
-			if(!world1.isBlockNormalCube(i2 + 1, i3, i4) && i6 == 2) {
+            if(!world1.isBlockNormalCube(i2 + 1, i3, i4) && i6 == 2) {
 				z7 = true;
 			}
 
@@ -188,7 +185,7 @@ public class BlockLever extends Block {
 			return false;
 		} else {
 			int i7 = i6 & 7;
-			return i7 == 6 && i5 == 1 ? true : (i7 == 5 && i5 == 1 ? true : (i7 == 4 && i5 == 2 ? true : (i7 == 3 && i5 == 3 ? true : (i7 == 2 && i5 == 4 ? true : i7 == 1 && i5 == 5))));
+			return i7 == 6 && i5 == 1 || (i7 == 5 && i5 == 1 || (i7 == 4 && i5 == 2 || (i7 == 3 && i5 == 3 || (i7 == 2 && i5 == 4 || i7 == 1 && i5 == 5))));
 		}
 	}
 

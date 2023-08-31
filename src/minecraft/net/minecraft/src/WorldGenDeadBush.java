@@ -18,7 +18,7 @@ public class WorldGenDeadBush extends WorldGenerator {
 			int i8 = i3 + random2.nextInt(8) - random2.nextInt(8);
 			int i9 = i4 + random2.nextInt(4) - random2.nextInt(4);
 			int i10 = i5 + random2.nextInt(8) - random2.nextInt(8);
-			if(world1.isAirBlock(i8, i9, i10) && ((BlockFlower)Block.blocksList[this.field_28058_a]).canBlockStay(world1, i8, i9, i10)) {
+			if(world1.isAirBlock(i8, i9, i10) && Block.blocksList[this.field_28058_a].canBlockStay(world1, i8, i9, i10)) {
 				world1.setBlock(i8, i9, i10, this.field_28058_a);
 			}
 		}

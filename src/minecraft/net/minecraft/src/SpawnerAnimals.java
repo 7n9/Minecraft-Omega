@@ -109,7 +109,7 @@ public final class SpawnerAnimals {
 									float f27 = (float)i22 + 0.5F;
 									float f28 = (float) i18;
 									float f29 = (float)i24 + 0.5F;
-									if(world0.getClosestPlayer((double)f27, (double)f28, (double)f29, 24.0D) == null) {
+									if(world0.getClosestPlayer(f27, f28, f29, 24.0D) == null) {
 										float f30 = f27 - (float)chunkCoordinates35.x;
 										float f31 = f28 - (float)chunkCoordinates35.y;
 										float f32 = f29 - (float)chunkCoordinates35.z;
@@ -123,7 +123,7 @@ public final class SpawnerAnimals {
 												return i3;
 											}
 
-											entityLiving43.setLocationAndAngles((double)f27, (double)f28, (double)f29, world0.rand.nextFloat() * 360.0F, 0.0F);
+											entityLiving43.setLocationAndAngles(f27, f28, f29, world0.rand.nextFloat() * 360.0F, 0.0F);
 											if(entityLiving43.getCanSpawnHere()) {
 												++i20;
 												world0.entityJoinedWorld(entityLiving43);
@@ -154,7 +154,7 @@ public final class SpawnerAnimals {
 	private static void creatureSpecificInit(EntityLiving entityLiving0, World world1, float f2, float f3, float f4) {
 		if(entityLiving0 instanceof EntitySpider && world1.rand.nextInt(100) == 0) {
 			EntitySkeleton entitySkeleton5 = new EntitySkeleton(world1);
-			entitySkeleton5.setLocationAndAngles((double)f2, (double)f3, (double)f4, entityLiving0.rotationYaw, 0.0F);
+			entitySkeleton5.setLocationAndAngles(f2, f3, f4, entityLiving0.rotationYaw, 0.0F);
 			world1.entityJoinedWorld(entitySkeleton5);
 			entitySkeleton5.mountEntity(entityLiving0);
 		} else if(entityLiving0 instanceof EntitySheep) {
@@ -215,7 +215,7 @@ public final class SpawnerAnimals {
 						return z2;
 					}
 
-					entityLiving17.setLocationAndAngles((double)f14, (double)f15, (double)f16, world0.rand.nextFloat() * 360.0F, 0.0F);
+					entityLiving17.setLocationAndAngles(f14, f15, f16, world0.rand.nextFloat() * 360.0F, 0.0F);
 					if(entityLiving17.getCanSpawnHere()) {
 						PathEntity pathEntity18 = pathfinder3.createEntityPathTo(entityLiving17, entityPlayer5, 32.0F);
 						if(pathEntity18 != null && pathEntity18.pathLength > 1) {
@@ -226,7 +226,7 @@ public final class SpawnerAnimals {
 									chunkCoordinates20 = new ChunkCoordinates(i9, i13 + 1, i10);
 								}
 
-								entityLiving17.setLocationAndAngles((double)((float)chunkCoordinates20.x + 0.5F), (double)chunkCoordinates20.y, (double)((float)chunkCoordinates20.z + 0.5F), 0.0F, 0.0F);
+								entityLiving17.setLocationAndAngles((float)chunkCoordinates20.x + 0.5F, chunkCoordinates20.y, (float)chunkCoordinates20.z + 0.5F, 0.0F, 0.0F);
 								world0.entityJoinedWorld(entityLiving17);
 								creatureSpecificInit(entityLiving17, world0, (float)chunkCoordinates20.x + 0.5F, (float)chunkCoordinates20.y, (float)chunkCoordinates20.z + 0.5F);
 								entityPlayer5.wakeUpPlayer(true, false, false);

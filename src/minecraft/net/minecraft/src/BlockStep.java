@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class BlockStep extends Block {
 	public static final String[] field_22037_a = new String[]{"stone", "sand", "wood", "cobble"};
-	private boolean blockType;
+	private final boolean blockType;
 
 	public BlockStep(int i1, boolean z2) {
 		super(i1, 6, Material.rock);
@@ -66,6 +66,6 @@ public class BlockStep extends Block {
 			super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5);
 		}
 
-		return i5 == 1 ? true : (!super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5) ? false : (i5 == 0 ? true : iBlockAccess1.getBlockId(i2, i3, i4) != this.blockID));
+		return i5 == 1 || (super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5) && (i5 == 0 || iBlockAccess1.getBlockId(i2, i3, i4) != this.blockID));
 	}
 }

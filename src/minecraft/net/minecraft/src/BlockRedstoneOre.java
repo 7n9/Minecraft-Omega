@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockRedstoneOre extends Block {
-	private boolean field_468_a;
+	private final boolean field_468_a;
 
 	public BlockRedstoneOre(int i1, int i2, boolean z3) {
 		super(i1, i2, Material.rock);
@@ -68,15 +68,15 @@ public class BlockRedstoneOre extends Block {
 		double d6 = 0.0625D;
 
 		for(int i8 = 0; i8 < 6; ++i8) {
-			double d9 = (double)((float)i2 + random5.nextFloat());
-			double d11 = (double)((float)i3 + random5.nextFloat());
-			double d13 = (double)((float)i4 + random5.nextFloat());
+			double d9 = (float)i2 + random5.nextFloat();
+			double d11 = (float)i3 + random5.nextFloat();
+			double d13 = (float)i4 + random5.nextFloat();
 			if(i8 == 0 && !world1.isBlockOpaqueCube(i2, i3 + 1, i4)) {
 				d11 = (double)(i3 + 1) + d6;
 			}
 
 			if(i8 == 1 && !world1.isBlockOpaqueCube(i2, i3 - 1, i4)) {
-				d11 = (double)(i3 + 0) - d6;
+				d11 = (double)(i3) - d6;
 			}
 
 			if(i8 == 2 && !world1.isBlockOpaqueCube(i2, i3, i4 + 1)) {
@@ -84,7 +84,7 @@ public class BlockRedstoneOre extends Block {
 			}
 
 			if(i8 == 3 && !world1.isBlockOpaqueCube(i2, i3, i4 - 1)) {
-				d13 = (double)(i4 + 0) - d6;
+				d13 = (double)(i4) - d6;
 			}
 
 			if(i8 == 4 && !world1.isBlockOpaqueCube(i2 + 1, i3, i4)) {
@@ -92,7 +92,7 @@ public class BlockRedstoneOre extends Block {
 			}
 
 			if(i8 == 5 && !world1.isBlockOpaqueCube(i2 - 1, i3, i4)) {
-				d9 = (double)(i2 + 0) - d6;
+				d9 = (double)(i2) - d6;
 			}
 
 			if(d9 < (double)i2 || d9 > (double)(i2 + 1) || d11 < 0.0D || d11 > (double)(i3 + 1) || d13 < (double)i4 || d13 > (double)(i4 + 1)) {

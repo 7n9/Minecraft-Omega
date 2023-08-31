@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class ChunkBlockMap {
-	private static byte[] field_26003_a = new byte[256];
+	private static final byte[] field_26003_a = new byte[256];
 
 	public static void func_26002_a(byte[] b0) {
 		for(int i1 = 0; i1 < b0.length; ++i1) {

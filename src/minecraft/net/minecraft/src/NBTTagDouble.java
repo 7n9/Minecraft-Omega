@@ -27,6 +27,6 @@ public class NBTTagDouble extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.doubleValue;
+		return String.valueOf(this.doubleValue);
 	}
 }

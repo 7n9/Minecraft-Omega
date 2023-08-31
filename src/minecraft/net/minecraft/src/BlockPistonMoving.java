@@ -69,8 +69,7 @@ public class BlockPistonMoving extends BlockContainer {
 
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
 		if(!world1.multiplayerWorld && world1.getBlockTileEntity(i2, i3, i4) == null) {
-			;
-		}
+        }
 
 	}
 
@@ -123,12 +122,12 @@ public class BlockPistonMoving extends BlockContainer {
 			if(axisAlignedBB8 == null) {
 				return null;
 			} else {
-				axisAlignedBB8.minX -= (double)((float)PistonBlockTextures.field_31056_b[i7] * f6);
-				axisAlignedBB8.maxX -= (double)((float)PistonBlockTextures.field_31056_b[i7] * f6);
-				axisAlignedBB8.minY -= (double)((float)PistonBlockTextures.field_31059_c[i7] * f6);
-				axisAlignedBB8.maxY -= (double)((float)PistonBlockTextures.field_31059_c[i7] * f6);
-				axisAlignedBB8.minZ -= (double)((float)PistonBlockTextures.field_31058_d[i7] * f6);
-				axisAlignedBB8.maxZ -= (double)((float)PistonBlockTextures.field_31058_d[i7] * f6);
+				axisAlignedBB8.minX -= (float)PistonBlockTextures.field_31056_b[i7] * f6;
+				axisAlignedBB8.maxX -= (float)PistonBlockTextures.field_31056_b[i7] * f6;
+				axisAlignedBB8.minY -= (float)PistonBlockTextures.field_31059_c[i7] * f6;
+				axisAlignedBB8.maxY -= (float)PistonBlockTextures.field_31059_c[i7] * f6;
+				axisAlignedBB8.minZ -= (float)PistonBlockTextures.field_31058_d[i7] * f6;
+				axisAlignedBB8.maxZ -= (float)PistonBlockTextures.field_31058_d[i7] * f6;
 				return axisAlignedBB8;
 			}
 		} else {

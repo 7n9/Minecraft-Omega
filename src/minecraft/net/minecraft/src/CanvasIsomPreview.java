@@ -27,8 +27,8 @@ public class CanvasIsomPreview extends Canvas implements KeyListener, MouseListe
 	private World worldObj;
 	private File dataFolder = this.getMinecraftDir();
 	private boolean running = true;
-	private List imageBufferList = Collections.synchronizedList(new LinkedList());
-	private IsoImageBuffer[][] imageBuffers = new IsoImageBuffer[64][64];
+	private final List imageBufferList = Collections.synchronizedList(new LinkedList());
+	private final IsoImageBuffer[][] imageBuffers = new IsoImageBuffer[64][64];
 	private int field_1785_i;
 	private int field_1784_j;
 	private int xPosition;
@@ -80,7 +80,7 @@ public class CanvasIsomPreview extends Canvas implements KeyListener, MouseListe
 	public CanvasIsomPreview() {
 		for(int i1 = 0; i1 < 64; ++i1) {
 			for(int i2 = 0; i2 < 64; ++i2) {
-				this.imageBuffers[i1][i2] = new IsoImageBuffer((World)null, i1, i2);
+				this.imageBuffers[i1][i2] = new IsoImageBuffer(null, i1, i2);
 			}
 		}
 
@@ -206,7 +206,7 @@ public class CanvasIsomPreview extends Canvas implements KeyListener, MouseListe
 		graphics2D1.setClip(0, 0, this.getWidth(), this.getHeight());
 		graphics2D1.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
 		graphics2D1.translate(this.getWidth() / 2, this.getHeight() / 2);
-		graphics2D1.scale((double)this.zoomLevel, (double)this.zoomLevel);
+		graphics2D1.scale(this.zoomLevel, this.zoomLevel);
 		graphics2D1.translate(this.field_1785_i, this.field_1784_j);
 		if(this.worldObj != null) {
 			ChunkCoordinates chunkCoordinates3 = this.worldObj.getSpawnPoint();
@@ -240,7 +240,7 @@ public class CanvasIsomPreview extends Canvas implements KeyListener, MouseListe
 					if(!isoImageBuffer14.field_1351_f) {
 						int i15 = i11 * b4 * 2 + (i10 & 1) * b4;
 						int i16 = i10 * b4 - 128 - 16;
-						graphics2D1.drawImage(isoImageBuffer14.field_1348_a, i15, i16, (ImageObserver)null);
+						graphics2D1.drawImage(isoImageBuffer14.field_1348_a, i15, i16, null);
 					}
 				}
 			}

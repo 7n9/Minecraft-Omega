@@ -8,9 +8,9 @@ import org.lwjgl.opengl.GL11;
 
 public class EffectRenderer {
 	protected World worldObj;
-	private List[] fxLayers = new List[4];
-	private RenderEngine renderer;
-	private Random rand = new Random();
+	private final List[] fxLayers = new List[4];
+	private final RenderEngine renderer;
+	private final Random rand = new Random();
 
 	public EffectRenderer(World world1, RenderEngine renderEngine2) {
 		if(world1 != null) {
@@ -166,6 +166,6 @@ public class EffectRenderer {
 	}
 
 	public String getStatistics() {
-		return "" + (this.fxLayers[0].size() + this.fxLayers[1].size() + this.fxLayers[2].size());
+		return String.valueOf(this.fxLayers[0].size() + this.fxLayers[1].size() + this.fxLayers[2].size());
 	}
 }

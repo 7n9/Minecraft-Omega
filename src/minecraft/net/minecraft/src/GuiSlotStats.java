@@ -140,7 +140,7 @@ abstract class GuiSlotStats extends GuiSlot {
 					string5 = this.func_27263_a(2);
 				}
 
-				string5 = ("" + StringTranslate.getInstance().translateKey(string5)).trim();
+				string5 = (StringTranslate.getInstance().translateKey(string5)).trim();
 				if(string5.length() > 0) {
 					int i6 = i1 + 12;
 					int i7 = i2 - 12;
@@ -156,7 +156,7 @@ abstract class GuiSlotStats extends GuiSlot {
 	protected void func_27267_a(StatCrafting statCrafting1, int i2, int i3) {
 		if(statCrafting1 != null) {
 			Item item4 = Item.itemsList[statCrafting1.func_25072_b()];
-			String string5 = ("" + StringTranslate.getInstance().translateNamedKey(item4.getItemName())).trim();
+			String string5 = (StringTranslate.getInstance().translateNamedKey(item4.getItemName())).trim();
 			if(string5.length() > 0) {
 				int i6 = i2 + 12;
 				int i7 = i3 - 12;

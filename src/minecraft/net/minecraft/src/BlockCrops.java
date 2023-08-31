@@ -95,7 +95,7 @@ public class BlockCrops extends BlockFlower {
 					float f9 = world1.rand.nextFloat() * f8 + (1.0F - f8) * 0.5F;
 					float f10 = world1.rand.nextFloat() * f8 + (1.0F - f8) * 0.5F;
 					float f11 = world1.rand.nextFloat() * f8 + (1.0F - f8) * 0.5F;
-					EntityItem entityItem12 = new EntityItem(world1, (double)((float)i2 + f9), (double)((float)i3 + f10), (double)((float)i4 + f11), new ItemStack(Item.seeds));
+					EntityItem entityItem12 = new EntityItem(world1, (float)i2 + f9, (float)i3 + f10, (float)i4 + f11, new ItemStack(Item.seeds));
 					entityItem12.delayBeforeCanPickup = 10;
 					world1.entityJoinedWorld(entityItem12);
 				}

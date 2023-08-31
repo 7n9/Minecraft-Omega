@@ -6,14 +6,14 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class GuiAchievement extends Gui {
-	private Minecraft theGame;
+	private final Minecraft theGame;
 	private int achievementWindowWidth;
 	private int achievementWindowHeight;
 	private String field_25085_d;
 	private String field_25084_e;
 	private Achievement theAchievement;
 	private long field_25083_f;
-	private RenderItem itemRender;
+	private final RenderItem itemRender;
 	private boolean field_27103_i;
 
 	public GuiAchievement(Minecraft minecraft1) {
@@ -51,7 +51,7 @@ public class GuiAchievement extends Gui {
 		GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0.0D, (double)this.achievementWindowWidth, (double)this.achievementWindowHeight, 0.0D, 1000.0D, 3000.0D);
+		GL11.glOrtho(0.0D, this.achievementWindowWidth, this.achievementWindowHeight, 0.0D, 1000.0D, 3000.0D);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 		GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
@@ -93,7 +93,7 @@ public class GuiAchievement extends Gui {
 				d9 *= d9;
 				d9 *= d9;
 				int i5 = this.achievementWindowWidth - 160;
-				int i6 = 0 - (int)(d9 * 36.0D);
+				int i6 = -(int) (d9 * 36.0D);
 				int i7 = this.theGame.renderEngine.getTexture("/achievement/bg.png");
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				GL11.glEnable(GL11.GL_TEXTURE_2D);

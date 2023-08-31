@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ChunkProviderClient implements IChunkProvider {
-	private Chunk blankChunk;
-	private Map chunkMapping = new HashMap();
-	private List field_889_c = new ArrayList();
-	private World worldObj;
+	private final Chunk blankChunk;
+	private final Map chunkMapping = new HashMap();
+	private final List field_889_c = new ArrayList();
+	private final World worldObj;
 
 	public ChunkProviderClient(World world1) {
 		this.blankChunk = new EmptyChunk(world1, new byte[32768], 0, 0);

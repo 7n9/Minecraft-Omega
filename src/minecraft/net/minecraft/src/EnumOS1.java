@@ -5,5 +5,5 @@ enum EnumOS1 {
 	solaris,
 	windows,
 	macos,
-	unknown;
+	unknown
 }

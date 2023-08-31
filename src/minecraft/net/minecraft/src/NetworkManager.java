@@ -15,19 +15,19 @@ public class NetworkManager {
 	public static final Object threadSyncObject = new Object();
 	public static int numReadThreads;
 	public static int numWriteThreads;
-	private Object sendQueueLock = new Object();
+	private final Object sendQueueLock = new Object();
 	private Socket networkSocket;
 	private final SocketAddress remoteSocketAddress;
 	private DataInputStream socketInputStream;
 	private DataOutputStream socketOutputStream;
 	private boolean isRunning = true;
-	private List readPackets = Collections.synchronizedList(new ArrayList());
-	private List dataPackets = Collections.synchronizedList(new ArrayList());
-	private List chunkDataPackets = Collections.synchronizedList(new ArrayList());
-	private NetHandler netHandler;
+	private final List readPackets = Collections.synchronizedList(new ArrayList());
+	private final List dataPackets = Collections.synchronizedList(new ArrayList());
+	private final List chunkDataPackets = Collections.synchronizedList(new ArrayList());
+	private final NetHandler netHandler;
 	private boolean isServerTerminating = false;
-	private Thread writeThread;
-	private Thread readThread;
+	private final Thread writeThread;
+	private final Thread readThread;
 	private boolean isTerminating = false;
 	private String terminationReason = "";
 	private Object[] field_20101_t;
@@ -137,7 +137,7 @@ public class NetworkManager {
 				this.readPackets.add(packet2);
 				z1 = true;
 			} else {
-				this.networkShutdown("disconnect.endOfStream", new Object[0]);
+				this.networkShutdown("disconnect.endOfStream");
 			}
 
 			return z1;
@@ -152,7 +152,7 @@ public class NetworkManager {
 
 	private void onNetworkError(Exception exception1) {
 		exception1.printStackTrace();
-		this.networkShutdown("disconnect.genericReason", new Object[]{"Internal exception: " + exception1.toString()});
+		this.networkShutdown("disconnect.genericReason", "Internal exception: " + exception1);
 	}
 
 	public void networkShutdown(String string1, Object... object2) {
@@ -186,12 +186,12 @@ public class NetworkManager {
 
 	public void processReadPackets() {
 		if(this.sendQueueByteLength > 1048576) {
-			this.networkShutdown("disconnect.overflow", new Object[0]);
+			this.networkShutdown("disconnect.overflow");
 		}
 
 		if(this.readPackets.isEmpty()) {
 			if(this.timeSinceLastRead++ == 1200) {
-				this.networkShutdown("disconnect.timeout", new Object[0]);
+				this.networkShutdown("disconnect.timeout");
 			}
 		} else {
 			this.timeSinceLastRead = 0;

@@ -3,9 +3,9 @@ package net.minecraft.src;
 import java.util.Comparator;
 
 public class EntitySorter implements Comparator {
-	private double field_30008_a;
-	private double field_30007_b;
-	private double field_30009_c;
+	private final double field_30008_a;
+	private final double field_30007_b;
+	private final double field_30009_c;
 
 	public EntitySorter(Entity entity1) {
 		this.field_30008_a = -entity1.posX;

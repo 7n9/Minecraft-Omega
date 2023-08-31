@@ -46,7 +46,7 @@ public class EntityCreature extends EntityLiving {
 		this.rotationPitch = 0.0F;
 		if(this.pathToEntity != null && this.rand.nextInt(100) != 0) {
 			Vec3D vec3D5 = this.pathToEntity.getPosition(this);
-			double d6 = (double)(this.width * 2.0F);
+			double d6 = this.width * 2.0F;
 
 			while(vec3D5 != null && vec3D5.squareDistanceTo(this.posX, vec3D5.yCoord, this.posZ) < d6 * d6) {
 				this.pathToEntity.incrementPathIndex();

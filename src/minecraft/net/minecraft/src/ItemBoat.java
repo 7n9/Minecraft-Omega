@@ -35,7 +35,7 @@ public class ItemBoat extends Item {
 						--i26;
 					}
 
-					world2.entityJoinedWorld(new EntityBoat(world2, (double)((float)i25 + 0.5F), (double)((float)i26 + 1.0F), (double)((float)i27 + 0.5F)));
+					world2.entityJoinedWorld(new EntityBoat(world2, (float)i25 + 0.5F, (float)i26 + 1.0F, (float)i27 + 0.5F));
 				}
 
 				--itemStack1.stackSize;

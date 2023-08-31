@@ -7,9 +7,8 @@ import net.minecraft.src.ItemStack;
 
 public class crackMagic {
     public void addRecipes(CraftingManager craftingManager1) {
-        craftingManager1.addRecipe(new ItemStack(Item.magicDust, 1), new Object[]{
-                "#",
-                '#', Item.magicreed});
+        craftingManager1.addRecipe(new ItemStack(Item.magicDust, 1), "#",
+                '#', Item.magicreed);
     }
 }
 

@@ -18,7 +18,7 @@ import org.w3c.dom.NodeList;
 
 public class ThreadDownloadResources extends Thread {
 	public File resourcesFolder;
-	private Minecraft mc;
+	private final Minecraft mc;
 	private boolean closing = false;
 
 	public ThreadDownloadResources(File file1, Minecraft minecraft2) {
@@ -44,8 +44,8 @@ public class ThreadDownloadResources extends Thread {
 					Node node8 = nodeList5.item(i7);
 					if(node8.getNodeType() == 1) {
 						Element element9 = (Element)node8;
-						String string10 = ((Element)element9.getElementsByTagName("Key").item(0)).getChildNodes().item(0).getNodeValue();
-						long j11 = Long.parseLong(((Element)element9.getElementsByTagName("Size").item(0)).getChildNodes().item(0).getNodeValue());
+						String string10 = element9.getElementsByTagName("Key").item(0).getChildNodes().item(0).getNodeValue();
+						long j11 = Long.parseLong(element9.getElementsByTagName("Size").item(0).getChildNodes().item(0).getNodeValue());
 						if(j11 > 0L) {
 							this.downloadAndInstallResource(uRL1, string10, j11, i6);
 							if(this.closing) {

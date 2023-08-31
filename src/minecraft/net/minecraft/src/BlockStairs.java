@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class BlockStairs extends Block {
-	private Block modelBlock;
+	private final Block modelBlock;
 
 	protected BlockStairs(int i1, Block block2) {
 		super(i1, block2.blockIndexInTexture, block2.blockMaterial);

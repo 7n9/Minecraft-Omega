@@ -146,13 +146,13 @@ public final class J_SajParser {
 			}
 
 			j_PositionTrackingPushbackReader1.func_27335_a(c6);
-			throw new J_InvalidSyntaxException("Expected \'f\' to be followed by [[a, l, s, e]], but got [" + Arrays.toString(c6) + "].", j_PositionTrackingPushbackReader1);
+			throw new J_InvalidSyntaxException("Expected 'f' to be followed by [[a, l, s, e]], but got [" + Arrays.toString(c6) + "].", j_PositionTrackingPushbackReader1);
 		case 'n':
 			char[] c8 = new char[3];
 			int i9 = j_PositionTrackingPushbackReader1.func_27336_b(c8);
 			if(i9 != 3 || c8[0] != 117 || c8[1] != 108 || c8[2] != 108) {
 				j_PositionTrackingPushbackReader1.func_27335_a(c8);
-				throw new J_InvalidSyntaxException("Expected \'n\' to be followed by [[u, l, l]], but got [" + Arrays.toString(c8) + "].", j_PositionTrackingPushbackReader1);
+				throw new J_InvalidSyntaxException("Expected 'n' to be followed by [[u, l, l]], but got [" + Arrays.toString(c8) + "].", j_PositionTrackingPushbackReader1);
 			}
 
 			j_JsonListener2.func_27202_k();
@@ -162,7 +162,7 @@ public final class J_SajParser {
 			int i5 = j_PositionTrackingPushbackReader1.func_27336_b(c4);
 			if(i5 != 3 || c4[0] != 114 || c4[1] != 117 || c4[2] != 101) {
 				j_PositionTrackingPushbackReader1.func_27335_a(c4);
-				throw new J_InvalidSyntaxException("Expected \'t\' to be followed by [[r, u, e]], but got [" + Arrays.toString(c4) + "].", j_PositionTrackingPushbackReader1);
+				throw new J_InvalidSyntaxException("Expected 't' to be followed by [[r, u, e]], but got [" + Arrays.toString(c4) + "].", j_PositionTrackingPushbackReader1);
 			}
 
 			j_JsonListener2.func_27196_i();

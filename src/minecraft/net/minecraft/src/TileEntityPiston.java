@@ -74,14 +74,14 @@ public class TileEntityPiston extends TileEntity {
 
 		AxisAlignedBB axisAlignedBB3 = Block.pistonMoving.func_31035_a(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.storedBlockID, f1, this.field_31025_c);
 		if(axisAlignedBB3 != null) {
-			List list4 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)null, axisAlignedBB3);
+			List list4 = this.worldObj.getEntitiesWithinAABBExcludingEntity(null, axisAlignedBB3);
 			if(!list4.isEmpty()) {
 				field_31018_m.addAll(list4);
 				Iterator iterator5 = field_31018_m.iterator();
 
 				while(iterator5.hasNext()) {
 					Entity entity6 = (Entity)iterator5.next();
-					entity6.moveEntity((double)(f2 * (float)PistonBlockTextures.field_31056_b[this.field_31025_c]), (double)(f2 * (float)PistonBlockTextures.field_31059_c[this.field_31025_c]), (double)(f2 * (float)PistonBlockTextures.field_31058_d[this.field_31025_c]));
+					entity6.moveEntity(f2 * (float)PistonBlockTextures.field_31056_b[this.field_31025_c], f2 * (float)PistonBlockTextures.field_31059_c[this.field_31025_c], f2 * (float)PistonBlockTextures.field_31058_d[this.field_31025_c]);
 				}
 
 				field_31018_m.clear();

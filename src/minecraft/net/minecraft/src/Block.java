@@ -229,12 +229,12 @@ public class Block {
 	}
 
 	public void setBlockBounds(float f1, float f2, float f3, float f4, float f5, float f6) {
-		this.minX = (double)f1;
-		this.minY = (double)f2;
-		this.minZ = (double)f3;
-		this.maxX = (double)f4;
-		this.maxY = (double)f5;
-		this.maxZ = (double)f6;
+		this.minX = f1;
+		this.minY = f2;
+		this.minZ = f3;
+		this.maxX = f4;
+		this.maxY = f5;
+		this.maxZ = f6;
 	}
 
 	public float getBlockBrightness(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
@@ -242,7 +242,7 @@ public class Block {
 	}
 
 	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
-		return i5 == 0 && this.minY > 0.0D ? true : (i5 == 1 && this.maxY < 1.0D ? true : (i5 == 2 && this.minZ > 0.0D ? true : (i5 == 3 && this.maxZ < 1.0D ? true : (i5 == 4 && this.minX > 0.0D ? true : (i5 == 5 && this.maxX < 1.0D ? true : !iBlockAccess1.isBlockOpaqueCube(i2, i3, i4))))));
+		return i5 == 0 && this.minY > 0.0D || (i5 == 1 && this.maxY < 1.0D || (i5 == 2 && this.minZ > 0.0D || (i5 == 3 && this.maxZ < 1.0D || (i5 == 4 && this.minX > 0.0D || (i5 == 5 && this.maxX < 1.0D || !iBlockAccess1.isBlockOpaqueCube(i2, i3, i4))))));
 	}
 
 	public boolean getIsBlockSolid(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
@@ -365,8 +365,8 @@ public class Block {
 
 	public MovingObjectPosition collisionRayTrace(World world1, int i2, int i3, int i4, Vec3D vec3D5, Vec3D vec3D6) {
 		this.setBlockBoundsBasedOnState(world1, i2, i3, i4);
-		vec3D5 = vec3D5.addVector((double)(-i2), (double)(-i3), (double)(-i4));
-		vec3D6 = vec3D6.addVector((double)(-i2), (double)(-i3), (double)(-i4));
+		vec3D5 = vec3D5.addVector(-i2, -i3, -i4);
+		vec3D6 = vec3D6.addVector(-i2, -i3, -i4);
 		Vec3D vec3D7 = vec3D5.getIntermediateWithXValue(vec3D6, this.minX);
 		Vec3D vec3D8 = vec3D5.getIntermediateWithXValue(vec3D6, this.maxX);
 		Vec3D vec3D9 = vec3D5.getIntermediateWithYValue(vec3D6, this.minY);
@@ -450,20 +450,20 @@ public class Block {
 				b14 = 3;
 			}
 
-			return new MovingObjectPosition(i2, i3, i4, b14, vec3D13.addVector((double)i2, (double)i3, (double)i4));
+			return new MovingObjectPosition(i2, i3, i4, b14, vec3D13.addVector(i2, i3, i4));
 		}
 	}
 
 	private boolean isVecInsideYZBounds(Vec3D vec3D1) {
-		return vec3D1 == null ? false : vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
+		return vec3D1 != null && vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
 	}
 
 	private boolean isVecInsideXZBounds(Vec3D vec3D1) {
-		return vec3D1 == null ? false : vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
+		return vec3D1 != null && vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.zCoord >= this.minZ && vec3D1.zCoord <= this.maxZ;
 	}
 
 	private boolean isVecInsideXYBounds(Vec3D vec3D1) {
-		return vec3D1 == null ? false : vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY;
+		return vec3D1 != null && vec3D1.xCoord >= this.minX && vec3D1.xCoord <= this.maxX && vec3D1.yCoord >= this.minY && vec3D1.yCoord <= this.maxY;
 	}
 
 	public void onBlockDestroyedByExplosion(World world1, int i2, int i3, int i4) {

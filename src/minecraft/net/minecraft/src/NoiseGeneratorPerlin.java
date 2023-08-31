@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class NoiseGeneratorPerlin extends NoiseGenerator {
-	private int[] permutations;
+	private final int[] permutations;
 	public double xCoord;
 	public double yCoord;
 	public double zCoord;
@@ -54,9 +54,9 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 		int i16 = i13 & 255;
 		int i17 = i14 & 255;
 		int i18 = i15 & 255;
-		d7 -= (double)i13;
-		d9 -= (double)i14;
-		d11 -= (double)i15;
+		d7 -= i13;
+		d9 -= i14;
+		d11 -= i15;
 		double d19 = d7 * d7 * d7 * (d7 * (d7 * 6.0D - 15.0D) + 10.0D);
 		double d21 = d9 * d9 * d9 * (d9 * (d9 * 6.0D - 15.0D) + 10.0D);
 		double d23 = d11 * d11 * d11 * (d11 * (d11 * 6.0D - 15.0D) + 10.0D);
@@ -121,7 +121,7 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 				}
 
 				int i34 = i78 & 255;
-				d31 -= (double)i78;
+				d31 -= i78;
 				d35 = d31 * d31 * d31 * (d31 * (d31 * 6.0D - 15.0D) + 10.0D);
 
 				for(i37 = 0; i37 < i10; ++i37) {
@@ -132,11 +132,11 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 					}
 
 					i41 = i40 & 255;
-					d38 -= (double)i40;
+					d38 -= i40;
 					d42 = d38 * d38 * d38 * (d38 * (d38 * 6.0D - 15.0D) + 10.0D);
-					i19 = this.permutations[i34] + 0;
+					i19 = this.permutations[i34];
 					int i66 = this.permutations[i19] + i41;
-					int i67 = this.permutations[i34 + 1] + 0;
+					int i67 = this.permutations[i34 + 1];
 					i22 = this.permutations[i67] + i41;
 					d70 = this.lerp(d35, this.func_4110_a(this.permutations[i66], d31, d38), this.grad(this.permutations[i22], d31 - 1.0D, 0.0D, d38));
 					d73 = this.lerp(d35, this.grad(this.permutations[i66 + 1], d31, 0.0D, d38 - 1.0D), this.grad(this.permutations[i22 + 1], d31 - 1.0D, 0.0D, d38 - 1.0D));
@@ -169,7 +169,7 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 				}
 
 				i41 = i40 & 255;
-				d38 -= (double)i40;
+				d38 -= i40;
 				d42 = d38 * d38 * d38 * (d38 * (d38 * 6.0D - 15.0D) + 10.0D);
 
 				for(int i44 = 0; i44 < i10; ++i44) {
@@ -180,7 +180,7 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 					}
 
 					int i48 = i47 & 255;
-					d45 -= (double)i47;
+					d45 -= i47;
 					double d49 = d45 * d45 * d45 * (d45 * (d45 * 6.0D - 15.0D) + 10.0D);
 
 					for(int i51 = 0; i51 < i9; ++i51) {
@@ -191,7 +191,7 @@ public class NoiseGeneratorPerlin extends NoiseGenerator {
 						}
 
 						int i55 = i54 & 255;
-						d52 -= (double)i54;
+						d52 -= i54;
 						double d56 = d52 * d52 * d52 * (d52 * (d52 * 6.0D - 15.0D) + 10.0D);
 						if(i51 == 0 || i55 != i22) {
 							i22 = i55;

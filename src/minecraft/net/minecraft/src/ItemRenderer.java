@@ -6,12 +6,12 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class ItemRenderer {
-	private Minecraft mc;
+	private final Minecraft mc;
 	private ItemStack itemToRender = null;
 	private float equippedProgress = 0.0F;
 	private float prevEquippedProgress = 0.0F;
-	private RenderBlocks renderBlocksInstance = new RenderBlocks();
-	private MapItemRenderer field_28131_f;
+	private final RenderBlocks renderBlocksInstance = new RenderBlocks();
+	private final MapItemRenderer field_28131_f;
 	private int field_20099_f = -1;
 
 	public ItemRenderer(Minecraft minecraft1) {
@@ -50,17 +50,17 @@ public class ItemRenderer {
 			float f13 = 0.0625F;
 			tessellator3.startDrawingQuads();
 			tessellator3.setNormal(0.0F, 0.0F, 1.0F);
-			tessellator3.addVertexWithUV(0.0D, 0.0D, 0.0D, (double)f6, (double)f8);
-			tessellator3.addVertexWithUV((double)f9, 0.0D, 0.0D, (double)f5, (double)f8);
-			tessellator3.addVertexWithUV((double)f9, 1.0D, 0.0D, (double)f5, (double)f7);
-			tessellator3.addVertexWithUV(0.0D, 1.0D, 0.0D, (double)f6, (double)f7);
+			tessellator3.addVertexWithUV(0.0D, 0.0D, 0.0D, f6, f8);
+			tessellator3.addVertexWithUV(f9, 0.0D, 0.0D, f5, f8);
+			tessellator3.addVertexWithUV(f9, 1.0D, 0.0D, f5, f7);
+			tessellator3.addVertexWithUV(0.0D, 1.0D, 0.0D, f6, f7);
 			tessellator3.draw();
 			tessellator3.startDrawingQuads();
 			tessellator3.setNormal(0.0F, 0.0F, -1.0F);
-			tessellator3.addVertexWithUV(0.0D, 1.0D, (double)(0.0F - f13), (double)f6, (double)f7);
-			tessellator3.addVertexWithUV((double)f9, 1.0D, (double)(0.0F - f13), (double)f5, (double)f7);
-			tessellator3.addVertexWithUV((double)f9, 0.0D, (double)(0.0F - f13), (double)f5, (double)f8);
-			tessellator3.addVertexWithUV(0.0D, 0.0D, (double)(0.0F - f13), (double)f6, (double)f8);
+			tessellator3.addVertexWithUV(0.0D, 1.0D, 0.0F - f13, f6, f7);
+			tessellator3.addVertexWithUV(f9, 1.0D, 0.0F - f13, f5, f7);
+			tessellator3.addVertexWithUV(f9, 0.0D, 0.0F - f13, f5, f8);
+			tessellator3.addVertexWithUV(0.0D, 0.0D, 0.0F - f13, f6, f8);
 			tessellator3.draw();
 			tessellator3.startDrawingQuads();
 			tessellator3.setNormal(-1.0F, 0.0F, 0.0F);
@@ -73,10 +73,10 @@ public class ItemRenderer {
 				f15 = (float)i14 / 16.0F;
 				f16 = f6 + (f5 - f6) * f15 - 0.001953125F;
 				f17 = f9 * f15;
-				tessellator3.addVertexWithUV((double)f17, 0.0D, (double)(0.0F - f13), (double)f16, (double)f8);
-				tessellator3.addVertexWithUV((double)f17, 0.0D, 0.0D, (double)f16, (double)f8);
-				tessellator3.addVertexWithUV((double)f17, 1.0D, 0.0D, (double)f16, (double)f7);
-				tessellator3.addVertexWithUV((double)f17, 1.0D, (double)(0.0F - f13), (double)f16, (double)f7);
+				tessellator3.addVertexWithUV(f17, 0.0D, 0.0F - f13, f16, f8);
+				tessellator3.addVertexWithUV(f17, 0.0D, 0.0D, f16, f8);
+				tessellator3.addVertexWithUV(f17, 1.0D, 0.0D, f16, f7);
+				tessellator3.addVertexWithUV(f17, 1.0D, 0.0F - f13, f16, f7);
 			}
 
 			tessellator3.draw();
@@ -87,10 +87,10 @@ public class ItemRenderer {
 				f15 = (float)i14 / 16.0F;
 				f16 = f6 + (f5 - f6) * f15 - 0.001953125F;
 				f17 = f9 * f15 + 0.0625F;
-				tessellator3.addVertexWithUV((double)f17, 1.0D, (double)(0.0F - f13), (double)f16, (double)f7);
-				tessellator3.addVertexWithUV((double)f17, 1.0D, 0.0D, (double)f16, (double)f7);
-				tessellator3.addVertexWithUV((double)f17, 0.0D, 0.0D, (double)f16, (double)f8);
-				tessellator3.addVertexWithUV((double)f17, 0.0D, (double)(0.0F - f13), (double)f16, (double)f8);
+				tessellator3.addVertexWithUV(f17, 1.0D, 0.0F - f13, f16, f7);
+				tessellator3.addVertexWithUV(f17, 1.0D, 0.0D, f16, f7);
+				tessellator3.addVertexWithUV(f17, 0.0D, 0.0D, f16, f8);
+				tessellator3.addVertexWithUV(f17, 0.0D, 0.0F - f13, f16, f8);
 			}
 
 			tessellator3.draw();
@@ -101,10 +101,10 @@ public class ItemRenderer {
 				f15 = (float)i14 / 16.0F;
 				f16 = f8 + (f7 - f8) * f15 - 0.001953125F;
 				f17 = f9 * f15 + 0.0625F;
-				tessellator3.addVertexWithUV(0.0D, (double)f17, 0.0D, (double)f6, (double)f16);
-				tessellator3.addVertexWithUV((double)f9, (double)f17, 0.0D, (double)f5, (double)f16);
-				tessellator3.addVertexWithUV((double)f9, (double)f17, (double)(0.0F - f13), (double)f5, (double)f16);
-				tessellator3.addVertexWithUV(0.0D, (double)f17, (double)(0.0F - f13), (double)f6, (double)f16);
+				tessellator3.addVertexWithUV(0.0D, f17, 0.0D, f6, f16);
+				tessellator3.addVertexWithUV(f9, f17, 0.0D, f5, f16);
+				tessellator3.addVertexWithUV(f9, f17, 0.0F - f13, f5, f16);
+				tessellator3.addVertexWithUV(0.0D, f17, 0.0F - f13, f6, f16);
 			}
 
 			tessellator3.draw();
@@ -115,10 +115,10 @@ public class ItemRenderer {
 				f15 = (float)i14 / 16.0F;
 				f16 = f8 + (f7 - f8) * f15 - 0.001953125F;
 				f17 = f9 * f15;
-				tessellator3.addVertexWithUV((double)f9, (double)f17, 0.0D, (double)f5, (double)f16);
-				tessellator3.addVertexWithUV(0.0D, (double)f17, 0.0D, (double)f6, (double)f16);
-				tessellator3.addVertexWithUV(0.0D, (double)f17, (double)(0.0F - f13), (double)f6, (double)f16);
-				tessellator3.addVertexWithUV((double)f9, (double)f17, (double)(0.0F - f13), (double)f5, (double)f16);
+				tessellator3.addVertexWithUV(f9, f17, 0.0D, f5, f16);
+				tessellator3.addVertexWithUV(0.0D, f17, 0.0D, f6, f16);
+				tessellator3.addVertexWithUV(0.0D, f17, 0.0F - f13, f6, f16);
+				tessellator3.addVertexWithUV(f9, f17, 0.0F - f13, f5, f16);
 			}
 
 			tessellator3.draw();
@@ -210,10 +210,10 @@ public class ItemRenderer {
 			GL11.glNormal3f(0.0F, 0.0F, -1.0F);
 			tessellator19.startDrawingQuads();
 			byte b20 = 7;
-			tessellator19.addVertexWithUV((double)(0 - b20), (double)(128 + b20), 0.0D, 0.0D, 1.0D);
-			tessellator19.addVertexWithUV((double)(128 + b20), (double)(128 + b20), 0.0D, 1.0D, 1.0D);
-			tessellator19.addVertexWithUV((double)(128 + b20), (double)(0 - b20), 0.0D, 1.0D, 0.0D);
-			tessellator19.addVertexWithUV((double)(0 - b20), (double)(0 - b20), 0.0D, 0.0D, 0.0D);
+			tessellator19.addVertexWithUV(-b20, 128 + b20, 0.0D, 0.0D, 1.0D);
+			tessellator19.addVertexWithUV(128 + b20, 128 + b20, 0.0D, 1.0D, 1.0D);
+			tessellator19.addVertexWithUV(128 + b20, -b20, 0.0D, 1.0D, 0.0D);
+			tessellator19.addVertexWithUV(-b20, -b20, 0.0D, 0.0D, 0.0D);
 			tessellator19.draw();
 			MapData mapData22 = Item.mapItem.func_28012_a(itemStack5, this.mc.theWorld);
 			this.field_28131_f.func_28157_a(this.mc.thePlayer, this.mc.renderEngine, mapData22);
@@ -339,10 +339,10 @@ public class ItemRenderer {
 		float f13 = (float)(i2 / 16) / 256.0F - f10;
 		float f14 = ((float)(i2 / 16) + 15.99F) / 256.0F + f10;
 		tessellator3.startDrawingQuads();
-		tessellator3.addVertexWithUV((double)f5, (double)f7, (double)f9, (double)f12, (double)f14);
-		tessellator3.addVertexWithUV((double)f6, (double)f7, (double)f9, (double)f11, (double)f14);
-		tessellator3.addVertexWithUV((double)f6, (double)f8, (double)f9, (double)f11, (double)f13);
-		tessellator3.addVertexWithUV((double)f5, (double)f8, (double)f9, (double)f12, (double)f13);
+		tessellator3.addVertexWithUV(f5, f7, f9, f12, f14);
+		tessellator3.addVertexWithUV(f6, f7, f9, f11, f14);
+		tessellator3.addVertexWithUV(f6, f8, f9, f11, f13);
+		tessellator3.addVertexWithUV(f5, f8, f9, f12, f13);
 		tessellator3.draw();
 		GL11.glPopMatrix();
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -364,10 +364,10 @@ public class ItemRenderer {
 		float f10 = -this.mc.thePlayer.rotationYaw / 64.0F;
 		float f11 = this.mc.thePlayer.rotationPitch / 64.0F;
 		tessellator2.startDrawingQuads();
-		tessellator2.addVertexWithUV((double)f5, (double)f7, (double)f9, (double)(f4 + f10), (double)(f4 + f11));
-		tessellator2.addVertexWithUV((double)f6, (double)f7, (double)f9, (double)(0.0F + f10), (double)(f4 + f11));
-		tessellator2.addVertexWithUV((double)f6, (double)f8, (double)f9, (double)(0.0F + f10), (double)(0.0F + f11));
-		tessellator2.addVertexWithUV((double)f5, (double)f8, (double)f9, (double)(f4 + f10), (double)(0.0F + f11));
+		tessellator2.addVertexWithUV(f5, f7, f9, f4 + f10, f4 + f11);
+		tessellator2.addVertexWithUV(f6, f7, f9, 0.0F + f10, f4 + f11);
+		tessellator2.addVertexWithUV(f6, f8, f9, 0.0F + f10, 0.0F + f11);
+		tessellator2.addVertexWithUV(f5, f8, f9, f4 + f10, 0.0F + f11);
 		tessellator2.draw();
 		GL11.glPopMatrix();
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -398,10 +398,10 @@ public class ItemRenderer {
 			GL11.glTranslatef((float)(-(i4 * 2 - 1)) * 0.24F, -0.3F, 0.0F);
 			GL11.glRotatef((float)(i4 * 2 - 1) * 10.0F, 0.0F, 1.0F, 0.0F);
 			tessellator2.startDrawingQuads();
-			tessellator2.addVertexWithUV((double)f12, (double)f14, (double)f16, (double)f9, (double)f11);
-			tessellator2.addVertexWithUV((double)f13, (double)f14, (double)f16, (double)f8, (double)f11);
-			tessellator2.addVertexWithUV((double)f13, (double)f15, (double)f16, (double)f8, (double)f10);
-			tessellator2.addVertexWithUV((double)f12, (double)f15, (double)f16, (double)f9, (double)f10);
+			tessellator2.addVertexWithUV(f12, f14, f16, f9, f11);
+			tessellator2.addVertexWithUV(f13, f14, f16, f8, f11);
+			tessellator2.addVertexWithUV(f13, f15, f16, f8, f10);
+			tessellator2.addVertexWithUV(f12, f15, f16, f9, f10);
 			tessellator2.draw();
 			GL11.glPopMatrix();
 		}

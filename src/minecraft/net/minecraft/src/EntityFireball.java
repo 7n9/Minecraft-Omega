@@ -35,7 +35,7 @@ public class EntityFireball extends Entity {
 		this.setSize(1.0F, 1.0F);
 		this.setLocationAndAngles(d2, d4, d6, this.rotationYaw, this.rotationPitch);
 		this.setPosition(d2, d4, d6);
-		double d14 = (double)MathHelper.sqrt_double(d8 * d8 + d10 * d10 + d12 * d12);
+		double d14 = MathHelper.sqrt_double(d8 * d8 + d10 * d10 + d12 * d12);
 		this.field_9405_b = d8 / d14 * 0.1D;
 		this.field_9404_c = d10 / d14 * 0.1D;
 		this.field_9403_d = d12 / d14 * 0.1D;
@@ -52,7 +52,7 @@ public class EntityFireball extends Entity {
 		d3 += this.rand.nextGaussian() * 0.4D;
 		d5 += this.rand.nextGaussian() * 0.4D;
 		d7 += this.rand.nextGaussian() * 0.4D;
-		double d9 = (double)MathHelper.sqrt_double(d3 * d3 + d5 * d5 + d7 * d7);
+		double d9 = MathHelper.sqrt_double(d3 * d3 + d5 * d5 + d7 * d7);
 		this.field_9405_b = d3 / d9 * 0.1D;
 		this.field_9404_c = d5 / d9 * 0.1D;
 		this.field_9403_d = d7 / d9 * 0.1D;
@@ -77,9 +77,9 @@ public class EntityFireball extends Entity {
 			}
 
 			this.field_9398_i = false;
-			this.motionX *= (double)(this.rand.nextFloat() * 0.2F);
-			this.motionY *= (double)(this.rand.nextFloat() * 0.2F);
-			this.motionZ *= (double)(this.rand.nextFloat() * 0.2F);
+			this.motionX *= this.rand.nextFloat() * 0.2F;
+			this.motionY *= this.rand.nextFloat() * 0.2F;
+			this.motionZ *= this.rand.nextFloat() * 0.2F;
 			this.field_9396_k = 0;
 			this.field_9395_l = 0;
 		} else {
@@ -103,7 +103,7 @@ public class EntityFireball extends Entity {
 			Entity entity9 = (Entity)list5.get(i8);
 			if(entity9.canBeCollidedWith() && (entity9 != this.field_9397_j || this.field_9395_l >= 25)) {
 				float f10 = 0.3F;
-				AxisAlignedBB axisAlignedBB11 = entity9.boundingBox.expand((double)f10, (double)f10, (double)f10);
+				AxisAlignedBB axisAlignedBB11 = entity9.boundingBox.expand(f10, f10, f10);
 				MovingObjectPosition movingObjectPosition12 = axisAlignedBB11.func_1169_a(vec3D15, vec3D2);
 				if(movingObjectPosition12 != null) {
 					double d13 = vec3D15.distanceTo(movingObjectPosition12.hitVec);
@@ -122,10 +122,9 @@ public class EntityFireball extends Entity {
 		if(movingObjectPosition3 != null) {
 			if(!this.worldObj.multiplayerWorld) {
 				if(movingObjectPosition3.entityHit != null && movingObjectPosition3.entityHit.attackEntityFrom(this.field_9397_j, 0)) {
-					;
-				}
+                }
 
-				this.worldObj.newExplosion((Entity)null, this.posX, this.posY, this.posZ, 1.0F, true);
+				this.worldObj.newExplosion(null, this.posX, this.posY, this.posZ, 1.0F, true);
 			}
 
 			this.setEntityDead();
@@ -137,7 +136,7 @@ public class EntityFireball extends Entity {
 		float f16 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / (double)(float)Math.PI);
 
-		for(this.rotationPitch = (float)(Math.atan2(this.motionY, (double)f16) * 180.0D / (double)(float)Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
+		for(this.rotationPitch = (float)(Math.atan2(this.motionY, f16) * 180.0D / (double)(float)Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
 		}
 
 		while(this.rotationPitch - this.prevRotationPitch >= 180.0F) {
@@ -167,9 +166,9 @@ public class EntityFireball extends Entity {
 		this.motionX += this.field_9405_b;
 		this.motionY += this.field_9404_c;
 		this.motionZ += this.field_9403_d;
-		this.motionX *= (double)f17;
-		this.motionY *= (double)f17;
-		this.motionZ *= (double)f17;
+		this.motionX *= f17;
+		this.motionY *= f17;
+		this.motionZ *= f17;
 		this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
 		this.setPosition(this.posX, this.posY, this.posZ);
 	}

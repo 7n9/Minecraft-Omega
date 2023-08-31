@@ -1,8 +1,8 @@
 package net.minecraft.src;
 
 public class GuiConnectFailed extends GuiScreen {
-	private String errorMessage;
-	private String errorDetail;
+	private final String errorMessage;
+	private final String errorDetail;
 
 	public GuiConnectFailed(String string1, String string2, Object... object3) {
 		StringTranslate stringTranslate4 = StringTranslate.getInstance();

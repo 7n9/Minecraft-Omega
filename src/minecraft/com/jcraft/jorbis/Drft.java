@@ -106,8 +106,8 @@ class Drft {
 								for(int i16 = 2; i16 < i21; i16 += 2) {
 									++f7;
 									float f4 = f7 * f6;
-									f1[i2 + i9++] = (float)Math.cos((double)f4);
-									f1[i2 + i9++] = (float)Math.sin((double)f4);
+									f1[i2 + i9++] = (float)Math.cos(f4);
+									f1[i2 + i9++] = (float)Math.sin(f4);
 								}
 
 								i18 += i21;
@@ -294,8 +294,8 @@ class Drft {
 		float f38 = 0.0F;
 		float f40 = 0.0F;
 		float f39 = tpi / (float)i1;
-		f38 = (float)Math.cos((double)f39);
-		f40 = (float)Math.sin((double)f39);
+		f38 = (float)Math.cos(f39);
+		f40 = (float)Math.sin(f39);
 		int i12 = i1 + 1 >> 1;
 		int i44 = i1;
 		int i43 = i0;
@@ -725,9 +725,7 @@ class Drft {
 		}
 
 		if(i9 != 1) {
-			for(int i5 = 0; i5 < i0; ++i5) {
-				f1[i5] = f2[i5];
-			}
+            if (i0 >= 0) System.arraycopy(f2, 0, f1, 0, i0);
 
 		}
 	}
@@ -988,8 +986,8 @@ class Drft {
 				i29 = i1 * i0;
 				i19 = i2 * i0;
 				float f40 = tpi / (float)i1;
-				f39 = (float)Math.cos((double)f40);
-				f41 = (float)Math.sin((double)f40);
+				f39 = (float)Math.cos(f40);
+				f41 = (float)Math.sin(f40);
 				i38 = i0 - 1 >>> 1;
 				i44 = i1;
 				i12 = i1 + 1 >>> 1;
@@ -1443,9 +1441,7 @@ class Drft {
 		}
 
 		if(i10 != 0) {
-			for(int i6 = 0; i6 < i0; ++i6) {
-				f1[i6] = f2[i6];
-			}
+            if (i0 >= 0) System.arraycopy(f2, 0, f1, 0, i0);
 
 		}
 	}

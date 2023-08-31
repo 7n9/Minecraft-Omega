@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class ItemSword extends Item {
-	private int weaponDamage;
+	private final int weaponDamage;
 
 	public ItemSword(int i1, EnumToolMaterial enumToolMaterial2) {
 		super(i1);

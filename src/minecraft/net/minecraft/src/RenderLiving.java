@@ -197,10 +197,10 @@ public class RenderLiving extends Render {
 			tessellator14.startDrawingQuads();
 			int i16 = fontRenderer11.getStringWidth(string2) / 2;
 			tessellator14.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.25F);
-			tessellator14.addVertex((double)(-i16 - 1), (double)(-1 + b15), 0.0D);
-			tessellator14.addVertex((double)(-i16 - 1), (double)(8 + b15), 0.0D);
-			tessellator14.addVertex((double)(i16 + 1), (double)(8 + b15), 0.0D);
-			tessellator14.addVertex((double)(i16 + 1), (double)(-1 + b15), 0.0D);
+			tessellator14.addVertex(-i16 - 1, -1 + b15, 0.0D);
+			tessellator14.addVertex(-i16 - 1, 8 + b15, 0.0D);
+			tessellator14.addVertex(i16 + 1, 8 + b15, 0.0D);
+			tessellator14.addVertex(i16 + 1, -1 + b15, 0.0D);
 			tessellator14.draw();
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			fontRenderer11.drawString(string2, -fontRenderer11.getStringWidth(string2) / 2, b15, 553648127);

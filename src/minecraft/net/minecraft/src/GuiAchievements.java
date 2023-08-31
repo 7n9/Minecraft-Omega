@@ -22,14 +22,14 @@ public class GuiAchievements extends GuiScreen {
 	protected double field_27112_q;
 	protected double field_27111_r;
 	private int field_27122_w = 0;
-	private StatFileWriter field_27120_x;
+	private final StatFileWriter field_27120_x;
 
 	public GuiAchievements(StatFileWriter statFileWriter1) {
 		this.field_27120_x = statFileWriter1;
 		short s2 = 141;
 		short s3 = 141;
-		this.field_27116_m = this.field_27114_o = this.field_27112_q = (double)(AchievementList.openInventory.displayColumn * 24 - s2 / 2 - 12);
-		this.field_27115_n = this.field_27113_p = this.field_27111_r = (double)(AchievementList.openInventory.displayRow * 24 - s3 / 2);
+		this.field_27116_m = this.field_27114_o = this.field_27112_q = AchievementList.openInventory.displayColumn * 24 - s2 / 2 - 12;
+		this.field_27115_n = this.field_27113_p = this.field_27111_r = AchievementList.openInventory.displayRow * 24 - s3 / 2;
 	}
 
 	public void initGui() {
@@ -39,7 +39,7 @@ public class GuiAchievements extends GuiScreen {
 
 	protected void actionPerformed(GuiButton guiButton1) {
 		if(guiButton1.id == 1) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 			this.mc.setIngameFocus();
 		}
 
@@ -48,7 +48,7 @@ public class GuiAchievements extends GuiScreen {
 
 	protected void keyTyped(char c1, int i2) {
 		if(i2 == this.mc.gameSettings.keyBindInventory.keyCode) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 			this.mc.setIngameFocus();
 		} else {
 			super.keyTyped(c1, i2);
@@ -66,8 +66,8 @@ public class GuiAchievements extends GuiScreen {
 				if(this.field_27122_w == 0) {
 					this.field_27122_w = 1;
 				} else {
-					this.field_27114_o -= (double)(i1 - this.field_27118_j);
-					this.field_27113_p -= (double)(i2 - this.field_27117_l);
+					this.field_27114_o -= i1 - this.field_27118_j;
+					this.field_27113_p -= i2 - this.field_27117_l;
 					this.field_27112_q = this.field_27116_m = this.field_27114_o;
 					this.field_27111_r = this.field_27115_n = this.field_27113_p;
 				}
@@ -77,19 +77,19 @@ public class GuiAchievements extends GuiScreen {
 			}
 
 			if(this.field_27112_q < (double)field_27126_s) {
-				this.field_27112_q = (double)field_27126_s;
+				this.field_27112_q = field_27126_s;
 			}
 
 			if(this.field_27111_r < (double)field_27125_t) {
-				this.field_27111_r = (double)field_27125_t;
+				this.field_27111_r = field_27125_t;
 			}
 
 			if(this.field_27112_q >= (double)field_27124_u) {
-				this.field_27112_q = (double)(field_27124_u - 1);
+				this.field_27112_q = field_27124_u - 1;
 			}
 
 			if(this.field_27111_r >= (double)field_27123_v) {
-				this.field_27111_r = (double)(field_27123_v - 1);
+				this.field_27111_r = field_27123_v - 1;
 			}
 		} else {
 			this.field_27122_w = 0;
@@ -170,7 +170,7 @@ public class GuiAchievements extends GuiScreen {
 			GL11.glColor4f(f23, f23, f23, 1.0F);
 
 			for(int i24 = 0; i24 * 16 - i14 < 224; ++i24) {
-				random21.setSeed((long)(1234 + i12 + i24));
+				random21.setSeed(1234 + i12 + i24);
 				random21.nextInt();
 				int i25 = random21.nextInt(1 + i13 + i22) + (i13 + i22) / 2;
 				int i26 = Block.sand.blockIndexInTexture;
@@ -318,7 +318,7 @@ public class GuiAchievements extends GuiScreen {
 				}
 			} else {
 				i34 = Math.max(this.fontRenderer.getStringWidth(string31), 120);
-				String string39 = StatCollector.translateToLocalFormatted("achievement.requires", new Object[]{achievement27.parentAchievement.statName});
+				String string39 = StatCollector.translateToLocalFormatted("achievement.requires", achievement27.parentAchievement.statName);
 				i38 = this.fontRenderer.func_27277_a(string39, i34);
 				this.drawGradientRect(i17 - 3, i33 - 3, i17 + i34 + 3, i33 + i38 + 12 + 3, -1073741824, -1073741824);
 				this.fontRenderer.func_27278_a(string39, i17, i33 + 12, i34, -9416624);

@@ -27,6 +27,6 @@ public class NBTTagFloat extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.floatValue;
+		return String.valueOf(this.floatValue);
 	}
 }

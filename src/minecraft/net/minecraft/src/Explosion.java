@@ -8,8 +8,8 @@ import java.util.Set;
 
 public class Explosion {
 	public boolean isFlaming = false;
-	private Random ExplosionRNG = new Random();
-	private World worldObj;
+	private final Random ExplosionRNG = new Random();
+	private final World worldObj;
 	public double explosionX;
 	public double explosionY;
 	public double explosionZ;
@@ -40,9 +40,9 @@ public class Explosion {
 			for(i4 = 0; i4 < b2; ++i4) {
 				for(i5 = 0; i5 < b2; ++i5) {
 					if(i3 == 0 || i3 == b2 - 1 || i4 == 0 || i4 == b2 - 1 || i5 == 0 || i5 == b2 - 1) {
-						double d6 = (double)((float)i3 / ((float)b2 - 1.0F) * 2.0F - 1.0F);
-						double d8 = (double)((float)i4 / ((float)b2 - 1.0F) * 2.0F - 1.0F);
-						double d10 = (double)((float)i5 / ((float)b2 - 1.0F) * 2.0F - 1.0F);
+						double d6 = (float)i3 / ((float)b2 - 1.0F) * 2.0F - 1.0F;
+						double d8 = (float)i4 / ((float)b2 - 1.0F) * 2.0F - 1.0F;
+						double d10 = (float)i5 / ((float)b2 - 1.0F) * 2.0F - 1.0F;
 						double d12 = Math.sqrt(d6 * d6 + d8 * d8 + d10 * d10);
 						d6 /= d12;
 						d8 /= d12;
@@ -81,7 +81,7 @@ public class Explosion {
 		int i29 = MathHelper.floor_double(this.explosionY + (double)this.explosionSize + 1.0D);
 		int i7 = MathHelper.floor_double(this.explosionZ - (double)this.explosionSize - 1.0D);
 		int i30 = MathHelper.floor_double(this.explosionZ + (double)this.explosionSize + 1.0D);
-		List list9 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this.exploder, AxisAlignedBB.getBoundingBoxFromPool((double)i3, (double)i5, (double)i7, (double)i4, (double)i29, (double)i30));
+		List list9 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this.exploder, AxisAlignedBB.getBoundingBoxFromPool(i3, i5, i7, i4, i29, i30));
 		Vec3D vec3D31 = Vec3D.createVector(this.explosionX, this.explosionY, this.explosionZ);
 
 		for(int i11 = 0; i11 < list9.size(); ++i11) {
@@ -91,11 +91,11 @@ public class Explosion {
 				d15 = entity33.posX - this.explosionX;
 				d17 = entity33.posY - this.explosionY;
 				d19 = entity33.posZ - this.explosionZ;
-				double d39 = (double)MathHelper.sqrt_double(d15 * d15 + d17 * d17 + d19 * d19);
+				double d39 = MathHelper.sqrt_double(d15 * d15 + d17 * d17 + d19 * d19);
 				d15 /= d39;
 				d17 /= d39;
 				d19 /= d39;
-				double d40 = (double)this.worldObj.func_675_a(vec3D31, entity33.boundingBox);
+				double d40 = this.worldObj.func_675_a(vec3D31, entity33.boundingBox);
 				double d41 = (1.0D - d13) * d40;
 				entity33.attackEntityFrom(this.exploder, (int)((d41 * d41 + d41) / 2.0D * 8.0D * (double)this.explosionSize + 1.0D));
 				entity33.motionX += d15 * d41;
@@ -135,22 +135,22 @@ public class Explosion {
 			int i7 = chunkPosition4.z;
 			int i8 = this.worldObj.getBlockId(i5, i6, i7);
 			if(z1) {
-				double d9 = (double)((float)i5 + this.worldObj.rand.nextFloat());
-				double d11 = (double)((float)i6 + this.worldObj.rand.nextFloat());
-				double d13 = (double)((float)i7 + this.worldObj.rand.nextFloat());
+				double d9 = (float)i5 + this.worldObj.rand.nextFloat();
+				double d11 = (float)i6 + this.worldObj.rand.nextFloat();
+				double d13 = (float)i7 + this.worldObj.rand.nextFloat();
 				double d15 = d9 - this.explosionX;
 				double d17 = d11 - this.explosionY;
 				double d19 = d13 - this.explosionZ;
-				double d21 = (double)MathHelper.sqrt_double(d15 * d15 + d17 * d17 + d19 * d19);
+				double d21 = MathHelper.sqrt_double(d15 * d15 + d17 * d17 + d19 * d19);
 				d15 /= d21;
 				d17 /= d21;
 				d19 /= d21;
 				double d23 = 0.5D / (d21 / (double)this.explosionSize + 0.1D);
-				d23 *= (double)(this.worldObj.rand.nextFloat() * this.worldObj.rand.nextFloat() + 0.3F);
+				d23 *= this.worldObj.rand.nextFloat() * this.worldObj.rand.nextFloat() + 0.3F;
 				d15 *= d23;
 				d17 *= d23;
 				d19 *= d23;
-				this.worldObj.spawnParticle("explode", (d9 + this.explosionX * 1.0D) / 2.0D, (d11 + this.explosionY * 1.0D) / 2.0D, (d13 + this.explosionZ * 1.0D) / 2.0D, d15, d17, d19);
+				this.worldObj.spawnParticle("explode", (d9 + this.explosionX) / 2.0D, (d11 + this.explosionY) / 2.0D, (d13 + this.explosionZ) / 2.0D, d15, d17, d19);
 				this.worldObj.spawnParticle("smoke", d9, d11, d13, d15, d17, d19);
 			}
 

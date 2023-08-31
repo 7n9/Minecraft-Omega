@@ -20,8 +20,8 @@ public class RenderLightningBolt extends Render {
 		for(int i18 = 7; i18 >= 0; --i18) {
 			d11[i18] = d13;
 			d12[i18] = d15;
-			d13 += (double)(random17.nextInt(11) - 5);
-			d15 += (double)(random17.nextInt(11) - 5);
+			d13 += random17.nextInt(11) - 5;
+			d15 += random17.nextInt(11) - 5;
 		}
 
 		for(int i45 = 0; i45 < 4; ++i45) {
@@ -45,11 +45,11 @@ public class RenderLightningBolt extends Render {
 					double d27 = d22;
 					double d29 = d24;
 					if(i19 == 0) {
-						d22 += (double)(random46.nextInt(11) - 5);
-						d24 += (double)(random46.nextInt(11) - 5);
+						d22 += random46.nextInt(11) - 5;
+						d24 += random46.nextInt(11) - 5;
 					} else {
-						d22 += (double)(random46.nextInt(31) - 15);
-						d24 += (double)(random46.nextInt(31) - 15);
+						d22 += random46.nextInt(31) - 15;
+						d24 += random46.nextInt(31) - 15;
 					}
 
 					tessellator10.startDrawing(5);

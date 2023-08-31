@@ -23,7 +23,7 @@ public class TileEntityRendererPiston extends TileEntitySpecialRenderer {
 			}
 
 			tessellator10.startDrawingQuads();
-			tessellator10.setTranslationD((double)((float)d2 - (float)tileEntityPiston1.xCoord + tileEntityPiston1.func_31017_b(f8)), (double)((float)d4 - (float)tileEntityPiston1.yCoord + tileEntityPiston1.func_31014_c(f8)), (double)((float)d6 - (float)tileEntityPiston1.zCoord + tileEntityPiston1.func_31013_d(f8)));
+			tessellator10.setTranslationD((float)d2 - (float)tileEntityPiston1.xCoord + tileEntityPiston1.func_31017_b(f8), (float)d4 - (float)tileEntityPiston1.yCoord + tileEntityPiston1.func_31014_c(f8), (float)d6 - (float)tileEntityPiston1.zCoord + tileEntityPiston1.func_31013_d(f8));
 			tessellator10.setColorOpaque(1, 1, 1);
 			if(block9 == Block.pistonExtension && tileEntityPiston1.func_31008_a(f8) < 0.5F) {
 				this.field_31071_b.func_31079_a(block9, tileEntityPiston1.xCoord, tileEntityPiston1.yCoord, tileEntityPiston1.zCoord, false);
@@ -32,7 +32,7 @@ public class TileEntityRendererPiston extends TileEntitySpecialRenderer {
 				Block.pistonExtension.func_31052_a_(((BlockPistonBase)block9).func_31040_i());
 				this.field_31071_b.func_31079_a(Block.pistonExtension, tileEntityPiston1.xCoord, tileEntityPiston1.yCoord, tileEntityPiston1.zCoord, tileEntityPiston1.func_31008_a(f8) < 0.5F);
 				Block.pistonExtension.func_31051_a();
-				tessellator10.setTranslationD((double)((float)d2 - (float)tileEntityPiston1.xCoord), (double)((float)d4 - (float)tileEntityPiston1.yCoord), (double)((float)d6 - (float)tileEntityPiston1.zCoord));
+				tessellator10.setTranslationD((float)d2 - (float)tileEntityPiston1.xCoord, (float)d4 - (float)tileEntityPiston1.yCoord, (float)d6 - (float)tileEntityPiston1.zCoord);
 				this.field_31071_b.func_31078_d(block9, tileEntityPiston1.xCoord, tileEntityPiston1.yCoord, tileEntityPiston1.zCoord);
 			} else {
 				this.field_31071_b.func_31075_a(block9, tileEntityPiston1.xCoord, tileEntityPiston1.yCoord, tileEntityPiston1.zCoord);

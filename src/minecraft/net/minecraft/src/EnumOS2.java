@@ -5,5 +5,5 @@ public enum EnumOS2 {
 	solaris,
 	windows,
 	macos,
-	unknown;
+	unknown
 }

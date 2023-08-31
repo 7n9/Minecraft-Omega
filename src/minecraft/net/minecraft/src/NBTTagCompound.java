@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class NBTTagCompound extends NBTBase {
-	private Map tagMap = new HashMap();
+	private final Map tagMap = new HashMap();
 
 	void writeTagContents(DataOutput dataOutput1) throws IOException {
 		Iterator iterator2 = this.tagMap.values().iterator();
@@ -133,6 +133,6 @@ public class NBTTagCompound extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.tagMap.size() + " entries";
+		return this.tagMap.size() + " entries";
 	}
 }

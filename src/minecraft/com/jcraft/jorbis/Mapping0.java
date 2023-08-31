@@ -4,7 +4,7 @@ import com.jcraft.jogg.Buffer;
 
 class Mapping0 extends FuncMapping {
 	static int seq = 0;
-	float[][] pcmbundle = (float[][])null;
+	float[][] pcmbundle = null;
 	int[] zerobundle = null;
 	int[] nonzero = null;
 	Object[] floormemo = null;
@@ -40,8 +40,7 @@ class Mapping0 extends FuncMapping {
 		}
 
 		if(info4.psys != 0 && dspState1.analysisp != 0) {
-			;
-		}
+        }
 
 		mapping0$LookMapping05.ch = info4.channels;
 		return mapping0$LookMapping05;

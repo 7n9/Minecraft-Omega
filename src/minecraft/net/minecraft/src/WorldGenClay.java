@@ -15,12 +15,12 @@ public class WorldGenClay extends WorldGenerator {
 			return false;
 		} else {
 			float f6 = random2.nextFloat() * (float)Math.PI;
-			double d7 = (double)((float)(i3 + 8) + MathHelper.sin(f6) * (float)this.numberOfBlocks / 8.0F);
-			double d9 = (double)((float)(i3 + 8) - MathHelper.sin(f6) * (float)this.numberOfBlocks / 8.0F);
-			double d11 = (double)((float)(i5 + 8) + MathHelper.cos(f6) * (float)this.numberOfBlocks / 8.0F);
-			double d13 = (double)((float)(i5 + 8) - MathHelper.cos(f6) * (float)this.numberOfBlocks / 8.0F);
-			double d15 = (double)(i4 + random2.nextInt(3) + 2);
-			double d17 = (double)(i4 + random2.nextInt(3) + 2);
+			double d7 = (float)(i3 + 8) + MathHelper.sin(f6) * (float)this.numberOfBlocks / 8.0F;
+			double d9 = (float)(i3 + 8) - MathHelper.sin(f6) * (float)this.numberOfBlocks / 8.0F;
+			double d11 = (float)(i5 + 8) + MathHelper.cos(f6) * (float)this.numberOfBlocks / 8.0F;
+			double d13 = (float)(i5 + 8) - MathHelper.cos(f6) * (float)this.numberOfBlocks / 8.0F;
+			double d15 = i4 + random2.nextInt(3) + 2;
+			double d17 = i4 + random2.nextInt(3) + 2;
 
 			for(int i19 = 0; i19 <= this.numberOfBlocks; ++i19) {
 				double d20 = d7 + (d9 - d7) * (double)i19 / (double)this.numberOfBlocks;

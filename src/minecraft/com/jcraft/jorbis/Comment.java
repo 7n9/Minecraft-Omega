@@ -4,8 +4,8 @@ import com.jcraft.jogg.Buffer;
 import com.jcraft.jogg.Packet;
 
 public class Comment {
-	private static byte[] _vorbis = "vorbis".getBytes();
-	private static byte[] _vendor = "Xiphophorus libVorbis I 20000508".getBytes();
+	private static final byte[] _vorbis = "vorbis".getBytes();
+	private static final byte[] _vendor = "Xiphophorus libVorbis I 20000508".getBytes();
 	private static final int OV_EIMPL = -130;
 	public byte[][] user_comments;
 	public int[] comment_lengths;
@@ -13,7 +13,7 @@ public class Comment {
 	public byte[] vendor;
 
 	public void init() {
-		this.user_comments = (byte[][])null;
+		this.user_comments = null;
 		this.comments = 0;
 		this.vendor = null;
 	}
@@ -72,7 +72,7 @@ public class Comment {
 	}
 
 	public String query(String string1) {
-		return this.query((String)string1, 0);
+		return this.query(string1, 0);
 	}
 
 	public String query(String string1, int i2) {
@@ -194,7 +194,7 @@ public class Comment {
 			this.user_comments[i1] = null;
 		}
 
-		this.user_comments = (byte[][])null;
+		this.user_comments = null;
 		this.vendor = null;
 	}
 

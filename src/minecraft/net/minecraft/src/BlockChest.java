@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class BlockChest extends BlockContainer {
-	private Random random = new Random();
+	private final Random random = new Random();
 
 	protected BlockChest(int i1) {
 		super(i1, Material.wood);
@@ -119,11 +119,11 @@ public class BlockChest extends BlockContainer {
 			++i5;
 		}
 
-		return i5 > 1 ? false : (this.isThereANeighborChest(world1, i2 - 1, i3, i4) ? false : (this.isThereANeighborChest(world1, i2 + 1, i3, i4) ? false : (this.isThereANeighborChest(world1, i2, i3, i4 - 1) ? false : !this.isThereANeighborChest(world1, i2, i3, i4 + 1))));
+		return i5 <= 1 && (!this.isThereANeighborChest(world1, i2 - 1, i3, i4) && (!this.isThereANeighborChest(world1, i2 + 1, i3, i4) && (!this.isThereANeighborChest(world1, i2, i3, i4 - 1) && !this.isThereANeighborChest(world1, i2, i3, i4 + 1))));
 	}
 
 	private boolean isThereANeighborChest(World world1, int i2, int i3, int i4) {
-		return world1.getBlockId(i2, i3, i4) != this.blockID ? false : (world1.getBlockId(i2 - 1, i3, i4) == this.blockID ? true : (world1.getBlockId(i2 + 1, i3, i4) == this.blockID ? true : (world1.getBlockId(i2, i3, i4 - 1) == this.blockID ? true : world1.getBlockId(i2, i3, i4 + 1) == this.blockID)));
+		return world1.getBlockId(i2, i3, i4) == this.blockID && (world1.getBlockId(i2 - 1, i3, i4) == this.blockID || (world1.getBlockId(i2 + 1, i3, i4) == this.blockID || (world1.getBlockId(i2, i3, i4 - 1) == this.blockID || world1.getBlockId(i2, i3, i4 + 1) == this.blockID)));
 	}
 
 	public void onBlockRemoval(World world1, int i2, int i3, int i4) {
@@ -143,11 +143,11 @@ public class BlockChest extends BlockContainer {
 					}
 
 					itemStack7.stackSize -= i11;
-					EntityItem entityItem12 = new EntityItem(world1, (double)((float)i2 + f8), (double)((float)i3 + f9), (double)((float)i4 + f10), new ItemStack(itemStack7.itemID, i11, itemStack7.getItemDamage()));
+					EntityItem entityItem12 = new EntityItem(world1, (float)i2 + f8, (float)i3 + f9, (float)i4 + f10, new ItemStack(itemStack7.itemID, i11, itemStack7.getItemDamage()));
 					float f13 = 0.05F;
-					entityItem12.motionX = (double)((float)this.random.nextGaussian() * f13);
-					entityItem12.motionY = (double)((float)this.random.nextGaussian() * f13 + 0.2F);
-					entityItem12.motionZ = (double)((float)this.random.nextGaussian() * f13);
+					entityItem12.motionX = (float)this.random.nextGaussian() * f13;
+					entityItem12.motionY = (float)this.random.nextGaussian() * f13 + 0.2F;
+					entityItem12.motionZ = (float)this.random.nextGaussian() * f13;
 					world1.entityJoinedWorld(entityItem12);
 				}
 			}
@@ -157,7 +157,7 @@ public class BlockChest extends BlockContainer {
 	}
 
 	public boolean blockActivated(World world1, int i2, int i3, int i4, EntityPlayer entityPlayer5) {
-		Object object6 = (TileEntityChest)world1.getBlockTileEntity(i2, i3, i4);
+		Object object6 = world1.getBlockTileEntity(i2, i3, i4);
 		if(world1.isBlockNormalCube(i2, i3 + 1, i4)) {
 			return true;
 		} else if(world1.getBlockId(i2 - 1, i3, i4) == this.blockID && world1.isBlockNormalCube(i2 - 1, i3 + 1, i4)) {

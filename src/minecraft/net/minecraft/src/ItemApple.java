@@ -1,8 +1,8 @@
 package net.minecraft.src;
 
 public class ItemApple extends Item {
-	private int healAmount;
-	private boolean isWolfsFavoriteMeat;
+	private final int healAmount;
+	private final boolean isWolfsFavoriteMeat;
 
 	public ItemApple(int i1, int i2, boolean z3) {
 		super(i1);

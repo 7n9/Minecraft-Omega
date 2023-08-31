@@ -45,7 +45,7 @@ public class TexturedQuad {
 
 		for(int i6 = 0; i6 < 4; ++i6) {
 			PositionTextureVertex positionTextureVertex7 = this.vertexPositions[i6];
-			tessellator1.addVertexWithUV((double)((float)positionTextureVertex7.vector3D.xCoord * f2), (double)((float)positionTextureVertex7.vector3D.yCoord * f2), (double)((float)positionTextureVertex7.vector3D.zCoord * f2), (double)positionTextureVertex7.texturePositionX, (double)positionTextureVertex7.texturePositionY);
+			tessellator1.addVertexWithUV((float)positionTextureVertex7.vector3D.xCoord * f2, (float)positionTextureVertex7.vector3D.yCoord * f2, (float)positionTextureVertex7.vector3D.zCoord * f2, positionTextureVertex7.texturePositionX, positionTextureVertex7.texturePositionY);
 		}
 
 		tessellator1.draw();

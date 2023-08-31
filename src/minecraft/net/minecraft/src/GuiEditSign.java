@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiEditSign extends GuiScreen {
 	protected String screenTitle = "Edit sign message:";
-	private TileEntitySign entitySign;
+	private final TileEntitySign entitySign;
 	private int updateCounter;
 	private int editLine = 0;
 	private static final String allowedCharacters = ChatAllowedCharacters.allowedCharacters;
@@ -36,7 +36,7 @@ public class GuiEditSign extends GuiScreen {
 		if(guiButton1.enabled) {
 			if(guiButton1.id == 0) {
 				this.entitySign.onInventoryChanged();
-				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.displayGuiScreen(null);
 			}
 
 		}

@@ -1,10 +1,10 @@
 package net.minecraft.src;
 
 public class ChunkCache implements IBlockAccess {
-	private int chunkX;
-	private int chunkZ;
-	private Chunk[][] chunkArray;
-	private World worldObj;
+	private final int chunkX;
+	private final int chunkZ;
+	private final Chunk[][] chunkArray;
+	private final World worldObj;
 
 	public ChunkCache(World world1, int i2, int i3, int i4, int i5, int i6, int i7) {
 		this.worldObj = world1;
@@ -136,11 +136,11 @@ public class ChunkCache implements IBlockAccess {
 
 	public boolean isBlockOpaqueCube(int i1, int i2, int i3) {
 		Block block4 = Block.blocksList[this.getBlockId(i1, i2, i3)];
-		return block4 == null ? false : block4.isOpaqueCube();
+		return block4 != null && block4.isOpaqueCube();
 	}
 
 	public boolean isBlockNormalCube(int i1, int i2, int i3) {
 		Block block4 = Block.blocksList[this.getBlockId(i1, i2, i3)];
-		return block4 == null ? false : block4.blockMaterial.getIsSolid() && block4.renderAsNormalBlock();
+		return block4 != null && block4.blockMaterial.getIsSolid() && block4.renderAsNormalBlock();
 	}
 }

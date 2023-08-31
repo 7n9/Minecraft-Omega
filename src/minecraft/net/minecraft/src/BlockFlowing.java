@@ -250,7 +250,7 @@ public class BlockFlowing extends BlockFluid {
 
 	private boolean liquidCanDisplaceBlock(World world1, int i2, int i3, int i4) {
 		Material material5 = world1.getBlockMaterial(i2, i3, i4);
-		return material5 == this.blockMaterial ? false : (material5 == Material.lava ? false : !this.blockBlocksFlow(world1, i2, i3, i4));
+		return material5 != this.blockMaterial && (material5 != Material.lava && !this.blockBlocksFlow(world1, i2, i3, i4));
 	}
 
 	public void onBlockAdded(World world1, int i2, int i3, int i4) {

@@ -3,20 +3,20 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class ChunkProviderHell implements IChunkProvider {
-	private Random hellRNG;
-	private NoiseGeneratorOctaves field_4169_i;
-	private NoiseGeneratorOctaves field_4168_j;
-	private NoiseGeneratorOctaves field_4167_k;
-	private NoiseGeneratorOctaves field_4166_l;
-	private NoiseGeneratorOctaves field_4165_m;
+	private final Random hellRNG;
+	private final NoiseGeneratorOctaves field_4169_i;
+	private final NoiseGeneratorOctaves field_4168_j;
+	private final NoiseGeneratorOctaves field_4167_k;
+	private final NoiseGeneratorOctaves field_4166_l;
+	private final NoiseGeneratorOctaves field_4165_m;
 	public NoiseGeneratorOctaves field_4177_a;
 	public NoiseGeneratorOctaves field_4176_b;
-	private World worldObj;
+	private final World worldObj;
 	private double[] field_4163_o;
 	private double[] field_4162_p = new double[256];
 	private double[] field_4161_q = new double[256];
 	private double[] field_4160_r = new double[256];
-	private MapGenBase field_4159_s = new MapGenCavesHell();
+	private final MapGenBase field_4159_s = new MapGenCavesHell();
 	double[] field_4175_c;
 	double[] field_4174_d;
 	double[] field_4173_e;
@@ -47,13 +47,13 @@ public class ChunkProviderHell implements IChunkProvider {
 			for(int i10 = 0; i10 < b4; ++i10) {
 				for(int i11 = 0; i11 < 16; ++i11) {
 					double d12 = 0.125D;
-					double d14 = this.field_4163_o[((i9 + 0) * i8 + i10 + 0) * b7 + i11 + 0];
-					double d16 = this.field_4163_o[((i9 + 0) * i8 + i10 + 1) * b7 + i11 + 0];
-					double d18 = this.field_4163_o[((i9 + 1) * i8 + i10 + 0) * b7 + i11 + 0];
-					double d20 = this.field_4163_o[((i9 + 1) * i8 + i10 + 1) * b7 + i11 + 0];
-					double d22 = (this.field_4163_o[((i9 + 0) * i8 + i10 + 0) * b7 + i11 + 1] - d14) * d12;
-					double d24 = (this.field_4163_o[((i9 + 0) * i8 + i10 + 1) * b7 + i11 + 1] - d16) * d12;
-					double d26 = (this.field_4163_o[((i9 + 1) * i8 + i10 + 0) * b7 + i11 + 1] - d18) * d12;
+					double d14 = this.field_4163_o[((i9) * i8 + i10) * b7 + i11];
+					double d16 = this.field_4163_o[((i9) * i8 + i10 + 1) * b7 + i11];
+					double d18 = this.field_4163_o[((i9 + 1) * i8 + i10) * b7 + i11];
+					double d20 = this.field_4163_o[((i9 + 1) * i8 + i10 + 1) * b7 + i11];
+					double d22 = (this.field_4163_o[((i9) * i8 + i10) * b7 + i11 + 1] - d14) * d12;
+					double d24 = (this.field_4163_o[((i9) * i8 + i10 + 1) * b7 + i11 + 1] - d16) * d12;
+					double d26 = (this.field_4163_o[((i9 + 1) * i8 + i10) * b7 + i11 + 1] - d18) * d12;
 					double d28 = (this.field_4163_o[((i9 + 1) * i8 + i10 + 1) * b7 + i11 + 1] - d20) * d12;
 
 					for(int i30 = 0; i30 < 8; ++i30) {
@@ -64,7 +64,7 @@ public class ChunkProviderHell implements IChunkProvider {
 						double d39 = (d20 - d16) * d31;
 
 						for(int i41 = 0; i41 < 4; ++i41) {
-							int i42 = i41 + i9 * 4 << 11 | 0 + i10 * 4 << 7 | i11 * 8 + i30;
+							int i42 = i41 + i9 * 4 << 11 | i10 * 4 << 7 | i11 * 8 + i30;
 							short s43 = 128;
 							double d44 = 0.25D;
 							double d46 = d33;
@@ -103,9 +103,9 @@ public class ChunkProviderHell implements IChunkProvider {
 	public void func_4058_b(int i1, int i2, byte[] b3) {
 		byte b4 = 64;
 		double d5 = 8.0D / 256D;
-		this.field_4162_p = this.field_4166_l.generateNoiseOctaves(this.field_4162_p, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d5, d5, 1.0D);
-		this.field_4161_q = this.field_4166_l.generateNoiseOctaves(this.field_4161_q, (double)(i1 * 16), 109.0134D, (double)(i2 * 16), 16, 1, 16, d5, 1.0D, d5);
-		this.field_4160_r = this.field_4165_m.generateNoiseOctaves(this.field_4160_r, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d5 * 2.0D, d5 * 2.0D, d5 * 2.0D);
+		this.field_4162_p = this.field_4166_l.generateNoiseOctaves(this.field_4162_p, i1 * 16, i2 * 16, 0.0D, 16, 16, 1, d5, d5, 1.0D);
+		this.field_4161_q = this.field_4166_l.generateNoiseOctaves(this.field_4161_q, i1 * 16, 109.0134D, i2 * 16, 16, 1, 16, d5, 1.0D, d5);
+		this.field_4160_r = this.field_4165_m.generateNoiseOctaves(this.field_4160_r, i1 * 16, i2 * 16, 0.0D, 16, 16, 1, d5 * 2.0D, d5 * 2.0D, d5 * 2.0D);
 
 		for(int i7 = 0; i7 < 16; ++i7) {
 			for(int i8 = 0; i8 < 16; ++i8) {
@@ -120,7 +120,7 @@ public class ChunkProviderHell implements IChunkProvider {
 					int i16 = (i8 * 16 + i7) * 128 + i15;
 					if(i15 >= 127 - this.hellRNG.nextInt(5)) {
 						b3[i16] = (byte)Block.bedrock.blockID;
-					} else if(i15 <= 0 + this.hellRNG.nextInt(5)) {
+					} else if(i15 <= this.hellRNG.nextInt(5)) {
 						b3[i16] = (byte)Block.bedrock.blockID;
 					} else {
 						byte b17 = b3[i16];
@@ -194,11 +194,11 @@ public class ChunkProviderHell implements IChunkProvider {
 
 		double d8 = 684.412D;
 		double d10 = 2053.236D;
-		this.field_4172_f = this.field_4177_a.generateNoiseOctaves(this.field_4172_f, (double)i2, (double)i3, (double)i4, i5, 1, i7, 1.0D, 0.0D, 1.0D);
-		this.field_4171_g = this.field_4176_b.generateNoiseOctaves(this.field_4171_g, (double)i2, (double)i3, (double)i4, i5, 1, i7, 100.0D, 0.0D, 100.0D);
-		this.field_4175_c = this.field_4167_k.generateNoiseOctaves(this.field_4175_c, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8 / 80.0D, d10 / 60.0D, d8 / 80.0D);
-		this.field_4174_d = this.field_4169_i.generateNoiseOctaves(this.field_4174_d, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
-		this.field_4173_e = this.field_4168_j.generateNoiseOctaves(this.field_4173_e, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
+		this.field_4172_f = this.field_4177_a.generateNoiseOctaves(this.field_4172_f, i2, i3, i4, i5, 1, i7, 1.0D, 0.0D, 1.0D);
+		this.field_4171_g = this.field_4176_b.generateNoiseOctaves(this.field_4171_g, i2, i3, i4, i5, 1, i7, 100.0D, 0.0D, 100.0D);
+		this.field_4175_c = this.field_4167_k.generateNoiseOctaves(this.field_4175_c, i2, i3, i4, i5, i6, i7, d8 / 80.0D, d10 / 60.0D, d8 / 80.0D);
+		this.field_4174_d = this.field_4169_i.generateNoiseOctaves(this.field_4174_d, i2, i3, i4, i5, i6, i7, d8, d10, d8);
+		this.field_4173_e = this.field_4168_j.generateNoiseOctaves(this.field_4173_e, i2, i3, i4, i5, i6, i7, d8, d10, d8);
 		int i12 = 0;
 		int i13 = 0;
 		double[] d14 = new double[i6];
@@ -206,9 +206,9 @@ public class ChunkProviderHell implements IChunkProvider {
 		int i15;
 		for(i15 = 0; i15 < i6; ++i15) {
 			d14[i15] = Math.cos((double)i15 * Math.PI * 6.0D / (double)i6) * 2.0D;
-			double d16 = (double)i15;
+			double d16 = i15;
 			if(i15 > i6 / 2) {
-				d16 = (double)(i6 - 1 - i15);
+				d16 = i6 - 1 - i15;
 			}
 
 			if(d16 < 4.0D) {
@@ -269,7 +269,7 @@ public class ChunkProviderHell implements IChunkProvider {
 					d24 -= d26;
 					double d34;
 					if(i23 > i6 - 4) {
-						d34 = (double)((float)(i23 - (i6 - 4)) / 3.0F);
+						d34 = (float)(i23 - (i6 - 4)) / 3.0F;
 						d24 = d24 * (1.0D - d34) + -10.0D * d34;
 					}
 

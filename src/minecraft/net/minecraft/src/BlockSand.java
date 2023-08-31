@@ -25,7 +25,7 @@ public class BlockSand extends Block {
 		if(canFallBelow(world1, i2, i3 - 1, i4) && i3 >= 0) {
 			byte b8 = 32;
 			if(!fallInstantly && world1.checkChunksExist(i2 - b8, i3 - b8, i4 - b8, i2 + b8, i3 + b8, i4 + b8)) {
-				EntityFallingSand entityFallingSand9 = new EntityFallingSand(world1, (double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), this.blockID);
+				EntityFallingSand entityFallingSand9 = new EntityFallingSand(world1, (float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F, this.blockID);
 				world1.entityJoinedWorld(entityFallingSand9);
 			} else {
 				world1.setBlockWithNotify(i2, i3, i4, 0);
@@ -54,7 +54,7 @@ public class BlockSand extends Block {
 			return true;
 		} else {
 			Material material5 = Block.blocksList[i4].blockMaterial;
-			return material5 == Material.water ? true : material5 == Material.lava;
+			return material5 == Material.water || material5 == Material.lava;
 		}
 	}
 }

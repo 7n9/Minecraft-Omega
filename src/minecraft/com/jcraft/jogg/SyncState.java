@@ -8,8 +8,8 @@ public class SyncState {
 	int unsynced;
 	int headerbytes;
 	int bodybytes;
-	private Page pageseek = new Page();
-	private byte[] chksum = new byte[4];
+	private final Page pageseek = new Page();
+	private final byte[] chksum = new byte[4];
 
 	public int clear() {
 		this.data = null;

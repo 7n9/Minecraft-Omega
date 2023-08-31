@@ -118,9 +118,9 @@ public class EntityPainting extends Entity {
 		}
 
 		f6 += this.func_411_c(this.art.sizeY);
-		this.setPosition((double)f5, (double)f6, (double)f7);
+		this.setPosition(f5, f6, f7);
 		float f9 = -0.00625F;
-		this.boundingBox.setBounds((double)(f5 - f2 - f9), (double)(f6 - f3 - f9), (double)(f7 - f4 - f9), (double)(f5 + f2 + f9), (double)(f6 + f3 + f9), (double)(f7 + f4 + f9));
+		this.boundingBox.setBounds(f5 - f2 - f9, f6 - f3 - f9, f7 - f4 - f9, f5 + f2 + f9, f6 + f3 + f9, f7 + f4 + f9);
 	}
 
 	private float func_411_c(int i1) {

@@ -4,7 +4,7 @@ import com.jcraft.jogg.Buffer;
 
 class Residue0 extends FuncResidue {
 	private static int[][][] _01inverse_partword = new int[2][][];
-	static int[][] _2inverse_partword = (int[][])null;
+	static int[][] _2inverse_partword = null;
 
 	void pack(Object object1, Buffer buffer2) {
 		Residue0.InfoResidue0 residue0$InfoResidue03 = (Residue0.InfoResidue0)object1;
@@ -109,7 +109,7 @@ class Residue0 extends FuncResidue {
 			}
 		}
 
-		residue0$LookResidue05.partvals = (int)Math.rint(Math.pow((double)residue0$LookResidue05.parts, (double)i7));
+		residue0$LookResidue05.partvals = (int)Math.rint(Math.pow(residue0$LookResidue05.parts, i7));
 		residue0$LookResidue05.stages = i8;
 		residue0$LookResidue05.decodemap = new int[residue0$LookResidue05.partvals][];
 

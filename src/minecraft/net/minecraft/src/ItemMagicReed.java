@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class ItemMagicReed extends Item {
-	private int field_320_a;
+	private final int field_320_a;
 
 	public ItemMagicReed(int i1, Block block2) {
 		super(i1);
@@ -45,7 +45,7 @@ public class ItemMagicReed extends Item {
 				if(world3.setBlockWithNotify(i4, i5, i6, this.field_320_a)) {
 					Block.blocksList[this.field_320_a].onBlockPlaced(world3, i4, i5, i6, i7);
 					Block.blocksList[this.field_320_a].onBlockPlacedBy(world3, i4, i5, i6, entityPlayer2);
-					world3.playSoundEffect((double)((float)i4 + 0.5F), (double)((float)i5 + 0.5F), (double)((float)i6 + 0.5F), block8.stepSound.func_1145_d(), (block8.stepSound.getVolume() + 1.0F) / 2.0F, block8.stepSound.getPitch() * 0.8F);
+					world3.playSoundEffect((float)i4 + 0.5F, (float)i5 + 0.5F, (float)i6 + 0.5F, block8.stepSound.func_1145_d(), (block8.stepSound.getVolume() + 1.0F) / 2.0F, block8.stepSound.getPitch() * 0.8F);
 					--itemStack1.stackSize;
 				}
 			}

@@ -27,6 +27,6 @@ public class NBTTagLong extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.longValue;
+		return String.valueOf(this.longValue);
 	}
 }

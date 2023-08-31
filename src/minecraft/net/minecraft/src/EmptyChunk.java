@@ -118,7 +118,7 @@ public class EmptyChunk extends Chunk {
 	}
 
 	public Random func_997_a(long j1) {
-		return new Random(this.worldObj.getRandomSeed() + (long)(this.xPosition * this.xPosition * 4987142) + (long)(this.xPosition * 5947611) + (long)(this.zPosition * this.zPosition) * 4392871L + (long)(this.zPosition * 389711) ^ j1);
+		return new Random(this.worldObj.getRandomSeed() + (long)((long) this.xPosition * this.xPosition * 4987142) + (long)(this.xPosition * 5947611L) + (long)((long) this.zPosition * this.zPosition) * 4392871L + (long)(this.zPosition * 389711L) ^ j1);
 	}
 
 	public boolean func_21167_h() {

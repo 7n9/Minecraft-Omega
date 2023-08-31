@@ -3,9 +3,9 @@ package net.minecraft.src;
 public class EntityRainFX extends EntityFX {
 	public EntityRainFX(World world1, double d2, double d4, double d6) {
 		super(world1, d2, d4, d6, 0.0D, 0.0D, 0.0D);
-		this.motionX *= (double)0.3F;
-		this.motionY = (double)((float)Math.random() * 0.2F + 0.1F);
-		this.motionZ *= (double)0.3F;
+		this.motionX *= 0.3F;
+		this.motionY = (float)Math.random() * 0.2F + 0.1F;
+		this.motionZ *= 0.3F;
 		this.particleRed = 1.0F;
 		this.particleGreen = 1.0F;
 		this.particleBlue = 1.0F;
@@ -23,11 +23,11 @@ public class EntityRainFX extends EntityFX {
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		this.motionY -= (double)this.particleGravity;
+		this.motionY -= this.particleGravity;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= (double)0.98F;
-		this.motionY *= (double)0.98F;
-		this.motionZ *= (double)0.98F;
+		this.motionX *= 0.98F;
+		this.motionY *= 0.98F;
+		this.motionZ *= 0.98F;
 		if(this.particleMaxAge-- <= 0) {
 			this.setEntityDead();
 		}
@@ -37,13 +37,13 @@ public class EntityRainFX extends EntityFX {
 				this.setEntityDead();
 			}
 
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 		}
 
 		Material material1 = this.worldObj.getBlockMaterial(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
 		if(material1.getIsLiquid() || material1.isSolid()) {
-			double d2 = (double)((float)(MathHelper.floor_double(this.posY) + 1) - BlockFluid.getPercentAir(this.worldObj.getBlockMetadata(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ))));
+			double d2 = (float)(MathHelper.floor_double(this.posY) + 1) - BlockFluid.getPercentAir(this.worldObj.getBlockMetadata(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)));
 			if(this.posY < d2) {
 				this.setEntityDead();
 			}

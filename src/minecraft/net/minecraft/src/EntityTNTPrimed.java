@@ -15,9 +15,9 @@ public class EntityTNTPrimed extends Entity {
 		this(world1);
 		this.setPosition(d2, d4, d6);
 		float f8 = (float)(Math.random() * (double)(float)Math.PI * 2.0D);
-		this.motionX = (double)(-MathHelper.sin(f8 * (float)Math.PI / 180.0F) * 0.02F);
-		this.motionY = (double)0.2F;
-		this.motionZ = (double)(-MathHelper.cos(f8 * (float)Math.PI / 180.0F) * 0.02F);
+		this.motionX = -MathHelper.sin(f8 * (float)Math.PI / 180.0F) * 0.02F;
+		this.motionY = 0.2F;
+		this.motionZ = -MathHelper.cos(f8 * (float)Math.PI / 180.0F) * 0.02F;
 		this.fuse = 80;
 		this.prevPosX = d2;
 		this.prevPosY = d4;
@@ -39,14 +39,14 @@ public class EntityTNTPrimed extends Entity {
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		this.motionY -= (double)0.04F;
+		this.motionY -= 0.04F;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= (double)0.98F;
-		this.motionY *= (double)0.98F;
-		this.motionZ *= (double)0.98F;
+		this.motionX *= 0.98F;
+		this.motionY *= 0.98F;
+		this.motionZ *= 0.98F;
 		if(this.onGround) {
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 			this.motionY *= -0.5D;
 		}
 
@@ -65,7 +65,7 @@ public class EntityTNTPrimed extends Entity {
 
 	private void explode() {
 		float f1 = 4.0F;
-		this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, f1);
+		this.worldObj.createExplosion(null, this.posX, this.posY, this.posZ, f1);
 	}
 
 	protected void writeEntityToNBT(NBTTagCompound nBTTagCompound1) {

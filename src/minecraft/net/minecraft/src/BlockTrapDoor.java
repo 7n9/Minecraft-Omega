@@ -87,7 +87,7 @@ public class BlockTrapDoor extends Block {
 		boolean z7 = (i6 & 4) > 0;
 		if(z7 != z5) {
 			world1.setBlockMetadataWithNotify(i2, i3, i4, i6 ^ 4);
-			world1.func_28107_a((EntityPlayer)null, 1003, i2, i3, i4, 0);
+			world1.func_28107_a(null, 1003, i2, i3, i4, 0);
 		}
 	}
 

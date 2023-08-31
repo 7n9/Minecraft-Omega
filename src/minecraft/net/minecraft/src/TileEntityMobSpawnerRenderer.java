@@ -13,7 +13,7 @@ public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer {
 		GL11.glTranslatef((float)d2 + 0.5F, (float)d4, (float)d6 + 0.5F);
 		Entity entity9 = (Entity)this.entityHashMap.get(tileEntityMobSpawner1.getMobID());
 		if(entity9 == null) {
-			entity9 = EntityList.createEntityInWorld(tileEntityMobSpawner1.getMobID(), (World)null);
+			entity9 = EntityList.createEntityInWorld(tileEntityMobSpawner1.getMobID(), null);
 			this.entityHashMap.put(tileEntityMobSpawner1.getMobID(), entity9);
 		}
 

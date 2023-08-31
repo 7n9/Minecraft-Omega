@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class InventoryCraftResult implements IInventory {
-	private ItemStack[] stackResult = new ItemStack[1];
+	private final ItemStack[] stackResult = new ItemStack[1];
 
 	public int getSizeInventory() {
 		return 1;

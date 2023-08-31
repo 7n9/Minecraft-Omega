@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EntityList {
-	private static Map stringToClassMapping = new HashMap();
-	private static Map classToStringMapping = new HashMap();
-	private static Map IDtoClassMapping = new HashMap();
-	private static Map classToIDMapping = new HashMap();
+	private static final Map stringToClassMapping = new HashMap();
+	private static final Map classToStringMapping = new HashMap();
+	private static final Map IDtoClassMapping = new HashMap();
+	private static final Map classToIDMapping = new HashMap();
 
 	private static void addMapping(Class class0, String string1, int i2) {
 		stringToClassMapping.put(string1, class0);

@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class EntityFlameFX extends EntityFX {
-	private float field_672_a;
+	private final float field_672_a;
 
 	public EntityFlameFX(World world1, double d2, double d4, double d6, double d8, double d10, double d12) {
 		super(world1, d2, d4, d6, d8, d10, d12);
@@ -47,12 +47,12 @@ public class EntityFlameFX extends EntityFX {
 		}
 
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= (double)0.96F;
-		this.motionY *= (double)0.96F;
-		this.motionZ *= (double)0.96F;
+		this.motionX *= 0.96F;
+		this.motionY *= 0.96F;
+		this.motionZ *= 0.96F;
 		if(this.onGround) {
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 		}
 
 	}

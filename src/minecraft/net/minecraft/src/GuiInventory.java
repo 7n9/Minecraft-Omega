@@ -49,10 +49,10 @@ public class GuiInventory extends GuiContainer {
 		GL11.glRotatef(135.0F, 0.0F, 1.0F, 0.0F);
 		RenderHelper.enableStandardItemLighting();
 		GL11.glRotatef(-135.0F, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(-((float)Math.atan((double)(f10 / 40.0F))) * 20.0F, 1.0F, 0.0F, 0.0F);
-		this.mc.thePlayer.renderYawOffset = (float)Math.atan((double)(f9 / 40.0F)) * 20.0F;
-		this.mc.thePlayer.rotationYaw = (float)Math.atan((double)(f9 / 40.0F)) * 40.0F;
-		this.mc.thePlayer.rotationPitch = -((float)Math.atan((double)(f10 / 40.0F))) * 20.0F;
+		GL11.glRotatef(-((float)Math.atan(f10 / 40.0F)) * 20.0F, 1.0F, 0.0F, 0.0F);
+		this.mc.thePlayer.renderYawOffset = (float)Math.atan(f9 / 40.0F) * 20.0F;
+		this.mc.thePlayer.rotationYaw = (float)Math.atan(f9 / 40.0F) * 40.0F;
+		this.mc.thePlayer.rotationPitch = -((float)Math.atan(f10 / 40.0F)) * 20.0F;
 		this.mc.thePlayer.entityBrightness = 1.0F;
 		GL11.glTranslatef(0.0F, this.mc.thePlayer.yOffset, 0.0F);
 		RenderManager.instance.playerViewY = 180.0F;

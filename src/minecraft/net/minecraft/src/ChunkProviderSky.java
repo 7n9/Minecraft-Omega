@@ -3,21 +3,21 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class ChunkProviderSky implements IChunkProvider {
-	private Random field_28087_j;
-	private NoiseGeneratorOctaves field_28086_k;
-	private NoiseGeneratorOctaves field_28085_l;
-	private NoiseGeneratorOctaves field_28084_m;
-	private NoiseGeneratorOctaves field_28083_n;
-	private NoiseGeneratorOctaves field_28082_o;
+	private final Random field_28087_j;
+	private final NoiseGeneratorOctaves field_28086_k;
+	private final NoiseGeneratorOctaves field_28085_l;
+	private final NoiseGeneratorOctaves field_28084_m;
+	private final NoiseGeneratorOctaves field_28083_n;
+	private final NoiseGeneratorOctaves field_28082_o;
 	public NoiseGeneratorOctaves field_28096_a;
 	public NoiseGeneratorOctaves field_28095_b;
 	public NoiseGeneratorOctaves field_28094_c;
-	private World field_28081_p;
+	private final World field_28081_p;
 	private double[] field_28080_q;
 	private double[] field_28079_r = new double[256];
 	private double[] field_28078_s = new double[256];
 	private double[] field_28077_t = new double[256];
-	private MapGenBase field_28076_u = new MapGenCaves();
+	private final MapGenBase field_28076_u = new MapGenCaves();
 	private BiomeGenBase[] field_28075_v;
 	double[] field_28093_d;
 	double[] field_28092_e;
@@ -51,13 +51,13 @@ public class ChunkProviderSky implements IChunkProvider {
 			for(int i11 = 0; i11 < b6; ++i11) {
 				for(int i12 = 0; i12 < 32; ++i12) {
 					double d13 = 0.25D;
-					double d15 = this.field_28080_q[((i10 + 0) * i9 + i11 + 0) * b8 + i12 + 0];
-					double d17 = this.field_28080_q[((i10 + 0) * i9 + i11 + 1) * b8 + i12 + 0];
-					double d19 = this.field_28080_q[((i10 + 1) * i9 + i11 + 0) * b8 + i12 + 0];
-					double d21 = this.field_28080_q[((i10 + 1) * i9 + i11 + 1) * b8 + i12 + 0];
-					double d23 = (this.field_28080_q[((i10 + 0) * i9 + i11 + 0) * b8 + i12 + 1] - d15) * d13;
-					double d25 = (this.field_28080_q[((i10 + 0) * i9 + i11 + 1) * b8 + i12 + 1] - d17) * d13;
-					double d27 = (this.field_28080_q[((i10 + 1) * i9 + i11 + 0) * b8 + i12 + 1] - d19) * d13;
+					double d15 = this.field_28080_q[((i10) * i9 + i11) * b8 + i12];
+					double d17 = this.field_28080_q[((i10) * i9 + i11 + 1) * b8 + i12];
+					double d19 = this.field_28080_q[((i10 + 1) * i9 + i11) * b8 + i12];
+					double d21 = this.field_28080_q[((i10 + 1) * i9 + i11 + 1) * b8 + i12];
+					double d23 = (this.field_28080_q[((i10) * i9 + i11) * b8 + i12 + 1] - d15) * d13;
+					double d25 = (this.field_28080_q[((i10) * i9 + i11 + 1) * b8 + i12 + 1] - d17) * d13;
+					double d27 = (this.field_28080_q[((i10 + 1) * i9 + i11) * b8 + i12 + 1] - d19) * d13;
 					double d29 = (this.field_28080_q[((i10 + 1) * i9 + i11 + 1) * b8 + i12 + 1] - d21) * d13;
 
 					for(int i31 = 0; i31 < 4; ++i31) {
@@ -68,7 +68,7 @@ public class ChunkProviderSky implements IChunkProvider {
 						double d40 = (d21 - d17) * d32;
 
 						for(int i42 = 0; i42 < 8; ++i42) {
-							int i43 = i42 + i10 * 8 << 11 | 0 + i11 * 8 << 7 | i12 * 4 + i31;
+							int i43 = i42 + i10 * 8 << 11 | i11 * 8 << 7 | i12 * 4 + i31;
 							short s44 = 128;
 							double d45 = 0.125D;
 							double d47 = d34;
@@ -102,9 +102,9 @@ public class ChunkProviderSky implements IChunkProvider {
 
 	public void func_28072_a(int i1, int i2, byte[] b3, BiomeGenBase[] biomeGenBase4) {
 		double d5 = 8.0D / 256D;
-		this.field_28079_r = this.field_28083_n.generateNoiseOctaves(this.field_28079_r, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d5, d5, 1.0D);
-		this.field_28078_s = this.field_28083_n.generateNoiseOctaves(this.field_28078_s, (double)(i1 * 16), 109.0134D, (double)(i2 * 16), 16, 1, 16, d5, 1.0D, d5);
-		this.field_28077_t = this.field_28082_o.generateNoiseOctaves(this.field_28077_t, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d5 * 2.0D, d5 * 2.0D, d5 * 2.0D);
+		this.field_28079_r = this.field_28083_n.generateNoiseOctaves(this.field_28079_r, i1 * 16, i2 * 16, 0.0D, 16, 16, 1, d5, d5, 1.0D);
+		this.field_28078_s = this.field_28083_n.generateNoiseOctaves(this.field_28078_s, i1 * 16, 109.0134D, i2 * 16, 16, 1, 16, d5, 1.0D, d5);
+		this.field_28077_t = this.field_28082_o.generateNoiseOctaves(this.field_28077_t, i1 * 16, i2 * 16, 0.0D, 16, 16, 1, d5 * 2.0D, d5 * 2.0D, d5 * 2.0D);
 
 		for(int i7 = 0; i7 < 16; ++i7) {
 			for(int i8 = 0; i8 < 16; ++i8) {
@@ -176,9 +176,9 @@ public class ChunkProviderSky implements IChunkProvider {
 		this.field_28090_g = this.field_28096_a.func_4109_a(this.field_28090_g, i2, i4, i5, i7, 1.121D, 1.121D, 0.5D);
 		this.field_28089_h = this.field_28095_b.func_4109_a(this.field_28089_h, i2, i4, i5, i7, 200.0D, 200.0D, 0.5D);
 		d8 *= 2.0D;
-		this.field_28093_d = this.field_28084_m.generateNoiseOctaves(this.field_28093_d, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8 / 80.0D, d10 / 160.0D, d8 / 80.0D);
-		this.field_28092_e = this.field_28086_k.generateNoiseOctaves(this.field_28092_e, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
-		this.field_28091_f = this.field_28085_l.generateNoiseOctaves(this.field_28091_f, (double)i2, (double)i3, (double)i4, i5, i6, i7, d8, d10, d8);
+		this.field_28093_d = this.field_28084_m.generateNoiseOctaves(this.field_28093_d, i2, i3, i4, i5, i6, i7, d8 / 80.0D, d10 / 160.0D, d8 / 80.0D);
+		this.field_28092_e = this.field_28086_k.generateNoiseOctaves(this.field_28092_e, i2, i3, i4, i5, i6, i7, d8, d10, d8);
+		this.field_28091_f = this.field_28085_l.generateNoiseOctaves(this.field_28091_f, i2, i3, i4, i5, i6, i7, d8, d10, d8);
 		int i14 = 0;
 		int i15 = 0;
 		int i16 = 16 / i5;
@@ -243,13 +243,13 @@ public class ChunkProviderSky implements IChunkProvider {
 					byte b44 = 32;
 					double d45;
 					if(i33 > i6 - b44) {
-						d45 = (double)((float)(i33 - (i6 - b44)) / ((float)b44 - 1.0F));
+						d45 = (float)(i33 - (i6 - b44)) / ((float)b44 - 1.0F);
 						d34 = d34 * (1.0D - d45) + -30.0D * d45;
 					}
 
 					b44 = 8;
 					if(i33 < b44) {
-						d45 = (double)((float)(b44 - i33) / ((float)b44 - 1.0F));
+						d45 = (float)(b44 - i33) / ((float)b44 - 1.0F);
 						d34 = d34 * (1.0D - d45) + -30.0D * d45;
 					}
 

@@ -85,7 +85,7 @@ public class EntitySlime extends EntityLiving implements IMob {
 
 			this.field_768_a = 1.0F;
 			this.moveStrafing = 1.0F - this.rand.nextFloat() * 2.0F;
-			this.moveForward = (float)(1 * this.getSlimeSize());
+			this.moveForward = (float)(this.getSlimeSize());
 		} else {
 			this.isJumping = false;
 			if(this.onGround) {

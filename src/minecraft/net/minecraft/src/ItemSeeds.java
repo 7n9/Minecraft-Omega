@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class ItemSeeds extends Item {
-	private int field_318_a;
+	private final int field_318_a;
 
 	public ItemSeeds(int i1, int i2) {
 		super(i1);

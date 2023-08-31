@@ -1,7 +1,7 @@
 package com.jcraft.jogg;
 
 public class Page {
-	private static int[] crc_lookup = new int[256];
+	private static final int[] crc_lookup = new int[256];
 	public byte[] header_base;
 	public int header;
 	public int header_len;
@@ -40,7 +40,7 @@ public class Page {
 	}
 
 	public long granulepos() {
-		long j1 = (long)(this.header_base[this.header + 13] & 255);
+		long j1 = this.header_base[this.header + 13] & 255;
 		j1 = j1 << 8 | (long)(this.header_base[this.header + 12] & 255);
 		j1 = j1 << 8 | (long)(this.header_base[this.header + 11] & 255);
 		j1 = j1 << 8 | (long)(this.header_base[this.header + 10] & 255);

@@ -1,10 +1,10 @@
 package net.minecraft.src;
 
 public class GuiOptions extends GuiScreen {
-	private GuiScreen parentScreen;
+	private final GuiScreen parentScreen;
 	protected String screenTitle = "Options";
-	private GameSettings options;
-	private static EnumOptions[] field_22135_k = new EnumOptions[]{EnumOptions.MUSIC, EnumOptions.SOUND, EnumOptions.INVERT_MOUSE, EnumOptions.SENSITIVITY, EnumOptions.DIFFICULTY};
+	private final GameSettings options;
+	private static final EnumOptions[] field_22135_k = new EnumOptions[]{EnumOptions.MUSIC, EnumOptions.SOUND, EnumOptions.INVERT_MOUSE, EnumOptions.SENSITIVITY, EnumOptions.DIFFICULTY};
 
 	public GuiOptions(GuiScreen guiScreen1, GameSettings gameSettings2) {
 		this.parentScreen = guiScreen1;

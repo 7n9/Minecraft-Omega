@@ -6,7 +6,7 @@ import java.awt.BorderLayout;
 import net.minecraft.src.CanvasIsomPreview;
 
 public class IsomPreviewApplet extends Applet {
-	private CanvasIsomPreview a = new CanvasIsomPreview();
+	private final CanvasIsomPreview a = new CanvasIsomPreview();
 
 	public IsomPreviewApplet() {
 		this.setLayout(new BorderLayout());

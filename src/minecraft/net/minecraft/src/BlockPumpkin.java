@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class BlockPumpkin extends Block {
-	private boolean blockType;
+	private final boolean blockType;
 
 	protected BlockPumpkin(int i1, int i2, boolean z3) {
 		super(i1, Material.pumpkin);

@@ -59,12 +59,12 @@ public abstract class BlockFluid extends Block {
 
 	public boolean getIsBlockSolid(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
 		Material material6 = iBlockAccess1.getBlockMaterial(i2, i3, i4);
-		return material6 == this.blockMaterial ? false : (material6 == Material.ice ? false : (i5 == 1 ? true : super.getIsBlockSolid(iBlockAccess1, i2, i3, i4, i5)));
+		return material6 != this.blockMaterial && (material6 != Material.ice && (i5 == 1 || super.getIsBlockSolid(iBlockAccess1, i2, i3, i4, i5)));
 	}
 
 	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
 		Material material6 = iBlockAccess1.getBlockMaterial(i2, i3, i4);
-		return material6 == this.blockMaterial ? false : (material6 == Material.ice ? false : (i5 == 1 ? true : super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5)));
+		return material6 != this.blockMaterial && (material6 != Material.ice && (i5 == 1 || super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5)));
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
@@ -113,12 +113,12 @@ public abstract class BlockFluid extends Block {
 					i11 = this.getEffectiveFlowDecay(iBlockAccess1, i8, i3 - 1, i10);
 					if(i11 >= 0) {
 						i12 = i11 - (i6 - 8);
-						vec3D5 = vec3D5.addVector((double)((i8 - i2) * i12), (double)((i3 - i3) * i12), (double)((i10 - i4) * i12));
+						vec3D5 = vec3D5.addVector((i8 - i2) * i12, (0) * i12, (i10 - i4) * i12);
 					}
 				}
 			} else if(i11 >= 0) {
 				i12 = i11 - i6;
-				vec3D5 = vec3D5.addVector((double)((i8 - i2) * i12), (double)((i3 - i3) * i12), (double)((i10 - i4) * i12));
+				vec3D5 = vec3D5.addVector((i8 - i2) * i12, (0) * i12, (i10 - i4) * i12);
 			}
 		}
 
@@ -194,14 +194,14 @@ public abstract class BlockFluid extends Block {
 		if(this.blockMaterial == Material.water && random5.nextInt(64) == 0) {
 			int i6 = world1.getBlockMetadata(i2, i3, i4);
 			if(i6 > 0 && i6 < 8) {
-				world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "liquid.water", random5.nextFloat() * 0.25F + 0.75F, random5.nextFloat() * 1.0F + 0.5F);
+				world1.playSoundEffect((float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F, "liquid.water", random5.nextFloat() * 0.25F + 0.75F, random5.nextFloat() + 0.5F);
 			}
 		}
 
 		if(this.blockMaterial == Material.lava && world1.getBlockMaterial(i2, i3 + 1, i4) == Material.air && !world1.isBlockOpaqueCube(i2, i3 + 1, i4) && random5.nextInt(100) == 0) {
-			double d12 = (double)((float)i2 + random5.nextFloat());
+			double d12 = (float)i2 + random5.nextFloat();
 			double d8 = (double)i3 + this.maxY;
-			double d10 = (double)((float)i4 + random5.nextFloat());
+			double d10 = (float)i4 + random5.nextFloat();
 			world1.spawnParticle("lava", d12, d8, d10, 0.0D, 0.0D, 0.0D);
 		}
 
@@ -268,7 +268,7 @@ public abstract class BlockFluid extends Block {
 	}
 
 	protected void triggerLavaMixEffects(World world1, int i2, int i3, int i4) {
-		world1.playSoundEffect((double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), "random.fizz", 0.5F, 2.6F + (world1.rand.nextFloat() - world1.rand.nextFloat()) * 0.8F);
+		world1.playSoundEffect((float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F, "random.fizz", 0.5F, 2.6F + (world1.rand.nextFloat() - world1.rand.nextFloat()) * 0.8F);
 
 		for(int i5 = 0; i5 < 8; ++i5) {
 			world1.spawnParticle("largesmoke", (double)i2 + Math.random(), (double)i3 + 1.2D, (double)i4 + Math.random(), 0.0D, 0.0D, 0.0D);

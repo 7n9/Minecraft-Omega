@@ -9,13 +9,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class ChunkProvider implements IChunkProvider {
-	private Set droppedChunksSet = new HashSet();
-	private Chunk field_28064_b;
-	private IChunkProvider chunkProvider;
-	private IChunkLoader chunkLoader;
-	private Map chunkMap = new HashMap();
-	private List chunkList = new ArrayList();
-	private World field_28066_g;
+	private final Set droppedChunksSet = new HashSet();
+	private final Chunk field_28064_b;
+	private final IChunkProvider chunkProvider;
+	private final IChunkLoader chunkLoader;
+	private final Map chunkMap = new HashMap();
+	private final List chunkList = new ArrayList();
+	private final World field_28066_g;
 
 	public ChunkProvider(World world1, IChunkLoader iChunkLoader2, IChunkProvider iChunkProvider3) {
 		this.field_28064_b = new EmptyChunk(world1, new byte[32768], 0, 0);

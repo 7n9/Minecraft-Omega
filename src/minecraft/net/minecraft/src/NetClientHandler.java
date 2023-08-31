@@ -14,15 +14,15 @@ import net.minecraft.client.Minecraft;
 
 public class NetClientHandler extends NetHandler {
 	private boolean disconnected = false;
-	private NetworkManager netManager;
+	private final NetworkManager netManager;
 	public String field_1209_a;
-	private Minecraft mc;
+	private final Minecraft mc;
 	private WorldClient worldClient;
 	private boolean field_1210_g = false;
-	public MapStorage field_28118_b = new MapStorage((ISaveHandler)null);
+	public MapStorage field_28118_b = new MapStorage(null);
 	Random rand = new Random();
 
-	public NetClientHandler(Minecraft minecraft1, String string2, int i3) throws IOException, UnknownHostException {
+	public NetClientHandler(Minecraft minecraft1, String string2, int i3) throws IOException {
 		this.mc = minecraft1;
 		Socket socket4 = new Socket(InetAddress.getByName(string2), i3);
 		this.netManager = new NetworkManager(socket4, "Client", this);
@@ -185,9 +185,9 @@ public class NetClientHandler extends NetHandler {
 		float f8 = (float)(packet20NamedEntitySpawn1.rotation * 360) / 256.0F;
 		float f9 = (float)(packet20NamedEntitySpawn1.pitch * 360) / 256.0F;
 		EntityOtherPlayerMP entityOtherPlayerMP10 = new EntityOtherPlayerMP(this.mc.theWorld, packet20NamedEntitySpawn1.name);
-		entityOtherPlayerMP10.prevPosX = entityOtherPlayerMP10.lastTickPosX = (double)(entityOtherPlayerMP10.serverPosX = packet20NamedEntitySpawn1.xPosition);
-		entityOtherPlayerMP10.prevPosY = entityOtherPlayerMP10.lastTickPosY = (double)(entityOtherPlayerMP10.serverPosY = packet20NamedEntitySpawn1.yPosition);
-		entityOtherPlayerMP10.prevPosZ = entityOtherPlayerMP10.lastTickPosZ = (double)(entityOtherPlayerMP10.serverPosZ = packet20NamedEntitySpawn1.zPosition);
+		entityOtherPlayerMP10.prevPosX = entityOtherPlayerMP10.lastTickPosX = entityOtherPlayerMP10.serverPosX = packet20NamedEntitySpawn1.xPosition;
+		entityOtherPlayerMP10.prevPosY = entityOtherPlayerMP10.lastTickPosY = entityOtherPlayerMP10.serverPosY = packet20NamedEntitySpawn1.yPosition;
+		entityOtherPlayerMP10.prevPosZ = entityOtherPlayerMP10.lastTickPosZ = entityOtherPlayerMP10.serverPosZ = packet20NamedEntitySpawn1.zPosition;
 		int i11 = packet20NamedEntitySpawn1.currentItem;
 		if(i11 == 0) {
 			entityOtherPlayerMP10.inventory.mainInventory[entityOtherPlayerMP10.inventory.currentItem] = null;
@@ -264,7 +264,7 @@ public class NetClientHandler extends NetHandler {
 			this.mc.thePlayer.prevPosY = this.mc.thePlayer.posY;
 			this.mc.thePlayer.prevPosZ = this.mc.thePlayer.posZ;
 			this.field_1210_g = true;
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 		}
 
 	}
@@ -302,16 +302,16 @@ public class NetClientHandler extends NetHandler {
 	}
 
 	public void handleKickDisconnect(Packet255KickDisconnect packet255KickDisconnect1) {
-		this.netManager.networkShutdown("disconnect.kicked", new Object[0]);
+		this.netManager.networkShutdown("disconnect.kicked");
 		this.disconnected = true;
-		this.mc.changeWorld1((World)null);
-		this.mc.displayGuiScreen(new GuiConnectFailed("disconnect.disconnected", "disconnect.genericReason", new Object[]{packet255KickDisconnect1.reason}));
+		this.mc.changeWorld1(null);
+		this.mc.displayGuiScreen(new GuiConnectFailed("disconnect.disconnected", "disconnect.genericReason", packet255KickDisconnect1.reason));
 	}
 
 	public void handleErrorMessage(String string1, Object[] object2) {
 		if(!this.disconnected) {
 			this.disconnected = true;
-			this.mc.changeWorld1((World)null);
+			this.mc.changeWorld1(null);
 			this.mc.displayGuiScreen(new GuiConnectFailed("disconnect.lost", string1, object2));
 		}
 	}
@@ -331,7 +331,7 @@ public class NetClientHandler extends NetHandler {
 
 	public void handleCollect(Packet22Collect packet22Collect1) {
 		Entity entity2 = this.getEntityByID(packet22Collect1.collectedEntityId);
-		Object object3 = (EntityLiving)this.getEntityByID(packet22Collect1.collectorEntityId);
+		Object object3 = this.getEntityByID(packet22Collect1.collectorEntityId);
 		if(object3 == null) {
 			object3 = this.mc.thePlayer;
 		}
@@ -391,11 +391,11 @@ public class NetClientHandler extends NetHandler {
 				if(string4.equalsIgnoreCase("ok")) {
 					this.addToSendQueue(new Packet1Login(this.mc.session.username, 14));
 				} else {
-					this.netManager.networkShutdown("disconnect.loginFailedInfo", new Object[]{string4});
+					this.netManager.networkShutdown("disconnect.loginFailedInfo", string4);
 				}
 			} catch (Exception exception5) {
 				exception5.printStackTrace();
-				this.netManager.networkShutdown("disconnect.genericReason", new Object[]{"Internal client error: " + exception5.toString()});
+				this.netManager.networkShutdown("disconnect.genericReason", "Internal client error: " + exception5);
 			}
 		}
 
@@ -404,7 +404,7 @@ public class NetClientHandler extends NetHandler {
 	public void disconnect() {
 		this.disconnected = true;
 		this.netManager.wakeThreads();
-		this.netManager.networkShutdown("disconnect.closed", new Object[0]);
+		this.netManager.networkShutdown("disconnect.closed");
 	}
 
 	public void handleMobSpawn(Packet24MobSpawn packet24MobSpawn1) {
@@ -458,7 +458,7 @@ public class NetClientHandler extends NetHandler {
 	}
 
 	private Entity getEntityByID(int i1) {
-		return (Entity)(i1 == this.mc.thePlayer.entityId ? this.mc.thePlayer : this.worldClient.func_709_b(i1));
+		return i1 == this.mc.thePlayer.entityId ? this.mc.thePlayer : this.worldClient.func_709_b(i1);
 	}
 
 	public void handleHealth(Packet8UpdateHealth packet8UpdateHealth1) {
@@ -479,7 +479,7 @@ public class NetClientHandler extends NetHandler {
 	}
 
 	public void func_12245_a(Packet60Explosion packet60Explosion1) {
-		Explosion explosion2 = new Explosion(this.mc.theWorld, (Entity)null, packet60Explosion1.explosionX, packet60Explosion1.explosionY, packet60Explosion1.explosionZ, packet60Explosion1.explosionSize);
+		Explosion explosion2 = new Explosion(this.mc.theWorld, null, packet60Explosion1.explosionX, packet60Explosion1.explosionY, packet60Explosion1.explosionZ, packet60Explosion1.explosionSize);
 		explosion2.destroyedBlockPositions = packet60Explosion1.destroyedBlockPositions;
 		explosion2.doExplosionB(true);
 	}
@@ -555,9 +555,7 @@ public class NetClientHandler extends NetHandler {
 			if(tileEntity2 instanceof TileEntitySign) {
 				TileEntitySign tileEntitySign3 = (TileEntitySign)tileEntity2;
 
-				for(int i4 = 0; i4 < 4; ++i4) {
-					tileEntitySign3.signText[i4] = packet130UpdateSign1.signLines[i4];
-				}
+                System.arraycopy(packet130UpdateSign1.signLines, 0, tileEntitySign3.signText, 0, 4);
 
 				tileEntitySign3.onInventoryChanged();
 			}

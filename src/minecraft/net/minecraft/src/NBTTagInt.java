@@ -27,6 +27,6 @@ public class NBTTagInt extends NBTBase {
 	}
 
 	public String toString() {
-		return "" + this.intValue;
+		return String.valueOf(this.intValue);
 	}
 }

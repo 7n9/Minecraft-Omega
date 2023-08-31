@@ -17,13 +17,13 @@ public class ModelCreeper extends ModelBase {
 		byte b2 = 4;
 		this.head = new ModelRenderer(0, 0);
 		this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, f1);
-		this.head.setRotationPoint(0.0F, (float)b2, 0.0F);
+		this.head.setRotationPoint(0.0F, b2, 0.0F);
 		this.field_1270_b = new ModelRenderer(32, 0);
 		this.field_1270_b.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, f1 + 0.5F);
-		this.field_1270_b.setRotationPoint(0.0F, (float)b2, 0.0F);
+		this.field_1270_b.setRotationPoint(0.0F, b2, 0.0F);
 		this.body = new ModelRenderer(16, 16);
 		this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, f1);
-		this.body.setRotationPoint(0.0F, (float)b2, 0.0F);
+		this.body.setRotationPoint(0.0F, b2, 0.0F);
 		this.leg1 = new ModelRenderer(0, 16);
 		this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4, f1);
 		this.leg1.setRotationPoint(-2.0F, (float)(12 + b2), 4.0F);

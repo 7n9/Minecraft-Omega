@@ -37,9 +37,9 @@ public class EntityFX extends Entity {
 	}
 
 	public EntityFX func_407_b(float f1) {
-		this.motionX *= (double)f1;
+		this.motionX *= f1;
 		this.motionY = (this.motionY - (double)0.1F) * (double)f1 + (double)0.1F;
-		this.motionZ *= (double)f1;
+		this.motionZ *= f1;
 		return this;
 	}
 
@@ -66,12 +66,12 @@ public class EntityFX extends Entity {
 
 		this.motionY -= 0.04D * (double)this.particleGravity;
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= (double)0.98F;
-		this.motionY *= (double)0.98F;
-		this.motionZ *= (double)0.98F;
+		this.motionX *= 0.98F;
+		this.motionY *= 0.98F;
+		this.motionZ *= 0.98F;
 		if(this.onGround) {
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 		}
 
 	}
@@ -87,10 +87,10 @@ public class EntityFX extends Entity {
 		float f15 = (float)(this.prevPosZ + (this.posZ - this.prevPosZ) * (double)f2 - interpPosZ);
 		float f16 = this.getEntityBrightness(f2);
 		tessellator1.setColorOpaque_F(this.particleRed * f16, this.particleGreen * f16, this.particleBlue * f16);
-		tessellator1.addVertexWithUV((double)(f13 - f3 * f12 - f6 * f12), (double)(f14 - f4 * f12), (double)(f15 - f5 * f12 - f7 * f12), (double)f9, (double)f11);
-		tessellator1.addVertexWithUV((double)(f13 - f3 * f12 + f6 * f12), (double)(f14 + f4 * f12), (double)(f15 - f5 * f12 + f7 * f12), (double)f9, (double)f10);
-		tessellator1.addVertexWithUV((double)(f13 + f3 * f12 + f6 * f12), (double)(f14 + f4 * f12), (double)(f15 + f5 * f12 + f7 * f12), (double)f8, (double)f10);
-		tessellator1.addVertexWithUV((double)(f13 + f3 * f12 - f6 * f12), (double)(f14 - f4 * f12), (double)(f15 + f5 * f12 - f7 * f12), (double)f8, (double)f11);
+		tessellator1.addVertexWithUV(f13 - f3 * f12 - f6 * f12, f14 - f4 * f12, f15 - f5 * f12 - f7 * f12, f9, f11);
+		tessellator1.addVertexWithUV(f13 - f3 * f12 + f6 * f12, f14 + f4 * f12, f15 - f5 * f12 + f7 * f12, f9, f10);
+		tessellator1.addVertexWithUV(f13 + f3 * f12 + f6 * f12, f14 + f4 * f12, f15 + f5 * f12 + f7 * f12, f8, f10);
+		tessellator1.addVertexWithUV(f13 + f3 * f12 - f6 * f12, f14 - f4 * f12, f15 + f5 * f12 - f7 * f12, f8, f11);
 	}
 
 	public int getFXLayer() {

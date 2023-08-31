@@ -32,7 +32,7 @@ public class GuiScreen extends Gui {
 
 	protected void keyTyped(char c1, int i2) {
 		if(i2 == 1) {
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 			this.mc.setIngameFocus();
 		}
 
@@ -40,7 +40,7 @@ public class GuiScreen extends Gui {
 
 	public static String getClipboardString() {
 		try {
-			Transferable transferable0 = Toolkit.getDefaultToolkit().getSystemClipboard().getContents((Object)null);
+			Transferable transferable0 = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
 			if(transferable0 != null && transferable0.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 				String string1 = (String)transferable0.getTransferData(DataFlavor.stringFlavor);
 				return string1;
@@ -156,10 +156,10 @@ public class GuiScreen extends Gui {
 		tessellator2.startDrawingQuads();
 		//tessellator2.setColorOpaque_I(4210752);
 		tessellator2.setColorOpaque_I(2016);
-		tessellator2.addVertexWithUV(0.0D, (double)this.height, 0.0D, 0.0D, (double)((float)this.height / f3 + (float)i1));
-		tessellator2.addVertexWithUV((double)this.width, (double)this.height, 0.0D, (double)((float)this.width / f3), (double)((float)this.height / f3 + (float)i1));
-		tessellator2.addVertexWithUV((double)this.width, 0.0D, 0.0D, (double)((float)this.width / f3), (double)(0 + i1));
-		tessellator2.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, (double)(0 + i1));
+		tessellator2.addVertexWithUV(0.0D, this.height, 0.0D, 0.0D, (float)this.height / f3 + (float)i1);
+		tessellator2.addVertexWithUV(this.width, this.height, 0.0D, (float)this.width / f3, (float)this.height / f3 + (float)i1);
+		tessellator2.addVertexWithUV(this.width, 0.0D, 0.0D, (float)this.width / f3, i1);
+		tessellator2.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, i1);
 		tessellator2.draw();
 	}
 

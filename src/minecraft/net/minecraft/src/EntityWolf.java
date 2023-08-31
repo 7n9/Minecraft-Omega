@@ -178,7 +178,7 @@ public class EntityWolf extends EntityAnimal {
 				for(int i3 = 0; i3 < i2; ++i3) {
 					float f4 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width * 0.5F;
 					float f5 = (this.rand.nextFloat() * 2.0F - 1.0F) * this.width * 0.5F;
-					this.worldObj.spawnParticle("splash", this.posX + (double)f4, (double)(f1 + 0.8F), this.posZ + (double)f5, this.motionX, this.motionY, this.motionZ);
+					this.worldObj.spawnParticle("splash", this.posX + (double)f4, f1 + 0.8F, this.posZ + (double)f5, this.motionX, this.motionY, this.motionZ);
 				}
 			}
 		}
@@ -226,7 +226,7 @@ public class EntityWolf extends EntityAnimal {
 			for(int i7 = 0; i7 <= 4; ++i7) {
 				for(int i8 = 0; i8 <= 4; ++i8) {
 					if((i7 < 1 || i8 < 1 || i7 > 3 || i8 > 3) && this.worldObj.isBlockNormalCube(i4 + i7, i6 - 1, i5 + i8) && !this.worldObj.isBlockNormalCube(i4 + i7, i6, i5 + i8) && !this.worldObj.isBlockNormalCube(i4 + i7, i6 + 1, i5 + i8)) {
-						this.setLocationAndAngles((double)((float)(i4 + i7) + 0.5F), (double)i6, (double)((float)(i5 + i8) + 0.5F), this.rotationYaw, this.rotationPitch);
+						this.setLocationAndAngles((float)(i4 + i7) + 0.5F, i6, (float)(i5 + i8) + 0.5F, this.rotationYaw, this.rotationPitch);
 						return;
 					}
 				}
@@ -247,13 +247,13 @@ public class EntityWolf extends EntityAnimal {
 			i2 = (i2 + 1) / 2;
 		}
 
-		if(!super.attackEntityFrom((Entity)entity1, i2)) {
+		if(!super.attackEntityFrom(entity1, i2)) {
 			return false;
 		} else {
 			if(!this.isWolfTamed() && !this.isWolfAngry()) {
 				if(entity1 instanceof EntityPlayer) {
 					this.setWolfAngry(true);
-					this.playerToAttack = (Entity)entity1;
+					this.playerToAttack = entity1;
 				}
 
 				if(entity1 instanceof EntityArrow && ((EntityArrow)entity1).owner != null) {
@@ -268,7 +268,7 @@ public class EntityWolf extends EntityAnimal {
 						Entity entity5 = (Entity)iterator4.next();
 						EntityWolf entityWolf6 = (EntityWolf)entity5;
 						if(!entityWolf6.isWolfTamed() && entityWolf6.playerToAttack == null) {
-							entityWolf6.playerToAttack = (Entity)entity1;
+							entityWolf6.playerToAttack = entity1;
 							if(entity1 instanceof EntityPlayer) {
 								entityWolf6.setWolfAngry(true);
 							}
@@ -280,7 +280,7 @@ public class EntityWolf extends EntityAnimal {
 					return true;
 				}
 
-				this.playerToAttack = (Entity)entity1;
+				this.playerToAttack = entity1;
 			}
 
 			return true;
@@ -299,7 +299,7 @@ public class EntityWolf extends EntityAnimal {
 				float f7 = MathHelper.sqrt_double(d8 * d8 + d5 * d5);
 				this.motionX = d8 / (double)f7 * 0.5D * (double)0.8F + this.motionX * (double)0.2F;
 				this.motionZ = d5 / (double)f7 * 0.5D * (double)0.8F + this.motionZ * (double)0.2F;
-				this.motionY = (double)0.4F;
+				this.motionY = 0.4F;
 			}
 		} else if((double)f2 < 1.5D && entity1.boundingBox.maxY > this.boundingBox.minY && entity1.boundingBox.minY < this.boundingBox.maxY) {
 			this.attackTime = 20;
@@ -319,13 +319,13 @@ public class EntityWolf extends EntityAnimal {
 			if(itemStack2 != null && itemStack2.itemID == Item.bone.shiftedIndex && !this.isWolfAngry()) {
 				--itemStack2.stackSize;
 				if(itemStack2.stackSize <= 0) {
-					entityPlayer1.inventory.setInventorySlotContents(entityPlayer1.inventory.currentItem, (ItemStack)null);
+					entityPlayer1.inventory.setInventorySlotContents(entityPlayer1.inventory.currentItem, null);
 				}
 
 				if(!this.worldObj.multiplayerWorld) {
 					if(this.rand.nextInt(3) == 0) {
 						this.setWolfTamed(true);
-						this.setPathToEntity((PathEntity)null);
+						this.setPathToEntity(null);
 						this.setWolfSitting(true);
 						this.health = 20;
 						this.setWolfOwner(entityPlayer1.username);
@@ -345,7 +345,7 @@ public class EntityWolf extends EntityAnimal {
 				if(itemFood3.getIsWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectInt(18) < 20) {
 					--itemStack2.stackSize;
 					if(itemStack2.stackSize <= 0) {
-						entityPlayer1.inventory.setInventorySlotContents(entityPlayer1.inventory.currentItem, (ItemStack)null);
+						entityPlayer1.inventory.setInventorySlotContents(entityPlayer1.inventory.currentItem, null);
 					}
 
 					this.heal(((ItemFood)Item.porkRaw).getHealAmount());
@@ -357,7 +357,7 @@ public class EntityWolf extends EntityAnimal {
 				if(!this.worldObj.multiplayerWorld) {
 					this.setWolfSitting(!this.isWolfSitting());
 					this.isJumping = false;
-					this.setPathToEntity((PathEntity)null);
+					this.setPathToEntity(null);
 				}
 
 				return true;

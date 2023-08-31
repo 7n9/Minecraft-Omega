@@ -1,9 +1,9 @@
 package net.minecraft.src;
 
 public class InventoryLargeChest implements IInventory {
-	private String name;
-	private IInventory upperChest;
-	private IInventory lowerChest;
+	private final String name;
+	private final IInventory upperChest;
+	private final IInventory lowerChest;
 
 	public InventoryLargeChest(String string1, IInventory iInventory2, IInventory iInventory3) {
 		this.name = string1;

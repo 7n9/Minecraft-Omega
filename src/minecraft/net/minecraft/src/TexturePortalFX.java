@@ -38,7 +38,7 @@ public class TexturePortalFX extends TextureFX {
 						}
 
 						float f11 = f9 * f9 + f10 * f10;
-						float f12 = (float)Math.atan2((double)f10, (double)f9) + ((float)i2 / 32.0F * (float)Math.PI * 2.0F - f11 * 10.0F + (float)(i6 * 2)) * (float)(i6 * 2 - 1);
+						float f12 = (float)Math.atan2(f10, f9) + ((float)i2 / 32.0F * (float)Math.PI * 2.0F - f11 * 10.0F + (float)(i6 * 2)) * (float)(i6 * 2 - 1);
 						f12 = (MathHelper.sin(f12) + 1.0F) / 2.0F;
 						f12 /= f11 + 1.0F;
 						f5 += f12 * 0.5F;

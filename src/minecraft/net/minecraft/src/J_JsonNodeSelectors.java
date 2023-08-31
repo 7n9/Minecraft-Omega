@@ -24,7 +24,7 @@ public final class J_JsonNodeSelectors {
 	}
 
 	public static J_JsonNodeSelector func_27351_b(String string0) {
-		return func_27353_c(new Object[0]).func_27355_a(func_27348_a(string0));
+		return func_27353_c().func_27355_a(func_27348_a(string0));
 	}
 
 	public static J_JsonNodeSelector func_27347_a(int i0) {
@@ -32,7 +32,7 @@ public final class J_JsonNodeSelectors {
 	}
 
 	public static J_JsonNodeSelector func_27354_b(int i0) {
-		return func_27346_b(new Object[0]).func_27355_a(func_27347_a(i0));
+		return func_27346_b().func_27355_a(func_27347_a(i0));
 	}
 
 	private static J_JsonNodeSelector func_27352_a(Object[] object0, J_JsonNodeSelector j_JsonNodeSelector1) {

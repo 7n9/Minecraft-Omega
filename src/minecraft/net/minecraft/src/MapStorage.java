@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 public class MapStorage {
-	private ISaveHandler field_28191_a;
-	private Map loadedDataMap = new HashMap();
-	private List loadedDataList = new ArrayList();
-	private Map idCounts = new HashMap();
+	private final ISaveHandler field_28191_a;
+	private final Map loadedDataMap = new HashMap();
+	private final List loadedDataList = new ArrayList();
+	private final Map idCounts = new HashMap();
 
 	public MapStorage(ISaveHandler iSaveHandler1) {
 		this.field_28191_a = iSaveHandler1;
@@ -58,7 +58,7 @@ public class MapStorage {
 
 	public void setData(String string1, MapDataBase mapDataBase2) {
 		if(mapDataBase2 == null) {
-			throw new RuntimeException("Can\'t set null data");
+			throw new RuntimeException("Can't set null data");
 		} else {
 			if(this.loadedDataMap.containsKey(string1)) {
 				this.loadedDataList.remove(this.loadedDataMap.remove(string1));

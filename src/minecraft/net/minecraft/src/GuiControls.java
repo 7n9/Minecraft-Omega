@@ -1,9 +1,9 @@
 package net.minecraft.src;
 
 public class GuiControls extends GuiScreen {
-	private GuiScreen parentScreen;
+	private final GuiScreen parentScreen;
 	protected String screenTitle = "Controls";
-	private GameSettings options;
+	private final GameSettings options;
 	private int buttonId = -1;
 
 	public GuiControls(GuiScreen guiScreen1, GameSettings gameSettings2) {

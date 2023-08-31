@@ -11,7 +11,7 @@ public class BlockSnow extends Block {
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
 		int i5 = world1.getBlockMetadata(i2, i3, i4) & 7;
-		return i5 >= 3 ? AxisAlignedBB.getBoundingBoxFromPool((double)i2 + this.minX, (double)i3 + this.minY, (double)i4 + this.minZ, (double)i2 + this.maxX, (double)((float)i3 + 0.5F), (double)i4 + this.maxZ) : null;
+		return i5 >= 3 ? AxisAlignedBB.getBoundingBoxFromPool((double)i2 + this.minX, (double)i3 + this.minY, (double)i4 + this.minZ, (double)i2 + this.maxX, (float)i3 + 0.5F, (double)i4 + this.maxZ) : null;
 	}
 
 	public boolean isOpaqueCube() {
@@ -30,7 +30,7 @@ public class BlockSnow extends Block {
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
 		int i5 = world1.getBlockId(i2, i3 - 1, i4);
-		return i5 != 0 && Block.blocksList[i5].isOpaqueCube() ? world1.getBlockMaterial(i2, i3 - 1, i4).getIsSolid() : false;
+		return i5 != 0 && Block.blocksList[i5].isOpaqueCube() && world1.getBlockMaterial(i2, i3 - 1, i4).getIsSolid();
 	}
 
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
@@ -77,6 +77,6 @@ public class BlockSnow extends Block {
 	}
 
 	public boolean shouldSideBeRendered(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
-		return i5 == 1 ? true : super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5);
+		return i5 == 1 || super.shouldSideBeRendered(iBlockAccess1, i2, i3, i4, i5);
 	}
 }

@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class BlockRedstoneWire extends Block {
 	private boolean wiresProvidePower = true;
-	private Set field_21031_b = new HashSet();
+	private final Set field_21031_b = new HashSet();
 
 	public BlockRedstoneWire(int i1, int i2) {
 		super(i1, i2, Material.circuits);
@@ -285,7 +285,7 @@ public class BlockRedstoneWire extends Block {
 	}
 
 	public boolean isIndirectlyPoweringTo(World world1, int i2, int i3, int i4, int i5) {
-		return !this.wiresProvidePower ? false : this.isPoweringTo(world1, i2, i3, i4, i5);
+		return this.wiresProvidePower && this.isPoweringTo(world1, i2, i3, i4, i5);
 	}
 
 	public boolean isPoweringTo(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
@@ -318,7 +318,7 @@ public class BlockRedstoneWire extends Block {
 				}
 			}
 
-			return !z8 && !z7 && !z6 && !z9 && i5 >= 2 && i5 <= 5 ? true : (i5 == 2 && z8 && !z6 && !z7 ? true : (i5 == 3 && z9 && !z6 && !z7 ? true : (i5 == 4 && z6 && !z8 && !z9 ? true : i5 == 5 && z7 && !z8 && !z9)));
+			return !z8 && !z7 && !z6 && !z9 && i5 >= 2 && i5 <= 5 || (i5 == 2 && z8 && !z6 && !z7 || (i5 == 3 && z9 && !z6 && !z7 || (i5 == 4 && z6 && !z8 && !z9 || i5 == 5 && z7 && !z8 && !z9)));
 		}
 	}
 
@@ -330,7 +330,7 @@ public class BlockRedstoneWire extends Block {
 		int i6 = world1.getBlockMetadata(i2, i3, i4);
 		if(i6 > 0) {
 			double d7 = (double)i2 + 0.5D + ((double)random5.nextFloat() - 0.5D) * 0.2D;
-			double d9 = (double)((float)i3 + 0.0625F);
+			double d9 = (float)i3 + 0.0625F;
 			double d11 = (double)i4 + 0.5D + ((double)random5.nextFloat() - 0.5D) * 0.2D;
 			float f13 = (float)i6 / 15.0F;
 			float f14 = f13 * 0.6F + 0.4F;
@@ -348,7 +348,7 @@ public class BlockRedstoneWire extends Block {
 				f16 = 0.0F;
 			}
 
-			world1.spawnParticle("reddust", d7, d9, d11, (double)f14, (double)f15, (double)f16);
+			world1.spawnParticle("reddust", d7, d9, d11, f14, f15, f16);
 		}
 
 	}

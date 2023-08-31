@@ -6,7 +6,7 @@ import com.jcraft.jogg.Packet;
 public class Info {
 	private static final int OV_EBADPACKET = -136;
 	private static final int OV_ENOTAUDIO = -135;
-	private static byte[] _vorbis = "vorbis".getBytes();
+	private static final byte[] _vorbis = "vorbis".getBytes();
 	private static final int VI_TIMEB = 1;
 	private static final int VI_FLOORB = 2;
 	private static final int VI_RESB = 3;

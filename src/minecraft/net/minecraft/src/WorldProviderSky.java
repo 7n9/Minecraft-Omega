@@ -35,7 +35,7 @@ public class WorldProviderSky extends WorldProvider {
 		f5 *= f4 * 0.94F + 0.06F;
 		f6 *= f4 * 0.94F + 0.06F;
 		f7 *= f4 * 0.91F + 0.09F;
-		return Vec3D.createVector((double)f5, (double)f6, (double)f7);
+		return Vec3D.createVector(f5, f6, f7);
 	}
 
 	public boolean func_28112_c() {

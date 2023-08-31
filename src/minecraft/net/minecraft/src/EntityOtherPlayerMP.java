@@ -35,8 +35,8 @@ public class EntityOtherPlayerMP extends EntityPlayer {
 		this.field_784_bh = d1;
 		this.field_783_bi = d3;
 		this.field_782_bj = d5;
-		this.field_780_bk = (double)f7;
-		this.field_786_bl = (double)f8;
+		this.field_780_bk = f7;
+		this.field_786_bl = f8;
 		this.field_785_bg = i9;
 	}
 

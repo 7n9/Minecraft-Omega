@@ -56,8 +56,8 @@ public class EntityClientPlayerMP extends EntityPlayerSP {
 		double d4 = this.boundingBox.minY - this.field_9378_bz;
 		double d6 = this.posY - this.oldPosY;
 		double d8 = this.posZ - this.oldPosZ;
-		double d10 = (double)(this.rotationYaw - this.oldRotationYaw);
-		double d12 = (double)(this.rotationPitch - this.oldRotationPitch);
+		double d10 = this.rotationYaw - this.oldRotationYaw;
+		double d12 = this.rotationPitch - this.oldRotationPitch;
 		boolean z14 = d4 != 0.0D || d6 != 0.0D || d2 != 0.0D || d8 != 0.0D;
 		boolean z15 = d10 != 0.0D || d12 != 0.0D;
 		if(this.ridingEntity != null) {
@@ -131,7 +131,7 @@ public class EntityClientPlayerMP extends EntityPlayerSP {
 
 	public void closeScreen() {
 		this.sendQueue.addToSendQueue(new Packet101CloseWindow(this.craftingInventory.windowId));
-		this.inventory.setItemStack((ItemStack)null);
+		this.inventory.setItemStack(null);
 		super.closeScreen();
 	}
 

@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.ArrayList;
 
 public class BlockPistonBase extends Block {
-	private boolean isSticky;
+	private final boolean isSticky;
 	private boolean field_31048_b;
 
 	public BlockPistonBase(int i1, int i2, boolean z3) {
@@ -76,7 +76,7 @@ public class BlockPistonBase extends Block {
 	}
 
 	private boolean func_31041_f(World world1, int i2, int i3, int i4, int i5) {
-		return i5 != 0 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3 - 1, i4, 0) ? true : (i5 != 1 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 1, i4, 1) ? true : (i5 != 2 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3, i4 - 1, 2) ? true : (i5 != 3 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3, i4 + 1, 3) ? true : (i5 != 5 && world1.isBlockIndirectlyProvidingPowerTo(i2 + 1, i3, i4, 5) ? true : (i5 != 4 && world1.isBlockIndirectlyProvidingPowerTo(i2 - 1, i3, i4, 4) ? true : (world1.isBlockIndirectlyProvidingPowerTo(i2, i3, i4, 0) ? true : (world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 2, i4, 1) ? true : (world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 1, i4 - 1, 2) ? true : (world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 1, i4 + 1, 3) ? true : (world1.isBlockIndirectlyProvidingPowerTo(i2 - 1, i3 + 1, i4, 4) ? true : world1.isBlockIndirectlyProvidingPowerTo(i2 + 1, i3 + 1, i4, 5)))))))))));
+		return i5 != 0 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3 - 1, i4, 0) || (i5 != 1 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 1, i4, 1) || (i5 != 2 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3, i4 - 1, 2) || (i5 != 3 && world1.isBlockIndirectlyProvidingPowerTo(i2, i3, i4 + 1, 3) || (i5 != 5 && world1.isBlockIndirectlyProvidingPowerTo(i2 + 1, i3, i4, 5) || (i5 != 4 && world1.isBlockIndirectlyProvidingPowerTo(i2 - 1, i3, i4, 4) || (world1.isBlockIndirectlyProvidingPowerTo(i2, i3, i4, 0) || (world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 2, i4, 1) || (world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 1, i4 - 1, 2) || (world1.isBlockIndirectlyProvidingPowerTo(i2, i3 + 1, i4 + 1, 3) || (world1.isBlockIndirectlyProvidingPowerTo(i2 - 1, i3 + 1, i4, 4) || world1.isBlockIndirectlyProvidingPowerTo(i2 + 1, i3 + 1, i4, 5)))))))))));
 	}
 
 	public void playBlock(World world1, int i2, int i3, int i4, int i5, int i6) {

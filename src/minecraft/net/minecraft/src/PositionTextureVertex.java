@@ -6,7 +6,7 @@ public class PositionTextureVertex {
 	public float texturePositionY;
 
 	public PositionTextureVertex(float f1, float f2, float f3, float f4, float f5) {
-		this(Vec3D.createVectorHelper((double)f1, (double)f2, (double)f3), f4, f5);
+		this(Vec3D.createVectorHelper(f1, f2, f3), f4, f5);
 	}
 
 	public PositionTextureVertex setTexturePosition(float f1, float f2) {

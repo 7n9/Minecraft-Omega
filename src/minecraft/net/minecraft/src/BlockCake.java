@@ -27,7 +27,7 @@ public class BlockCake extends Block {
 		float f6 = 0.0625F;
 		float f7 = (float)(1 + i5 * 2) / 16.0F;
 		float f8 = 0.5F;
-		return AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f7), (double)i3, (double)((float)i4 + f6), (double)((float)(i2 + 1) - f6), (double)((float)i3 + f8 - f6), (double)((float)(i4 + 1) - f6));
+		return AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f7, i3, (float)i4 + f6, (float)(i2 + 1) - f6, (float)i3 + f8 - f6, (float)(i4 + 1) - f6);
 	}
 
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world1, int i2, int i3, int i4) {
@@ -35,7 +35,7 @@ public class BlockCake extends Block {
 		float f6 = 0.0625F;
 		float f7 = (float)(1 + i5 * 2) / 16.0F;
 		float f8 = 0.5F;
-		return AxisAlignedBB.getBoundingBoxFromPool((double)((float)i2 + f7), (double)i3, (double)((float)i4 + f6), (double)((float)(i2 + 1) - f6), (double)((float)i3 + f8), (double)((float)(i4 + 1) - f6));
+		return AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f7, i3, (float)i4 + f6, (float)(i2 + 1) - f6, (float)i3 + f8, (float)(i4 + 1) - f6);
 	}
 
 	public int getBlockTextureFromSideAndMetadata(int i1, int i2) {
@@ -78,7 +78,7 @@ public class BlockCake extends Block {
 	}
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
-		return !super.canPlaceBlockAt(world1, i2, i3, i4) ? false : this.canBlockStay(world1, i2, i3, i4);
+		return super.canPlaceBlockAt(world1, i2, i3, i4) && this.canBlockStay(world1, i2, i3, i4);
 	}
 
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {

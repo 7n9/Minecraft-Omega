@@ -54,40 +54,38 @@ public class DspState {
 
 	static float[] window(int i0, int i1, int i2, int i3) {
 		float[] f4 = new float[i1];
-		switch(i0) {
-		case 0:
-			int i5 = i1 / 4 - i2 / 2;
-			int i6 = i1 - i1 / 4 - i3 / 2;
+        if (i0 == 0) {
+            int i5 = i1 / 4 - i2 / 2;
+            int i6 = i1 - i1 / 4 - i3 / 2;
 
-			int i7;
-			float f8;
-			for(i7 = 0; i7 < i2; ++i7) {
-				f8 = (float)(((double)i7 + 0.5D) / (double)i2 * 3.1415927410125732D / 2.0D);
-				f8 = (float)Math.sin((double)f8);
-				f8 *= f8;
-				f8 = (float)((double)f8 * 1.5707963705062866D);
-				f8 = (float)Math.sin((double)f8);
-				f4[i7 + i5] = f8;
-			}
+            int i7;
+            float f8;
+            for (i7 = 0; i7 < i2; ++i7) {
+                f8 = (float) (((double) i7 + 0.5D) / (double) i2 * 3.1415927410125732D / 2.0D);
+                f8 = (float) Math.sin(f8);
+                f8 *= f8;
+                f8 = (float) ((double) f8 * 1.5707963705062866D);
+                f8 = (float) Math.sin(f8);
+                f4[i7 + i5] = f8;
+            }
 
-			for(i7 = i5 + i2; i7 < i6; ++i7) {
-				f4[i7] = 1.0F;
-			}
+            for (i7 = i5 + i2; i7 < i6; ++i7) {
+                f4[i7] = 1.0F;
+            }
 
-			for(i7 = 0; i7 < i3; ++i7) {
-				f8 = (float)(((double)(i3 - i7) - 0.5D) / (double)i3 * 3.1415927410125732D / 2.0D);
-				f8 = (float)Math.sin((double)f8);
-				f8 *= f8;
-				f8 = (float)((double)f8 * 1.5707963705062866D);
-				f8 = (float)Math.sin((double)f8);
-				f4[i7 + i6] = f8;
-			}
+            for (i7 = 0; i7 < i3; ++i7) {
+                f8 = (float) (((double) (i3 - i7) - 0.5D) / (double) i3 * 3.1415927410125732D / 2.0D);
+                f8 = (float) Math.sin(f8);
+                f8 *= f8;
+                f8 = (float) ((double) f8 * 1.5707963705062866D);
+                f8 = (float) Math.sin(f8);
+                f4[i7 + i6] = f8;
+            }
 
-			return f4;
-		default:
-			return null;
-		}
-	}
+            return f4;
+        }
+        return null;
+    }
 
 	int init(Info info1, boolean z2) {
 		this.vi = info1;
@@ -182,10 +180,10 @@ public class DspState {
 		this.lW = this.W;
 		this.W = block1.W;
 		this.nW = -1;
-		this.glue_bits += (long)block1.glue_bits;
-		this.time_bits += (long)block1.time_bits;
-		this.floor_bits += (long)block1.floor_bits;
-		this.res_bits += (long)block1.res_bits;
+		this.glue_bits += block1.glue_bits;
+		this.time_bits += block1.time_bits;
+		this.floor_bits += block1.floor_bits;
+		this.res_bits += block1.res_bits;
 		if(this.sequence + 1L != block1.sequence) {
 			this.granulepos = -1L;
 		}
@@ -236,7 +234,7 @@ public class DspState {
 		if(this.granulepos == -1L) {
 			this.granulepos = block1.granulepos;
 		} else {
-			this.granulepos += (long)(i3 - this.centerW);
+			this.granulepos += i3 - this.centerW;
 			if(block1.granulepos != -1L && this.granulepos != block1.granulepos) {
 				if(this.granulepos > block1.granulepos && block1.eofflag != 0) {
 					i3 = (int)((long)i3 - (this.granulepos - block1.granulepos));

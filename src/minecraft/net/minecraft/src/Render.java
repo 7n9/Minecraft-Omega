@@ -72,10 +72,10 @@ public abstract class Render {
 				f12 = f24;
 			}
 
-			tessellator17.addVertexWithUV((double)(f18 - f19), (double)(0.0F - f21), (double)f22, (double)f13, (double)f15);
-			tessellator17.addVertexWithUV((double)(-f18 - f19), (double)(0.0F - f21), (double)f22, (double)f12, (double)f15);
-			tessellator17.addVertexWithUV((double)(-f18 - f19), (double)(1.4F - f21), (double)f22, (double)f12, (double)f14);
-			tessellator17.addVertexWithUV((double)(f18 - f19), (double)(1.4F - f21), (double)f22, (double)f13, (double)f14);
+			tessellator17.addVertexWithUV(f18 - f19, 0.0F - f21, f22, f13, f15);
+			tessellator17.addVertexWithUV(-f18 - f19, 0.0F - f21, f22, f12, f15);
+			tessellator17.addVertexWithUV(-f18 - f19, 1.4F - f21, f22, f12, f14);
+			tessellator17.addVertexWithUV(f18 - f19, 1.4F - f21, f22, f13, f14);
 			f20 -= 0.45F;
 			f21 -= 0.45F;
 			f18 *= 0.9F;
@@ -151,10 +151,10 @@ public abstract class Render {
 				float f33 = (float)((d2 - d24) / 2.0D / (double)f12 + 0.5D);
 				float f34 = (float)((d6 - d28) / 2.0D / (double)f12 + 0.5D);
 				float f35 = (float)((d6 - d30) / 2.0D / (double)f12 + 0.5D);
-				tessellator19.addVertexWithUV(d22, d26, d28, (double)f32, (double)f34);
-				tessellator19.addVertexWithUV(d22, d26, d30, (double)f32, (double)f35);
-				tessellator19.addVertexWithUV(d24, d26, d30, (double)f33, (double)f35);
-				tessellator19.addVertexWithUV(d24, d26, d28, (double)f33, (double)f34);
+				tessellator19.addVertexWithUV(d22, d26, d28, f32, f34);
+				tessellator19.addVertexWithUV(d22, d26, d30, f32, f35);
+				tessellator19.addVertexWithUV(d24, d26, d30, f33, f35);
+				tessellator19.addVertexWithUV(d24, d26, d28, f33, f34);
 			}
 		}
 	}

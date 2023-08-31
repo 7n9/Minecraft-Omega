@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class AchievementMap {
 	public static AchievementMap instance = new AchievementMap();
-	private Map guidMap = new HashMap();
+	private final Map guidMap = new HashMap();
 
 	private AchievementMap() {
 		try {

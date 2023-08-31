@@ -76,7 +76,7 @@ public class GuiSelectWorld extends GuiScreen {
 					this.deleting = true;
 					StringTranslate stringTranslate3 = StringTranslate.getInstance();
 					String string4 = stringTranslate3.translateKey("selectWorld.deleteQuestion");
-					String string5 = "\'" + string2 + "\' " + stringTranslate3.translateKey("selectWorld.deleteWarning");
+					String string5 = "'" + string2 + "' " + stringTranslate3.translateKey("selectWorld.deleteWarning");
 					String string6 = stringTranslate3.translateKey("selectWorld.deleteButton");
 					String string7 = stringTranslate3.translateKey("gui.cancel");
 					GuiYesNo guiYesNo8 = new GuiYesNo(this, string4, string5, string6, string7, this.selectedWorld);
@@ -98,7 +98,7 @@ public class GuiSelectWorld extends GuiScreen {
 	}
 
 	public void selectWorld(int i1) {
-		this.mc.displayGuiScreen((GuiScreen)null);
+		this.mc.displayGuiScreen(null);
 		if(!this.selected) {
 			this.selected = true;
 			this.mc.playerController = new PlayerControllerSP(this.mc);
@@ -108,7 +108,7 @@ public class GuiSelectWorld extends GuiScreen {
 			}
 
 			this.mc.startWorld(string2, this.getSaveName(i1), 0L);
-			this.mc.displayGuiScreen((GuiScreen)null);
+			this.mc.displayGuiScreen(null);
 		}
 	}
 

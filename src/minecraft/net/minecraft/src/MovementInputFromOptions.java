@@ -1,8 +1,8 @@
 package net.minecraft.src;
 
 public class MovementInputFromOptions extends MovementInput {
-	private boolean[] movementKeyStates = new boolean[10];
-	private GameSettings gameSettings;
+	private final boolean[] movementKeyStates = new boolean[10];
+	private final GameSettings gameSettings;
 
 	public MovementInputFromOptions(GameSettings gameSettings1) {
 		this.gameSettings = gameSettings1;

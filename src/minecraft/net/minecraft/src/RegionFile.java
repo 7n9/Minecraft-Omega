@@ -124,7 +124,7 @@ public class RegionFile {
 						this.debugln(i1, i2, "invalid sector");
 						return null;
 					} else {
-						this.dataFile.seek((long)(i4 * 4096L));
+						this.dataFile.seek(i4 * 4096L);
 						int i6 = this.dataFile.readInt();
 						if(i6 > 4096 * i5) {
 							this.debugln(i1, i2, "invalid length: " + i6 + " > 4096 * " + i5);
@@ -237,7 +237,7 @@ public class RegionFile {
 
 	private void write(int i1, byte[] b2, int i3) throws IOException {
 		this.debugln(" " + i1);
-		this.dataFile.seek((long)(i1 * 4096L));
+		this.dataFile.seek(i1 * 4096L);
 		this.dataFile.writeInt(i3 + 1);
 		this.dataFile.writeByte(2);
 		this.dataFile.write(b2, 0, i3);
@@ -257,13 +257,13 @@ public class RegionFile {
 
 	private void setOffset(int i1, int i2, int i3) throws IOException {
 		this.offsets[i1 + i2 * 32] = i3;
-		this.dataFile.seek((long)((i1 + i2 * 32L) * 4));
+		this.dataFile.seek((i1 + i2 * 32L) * 4);
 		this.dataFile.writeInt(i3);
 	}
 
 	private void func_22208_b(int i1, int i2, int i3) throws IOException {
 		this.field_22217_e[i1 + i2 * 32] = i3;
-		this.dataFile.seek((long)(4096 + (i1 + i2 * 32L) * 4));
+		this.dataFile.seek(4096 + (i1 + i2 * 32L) * 4);
 		this.dataFile.writeInt(i3);
 	}
 

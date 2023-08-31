@@ -52,7 +52,7 @@ public class ContainerPlayer extends Container {
 			ItemStack itemStack3 = this.craftMatrix.getStackInSlot(i2);
 			if(itemStack3 != null) {
 				entityPlayer1.dropPlayerItem(itemStack3);
-				this.craftMatrix.setInventorySlotContents(i2, (ItemStack)null);
+				this.craftMatrix.setInventorySlotContents(i2, null);
 			}
 		}
 
@@ -79,7 +79,7 @@ public class ContainerPlayer extends Container {
 			}
 
 			if(itemStack4.stackSize == 0) {
-				slot3.putStack((ItemStack)null);
+				slot3.putStack(null);
 			} else {
 				slot3.onSlotChanged();
 			}

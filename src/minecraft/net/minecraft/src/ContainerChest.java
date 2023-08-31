@@ -1,8 +1,8 @@
 package net.minecraft.src;
 
 public class ContainerChest extends Container {
-	private IInventory field_20125_a;
-	private int field_27282_b;
+	private final IInventory field_20125_a;
+	private final int field_27282_b;
 
 	public ContainerChest(IInventory iInventory1, IInventory iInventory2) {
 		this.field_20125_a = iInventory2;
@@ -46,7 +46,7 @@ public class ContainerChest extends Container {
 			}
 
 			if(itemStack4.stackSize == 0) {
-				slot3.putStack((ItemStack)null);
+				slot3.putStack(null);
 			} else {
 				slot3.onSlotChanged();
 			}

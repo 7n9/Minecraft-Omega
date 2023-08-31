@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 public class EntityFootStepFX extends EntityFX {
 	private int field_27018_a = 0;
 	private int field_27020_o = 0;
-	private RenderEngine field_27019_p;
+	private final RenderEngine field_27019_p;
 
 	public EntityFootStepFX(RenderEngine renderEngine1, World world2, double d3, double d5, double d7) {
 		super(world2, d3, d5, d7, 0.0D, 0.0D, 0.0D);
@@ -34,10 +34,10 @@ public class EntityFootStepFX extends EntityFX {
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		tessellator1.startDrawingQuads();
 		tessellator1.setColorRGBA_F(f14, f14, f14, f9);
-		tessellator1.addVertexWithUV((double)(f11 - f10), (double)f12, (double)(f13 + f10), 0.0D, 1.0D);
-		tessellator1.addVertexWithUV((double)(f11 + f10), (double)f12, (double)(f13 + f10), 1.0D, 1.0D);
-		tessellator1.addVertexWithUV((double)(f11 + f10), (double)f12, (double)(f13 - f10), 1.0D, 0.0D);
-		tessellator1.addVertexWithUV((double)(f11 - f10), (double)f12, (double)(f13 - f10), 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f11 - f10, f12, f13 + f10, 0.0D, 1.0D);
+		tessellator1.addVertexWithUV(f11 + f10, f12, f13 + f10, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(f11 + f10, f12, f13 - f10, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f11 - f10, f12, f13 - f10, 0.0D, 0.0D);
 		tessellator1.draw();
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_LIGHTING);

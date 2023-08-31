@@ -33,14 +33,14 @@ public class EntityArrow extends Entity {
 		this.doesArrowBelongToPlayer = entityLiving2 instanceof EntityPlayer;
 		this.setSize(0.5F, 0.5F);
 		this.setLocationAndAngles(entityLiving2.posX, entityLiving2.posY + (double)entityLiving2.getEyeHeight(), entityLiving2.posZ, entityLiving2.rotationYaw, entityLiving2.rotationPitch);
-		this.posX -= (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
-		this.posY -= (double)0.1F;
-		this.posZ -= (double)(MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F);
+		this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
+		this.posY -= 0.1F;
+		this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * 0.16F;
 		this.setPosition(this.posX, this.posY, this.posZ);
 		this.yOffset = 0.0F;
-		this.motionX = (double)(-MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.motionZ = (double)(MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI));
-		this.motionY = (double)(-MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI));
+		this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI);
+		this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float)Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float)Math.PI);
+		this.motionY = -MathHelper.sin(this.rotationPitch / 180.0F * (float)Math.PI);
 		this.setArrowHeading(this.motionX, this.motionY, this.motionZ, 1.5F, 1.0F);
 	}
 
@@ -49,21 +49,21 @@ public class EntityArrow extends Entity {
 
 	public void setArrowHeading(double d1, double d3, double d5, float f7, float f8) {
 		float f9 = MathHelper.sqrt_double(d1 * d1 + d3 * d3 + d5 * d5);
-		d1 /= (double)f9;
-		d3 /= (double)f9;
-		d5 /= (double)f9;
+		d1 /= f9;
+		d3 /= f9;
+		d5 /= f9;
 		d1 += this.rand.nextGaussian() * (double)0.0075F * (double)f8;
 		d3 += this.rand.nextGaussian() * (double)0.0075F * (double)f8;
 		d5 += this.rand.nextGaussian() * (double)0.0075F * (double)f8;
-		d1 *= (double)f7;
-		d3 *= (double)f7;
-		d5 *= (double)f7;
+		d1 *= f7;
+		d3 *= f7;
+		d5 *= f7;
 		this.motionX = d1;
 		this.motionY = d3;
 		this.motionZ = d5;
 		float f10 = MathHelper.sqrt_double(d1 * d1 + d5 * d5);
 		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(d1, d5) * 180.0D / (double)(float)Math.PI);
-		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(d3, (double)f10) * 180.0D / (double)(float)Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(d3, f10) * 180.0D / (double)(float)Math.PI);
 		this.ticksInGround = 0;
 	}
 
@@ -74,7 +74,7 @@ public class EntityArrow extends Entity {
 		if(this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
 			float f7 = MathHelper.sqrt_double(d1 * d1 + d5 * d5);
 			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(d1, d5) * 180.0D / (double)(float)Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(d3, (double)f7) * 180.0D / (double)(float)Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(d3, f7) * 180.0D / (double)(float)Math.PI);
 			this.prevRotationPitch = this.rotationPitch;
 			this.prevRotationYaw = this.rotationYaw;
 			this.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -88,7 +88,7 @@ public class EntityArrow extends Entity {
 		if(this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
 			float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / (double)(float)Math.PI);
-			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, (double)f1) * 180.0D / (double)(float)Math.PI);
+			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, f1) * 180.0D / (double)(float)Math.PI);
 		}
 
 		int i15 = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
@@ -115,9 +115,9 @@ public class EntityArrow extends Entity {
 
 			} else {
 				this.inGround = false;
-				this.motionX *= (double)(this.rand.nextFloat() * 0.2F);
-				this.motionY *= (double)(this.rand.nextFloat() * 0.2F);
-				this.motionZ *= (double)(this.rand.nextFloat() * 0.2F);
+				this.motionX *= this.rand.nextFloat() * 0.2F;
+				this.motionY *= this.rand.nextFloat() * 0.2F;
+				this.motionZ *= this.rand.nextFloat() * 0.2F;
 				this.ticksInGround = 0;
 				this.ticksInAir = 0;
 			}
@@ -141,7 +141,7 @@ public class EntityArrow extends Entity {
 				Entity entity9 = (Entity)list5.get(i8);
 				if(entity9.canBeCollidedWith() && (entity9 != this.owner || this.ticksInAir >= 5)) {
 					f10 = 0.3F;
-					AxisAlignedBB axisAlignedBB11 = entity9.boundingBox.expand((double)f10, (double)f10, (double)f10);
+					AxisAlignedBB axisAlignedBB11 = entity9.boundingBox.expand(f10, f10, f10);
 					MovingObjectPosition movingObjectPosition12 = axisAlignedBB11.func_1169_a(vec3D16, vec3D17);
 					if(movingObjectPosition12 != null) {
 						double d13 = vec3D16.distanceTo(movingObjectPosition12.hitVec);
@@ -177,9 +177,9 @@ public class EntityArrow extends Entity {
 					this.zTile = movingObjectPosition3.blockZ;
 					this.inTile = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
 					this.field_28019_h = this.worldObj.getBlockMetadata(this.xTile, this.yTile, this.zTile);
-					this.motionX = (double)((float)(movingObjectPosition3.hitVec.xCoord - this.posX));
-					this.motionY = (double)((float)(movingObjectPosition3.hitVec.yCoord - this.posY));
-					this.motionZ = (double)((float)(movingObjectPosition3.hitVec.zCoord - this.posZ));
+					this.motionX = (float)(movingObjectPosition3.hitVec.xCoord - this.posX);
+					this.motionY = (float)(movingObjectPosition3.hitVec.yCoord - this.posY);
+					this.motionZ = (float)(movingObjectPosition3.hitVec.zCoord - this.posZ);
 					f19 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 					this.posX -= this.motionX / (double)f19 * (double)0.05F;
 					this.posY -= this.motionY / (double)f19 * (double)0.05F;
@@ -196,7 +196,7 @@ public class EntityArrow extends Entity {
 			f19 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / (double)(float)Math.PI);
 
-			for(this.rotationPitch = (float)(Math.atan2(this.motionY, (double)f19) * 180.0D / (double)(float)Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
+			for(this.rotationPitch = (float)(Math.atan2(this.motionY, f19) * 180.0D / (double)(float)Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F) {
 			}
 
 			while(this.rotationPitch - this.prevRotationPitch >= 180.0F) {
@@ -224,10 +224,10 @@ public class EntityArrow extends Entity {
 				f20 = 0.8F;
 			}
 
-			this.motionX *= (double)f20;
-			this.motionY *= (double)f20;
-			this.motionZ *= (double)f20;
-			this.motionY -= (double)f10;
+			this.motionX *= f20;
+			this.motionY *= f20;
+			this.motionZ *= f20;
+			this.motionY -= f10;
 			this.setPosition(this.posX, this.posY, this.posZ);
 		}
 	}

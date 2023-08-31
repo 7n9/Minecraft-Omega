@@ -23,7 +23,7 @@ class Lookup {
 	}
 
 	static float invsqlook(float f0) {
-		double d1 = (double)(f0 * 64.0F - 32.0F);
+		double d1 = f0 * 64.0F - 32.0F;
 		int i3 = (int)d1;
 		return INVSQ_LOOKUP[i3] + (float)(d1 - (double)i3) * (INVSQ_LOOKUP[i3 + 1] - INVSQ_LOOKUP[i3]);
 	}

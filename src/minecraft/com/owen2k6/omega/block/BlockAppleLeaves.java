@@ -5,7 +5,7 @@ import net.minecraft.src.*;
 import java.util.Random;
 
 public class BlockAppleLeaves extends BlockLeavesBase {
-	private int baseIndexInPNG;
+	private final int baseIndexInPNG;
 	int[] adjacentTreeBlocks;
 
 	public BlockAppleLeaves(int i1, int i2) {

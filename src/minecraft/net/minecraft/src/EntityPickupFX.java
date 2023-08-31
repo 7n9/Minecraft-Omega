@@ -3,11 +3,11 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class EntityPickupFX extends EntityFX {
-	private Entity field_675_a;
-	private Entity field_679_o;
+	private final Entity field_675_a;
+	private final Entity field_679_o;
 	private int field_678_p = 0;
 	private int field_677_q = 0;
-	private float field_676_r;
+	private final float field_676_r;
 
 	public EntityPickupFX(World world1, Entity entity2, Entity entity3, float f4) {
 		super(world1, entity2.posX, entity2.posY, entity2.posZ, entity2.motionX, entity2.motionY, entity2.motionZ);
@@ -37,7 +37,7 @@ public class EntityPickupFX extends EntityFX {
 		d23 -= interpPosY;
 		d25 -= interpPosZ;
 		GL11.glColor4f(f30, f30, f30, 1.0F);
-		RenderManager.instance.renderEntityWithPosYaw(this.field_675_a, (double)((float)d21), (double)((float)d23), (double)((float)d25), this.field_675_a.rotationYaw, f2);
+		RenderManager.instance.renderEntityWithPosYaw(this.field_675_a, (float)d21, (float)d23, (float)d25, this.field_675_a.rotationYaw, f2);
 	}
 
 	public void onUpdate() {

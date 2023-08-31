@@ -34,7 +34,7 @@ public enum EnumArt {
 	public final int offsetX;
 	public final int offsetY;
 
-	private EnumArt(String string3, int i4, int i5, int i6, int i7) {
+	EnumArt(String string3, int i4, int i5, int i6, int i7) {
 		this.title = string3;
 		this.sizeX = i4;
 		this.sizeY = i5;

@@ -8,8 +8,8 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 
 public class GuiParticle extends Gui {
-	private List field_25090_a = new ArrayList();
-	private Minecraft field_25089_b;
+	private final List field_25090_a = new ArrayList();
+	private final Minecraft field_25089_b;
 
 	public GuiParticle(Minecraft minecraft1) {
 		this.field_25089_b = minecraft1;

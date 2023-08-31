@@ -5,8 +5,8 @@ import org.lwjgl.opengl.GL11;
 public class ModelRenderer {
 	private PositionTextureVertex[] corners;
 	private TexturedQuad[] faces;
-	private int textureOffsetX;
-	private int textureOffsetY;
+	private final int textureOffsetX;
+	private final int textureOffsetY;
 	public float rotationPointX;
 	public float rotationPointY;
 	public float rotationPointZ;
@@ -63,9 +63,9 @@ public class ModelRenderer {
 		this.corners[6] = positionTextureVertex17;
 		this.corners[7] = positionTextureVertex18;
 		this.faces[0] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex16, positionTextureVertex12, positionTextureVertex13, positionTextureVertex17}, this.textureOffsetX + i6 + i4, this.textureOffsetY + i6, this.textureOffsetX + i6 + i4 + i6, this.textureOffsetY + i6 + i5);
-		this.faces[1] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex20, positionTextureVertex15, positionTextureVertex18, positionTextureVertex14}, this.textureOffsetX + 0, this.textureOffsetY + i6, this.textureOffsetX + i6, this.textureOffsetY + i6 + i5);
-		this.faces[2] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex16, positionTextureVertex15, positionTextureVertex20, positionTextureVertex12}, this.textureOffsetX + i6, this.textureOffsetY + 0, this.textureOffsetX + i6 + i4, this.textureOffsetY + i6);
-		this.faces[3] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex13, positionTextureVertex14, positionTextureVertex18, positionTextureVertex17}, this.textureOffsetX + i6 + i4, this.textureOffsetY + 0, this.textureOffsetX + i6 + i4 + i4, this.textureOffsetY + i6);
+		this.faces[1] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex20, positionTextureVertex15, positionTextureVertex18, positionTextureVertex14}, this.textureOffsetX, this.textureOffsetY + i6, this.textureOffsetX + i6, this.textureOffsetY + i6 + i5);
+		this.faces[2] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex16, positionTextureVertex15, positionTextureVertex20, positionTextureVertex12}, this.textureOffsetX + i6, this.textureOffsetY, this.textureOffsetX + i6 + i4, this.textureOffsetY + i6);
+		this.faces[3] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex13, positionTextureVertex14, positionTextureVertex18, positionTextureVertex17}, this.textureOffsetX + i6 + i4, this.textureOffsetY, this.textureOffsetX + i6 + i4 + i4, this.textureOffsetY + i6);
 		this.faces[4] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex12, positionTextureVertex20, positionTextureVertex14, positionTextureVertex13}, this.textureOffsetX + i6, this.textureOffsetY + i6, this.textureOffsetX + i6 + i4, this.textureOffsetY + i6 + i5);
 		this.faces[5] = new TexturedQuad(new PositionTextureVertex[]{positionTextureVertex15, positionTextureVertex16, positionTextureVertex17, positionTextureVertex18}, this.textureOffsetX + i6 + i4 + i6, this.textureOffsetY + i6, this.textureOffsetX + i6 + i4 + i6 + i4, this.textureOffsetY + i6 + i5);
 		if(this.mirror) {

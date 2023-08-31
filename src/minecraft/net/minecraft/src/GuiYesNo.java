@@ -1,12 +1,12 @@
 package net.minecraft.src;
 
 public class GuiYesNo extends GuiScreen {
-	private GuiScreen parentScreen;
-	private String message1;
-	private String message2;
-	private String field_22106_k;
-	private String field_22105_l;
-	private int worldNumber;
+	private final GuiScreen parentScreen;
+	private final String message1;
+	private final String message2;
+	private final String field_22106_k;
+	private final String field_22105_l;
+	private final int worldNumber;
 
 	public GuiYesNo(GuiScreen guiScreen1, String string2, String string3, String string4, String string5, int i6) {
 		this.parentScreen = guiScreen1;
@@ -18,7 +18,7 @@ public class GuiYesNo extends GuiScreen {
 	}
 
 	public void initGui() {
-		this.controlList.add(new GuiSmallButton(0, this.width / 2 - 155 + 0, this.height / 6 + 96, this.field_22106_k));
+		this.controlList.add(new GuiSmallButton(0, this.width / 2 - 155, this.height / 6 + 96, this.field_22106_k));
 		this.controlList.add(new GuiSmallButton(1, this.width / 2 - 155 + 160, this.height / 6 + 96, this.field_22105_l));
 	}
 

@@ -3,9 +3,9 @@ package net.minecraft.src;
 import java.util.List;
 
 public class InventoryBasic implements IInventory {
-	private String inventoryTitle;
-	private int slotsCount;
-	private ItemStack[] inventoryContents;
+	private final String inventoryTitle;
+	private final int slotsCount;
+	private final ItemStack[] inventoryContents;
 	private List field_20073_d;
 
 	public InventoryBasic(String string1, int i2) {

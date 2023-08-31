@@ -23,7 +23,7 @@ public class ModelChicken extends ModelBase {
 		this.chin.setRotationPoint(0.0F, (float)(-1 + b1), -4.0F);
 		this.body = new ModelRenderer(0, 9);
 		this.body.addBox(-3.0F, -4.0F, -3.0F, 6, 8, 6, 0.0F);
-		this.body.setRotationPoint(0.0F, (float)(0 + b1), 0.0F);
+		this.body.setRotationPoint(0.0F, (float)(b1), 0.0F);
 		this.rightLeg = new ModelRenderer(26, 0);
 		this.rightLeg.addBox(-1.0F, 0.0F, -3.0F, 3, 5, 3);
 		this.rightLeg.setRotationPoint(-2.0F, (float)(3 + b1), 1.0F);

@@ -50,7 +50,7 @@ public class EntitySpider extends EntityMob {
 					float f8 = MathHelper.sqrt_double(d4 * d4 + d6 * d6);
 					this.motionX = d4 / (double)f8 * 0.5D * (double)0.8F + this.motionX * (double)0.2F;
 					this.motionZ = d6 / (double)f8 * 0.5D * (double)0.8F + this.motionZ * (double)0.2F;
-					this.motionY = (double)0.4F;
+					this.motionY = 0.4F;
 				}
 			} else {
 				super.attackEntity(entity1, f2);

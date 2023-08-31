@@ -9,9 +9,9 @@ public class EntityHeartFX extends EntityFX {
 
 	public EntityHeartFX(World world1, double d2, double d4, double d6, double d8, double d10, double d12, float f14) {
 		super(world1, d2, d4, d6, 0.0D, 0.0D, 0.0D);
-		this.motionX *= (double)0.01F;
-		this.motionY *= (double)0.01F;
-		this.motionZ *= (double)0.01F;
+		this.motionX *= 0.01F;
+		this.motionY *= 0.01F;
+		this.motionZ *= 0.01F;
 		this.motionY += 0.1D;
 		this.particleScale *= 0.75F;
 		this.particleScale *= f14;
@@ -49,12 +49,12 @@ public class EntityHeartFX extends EntityFX {
 			this.motionZ *= 1.1D;
 		}
 
-		this.motionX *= (double)0.86F;
-		this.motionY *= (double)0.86F;
-		this.motionZ *= (double)0.86F;
+		this.motionX *= 0.86F;
+		this.motionY *= 0.86F;
+		this.motionZ *= 0.86F;
 		if(this.onGround) {
-			this.motionX *= (double)0.7F;
-			this.motionZ *= (double)0.7F;
+			this.motionX *= 0.7F;
+			this.motionZ *= 0.7F;
 		}
 
 	}

@@ -1,10 +1,10 @@
 package net.minecraft.src;
 
 public class GuiVideoSettings extends GuiScreen {
-	private GuiScreen field_22110_h;
+	private final GuiScreen field_22110_h;
 	protected String field_22107_a = "Video Settings";
-	private GameSettings guiGameSettings;
-	private static EnumOptions[] field_22108_k = new EnumOptions[]{EnumOptions.GRAPHICS, EnumOptions.RENDER_DISTANCE, EnumOptions.AMBIENT_OCCLUSION, EnumOptions.FRAMERATE_LIMIT, EnumOptions.ANAGLYPH, EnumOptions.VIEW_BOBBING, EnumOptions.GUI_SCALE, EnumOptions.ADVANCED_OPENGL};
+	private final GameSettings guiGameSettings;
+	private static final EnumOptions[] field_22108_k = new EnumOptions[]{EnumOptions.GRAPHICS, EnumOptions.RENDER_DISTANCE, EnumOptions.AMBIENT_OCCLUSION, EnumOptions.FRAMERATE_LIMIT, EnumOptions.ANAGLYPH, EnumOptions.VIEW_BOBBING, EnumOptions.GUI_SCALE, EnumOptions.ADVANCED_OPENGL};
 
 	public GuiVideoSettings(GuiScreen guiScreen1, GameSettings gameSettings2) {
 		this.field_22110_h = guiScreen1;
