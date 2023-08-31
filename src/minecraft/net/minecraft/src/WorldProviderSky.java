@@ -48,6 +48,6 @@ public class WorldProviderSky extends WorldProvider {
 
 	public boolean canCoordinateBeSpawn(int i1, int i2) {
 		int i3 = this.worldObj.getFirstUncoveredBlock(i1, i2);
-		return i3 == 0 ? false : Block.blocksList[i3].blockMaterial.getIsSolid();
+		return i3 != 0 && Block.blocksList[i3].blockMaterial.getIsSolid();
 	}
 }

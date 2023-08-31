@@ -1268,7 +1268,7 @@ public abstract class Minecraft implements Runnable {
 		this.renderViewEntity = null;
 		this.loadingScreen.printText(string2);
 		this.loadingScreen.displayLoadingString("");
-		this.sndManager.playStreaming((String)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+		this.sndManager.playStreaming((String)null, 0.0F, 0.0F, 0.0F, 0.0F);
 		if(this.theWorld != null) {
 			this.theWorld.saveWorldIndirectly(this.loadingScreen);
 		}

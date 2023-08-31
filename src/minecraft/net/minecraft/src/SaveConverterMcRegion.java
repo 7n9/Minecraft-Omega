@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -17,24 +18,23 @@ public class SaveConverterMcRegion extends SaveFormatOld {
 	}
 
 	public String func_22178_a() {
-		return "Scaevolus\' McRegion";
+		return "Scaevolus' McRegion";
 	}
 
 	public List func_22176_b() {
 		ArrayList arrayList1 = new ArrayList();
 		File[] file2 = this.field_22180_a.listFiles();
-		File[] file3 = file2;
+		assert file2 != null;
 		int i4 = file2.length;
 
-		for(int i5 = 0; i5 < i4; ++i5) {
-			File file6 = file3[i5];
-			if(file6.isDirectory()) {
+		for (File file6 : file2) {
+			if (file6.isDirectory()) {
 				String string7 = file6.getName();
 				WorldInfo worldInfo8 = this.func_22173_b(string7);
-				if(worldInfo8 != null) {
+				if (worldInfo8 != null) {
 					boolean z9 = worldInfo8.getSaveVersion() != 19132;
 					String string10 = worldInfo8.getWorldName();
-					if(string10 == null || MathHelper.stringNullOrLengthZero(string10)) {
+					if (string10 == null || MathHelper.stringNullOrLengthZero(string10)) {
 						string10 = string7;
 					}
 
@@ -93,24 +93,21 @@ public class SaveConverterMcRegion extends SaveFormatOld {
 		ChunkFolderPattern chunkFolderPattern4 = new ChunkFolderPattern((Empty2)null);
 		ChunkFilePattern chunkFilePattern5 = new ChunkFilePattern((Empty2)null);
 		File[] file6 = file1.listFiles(chunkFolderPattern4);
-		File[] file7 = file6;
+		assert file6 != null;
 		int i8 = file6.length;
 
-		for(int i9 = 0; i9 < i8; ++i9) {
-			File file10 = file7[i9];
+		for (File file10 : file6) {
 			arrayList3.add(file10);
 			File[] file11 = file10.listFiles(chunkFolderPattern4);
-			File[] file12 = file11;
+			assert file11 != null;
 			int i13 = file11.length;
 
-			for(int i14 = 0; i14 < i13; ++i14) {
-				File file15 = file12[i14];
+			for (File file15 : file11) {
 				File[] file16 = file15.listFiles(chunkFilePattern5);
-				File[] file17 = file16;
+				assert file16 != null;
 				int i18 = file16.length;
 
-				for(int i19 = 0; i19 < i18; ++i19) {
-					File file20 = file17[i19];
+				for (File file20 : file16) {
 					arrayList2.add(new ChunkFile(file20));
 				}
 			}
@@ -121,21 +118,19 @@ public class SaveConverterMcRegion extends SaveFormatOld {
 	private void func_22181_a(File file1, ArrayList arrayList2, int i3, int i4, IProgressUpdate iProgressUpdate5) {
 		Collections.sort(arrayList2);
 		byte[] b6 = new byte[4096];
-		Iterator iterator7 = arrayList2.iterator();
 
-		while(iterator7.hasNext()) {
-			ChunkFile chunkFile8 = (ChunkFile)iterator7.next();
+		for (Object o : arrayList2) {
+			ChunkFile chunkFile8 = (ChunkFile) o;
 			int i9 = chunkFile8.func_22323_b();
 			int i10 = chunkFile8.func_22321_c();
 			RegionFile regionFile11 = RegionFileCache.func_22193_a(file1, i9, i10);
-			if(!regionFile11.func_22202_c(i9 & 31, i10 & 31)) {
+			if (!regionFile11.func_22202_c(i9 & 31, i10 & 31)) {
 				try {
-					DataInputStream dataInputStream12 = new DataInputStream(new GZIPInputStream(new FileInputStream(chunkFile8.func_22324_a())));
+					DataInputStream dataInputStream12 = new DataInputStream(new GZIPInputStream(Files.newInputStream(chunkFile8.func_22324_a().toPath())));
 					DataOutputStream dataOutputStream13 = regionFile11.getChunkDataOutputStream(i9 & 31, i10 & 31);
-					boolean z14 = false;
 
 					int i17;
-					while((i17 = dataInputStream12.read(b6)) != -1) {
+					while ((i17 = dataInputStream12.read(b6)) != -1) {
 						dataOutputStream13.write(b6, 0, i17);
 					}
 
@@ -147,7 +142,7 @@ public class SaveConverterMcRegion extends SaveFormatOld {
 			}
 
 			++i3;
-			int i16 = (int)Math.round(100.0D * (double)i3 / (double)i4);
+			int i16 = (int) Math.round(100.0D * (double) i3 / (double) i4);
 			iProgressUpdate5.setLoadingProgress(i16);
 		}
 
@@ -155,15 +150,15 @@ public class SaveConverterMcRegion extends SaveFormatOld {
 	}
 
 	private void func_22182_a(ArrayList arrayList1, int i2, int i3, IProgressUpdate iProgressUpdate4) {
-		Iterator iterator5 = arrayList1.iterator();
 
-		while(iterator5.hasNext()) {
-			File file6 = (File)iterator5.next();
+		for (Object o : arrayList1) {
+			File file6 = (File) o;
 			File[] file7 = file6.listFiles();
+			assert file7 != null;
 			func_22179_a(file7);
 			file6.delete();
 			++i2;
-			int i8 = (int)Math.round(100.0D * (double)i2 / (double)i3);
+			int i8 = (int) Math.round(100.0D * (double) i2 / (double) i3);
 			iProgressUpdate4.setLoadingProgress(i8);
 		}
 

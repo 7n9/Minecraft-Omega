@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.io.ByteArrayOutputStream;
 
 class RegionFileChunkBuffer extends ByteArrayOutputStream {
-	private int field_22283_b;
-	private int field_22285_c;
+	private final int field_22283_b;
+	private final int field_22285_c;
 	final RegionFile field_22284_a;
 
 	public RegionFileChunkBuffer(RegionFile regionFile1, int i2, int i3) {

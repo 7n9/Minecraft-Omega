@@ -2,18 +2,19 @@ package net.minecraft.src;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Set;
 
 public class WorldClient extends World {
-	private LinkedList field_1057_z = new LinkedList();
-	private NetClientHandler sendQueue;
+	private final LinkedList<WorldBlockPositionType> field_1057_z = new LinkedList<WorldBlockPositionType>();
+	private final NetClientHandler sendQueue;
 	private ChunkProviderClient field_20915_C;
-	private MCHash field_1055_D = new MCHash();
-	private Set field_20914_E = new HashSet();
-	private Set field_1053_F = new HashSet();
+	private final MCHash field_1055_D = new MCHash();
+	private final Set<Entity> field_20914_E = new HashSet<>();
+	private final Set<Entity> field_1053_F = new HashSet<>();
 
 	public WorldClient(NetClientHandler netClientHandler1, long j2, int i4) {
-		super(new SaveHandlerMP(), "MpServer", WorldProvider.getProviderForDimension(i4), j2);
+		super(new SaveHandlerMP(), "MpServer", Objects.requireNonNull(WorldProvider.getProviderForDimension(i4)), j2);
 		this.sendQueue = netClientHandler1;
 		this.setSpawnPoint(new ChunkCoordinates(8, 64, 8));
 		this.field_28108_z = netClientHandler1.field_28118_b;
@@ -32,7 +33,7 @@ public class WorldClient extends World {
 		}
 
 		for(i2 = 0; i2 < 10 && !this.field_1053_F.isEmpty(); ++i2) {
-			Entity entity3 = (Entity)this.field_1053_F.iterator().next();
+			Entity entity3 = this.field_1053_F.iterator().next();
 			if(!this.loadedEntityList.contains(entity3)) {
 				this.entityJoinedWorld(entity3);
 			}
@@ -41,7 +42,7 @@ public class WorldClient extends World {
 		this.sendQueue.processReadPackets();
 
 		for(i2 = 0; i2 < this.field_1057_z.size(); ++i2) {
-			WorldBlockPositionType worldBlockPositionType4 = (WorldBlockPositionType)this.field_1057_z.get(i2);
+			WorldBlockPositionType worldBlockPositionType4 = this.field_1057_z.get(i2);
 			if(--worldBlockPositionType4.field_1206_d == 0) {
 				super.setBlockAndMetadata(worldBlockPositionType4.field_1202_a, worldBlockPositionType4.field_1201_b, worldBlockPositionType4.field_1207_c, worldBlockPositionType4.field_1205_e, worldBlockPositionType4.field_1204_f);
 				super.markBlockNeedsUpdate(worldBlockPositionType4.field_1202_a, worldBlockPositionType4.field_1201_b, worldBlockPositionType4.field_1207_c);
@@ -53,7 +54,7 @@ public class WorldClient extends World {
 
 	public void func_711_c(int i1, int i2, int i3, int i4, int i5, int i6) {
 		for(int i7 = 0; i7 < this.field_1057_z.size(); ++i7) {
-			WorldBlockPositionType worldBlockPositionType8 = (WorldBlockPositionType)this.field_1057_z.get(i7);
+			WorldBlockPositionType worldBlockPositionType8 = this.field_1057_z.get(i7);
 			if(worldBlockPositionType8.field_1202_a >= i1 && worldBlockPositionType8.field_1201_b >= i2 && worldBlockPositionType8.field_1207_c >= i3 && worldBlockPositionType8.field_1202_a <= i4 && worldBlockPositionType8.field_1201_b <= i5 && worldBlockPositionType8.field_1207_c <= i6) {
 				this.field_1057_z.remove(i7--);
 			}
@@ -110,9 +111,7 @@ public class WorldClient extends World {
 
 	protected void obtainEntitySkin(Entity entity1) {
 		super.obtainEntitySkin(entity1);
-		if(this.field_1053_F.contains(entity1)) {
-			this.field_1053_F.remove(entity1);
-		}
+		this.field_1053_F.remove(entity1);
 
 	}
 
@@ -186,13 +185,10 @@ public class WorldClient extends World {
 		}
 	}
 
-	public boolean func_714_c(int i1, int i2, int i3, int i4, int i5) {
+	public void func_714_c(int i1, int i2, int i3, int i4, int i5) {
 		this.func_711_c(i1, i2, i3, i1, i2, i3);
 		if(super.setBlockAndMetadata(i1, i2, i3, i4, i5)) {
 			this.notifyBlockChange(i1, i2, i3, i4);
-			return true;
-		} else {
-			return false;
 		}
 	}
 

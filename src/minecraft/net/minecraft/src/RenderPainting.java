@@ -6,9 +6,9 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class RenderPainting extends Render {
-	private Random rand = new Random();
+	private final Random rand = new Random();
 
-	public void func_158_a(EntityPainting entityPainting1, double d2, double d4, double d6, float f8, float f9) {
+	public void func_158_a(EntityPainting entityPainting1, double d2, double d4, double d6, float f8) {
 		this.rand.setSeed(187L);
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d2, (float)d4, (float)d6);
@@ -115,6 +115,6 @@ public class RenderPainting extends Render {
 	}
 
 	public void doRender(Entity entity1, double d2, double d4, double d6, float f8, float f9) {
-		this.func_158_a((EntityPainting)entity1, d2, d4, d6, f8, f9);
+		this.func_158_a((EntityPainting)entity1, d2, d4, d6, f8);
 	}
 }

@@ -12,6 +12,6 @@ public class StatStringFormatKeyInv implements IStatStringFormat {
 	}
 
 	public String formatString(String string1) {
-		return String.format(string1, new Object[]{Keyboard.getKeyName(this.mc.gameSettings.keyBindInventory.keyCode)});
+		return String.format(string1, Keyboard.getKeyName(this.mc.gameSettings.keyBindInventory.keyCode));
 	}
 }

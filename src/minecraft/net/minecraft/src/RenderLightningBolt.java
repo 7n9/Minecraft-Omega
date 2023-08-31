@@ -5,7 +5,7 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 public class RenderLightningBolt extends Render {
-	public void func_27002_a(EntityLightningBolt entityLightningBolt1, double d2, double d4, double d6, float f8, float f9) {
+	public void func_27002_a(EntityLightningBolt entityLightningBolt1, double d2, double d4, double d6) {
 		Tessellator tessellator10 = Tessellator.instance;
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_LIGHTING);
@@ -54,7 +54,7 @@ public class RenderLightningBolt extends Render {
 
 					tessellator10.startDrawing(5);
 					float f31 = 0.5F;
-					tessellator10.setColorRGBA_F(0.9F * f31, 0.9F * f31, 1.0F * f31, 0.3F);
+					tessellator10.setColorRGBA_F(0.9F * f31, 0.9F * f31, f31, 0.3F);
 					double d32 = 0.1D + (double)i45 * 0.2D;
 					if(i19 == 0) {
 						d32 *= (double)i26 * 0.1D + 1.0D;
@@ -101,6 +101,6 @@ public class RenderLightningBolt extends Render {
 	}
 
 	public void doRender(Entity entity1, double d2, double d4, double d6, float f8, float f9) {
-		this.func_27002_a((EntityLightningBolt)entity1, d2, d4, d6, f8, f9);
+		this.func_27002_a((EntityLightningBolt)entity1, d2, d4, d6);
 	}
 }

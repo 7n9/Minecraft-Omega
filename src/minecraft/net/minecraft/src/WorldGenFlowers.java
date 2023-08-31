@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class WorldGenFlowers extends WorldGenerator {
-	private int plantBlockId;
+	private final int plantBlockId;
 
 	public WorldGenFlowers(int i1) {
 		this.plantBlockId = i1;

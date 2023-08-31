@@ -1,10 +1,10 @@
 package net.minecraft.src;
 
 public class Pathfinder {
-	private IBlockAccess worldMap;
-	private Path path = new Path();
-	private MCHash pointMap = new MCHash();
-	private PathPoint[] pathOptions = new PathPoint[32];
+	private final IBlockAccess worldMap;
+	private final Path path = new Path();
+	private final MCHash pointMap = new MCHash();
+	private final PathPoint[] pathOptions = new PathPoint[32];
 
 	public Pathfinder(IBlockAccess iBlockAccess1) {
 		this.worldMap = iBlockAccess1;
@@ -15,7 +15,7 @@ public class Pathfinder {
 	}
 
 	public PathEntity createEntityPathTo(Entity entity1, int i2, int i3, int i4, float f5) {
-		return this.createEntityPathTo(entity1, (double)((float)i2 + 0.5F), (double)((float)i3 + 0.5F), (double)((float)i4 + 0.5F), f5);
+		return this.createEntityPathTo(entity1, (float)i2 + 0.5F, (float)i3 + 0.5F, (float)i4 + 0.5F, f5);
 	}
 
 	private PathEntity createEntityPathTo(Entity entity1, double d2, double d4, double d6, float f8) {
@@ -24,8 +24,7 @@ public class Pathfinder {
 		PathPoint pathPoint9 = this.openPoint(MathHelper.floor_double(entity1.boundingBox.minX), MathHelper.floor_double(entity1.boundingBox.minY), MathHelper.floor_double(entity1.boundingBox.minZ));
 		PathPoint pathPoint10 = this.openPoint(MathHelper.floor_double(d2 - (double)(entity1.width / 2.0F)), MathHelper.floor_double(d4), MathHelper.floor_double(d6 - (double)(entity1.width / 2.0F)));
 		PathPoint pathPoint11 = new PathPoint(MathHelper.floor_float(entity1.width + 1.0F), MathHelper.floor_float(entity1.height + 1.0F), MathHelper.floor_float(entity1.width + 1.0F));
-		PathEntity pathEntity12 = this.addToPath(entity1, pathPoint9, pathPoint10, pathPoint11, f8);
-		return pathEntity12;
+		return this.addToPath(entity1, pathPoint9, pathPoint10, pathPoint11, f8);
 	}
 
 	private PathEntity addToPath(Entity entity1, PathPoint pathPoint2, PathPoint pathPoint3, PathPoint pathPoint4, float f5) {

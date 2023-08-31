@@ -59,25 +59,23 @@ public class TileEntityMobSpawner extends TileEntity {
 						return;
 					}
 
-					if(entityLiving9 != null) {
-						double d11 = (double)this.xCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 4.0D;
-						double d13 = (double)(this.yCoord + this.worldObj.rand.nextInt(3) - 1);
-						double d15 = (double)this.zCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 4.0D;
-						entityLiving9.setLocationAndAngles(d11, d13, d15, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
-						if(entityLiving9.getCanSpawnHere()) {
-							this.worldObj.entityJoinedWorld(entityLiving9);
+					double d11 = (double) this.xCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 4.0D;
+					double d13 = (double)(this.yCoord + this.worldObj.rand.nextInt(3) - 1);
+					double d15 = (double)this.zCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * 4.0D;
+					entityLiving9.setLocationAndAngles(d11, d13, d15, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
+					if(entityLiving9.getCanSpawnHere()) {
+						this.worldObj.entityJoinedWorld(entityLiving9);
 
-							for(int i17 = 0; i17 < 20; ++i17) {
-								d1 = (double)this.xCoord + 0.5D + ((double)this.worldObj.rand.nextFloat() - 0.5D) * 2.0D;
-								d3 = (double)this.yCoord + 0.5D + ((double)this.worldObj.rand.nextFloat() - 0.5D) * 2.0D;
-								d5 = (double)this.zCoord + 0.5D + ((double)this.worldObj.rand.nextFloat() - 0.5D) * 2.0D;
-								this.worldObj.spawnParticle("smoke", d1, d3, d5, 0.0D, 0.0D, 0.0D);
-								this.worldObj.spawnParticle("flame", d1, d3, d5, 0.0D, 0.0D, 0.0D);
-							}
-
-							entityLiving9.spawnExplosionParticle();
-							this.updateDelay();
+						for(int i17 = 0; i17 < 20; ++i17) {
+							d1 = (double)this.xCoord + 0.5D + ((double)this.worldObj.rand.nextFloat() - 0.5D) * 2.0D;
+							d3 = (double)this.yCoord + 0.5D + ((double)this.worldObj.rand.nextFloat() - 0.5D) * 2.0D;
+							d5 = (double)this.zCoord + 0.5D + ((double)this.worldObj.rand.nextFloat() - 0.5D) * 2.0D;
+							this.worldObj.spawnParticle("smoke", d1, d3, d5, 0.0D, 0.0D, 0.0D);
+							this.worldObj.spawnParticle("flame", d1, d3, d5, 0.0D, 0.0D, 0.0D);
 						}
+
+						entityLiving9.spawnExplosionParticle();
+						this.updateDelay();
 					}
 				}
 			}

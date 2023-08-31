@@ -12,11 +12,11 @@ import net.minecraft.client.Minecraft;
 
 public class TexturePackList {
 	private List availableTexturePacks = new ArrayList();
-	private TexturePackBase defaultTexturePack = new TexturePackDefault();
+	private final TexturePackBase defaultTexturePack = new TexturePackDefault();
 	public TexturePackBase selectedTexturePack;
-	private Map field_6538_d = new HashMap();
-	private Minecraft mc;
-	private File texturePackDir;
+	private final Map field_6538_d = new HashMap();
+	private final Minecraft mc;
+	private final File texturePackDir;
 	private String currentTexturePack;
 
 	public TexturePackList(Minecraft minecraft1, File file2) {
@@ -85,10 +85,9 @@ public class TexturePackList {
 		}
 
 		this.availableTexturePacks.removeAll(arrayList1);
-		Iterator iterator10 = this.availableTexturePacks.iterator();
 
-		while(iterator10.hasNext()) {
-			TexturePackBase texturePackBase11 = (TexturePackBase)iterator10.next();
+		for (Object availableTexturePack : this.availableTexturePacks) {
+			TexturePackBase texturePackBase11 = (TexturePackBase) availableTexturePack;
 			texturePackBase11.func_6484_b(this.mc);
 			this.field_6538_d.remove(texturePackBase11.field_6488_d);
 		}

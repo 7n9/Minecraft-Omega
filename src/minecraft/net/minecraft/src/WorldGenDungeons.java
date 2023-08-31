@@ -111,6 +111,6 @@ public class WorldGenDungeons extends WorldGenerator {
 
 	private String pickMobSpawner(Random random1) {
 		int i2 = random1.nextInt(4);
-		return i2 == 0 ? "Skeleton" : (i2 == 1 ? "Zombie" : (i2 == 2 ? "Zombie" : (i2 == 3 ? "Spider" : "")));
+		return i2 == 0 ? "Skeleton" : i2 == 1 ? "Zombie" : i2 == 2 ? "Zombie" : "Spider";
 	}
 }

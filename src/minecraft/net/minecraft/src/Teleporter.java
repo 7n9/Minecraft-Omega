@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class Teleporter {
-	private Random field_4232_a = new Random();
+	private final Random field_4232_a = new Random();
 
 	public void func_4107_a(World world1, Entity entity2) {
 		if(!this.func_4106_b(world1, entity2)) {
@@ -75,7 +75,7 @@ public class Teleporter {
 		}
 	}
 
-	public boolean func_4108_c(World world1, Entity entity2) {
+	public void func_4108_c(World world1, Entity entity2) {
 		byte b3 = 16;
 		double d4 = -1.0D;
 		int i6 = MathHelper.floor_double(entity2.posX);
@@ -256,6 +256,5 @@ public class Teleporter {
 			}
 		}
 
-		return true;
 	}
 }

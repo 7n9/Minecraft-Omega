@@ -3,7 +3,6 @@ package net.minecraft.src;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -19,18 +18,18 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderEngine {
 	public static boolean useMipmaps = false;
-	private HashMap textureMap = new HashMap();
-	private HashMap field_28151_c = new HashMap();
-	private HashMap textureNameToImageMap = new HashMap();
-	private IntBuffer singleIntBuffer = GLAllocation.createDirectIntBuffer(1);
-	private ByteBuffer imageData = GLAllocation.createDirectByteBuffer(1048576);
-	private List textureList = new ArrayList();
-	private Map urlToImageDataMap = new HashMap();
-	private GameSettings options;
+	private final HashMap textureMap = new HashMap();
+	private final HashMap field_28151_c = new HashMap();
+	private final HashMap textureNameToImageMap = new HashMap();
+	private final IntBuffer singleIntBuffer = GLAllocation.createDirectIntBuffer(1);
+	private final ByteBuffer imageData = GLAllocation.createDirectByteBuffer(1048576);
+	private final List<TextureFX> textureList = new ArrayList<TextureFX>();
+	private final Map urlToImageDataMap = new HashMap();
+	private final GameSettings options;
 	private boolean clampTexture = false;
 	private boolean blurTexture = false;
-	private TexturePackList texturePack;
-	private BufferedImage missingTextureImage = new BufferedImage(64, 64, 2);
+	private final TexturePackList texturePack;
+	private final BufferedImage missingTextureImage = new BufferedImage(64, 64, 2);
 
 	public RenderEngine(TexturePackList texturePackList1, GameSettings gameSettings2) {
 		this.texturePack = texturePackList1;
@@ -50,7 +49,6 @@ public class RenderEngine {
 			return i3;
 		} else {
 			try {
-				Object object6 = null;
 				if(string1.startsWith("##")) {
 					i3 = this.func_28148_b(this.unwrapImageByColumns(this.readTextureImage(texturePackBase2.getResourceAsStream(string1.substring(2)))));
 				} else if(string1.startsWith("%clamp%")) {
@@ -89,18 +87,17 @@ public class RenderEngine {
 		return i4;
 	}
 
-	private int[] func_28147_a(BufferedImage bufferedImage1, int[] i2) {
+	private void func_28147_a(BufferedImage bufferedImage1, int[] i2) {
 		int i3 = bufferedImage1.getWidth();
 		int i4 = bufferedImage1.getHeight();
 		bufferedImage1.getRGB(0, 0, i3, i4, i2, 0, i3);
-		return i2;
 	}
 
 	public int getTexture(String string1) {
 		TexturePackBase texturePackBase2 = this.texturePack.selectedTexturePack;
 		Integer integer3 = (Integer)this.textureMap.get(string1);
 		if(integer3 != null) {
-			return integer3.intValue();
+			return integer3;
 		} else {
 			try {
 				this.singleIntBuffer.clear();
@@ -144,7 +141,7 @@ public class RenderEngine {
 		Graphics graphics4 = bufferedImage3.getGraphics();
 
 		for(int i5 = 0; i5 < i2; ++i5) {
-			graphics4.drawImage(bufferedImage1, -i5 * 16, i5 * bufferedImage1.getHeight(), (ImageObserver)null);
+			graphics4.drawImage(bufferedImage1, -i5 * 16, i5 * bufferedImage1.getHeight(), null);
 		}
 
 		graphics4.dispose();
@@ -211,7 +208,7 @@ public class RenderEngine {
 				i11 = i14;
 			}
 
-			b6[i7 * 4 + 0] = (byte)i9;
+			b6[i7 * 4] = (byte)i9;
 			b6[i7 * 4 + 1] = (byte)i10;
 			b6[i7 * 4 + 2] = (byte)i11;
 			b6[i7 * 4 + 3] = (byte)i8;
@@ -229,10 +226,10 @@ public class RenderEngine {
 
 				for(i11 = 0; i11 < i9; ++i11) {
 					for(i12 = 0; i12 < i10; ++i12) {
-						i13 = this.imageData.getInt((i11 * 2 + 0 + (i12 * 2 + 0) * i8) * 4);
-						i14 = this.imageData.getInt((i11 * 2 + 1 + (i12 * 2 + 0) * i8) * 4);
+						i13 = this.imageData.getInt((i11 * 2 + (i12 * 2) * i8) * 4);
+						i14 = this.imageData.getInt((i11 * 2 + 1 + (i12 * 2) * i8) * 4);
 						int i15 = this.imageData.getInt((i11 * 2 + 1 + (i12 * 2 + 1) * i8) * 4);
-						int i16 = this.imageData.getInt((i11 * 2 + 0 + (i12 * 2 + 1) * i8) * 4);
+						int i16 = this.imageData.getInt((i11 * 2 + (i12 * 2 + 1) * i8) * 4);
 						int i17 = this.weightedAverageColor(this.weightedAverageColor(i13, i14), this.weightedAverageColor(i15, i16));
 						this.imageData.putInt((i11 + i12 * i9) * 4, i17);
 					}
@@ -283,7 +280,7 @@ public class RenderEngine {
 				i10 = i13;
 			}
 
-			b5[i6 * 4 + 0] = (byte)i8;
+			b5[i6 * 4] = (byte)i8;
 			b5[i6 * 4 + 1] = (byte)i9;
 			b5[i6 * 4 + 2] = (byte)i10;
 			b5[i6 * 4 + 3] = (byte)i7;
@@ -363,7 +360,7 @@ public class RenderEngine {
 		int i11;
 		int i12;
 		for(i1 = 0; i1 < this.textureList.size(); ++i1) {
-			textureFX2 = (TextureFX)this.textureList.get(i1);
+			textureFX2 = this.textureList.get(i1);
 			textureFX2.anaglyphEnabled = this.options.anaglyph;
 			textureFX2.onTick();
 			this.imageData.clear();
@@ -381,10 +378,10 @@ public class RenderEngine {
 
 							for(i8 = 0; i8 < i7; ++i8) {
 								for(i9 = 0; i9 < i7; ++i9) {
-									i10 = this.imageData.getInt((i8 * 2 + 0 + (i9 * 2 + 0) * i6) * 4);
-									i11 = this.imageData.getInt((i8 * 2 + 1 + (i9 * 2 + 0) * i6) * 4);
+									i10 = this.imageData.getInt((i8 * 2 + (i9 * 2) * i6) * 4);
+									i11 = this.imageData.getInt((i8 * 2 + 1 + (i9 * 2) * i6) * 4);
 									i12 = this.imageData.getInt((i8 * 2 + 1 + (i9 * 2 + 1) * i6) * 4);
-									int i13 = this.imageData.getInt((i8 * 2 + 0 + (i9 * 2 + 1) * i6) * 4);
+									int i13 = this.imageData.getInt((i8 * 2 + (i9 * 2 + 1) * i6) * 4);
 									int i14 = this.averageColor(this.averageColor(i10, i11), this.averageColor(i12, i13));
 									this.imageData.putInt((i8 + i9 * i7) * 4, i14);
 								}
@@ -398,7 +395,7 @@ public class RenderEngine {
 		}
 
 		for(i1 = 0; i1 < this.textureList.size(); ++i1) {
-			textureFX2 = (TextureFX)this.textureList.get(i1);
+			textureFX2 = this.textureList.get(i1);
 			if(textureFX2.textureId > 0) {
 				this.imageData.clear();
 				this.imageData.put(textureFX2.imageData);
@@ -412,10 +409,10 @@ public class RenderEngine {
 
 						for(i6 = 0; i6 < i5; ++i6) {
 							for(i7 = 0; i7 < i5; ++i7) {
-								i8 = this.imageData.getInt((i6 * 2 + 0 + (i7 * 2 + 0) * i4) * 4);
-								i9 = this.imageData.getInt((i6 * 2 + 1 + (i7 * 2 + 0) * i4) * 4);
+								i8 = this.imageData.getInt((i6 * 2 + (i7 * 2) * i4) * 4);
+								i9 = this.imageData.getInt((i6 * 2 + 1 + (i7 * 2) * i4) * 4);
 								i10 = this.imageData.getInt((i6 * 2 + 1 + (i7 * 2 + 1) * i4) * 4);
-								i11 = this.imageData.getInt((i6 * 2 + 0 + (i7 * 2 + 1) * i4) * 4);
+								i11 = this.imageData.getInt((i6 * 2 + (i7 * 2 + 1) * i4) * 4);
 								i12 = this.averageColor(this.averageColor(i8, i9), this.averageColor(i10, i11));
 								this.imageData.putInt((i6 + i7 * i5) * 4, i12);
 							}
@@ -463,7 +460,7 @@ public class RenderEngine {
 
 		BufferedImage bufferedImage4;
 		while(iterator2.hasNext()) {
-			int i3 = ((Integer)iterator2.next()).intValue();
+			int i3 = (Integer) iterator2.next();
 			bufferedImage4 = (BufferedImage)this.textureNameToImageMap.get(i3);
 			this.setupTexture(bufferedImage4, i3);
 		}
@@ -492,7 +489,7 @@ public class RenderEngine {
 					bufferedImage4 = this.readTextureImage(texturePackBase1.getResourceAsStream(string9));
 				}
 
-				int i5 = ((Integer)this.textureMap.get(string9)).intValue();
+				int i5 = (Integer) this.textureMap.get(string9);
 				this.setupTexture(bufferedImage4, i5);
 				this.blurTexture = false;
 				this.clampTexture = false;

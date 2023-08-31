@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class TexturePortalFX extends TextureFX {
 	private int portalTickCounter = 0;
-	private byte[][] portalTextureData = new byte[32][1024];
+	private final byte[][] portalTextureData = new byte[32][1024];
 
 	public TexturePortalFX() {
 		super(Block.portal.blockIndexInTexture);
@@ -50,7 +50,7 @@ public class TexturePortalFX extends TextureFX {
 					int i14 = (int)(f5 * f5 * f5 * f5 * 255.0F);
 					int i15 = (int)(f5 * 100.0F + 155.0F);
 					int i16 = i4 * 16 + i3;
-					this.portalTextureData[i2][i16 * 4 + 0] = (byte)i13;
+					this.portalTextureData[i2][i16 * 4] = (byte)i13;
 					this.portalTextureData[i2][i16 * 4 + 1] = (byte)i14;
 					this.portalTextureData[i2][i16 * 4 + 2] = (byte)i6;
 					this.portalTextureData[i2][i16 * 4 + 3] = (byte)i15;
@@ -65,7 +65,7 @@ public class TexturePortalFX extends TextureFX {
 		byte[] b1 = this.portalTextureData[this.portalTickCounter & 31];
 
 		for(int i2 = 0; i2 < 256; ++i2) {
-			int i3 = b1[i2 * 4 + 0] & 255;
+			int i3 = b1[i2 * 4] & 255;
 			int i4 = b1[i2 * 4 + 1] & 255;
 			int i5 = b1[i2 * 4 + 2] & 255;
 			int i6 = b1[i2 * 4 + 3] & 255;
@@ -78,7 +78,7 @@ public class TexturePortalFX extends TextureFX {
 				i5 = i9;
 			}
 
-			this.imageData[i2 * 4 + 0] = (byte)i3;
+			this.imageData[i2 * 4] = (byte)i3;
 			this.imageData[i2 * 4 + 1] = (byte)i4;
 			this.imageData[i2 * 4 + 2] = (byte)i5;
 			this.imageData[i2 * 4 + 3] = (byte)i6;

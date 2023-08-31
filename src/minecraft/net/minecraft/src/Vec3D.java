@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Vec3D {
-	private static List vectorList = new ArrayList();
+	private static final List vectorList = new ArrayList();
 	private static int nextVector = 0;
 	public double xCoord;
 	public double yCoord;

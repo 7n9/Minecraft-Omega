@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class WorldGenTallGrass extends WorldGenerator {
-	private int field_28060_a;
-	private int field_28059_b;
+	private final int field_28060_a;
+	private final int field_28059_b;
 
 	public WorldGenTallGrass(int i1, int i2) {
 		this.field_28060_a = i1;
@@ -20,7 +20,7 @@ public class WorldGenTallGrass extends WorldGenerator {
 			int i8 = i3 + random2.nextInt(8) - random2.nextInt(8);
 			int i9 = i4 + random2.nextInt(4) - random2.nextInt(4);
 			int i10 = i5 + random2.nextInt(8) - random2.nextInt(8);
-			if(world1.isAirBlock(i8, i9, i10) && ((BlockFlower)Block.blocksList[this.field_28060_a]).canBlockStay(world1, i8, i9, i10)) {
+			if(world1.isAirBlock(i8, i9, i10) && Block.blocksList[this.field_28060_a].canBlockStay(world1, i8, i9, i10)) {
 				world1.setBlockAndMetadata(i8, i9, i10, this.field_28060_a, this.field_28059_b);
 			}
 		}

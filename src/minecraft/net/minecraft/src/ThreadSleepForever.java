@@ -16,7 +16,7 @@ public class ThreadSleepForever extends Thread {
 		while(this.mc.running) {
 			try {
 				Thread.sleep(2147483647L);
-			} catch (InterruptedException interruptedException2) {
+			} catch (InterruptedException ignored) {
 			}
 		}
 

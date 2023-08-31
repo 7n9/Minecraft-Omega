@@ -12,14 +12,14 @@ public class StatsSyncher {
 	private volatile boolean field_27438_a = false;
 	private volatile Map field_27437_b = null;
 	private volatile Map field_27436_c = null;
-	private StatFileWriter field_27435_d;
-	private File field_27434_e;
-	private File field_27433_f;
-	private File field_27432_g;
-	private File field_27431_h;
-	private File field_27430_i;
-	private File field_27429_j;
-	private Session field_27428_k;
+	private final StatFileWriter field_27435_d;
+	private final File field_27434_e;
+	private final File field_27433_f;
+	private final File field_27432_g;
+	private final File field_27431_h;
+	private final File field_27430_i;
+	private final File field_27429_j;
+	private final Session field_27428_k;
 	private int field_27427_l = 0;
 	private int field_27426_m = 0;
 
@@ -72,8 +72,7 @@ public class StatsSyncher {
 				stringBuilder4.append(string3);
 			}
 
-			Map map5 = StatFileWriter.func_27177_a(stringBuilder4.toString());
-			return map5;
+			return StatFileWriter.func_27177_a(stringBuilder4.toString());
 		} catch (Exception exception15) {
 			exception15.printStackTrace();
 		} finally {
@@ -91,12 +90,9 @@ public class StatsSyncher {
 	}
 
 	private void func_27410_a(Map map1, File file2, File file3, File file4) throws IOException {
-		PrintWriter printWriter5 = new PrintWriter(new FileWriter(file3, false));
 
-		try {
+		try (PrintWriter printWriter5 = new PrintWriter(new FileWriter(file3, false))) {
 			printWriter5.print(StatFileWriter.func_27185_a(this.field_27428_k.username, "local", map1));
-		} finally {
-			printWriter5.close();
 		}
 
 		if(file4.exists()) {
@@ -112,7 +108,7 @@ public class StatsSyncher {
 
 	public void func_27418_a() {
 		if(this.field_27438_a) {
-			throw new IllegalStateException("Can\'t get stats from server while StatsSyncher is busy!");
+			throw new IllegalStateException("Can't get stats from server while StatsSyncher is busy!");
 		} else {
 			this.field_27427_l = 100;
 			this.field_27438_a = true;
@@ -122,7 +118,7 @@ public class StatsSyncher {
 
 	public void func_27424_a(Map map1) {
 		if(this.field_27438_a) {
-			throw new IllegalStateException("Can\'t save stats while StatsSyncher is busy!");
+			throw new IllegalStateException("Can't save stats while StatsSyncher is busy!");
 		} else {
 			this.field_27427_l = 100;
 			this.field_27438_a = true;
@@ -203,16 +199,16 @@ public class StatsSyncher {
 		statsSyncher0.func_27410_a(map1, file2, file3, file4);
 	}
 
-	static Map func_27421_a(StatsSyncher statsSyncher0, Map map1) {
-		return statsSyncher0.field_27437_b = map1;
+	static void func_27421_a(StatsSyncher statsSyncher0, Map map1) {
+		statsSyncher0.field_27437_b = map1;
 	}
 
 	static Map func_27409_a(StatsSyncher statsSyncher0, File file1, File file2, File file3) {
 		return statsSyncher0.func_27415_a(file1, file2, file3);
 	}
 
-	static boolean func_27416_a(StatsSyncher statsSyncher0, boolean z1) {
-		return statsSyncher0.field_27438_a = z1;
+	static void func_27416_a(StatsSyncher statsSyncher0, boolean z1) {
+		statsSyncher0.field_27438_a = z1;
 	}
 
 	static File func_27414_e(StatsSyncher statsSyncher0) {

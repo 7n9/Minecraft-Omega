@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TileEntity {
-	private static Map nameToClassMap = new HashMap();
-	private static Map classToNameMap = new HashMap();
+	private static final Map nameToClassMap = new HashMap();
+	private static final Map classToNameMap = new HashMap();
 	public World worldObj;
 	public int xCoord;
 	public int yCoord;

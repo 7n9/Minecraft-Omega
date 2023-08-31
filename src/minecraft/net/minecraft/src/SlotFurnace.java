@@ -1,7 +1,7 @@
 package net.minecraft.src;
 
 public class SlotFurnace extends Slot {
-	private EntityPlayer thePlayer;
+	private final EntityPlayer thePlayer;
 
 	public SlotFurnace(EntityPlayer entityPlayer1, IInventory iInventory2, int i3, int i4, int i5) {
 		super(iInventory2, i3, i4, i5);

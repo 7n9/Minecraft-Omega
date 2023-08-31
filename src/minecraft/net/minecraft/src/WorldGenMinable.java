@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class WorldGenMinable extends WorldGenerator {
-	private int minableBlockId;
-	private int numberOfBlocks;
+	private final int minableBlockId;
+	private final int numberOfBlocks;
 
 	public WorldGenMinable(int i1, int i2) {
 		this.minableBlockId = i1;

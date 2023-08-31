@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.Random;
 
 public class SoundPool {
-	private Random rand = new Random();
-	private Map nameToSoundPoolEntriesMapping = new HashMap();
-	private List allSoundPoolEntries = new ArrayList();
+	private final Random rand = new Random();
+	private final Map nameToSoundPoolEntriesMapping = new HashMap();
+	private final List allSoundPoolEntries = new ArrayList();
 	public int numberOfSoundPoolEntries = 0;
 	public boolean field_1657_b = true;
 

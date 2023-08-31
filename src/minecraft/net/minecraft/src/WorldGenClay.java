@@ -3,8 +3,8 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class WorldGenClay extends WorldGenerator {
-	private int clayBlockId = Block.blockClay.blockID;
-	private int numberOfBlocks;
+	private final int clayBlockId = Block.blockClay.blockID;
+	private final int numberOfBlocks;
 
 	public WorldGenClay(int i1) {
 		this.numberOfBlocks = i1;

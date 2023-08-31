@@ -36,7 +36,7 @@ public class TextureLavaFlowFX extends TextureFX {
 					}
 				}
 
-				this.field_1142_h[i1 + i2 * 16] = f3 / 10.0F + (this.field_1141_i[(i1 + 0 & 15) + (i2 + 0 & 15) * 16] + this.field_1141_i[(i1 + 1 & 15) + (i2 + 0 & 15) * 16] + this.field_1141_i[(i1 + 1 & 15) + (i2 + 1 & 15) * 16] + this.field_1141_i[(i1 + 0 & 15) + (i2 + 1 & 15) * 16]) / 4.0F * 0.8F;
+				this.field_1142_h[i1 + i2 * 16] = f3 / 10.0F + (this.field_1141_i[(i1 & 15) + (i2 & 15) * 16] + this.field_1141_i[(i1 + 1 & 15) + (i2 & 15) * 16] + this.field_1141_i[(i1 + 1 & 15) + (i2 + 1 & 15) * 16] + this.field_1141_i[(i1 & 15) + (i2 + 1 & 15) * 16]) / 4.0F * 0.8F;
 				this.field_1141_i[i1 + i2 * 16] += this.field_1140_j[i1 + i2 * 16] * 0.01F;
 				if(this.field_1141_i[i1 + i2 * 16] < 0.0F) {
 					this.field_1141_i[i1 + i2 * 16] = 0.0F;
@@ -75,7 +75,7 @@ public class TextureLavaFlowFX extends TextureFX {
 				i7 = i10;
 			}
 
-			this.imageData[i2 * 4 + 0] = (byte)i5;
+			this.imageData[i2 * 4] = (byte)i5;
 			this.imageData[i2 * 4 + 1] = (byte)i6;
 			this.imageData[i2 * 4 + 2] = (byte)i7;
 			this.imageData[i2 * 4 + 3] = -1;

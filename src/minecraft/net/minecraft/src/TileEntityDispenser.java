@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class TileEntityDispenser extends TileEntity implements IInventory {
 	private ItemStack[] dispenserContents = new ItemStack[9];
-	private Random dispenserRandom = new Random();
+	private final Random dispenserRandom = new Random();
 
 	public int getSizeInventory() {
 		return 9;
@@ -74,7 +74,7 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 		for(int i3 = 0; i3 < nBTTagList2.tagCount(); ++i3) {
 			NBTTagCompound nBTTagCompound4 = (NBTTagCompound)nBTTagList2.tagAt(i3);
 			int i5 = nBTTagCompound4.getByte("Slot") & 255;
-			if(i5 >= 0 && i5 < this.dispenserContents.length) {
+			if(i5 < this.dispenserContents.length) {
 				this.dispenserContents[i5] = new ItemStack(nBTTagCompound4);
 			}
 		}
@@ -102,6 +102,6 @@ public class TileEntityDispenser extends TileEntity implements IInventory {
 	}
 
 	public boolean canInteractWith(EntityPlayer entityPlayer1) {
-		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : entityPlayer1.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+		return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityPlayer1.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
 	}
 }

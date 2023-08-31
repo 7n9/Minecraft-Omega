@@ -2,7 +2,7 @@ package net.minecraft.src;
 
 public class SlotCrafting extends Slot {
 	private final IInventory craftMatrix;
-	private EntityPlayer thePlayer;
+	private final EntityPlayer thePlayer;
 
 	public SlotCrafting(EntityPlayer entityPlayer1, IInventory iInventory2, IInventory iInventory3, int i4, int i5, int i6) {
 		super(iInventory3, i4, i5, i6);

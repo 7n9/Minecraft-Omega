@@ -3,8 +3,10 @@ package net.minecraft.src;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SaveFormatOld implements ISaveFormat {
 	protected final File field_22180_a;
@@ -48,7 +50,7 @@ public class SaveFormatOld implements ISaveFormat {
 			NBTTagCompound nBTTagCompound5;
 			if(file3.exists()) {
 				try {
-					nBTTagCompound4 = CompressedStreamTools.func_1138_a(new FileInputStream(file3));
+					nBTTagCompound4 = CompressedStreamTools.func_1138_a(Files.newInputStream(file3.toPath()));
 					nBTTagCompound5 = nBTTagCompound4.getCompoundTag("Data");
 					return new WorldInfo(nBTTagCompound5);
 				} catch (Exception exception7) {
@@ -59,7 +61,7 @@ public class SaveFormatOld implements ISaveFormat {
 			file3 = new File(file2, "level.dat_old");
 			if(file3.exists()) {
 				try {
-					nBTTagCompound4 = CompressedStreamTools.func_1138_a(new FileInputStream(file3));
+					nBTTagCompound4 = CompressedStreamTools.func_1138_a(Files.newInputStream(file3.toPath()));
 					nBTTagCompound5 = nBTTagCompound4.getCompoundTag("Data");
 					return new WorldInfo(nBTTagCompound5);
 				} catch (Exception exception6) {
@@ -77,10 +79,10 @@ public class SaveFormatOld implements ISaveFormat {
 			File file4 = new File(file3, "level.dat");
 			if(file4.exists()) {
 				try {
-					NBTTagCompound nBTTagCompound5 = CompressedStreamTools.func_1138_a(new FileInputStream(file4));
+					NBTTagCompound nBTTagCompound5 = CompressedStreamTools.func_1138_a(Files.newInputStream(file4.toPath()));
 					NBTTagCompound nBTTagCompound6 = nBTTagCompound5.getCompoundTag("Data");
 					nBTTagCompound6.setString("LevelName", string2);
-					CompressedStreamTools.writeGzippedCompoundToOutputStream(nBTTagCompound5, new FileOutputStream(file4));
+					CompressedStreamTools.writeGzippedCompoundToOutputStream(nBTTagCompound5, Files.newOutputStream(file4.toPath()));
 				} catch (Exception exception7) {
 					exception7.printStackTrace();
 				}
@@ -92,18 +94,18 @@ public class SaveFormatOld implements ISaveFormat {
 	public void func_22172_c(String string1) {
 		File file2 = new File(this.field_22180_a, string1);
 		if(file2.exists()) {
-			func_22179_a(file2.listFiles());
+			func_22179_a(Objects.requireNonNull(file2.listFiles()));
 			file2.delete();
 		}
 	}
 
 	protected static void func_22179_a(File[] file0) {
-		for(int i1 = 0; i1 < file0.length; ++i1) {
-			if(file0[i1].isDirectory()) {
-				func_22179_a(file0[i1].listFiles());
+		for (File file : file0) {
+			if (file.isDirectory()) {
+				func_22179_a(Objects.requireNonNull(file.listFiles()));
 			}
 
-			file0[i1].delete();
+			file.delete();
 		}
 
 	}

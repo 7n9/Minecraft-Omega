@@ -3,13 +3,13 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class RenderFallingSand extends Render {
-	private RenderBlocks field_197_d = new RenderBlocks();
+	private final RenderBlocks field_197_d = new RenderBlocks();
 
 	public RenderFallingSand() {
 		this.shadowSize = 0.5F;
 	}
 
-	public void doRenderFallingSand(EntityFallingSand entityFallingSand1, double d2, double d4, double d6, float f8, float f9) {
+	public void doRenderFallingSand(EntityFallingSand entityFallingSand1, double d2, double d4, double d6) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d2, (float)d4, (float)d6);
 		this.loadTexture("/terrain.png");
@@ -22,6 +22,6 @@ public class RenderFallingSand extends Render {
 	}
 
 	public void doRender(Entity entity1, double d2, double d4, double d6, float f8, float f9) {
-		this.doRenderFallingSand((EntityFallingSand)entity1, d2, d4, d6, f8, f9);
+		this.doRenderFallingSand((EntityFallingSand)entity1, d2, d4, d6);
 	}
 }

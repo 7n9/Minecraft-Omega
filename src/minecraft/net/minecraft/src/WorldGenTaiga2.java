@@ -15,7 +15,6 @@ public class WorldGenTaiga2 extends WorldGenerator {
 			int i15;
 			int i21;
 			for(i11 = i4; i11 <= i4 + 1 + i6 && z10; ++i11) {
-				boolean z12 = true;
 				if(i11 - i4 < i7) {
 					i21 = 0;
 				} else {

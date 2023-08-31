@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class RenderFish extends Render {
-	public void func_4011_a(EntityFish entityFish1, double d2, double d4, double d6, float f8, float f9) {
+	public void func_4011_a(EntityFish entityFish1, double d2, double d4, double d6, float f9) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d2, (float)d4, (float)d6);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
@@ -13,9 +13,9 @@ public class RenderFish extends Render {
 		byte b11 = 2;
 		this.loadTexture("/particles.png");
 		Tessellator tessellator12 = Tessellator.instance;
-		float f13 = (float)(b10 * 8 + 0) / 128.0F;
+		float f13 = (float)(b10 * 8) / 128.0F;
 		float f14 = (float)(b10 * 8 + 8) / 128.0F;
-		float f15 = (float)(b11 * 8 + 0) / 128.0F;
+		float f15 = (float)(b11 * 8) / 128.0F;
 		float f16 = (float)(b11 * 8 + 8) / 128.0F;
 		float f17 = 1.0F;
 		float f18 = 0.5F;
@@ -79,6 +79,6 @@ public class RenderFish extends Render {
 	}
 
 	public void doRender(Entity entity1, double d2, double d4, double d6, float f8, float f9) {
-		this.func_4011_a((EntityFish)entity1, d2, d4, d6, f8, f9);
+		this.func_4011_a((EntityFish)entity1, d2, d4, d6, f9);
 	}
 }

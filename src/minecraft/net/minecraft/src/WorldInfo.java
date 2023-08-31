@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.List;
 
 public class WorldInfo {
-	private long randomSeed;
+	private final long randomSeed;
 	private int spawnX;
 	private int spawnY;
 	private int spawnZ;

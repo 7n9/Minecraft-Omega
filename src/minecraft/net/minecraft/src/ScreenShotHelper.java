@@ -12,7 +12,7 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
 public class ScreenShotHelper {
-	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
+	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
 	private static ByteBuffer buffer;
 	private static byte[] pixelData;
 	private static int[] imageData;
@@ -46,7 +46,7 @@ public class ScreenShotHelper {
 			for(int i7 = 0; i7 < i1; ++i7) {
 				for(int i8 = 0; i8 < i2; ++i8) {
 					int i9 = i7 + (i2 - i8 - 1) * i1;
-					int i10 = pixelData[i9 * 3 + 0] & 255;
+					int i10 = pixelData[i9 * 3] & 255;
 					int i11 = pixelData[i9 * 3 + 1] & 255;
 					int i12 = pixelData[i9 * 3 + 2] & 255;
 					int i13 = 0xFF000000 | i10 << 16 | i11 << 8 | i12;

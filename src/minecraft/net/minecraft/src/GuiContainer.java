@@ -55,7 +55,7 @@ public abstract class GuiContainer extends GuiScreen {
 		if(inventoryPlayer12.getItemStack() != null) {
 			GL11.glTranslatef(0.0F, 0.0F, 32.0F);
 			itemRenderer.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, inventoryPlayer12.getItemStack(), i1 - i4 - 8, i2 - i5 - 8);
-			itemRenderer.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, inventoryPlayer12.getItemStack(), i1 - i4 - 8, i2 - i5 - 8);
+			itemRenderer.renderItemOverlayIntoGUI(this.fontRenderer, inventoryPlayer12.getItemStack(), i1 - i4 - 8, i2 - i5 - 8);
 		}
 
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
@@ -101,7 +101,7 @@ public abstract class GuiContainer extends GuiScreen {
 		}
 
 		itemRenderer.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemStack4, i2, i3);
-		itemRenderer.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemStack4, i2, i3);
+		itemRenderer.renderItemOverlayIntoGUI(this.fontRenderer, itemStack4, i2, i3);
 	}
 
 	private Slot getSlotAtPosition(int i1, int i2) {

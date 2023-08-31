@@ -5,16 +5,16 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 
 public class RenderPlayer extends RenderLiving {
-	private ModelBiped modelBipedMain = (ModelBiped)this.mainModel;
-	private ModelBiped modelArmorChestplate = new ModelBiped(1.0F);
-	private ModelBiped modelArmor = new ModelBiped(0.5F);
+	private final ModelBiped modelBipedMain = (ModelBiped)this.mainModel;
+	private final ModelBiped modelArmorChestplate = new ModelBiped(1.0F);
+	private final ModelBiped modelArmor = new ModelBiped(0.5F);
 	private static final String[] armorFilenamePrefix = new String[]{"cloth", "chain", "iron", "diamond", "gold"};
 
 	public RenderPlayer() {
 		super(new ModelBiped(0.0F), 0.5F);
 	}
 
-	protected boolean setArmorModel(EntityPlayer entityPlayer1, int i2, float f3) {
+	protected boolean setArmorModel(EntityPlayer entityPlayer1, int i2) {
 		ItemStack itemStack4 = entityPlayer1.inventory.armorItemInSlot(3 - i2);
 		if(itemStack4 != null) {
 			Item item5 = itemStack4.getItem();
@@ -216,7 +216,7 @@ public class RenderPlayer extends RenderLiving {
 
 	}
 
-	protected void func_186_b(EntityPlayer entityPlayer1, float f2) {
+	protected void func_186_b() {
 		float f3 = 0.9375F;
 		GL11.glScalef(f3, f3, f3);
 	}
@@ -252,11 +252,11 @@ public class RenderPlayer extends RenderLiving {
 	}
 
 	protected void preRenderCallback(EntityLiving entityLiving1, float f2) {
-		this.func_186_b((EntityPlayer)entityLiving1, f2);
+		this.func_186_b();
 	}
 
 	protected boolean shouldRenderPass(EntityLiving entityLiving1, int i2, float f3) {
-		return this.setArmorModel((EntityPlayer)entityLiving1, i2, f3);
+		return this.setArmorModel((EntityPlayer)entityLiving1, i2);
 	}
 
 	protected void renderEquippedItems(EntityLiving entityLiving1, float f2) {

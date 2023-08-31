@@ -17,9 +17,8 @@ public class RegionFile {
 	private RandomAccessFile dataFile;
 	private final int[] offsets = new int[1024];
 	private final int[] field_22217_e = new int[1024];
-	private ArrayList sectorFree;
+	private ArrayList<Boolean> sectorFree;
 	private int sizeDelta;
-	private long field_22214_h = 0L;
 
 	public RegionFile(File file1) {
 		this.fileName = file1;
@@ -28,7 +27,7 @@ public class RegionFile {
 
 		try {
 			if(file1.exists()) {
-				this.field_22214_h = file1.lastModified();
+				long field_22214_h = file1.lastModified();
 			}
 
 			this.dataFile = new RandomAccessFile(file1, "rw");
@@ -52,7 +51,7 @@ public class RegionFile {
 			}
 
 			i2 = (int)this.dataFile.length() / 4096;
-			this.sectorFree = new ArrayList(i2);
+			this.sectorFree = new ArrayList<Boolean>(i2);
 
 			int i3;
 			for(i3 = 0; i3 < i2; ++i3) {
@@ -97,21 +96,21 @@ public class RegionFile {
 		this.func_22211_a(string1 + "\n");
 	}
 
-	private void func_22199_a(String string1, int i2, int i3, String string4) {
-		this.func_22211_a("REGION " + string1 + " " + this.fileName.getName() + "[" + i2 + "," + i3 + "] = " + string4);
+	private void func_22199_a(int i2, int i3, String string4) {
+		this.func_22211_a("REGION " + "READ" + " " + this.fileName.getName() + "[" + i2 + "," + i3 + "] = " + string4);
 	}
 
-	private void func_22197_a(String string1, int i2, int i3, int i4, String string5) {
-		this.func_22211_a("REGION " + string1 + " " + this.fileName.getName() + "[" + i2 + "," + i3 + "] " + i4 + "B = " + string5);
+	private void func_22197_a(int i2, int i3, int i4, String string5) {
+		this.func_22211_a("REGION " + "SAVE" + " " + this.fileName.getName() + "[" + i2 + "," + i3 + "] " + i4 + "B = " + string5);
 	}
 
-	private void debugln(String string1, int i2, int i3, String string4) {
-		this.func_22199_a(string1, i2, i3, string4 + "\n");
+	private void debugln(int i2, int i3, String string4) {
+		this.func_22199_a(i2, i3, string4 + "\n");
 	}
 
 	public synchronized DataInputStream getChunkDataInputStream(int i1, int i2) {
 		if(this.outOfBounds(i1, i2)) {
-			this.debugln("READ", i1, i2, "out of bounds");
+			this.debugln(i1, i2, "out of bounds");
 			return null;
 		} else {
 			try {
@@ -122,13 +121,13 @@ public class RegionFile {
 					int i4 = i3 >> 8;
 					int i5 = i3 & 255;
 					if(i4 + i5 > this.sectorFree.size()) {
-						this.debugln("READ", i1, i2, "invalid sector");
+						this.debugln(i1, i2, "invalid sector");
 						return null;
 					} else {
-						this.dataFile.seek((long)(i4 * 4096));
+						this.dataFile.seek((long)(i4 * 4096L));
 						int i6 = this.dataFile.readInt();
 						if(i6 > 4096 * i5) {
-							this.debugln("READ", i1, i2, "invalid length: " + i6 + " > 4096 * " + i5);
+							this.debugln(i1, i2, "invalid length: " + i6 + " > 4096 * " + i5);
 							return null;
 						} else {
 							byte b7 = this.dataFile.readByte();
@@ -145,14 +144,14 @@ public class RegionFile {
 								dataInputStream9 = new DataInputStream(new InflaterInputStream(new ByteArrayInputStream(b8)));
 								return dataInputStream9;
 							} else {
-								this.debugln("READ", i1, i2, "unknown version " + b7);
+								this.debugln(i1, i2, "unknown version " + b7);
 								return null;
 							}
 						}
 					}
 				}
 			} catch (IOException iOException10) {
-				this.debugln("READ", i1, i2, "exception");
+				this.debugln(i1, i2, "exception");
 				return null;
 			}
 		}
@@ -173,7 +172,7 @@ public class RegionFile {
 			}
 
 			if(i6 != 0 && i7 == i8) {
-				this.func_22197_a("SAVE", i1, i2, i4, "rewrite");
+				this.func_22197_a(i1, i2, i4, "rewrite");
 				this.write(i6, b3, i4);
 			} else {
 				int i9;
@@ -187,12 +186,12 @@ public class RegionFile {
 				if(i9 != -1) {
 					for(i11 = i9; i11 < this.sectorFree.size(); ++i11) {
 						if(i10 != 0) {
-							if(((Boolean)this.sectorFree.get(i11)).booleanValue()) {
+							if(this.sectorFree.get(i11)) {
 								++i10;
 							} else {
 								i10 = 0;
 							}
-						} else if(((Boolean)this.sectorFree.get(i11)).booleanValue()) {
+						} else if(this.sectorFree.get(i11)) {
 							i9 = i11;
 							i10 = 1;
 						}
@@ -204,7 +203,7 @@ public class RegionFile {
 				}
 
 				if(i10 >= i8) {
-					this.func_22197_a("SAVE", i1, i2, i4, "reuse");
+					this.func_22197_a(i1, i2, i4, "reuse");
 					i6 = i9;
 					this.setOffset(i1, i2, i9 << 8 | i8);
 
@@ -214,7 +213,7 @@ public class RegionFile {
 
 					this.write(i6, b3, i4);
 				} else {
-					this.func_22197_a("SAVE", i1, i2, i4, "grow");
+					this.func_22197_a(i1, i2, i4, "grow");
 					this.dataFile.seek(this.dataFile.length());
 					i6 = this.sectorFree.size();
 
@@ -238,7 +237,7 @@ public class RegionFile {
 
 	private void write(int i1, byte[] b2, int i3) throws IOException {
 		this.debugln(" " + i1);
-		this.dataFile.seek((long)(i1 * 4096));
+		this.dataFile.seek((long)(i1 * 4096L));
 		this.dataFile.writeInt(i3 + 1);
 		this.dataFile.writeByte(2);
 		this.dataFile.write(b2, 0, i3);
@@ -258,13 +257,13 @@ public class RegionFile {
 
 	private void setOffset(int i1, int i2, int i3) throws IOException {
 		this.offsets[i1 + i2 * 32] = i3;
-		this.dataFile.seek((long)((i1 + i2 * 32) * 4));
+		this.dataFile.seek((long)((i1 + i2 * 32L) * 4));
 		this.dataFile.writeInt(i3);
 	}
 
 	private void func_22208_b(int i1, int i2, int i3) throws IOException {
 		this.field_22217_e[i1 + i2 * 32] = i3;
-		this.dataFile.seek((long)(4096 + (i1 + i2 * 32) * 4));
+		this.dataFile.seek((long)(4096 + (i1 + i2 * 32L) * 4));
 		this.dataFile.writeInt(i3);
 	}
 

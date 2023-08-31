@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class StringTranslate {
-	private static StringTranslate instance = new StringTranslate();
-	private Properties translateTable = new Properties();
+	private static final StringTranslate instance = new StringTranslate();
+	private final Properties translateTable = new Properties();
 
 	private StringTranslate() {
 		try {

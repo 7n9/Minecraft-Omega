@@ -3,7 +3,7 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class RenderCreeper extends RenderLiving {
-	private ModelBase field_27008_a = new ModelCreeper(2.0F);
+	private final ModelBase field_27008_a = new ModelCreeper(2.0F);
 
 	public RenderCreeper() {
 		super(new ModelCreeper(), 0.5F);
@@ -27,7 +27,7 @@ public class RenderCreeper extends RenderLiving {
 		GL11.glScalef(f6, f7, f6);
 	}
 
-	protected int updateCreeperColorMultiplier(EntityCreeper entityCreeper1, float f2, float f3) {
+	protected int updateCreeperColorMultiplier(EntityCreeper entityCreeper1, float f3) {
 		float f5 = entityCreeper1.setCreeperFlashTime(f3);
 		if((int)(f5 * 10.0F) % 2 == 0) {
 			return 0;
@@ -80,7 +80,7 @@ public class RenderCreeper extends RenderLiving {
 		return false;
 	}
 
-	protected boolean func_27007_b(EntityCreeper entityCreeper1, int i2, float f3) {
+	protected boolean func_27007_b() {
 		return false;
 	}
 
@@ -89,7 +89,7 @@ public class RenderCreeper extends RenderLiving {
 	}
 
 	protected int getColorMultiplier(EntityLiving entityLiving1, float f2, float f3) {
-		return this.updateCreeperColorMultiplier((EntityCreeper)entityLiving1, f2, f3);
+		return this.updateCreeperColorMultiplier((EntityCreeper)entityLiving1, f3);
 	}
 
 	protected boolean shouldRenderPass(EntityLiving entityLiving1, int i2, float f3) {
@@ -97,6 +97,6 @@ public class RenderCreeper extends RenderLiving {
 	}
 
 	protected boolean func_27005_b(EntityLiving entityLiving1, int i2, float f3) {
-		return this.func_27007_b((EntityCreeper)entityLiving1, i2, f3);
+		return this.func_27007_b();
 	}
 }

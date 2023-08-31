@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import net.minecraft.client.Minecraft;
 
+import java.util.Objects;
+
 public class PlayerController {
 	protected final Minecraft mc;
 	public boolean field_1064_b = false;
@@ -24,7 +26,7 @@ public class PlayerController {
 		world5.func_28106_e(2001, i1, i2, i3, block6.blockID + world5.getBlockMetadata(i1, i2, i3) * 256);
 		int i7 = world5.getBlockMetadata(i1, i2, i3);
 		boolean z8 = world5.setBlockWithNotify(i1, i2, i3, 0);
-		if(block6 != null && z8) {
+		if(z8) {
 			block6.onBlockDestroyedByPlayer(world5, i1, i2, i3, i7);
 		}
 
@@ -47,7 +49,7 @@ public class PlayerController {
 	public boolean sendUseItem(EntityPlayer entityPlayer1, World world2, ItemStack itemStack3) {
 		int i4 = itemStack3.stackSize;
 		ItemStack itemStack5 = itemStack3.useItemRightClick(world2, entityPlayer1);
-		if(itemStack5 != itemStack3 || itemStack5 != null && itemStack5.stackSize != i4) {
+		if(itemStack5 != itemStack3 || itemStack5.stackSize != i4) {
 			entityPlayer1.inventory.mainInventory[entityPlayer1.inventory.currentItem] = itemStack5;
 			if(itemStack5.stackSize == 0) {
 				entityPlayer1.inventory.mainInventory[entityPlayer1.inventory.currentItem] = null;
@@ -74,11 +76,11 @@ public class PlayerController {
 
 	public boolean sendPlaceBlock(EntityPlayer entityPlayer1, World world2, ItemStack itemStack3, int i4, int i5, int i6, int i7) {
 		int i8 = world2.getBlockId(i4, i5, i6);
-		return i8 > 0 && Block.blocksList[i8].blockActivated(world2, i4, i5, i6, entityPlayer1) ? true : (itemStack3 == null ? false : itemStack3.useItem(entityPlayer1, world2, i4, i5, i6, i7));
+		return i8 > 0 && Block.blocksList[i8].blockActivated(world2, i4, i5, i6, entityPlayer1) || (itemStack3 != null && itemStack3.useItem(entityPlayer1, world2, i4, i5, i6, i7));
 	}
 
 	public EntityPlayer createPlayer(World world1) {
-		return new EntityPlayerSP(this.mc, world1, this.mc.session, world1.worldProvider.worldType);
+		return new EntityPlayerSP(this.mc, world1, this.mc.session, Objects.requireNonNull(world1.worldProvider).worldType);
 	}
 
 	public void interactWithEntity(EntityPlayer entityPlayer1, Entity entity2) {

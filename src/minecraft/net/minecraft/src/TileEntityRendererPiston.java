@@ -28,6 +28,7 @@ public class TileEntityRendererPiston extends TileEntitySpecialRenderer {
 			if(block9 == Block.pistonExtension && tileEntityPiston1.func_31008_a(f8) < 0.5F) {
 				this.field_31071_b.func_31079_a(block9, tileEntityPiston1.xCoord, tileEntityPiston1.yCoord, tileEntityPiston1.zCoord, false);
 			} else if(tileEntityPiston1.func_31012_k() && !tileEntityPiston1.func_31015_b()) {
+				assert block9 instanceof BlockPistonBase;
 				Block.pistonExtension.func_31052_a_(((BlockPistonBase)block9).func_31040_i());
 				this.field_31071_b.func_31079_a(Block.pistonExtension, tileEntityPiston1.xCoord, tileEntityPiston1.yCoord, tileEntityPiston1.zCoord, tileEntityPiston1.func_31008_a(f8) < 0.5F);
 				Block.pistonExtension.func_31051_a();

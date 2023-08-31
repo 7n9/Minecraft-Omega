@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Set;
 
 public final class SpawnerAnimals {
-	private static Set eligibleChunksForSpawning = new HashSet();
-	protected static final Class[] nightSpawnEntities = new Class[]{EntitySpider.class, EntityZombie.class, EntitySkeleton.class};
+	private static final Set<ChunkCoordIntPair> eligibleChunksForSpawning = new HashSet<>();
+	private static final Class[] nightSpawnEntities = new Class[]{EntitySpider.class, EntityZombie.class, EntitySkeleton.class};
 
-	protected static ChunkPosition getRandomSpawningPointInChunk(World world0, int i1, int i2) {
+	private static ChunkPosition getRandomSpawningPointInChunk(World world0, int i1, int i2) {
 		int i3 = i1 + world0.rand.nextInt(16);
 		int i4 = world0.rand.nextInt(128);
 		int i5 = i2 + world0.rand.nextInt(16);
 		return new ChunkPosition(i3, i4, i5);
 	}
 
-	public static final int performSpawning(World world0, boolean z1, boolean z2) {
+	public static int performSpawning(World world0, boolean z1, boolean z2) {
 		if(!z1 && !z2) {
 			return 0;
 		} else {
@@ -46,7 +46,7 @@ public final class SpawnerAnimals {
 			for(int i37 = 0; i37 < i6; ++i37) {
 				EnumCreatureType enumCreatureType38 = enumCreatureType36[i37];
 				if((!enumCreatureType38.getPeacefulCreature() || z2) && (enumCreatureType38.getPeacefulCreature() || z1) && world0.countEntities(enumCreatureType38.getCreatureClass()) <= enumCreatureType38.getMaxNumberOfCreature() * eligibleChunksForSpawning.size() / 256) {
-					Iterator iterator39 = eligibleChunksForSpawning.iterator();
+					Iterator<ChunkCoordIntPair> iterator39 = eligibleChunksForSpawning.iterator();
 
 					label130:
 					while(true) {
@@ -64,7 +64,7 @@ public final class SpawnerAnimals {
 											continue label133;
 										}
 
-										chunkCoordIntPair10 = (ChunkCoordIntPair)iterator39.next();
+										chunkCoordIntPair10 = iterator39.next();
 										BiomeGenBase biomeGenBase11 = world0.getWorldChunkManager().getBiomeGenAtChunkCoord(chunkCoordIntPair10);
 										list12 = biomeGenBase11.getSpawnableList(enumCreatureType38);
 									} while(list12 == null);
@@ -78,12 +78,11 @@ public final class SpawnerAnimals {
 
 								int i40 = world0.rand.nextInt(i13);
 								spawnListEntry15 = (SpawnListEntry)list12.get(0);
-								Iterator iterator16 = list12.iterator();
 
-								while(iterator16.hasNext()) {
-									SpawnListEntry spawnListEntry17 = (SpawnListEntry)iterator16.next();
+								for (Object o : list12) {
+									SpawnListEntry spawnListEntry17 = (SpawnListEntry) o;
 									i40 -= spawnListEntry17.spawnRarityRate;
-									if(i40 < 0) {
+									if (i40 < 0) {
 										spawnListEntry15 = spawnListEntry17;
 										break;
 									}
@@ -100,17 +99,15 @@ public final class SpawnerAnimals {
 
 						for(int i21 = 0; i21 < 3; ++i21) {
 							int i22 = i42;
-							int i23 = i18;
 							int i24 = i19;
 							byte b25 = 6;
 
 							for(int i26 = 0; i26 < 4; ++i26) {
 								i22 += world0.rand.nextInt(b25) - world0.rand.nextInt(b25);
-								i23 += world0.rand.nextInt(1) - world0.rand.nextInt(1);
 								i24 += world0.rand.nextInt(b25) - world0.rand.nextInt(b25);
-								if(canCreatureTypeSpawnAtLocation(enumCreatureType38, world0, i22, i23, i24)) {
+								if(canCreatureTypeSpawnAtLocation(enumCreatureType38, world0, i22, i18, i24)) {
 									float f27 = (float)i22 + 0.5F;
-									float f28 = (float)i23;
+									float f28 = (float) i18;
 									float f29 = (float)i24 + 0.5F;
 									if(world0.getClosestPlayer((double)f27, (double)f28, (double)f29, 24.0D) == null) {
 										float f30 = f27 - (float)chunkCoordinates35.x;
@@ -175,14 +172,12 @@ public final class SpawnerAnimals {
 			EntityPlayer entityPlayer5;
 			Class[] class6;
 			do {
-				do {
-					if(!iterator4.hasNext()) {
-						return z2;
-					}
+				if (!iterator4.hasNext()) {
+					return z2;
+				}
 
-					entityPlayer5 = (EntityPlayer)iterator4.next();
-					class6 = nightSpawnEntities;
-				} while(class6 == null);
+				entityPlayer5 = (EntityPlayer)iterator4.next();
+				class6 = nightSpawnEntities;
 			} while(class6.length == 0);
 
 			boolean z7 = false;

@@ -8,14 +8,12 @@ public class RenderSpider extends RenderLiving {
 		this.setRenderPassModel(new ModelSpider());
 	}
 
-	protected float setSpiderDeathMaxRotation(EntitySpider entitySpider1) {
+	protected float setSpiderDeathMaxRotation() {
 		return 180.0F;
 	}
 
 	protected boolean setSpiderEyeBrightness(EntitySpider entitySpider1, int i2, float f3) {
 		if(i2 != 0) {
-			return false;
-		} else if(i2 != 0) {
 			return false;
 		} else {
 			this.loadTexture("/mob/spider_eyes.png");
@@ -29,7 +27,7 @@ public class RenderSpider extends RenderLiving {
 	}
 
 	protected float getDeathMaxRotation(EntityLiving entityLiving1) {
-		return this.setSpiderDeathMaxRotation((EntitySpider)entityLiving1);
+		return this.setSpiderDeathMaxRotation();
 	}
 
 	protected boolean shouldRenderPass(EntityLiving entityLiving1, int i2, float f3) {

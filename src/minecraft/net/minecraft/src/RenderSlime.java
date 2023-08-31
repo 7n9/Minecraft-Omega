@@ -3,14 +3,14 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class RenderSlime extends RenderLiving {
-	private ModelBase scaleAmount;
+	private final ModelBase scaleAmount;
 
 	public RenderSlime(ModelBase modelBase1, ModelBase modelBase2, float f3) {
 		super(modelBase1, f3);
 		this.scaleAmount = modelBase2;
 	}
 
-	protected boolean renderSlimePassModel(EntitySlime entitySlime1, int i2, float f3) {
+	protected boolean renderSlimePassModel(int i2) {
 		if(i2 == 0) {
 			this.setRenderPassModel(this.scaleAmount);
 			GL11.glEnable(GL11.GL_NORMALIZE);
@@ -40,6 +40,6 @@ public class RenderSlime extends RenderLiving {
 	}
 
 	protected boolean shouldRenderPass(EntityLiving entityLiving1, int i2, float f3) {
-		return this.renderSlimePassModel((EntitySlime)entityLiving1, i2, f3);
+		return this.renderSlimePassModel(i2);
 	}
 }

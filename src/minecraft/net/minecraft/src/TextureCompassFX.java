@@ -2,13 +2,14 @@ package net.minecraft.src;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
 
 public class TextureCompassFX extends TextureFX {
-	private Minecraft mc;
-	private int[] compassIconImageData = new int[256];
+	private final Minecraft mc;
+	private final int[] compassIconImageData = new int[256];
 	private double field_4229_i;
 	private double field_4228_j;
 
@@ -18,7 +19,7 @@ public class TextureCompassFX extends TextureFX {
 		this.tileImage = 1;
 
 		try {
-			BufferedImage bufferedImage2 = ImageIO.read(Minecraft.class.getResource("/gui/items.png"));
+			BufferedImage bufferedImage2 = ImageIO.read(Objects.requireNonNull(Minecraft.class.getResource("/gui/items.png")));
 			int i3 = this.iconIndex % 16 * 16;
 			int i4 = this.iconIndex / 16 * 16;
 			bufferedImage2.getRGB(i3, i4, 16, 16, this.compassIconImageData, 0, 16);
@@ -33,7 +34,7 @@ public class TextureCompassFX extends TextureFX {
 			int i2 = this.compassIconImageData[i1] >> 24 & 255;
 			int i3 = this.compassIconImageData[i1] >> 16 & 255;
 			int i4 = this.compassIconImageData[i1] >> 8 & 255;
-			int i5 = this.compassIconImageData[i1] >> 0 & 255;
+			int i5 = this.compassIconImageData[i1] & 255;
 			if(this.anaglyphEnabled) {
 				int i6 = (i3 * 30 + i4 * 59 + i5 * 11) / 100;
 				int i7 = (i3 * 30 + i4 * 70) / 100;
@@ -43,7 +44,7 @@ public class TextureCompassFX extends TextureFX {
 				i5 = i8;
 			}
 
-			this.imageData[i1 * 4 + 0] = (byte)i3;
+			this.imageData[i1 * 4] = (byte)i3;
 			this.imageData[i1 * 4 + 1] = (byte)i4;
 			this.imageData[i1 * 4 + 2] = (byte)i5;
 			this.imageData[i1 * 4 + 3] = (byte)i2;
@@ -110,7 +111,7 @@ public class TextureCompassFX extends TextureFX {
 				i15 = i19;
 			}
 
-			this.imageData[i12 * 4 + 0] = (byte)i13;
+			this.imageData[i12 * 4] = (byte)i13;
 			this.imageData[i12 * 4 + 1] = (byte)i14;
 			this.imageData[i12 * 4 + 2] = (byte)i15;
 			this.imageData[i12 * 4 + 3] = (byte)s16;
@@ -133,7 +134,7 @@ public class TextureCompassFX extends TextureFX {
 				i15 = i19;
 			}
 
-			this.imageData[i12 * 4 + 0] = (byte)i13;
+			this.imageData[i12 * 4] = (byte)i13;
 			this.imageData[i12 * 4 + 1] = (byte)i14;
 			this.imageData[i12 * 4 + 2] = (byte)i15;
 			this.imageData[i12 * 4 + 3] = (byte)s16;

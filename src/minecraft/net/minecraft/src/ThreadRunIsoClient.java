@@ -13,7 +13,7 @@ class ThreadRunIsoClient extends Thread {
 
 			try {
 				Thread.sleep(1L);
-			} catch (Exception exception2) {
+			} catch (Exception ignored) {
 			}
 		}
 

@@ -11,12 +11,12 @@ import org.lwjgl.opengl.GLContext;
 import org.lwjgl.opengl.GL15;
 
 public class Tessellator {
-	private static boolean convertQuadsToTriangles = true;
-	private static boolean tryVBO = false;
-	private ByteBuffer byteBuffer;
-	private IntBuffer intBuffer;
-	private FloatBuffer floatBuffer;
-	private int[] rawBuffer;
+	private static final boolean convertQuadsToTriangles = true;
+	private static final boolean tryVBO = false;
+	private final ByteBuffer byteBuffer;
+	private final IntBuffer intBuffer;
+	private final FloatBuffer floatBuffer;
+	private final int[] rawBuffer;
 	private int vertexCount = 0;
 	private double textureU;
 	private double textureV;
@@ -37,8 +37,8 @@ public class Tessellator {
 	private boolean useVBO = false;
 	private IntBuffer vertexBuffers;
 	private int vboIndex = 0;
-	private int vboCount = 10;
-	private int bufferSize;
+	private final int vboCount = 10;
+	private final int bufferSize;
 
 	private Tessellator(int i1) {
 		this.bufferSize = i1;
@@ -241,7 +241,7 @@ public class Tessellator {
 					this.rawBuffer[this.rawBufferIndex + 5] = this.rawBuffer[this.rawBufferIndex - i8 + 5];
 				}
 
-				this.rawBuffer[this.rawBufferIndex + 0] = this.rawBuffer[this.rawBufferIndex - i8 + 0];
+				this.rawBuffer[this.rawBufferIndex] = this.rawBuffer[this.rawBufferIndex - i8];
 				this.rawBuffer[this.rawBufferIndex + 1] = this.rawBuffer[this.rawBufferIndex - i8 + 1];
 				this.rawBuffer[this.rawBufferIndex + 2] = this.rawBuffer[this.rawBufferIndex - i8 + 2];
 				++this.vertexCount;
@@ -262,7 +262,7 @@ public class Tessellator {
 			this.rawBuffer[this.rawBufferIndex + 6] = this.normal;
 		}
 
-		this.rawBuffer[this.rawBufferIndex + 0] = Float.floatToRawIntBits((float)(d1 + this.xOffset));
+		this.rawBuffer[this.rawBufferIndex] = Float.floatToRawIntBits((float)(d1 + this.xOffset));
 		this.rawBuffer[this.rawBufferIndex + 1] = Float.floatToRawIntBits((float)(d3 + this.yOffset));
 		this.rawBuffer[this.rawBufferIndex + 2] = Float.floatToRawIntBits((float)(d5 + this.zOffset));
 		this.rawBufferIndex += 8;
@@ -311,8 +311,8 @@ public class Tessellator {
 	}
 
 	public void setTranslationF(float f1, float f2, float f3) {
-		this.xOffset += (double)f1;
-		this.yOffset += (double)f2;
-		this.zOffset += (double)f3;
+		this.xOffset += f1;
+		this.yOffset += f2;
+		this.zOffset += f3;
 	}
 }

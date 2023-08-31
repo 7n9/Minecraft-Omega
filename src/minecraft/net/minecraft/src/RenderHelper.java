@@ -5,7 +5,7 @@ import java.nio.FloatBuffer;
 import org.lwjgl.opengl.GL11;
 
 public class RenderHelper {
-	private static FloatBuffer field_1695_a = GLAllocation.createDirectFloatBuffer(16);
+	private static final FloatBuffer field_1695_a = GLAllocation.createDirectFloatBuffer(16);
 
 	public static void disableStandardItemLighting() {
 		GL11.glDisable(GL11.GL_LIGHTING);
@@ -24,12 +24,12 @@ public class RenderHelper {
 		float f1 = 0.6F;
 		float f2 = 0.0F;
 		Vec3D vec3D3 = Vec3D.createVector((double)0.2F, 1.0D, -0.699999988079071D).normalize();
-		GL11.glLight(GL11.GL_LIGHT0, GL11.GL_POSITION, func_1157_a(vec3D3.xCoord, vec3D3.yCoord, vec3D3.zCoord, 0.0D));
+		GL11.glLight(GL11.GL_LIGHT0, GL11.GL_POSITION, func_1157_a(vec3D3.xCoord, vec3D3.yCoord, vec3D3.zCoord));
 		GL11.glLight(GL11.GL_LIGHT0, GL11.GL_DIFFUSE, func_1156_a(f1, f1, f1, 1.0F));
 		GL11.glLight(GL11.GL_LIGHT0, GL11.GL_AMBIENT, func_1156_a(0.0F, 0.0F, 0.0F, 1.0F));
 		GL11.glLight(GL11.GL_LIGHT0, GL11.GL_SPECULAR, func_1156_a(f2, f2, f2, 1.0F));
 		vec3D3 = Vec3D.createVector(-0.20000000298023224D, 1.0D, (double)0.7F).normalize();
-		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_POSITION, func_1157_a(vec3D3.xCoord, vec3D3.yCoord, vec3D3.zCoord, 0.0D));
+		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_POSITION, func_1157_a(vec3D3.xCoord, vec3D3.yCoord, vec3D3.zCoord));
 		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_DIFFUSE, func_1156_a(f1, f1, f1, 1.0F));
 		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_AMBIENT, func_1156_a(0.0F, 0.0F, 0.0F, 1.0F));
 		GL11.glLight(GL11.GL_LIGHT1, GL11.GL_SPECULAR, func_1156_a(f2, f2, f2, 1.0F));
@@ -37,8 +37,8 @@ public class RenderHelper {
 		GL11.glLightModel(GL11.GL_LIGHT_MODEL_AMBIENT, func_1156_a(f0, f0, f0, 1.0F));
 	}
 
-	private static FloatBuffer func_1157_a(double d0, double d2, double d4, double d6) {
-		return func_1156_a((float)d0, (float)d2, (float)d4, (float)d6);
+	private static FloatBuffer func_1157_a(double d0, double d2, double d4) {
+		return func_1156_a((float)d0, (float)d2, (float)d4, (float) 0.0);
 	}
 
 	private static FloatBuffer func_1156_a(float f0, float f1, float f2, float f3) {

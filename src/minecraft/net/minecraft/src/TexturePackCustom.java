@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.imageio.ImageIO;
@@ -18,7 +19,7 @@ public class TexturePackCustom extends TexturePackBase {
 	private ZipFile texturePackZipFile;
 	private int texturePackName = -1;
 	private BufferedImage texturePackThumbnail;
-	private File texturePackFile;
+	private final File texturePackFile;
 
 	public TexturePackCustom(File file1) {
 		this.texturePackFileName = file1.getName();
@@ -47,14 +48,14 @@ public class TexturePackCustom extends TexturePackBase {
 				this.secondDescriptionLine = this.truncateString(bufferedReader4.readLine());
 				bufferedReader4.close();
 				inputStream3.close();
-			} catch (Exception exception20) {
+			} catch (Exception ignored) {
 			}
 
 			try {
 				inputStream3 = zipFile2.getInputStream(zipFile2.getEntry("pack.png"));
 				this.texturePackThumbnail = ImageIO.read(inputStream3);
 				inputStream3.close();
-			} catch (Exception exception19) {
+			} catch (Exception ignored) {
 			}
 
 			zipFile2.close();
@@ -62,13 +63,13 @@ public class TexturePackCustom extends TexturePackBase {
 			exception21.printStackTrace();
 		} finally {
 			try {
-				inputStream3.close();
-			} catch (Exception exception18) {
+				Objects.requireNonNull(inputStream3).close();
+			} catch (Exception ignored) {
 			}
 
 			try {
-				zipFile2.close();
-			} catch (Exception exception17) {
+				Objects.requireNonNull(zipFile2).close();
+			} catch (Exception ignored) {
 			}
 
 		}
@@ -99,7 +100,7 @@ public class TexturePackCustom extends TexturePackBase {
 	public void func_6482_a() {
 		try {
 			this.texturePackZipFile = new ZipFile(this.texturePackFile);
-		} catch (Exception exception2) {
+		} catch (Exception ignored) {
 		}
 
 	}
@@ -107,7 +108,7 @@ public class TexturePackCustom extends TexturePackBase {
 	public void closeTexturePackFile() {
 		try {
 			this.texturePackZipFile.close();
-		} catch (Exception exception2) {
+		} catch (Exception ignored) {
 		}
 
 		this.texturePackZipFile = null;
@@ -119,7 +120,7 @@ public class TexturePackCustom extends TexturePackBase {
 			if(zipEntry2 != null) {
 				return this.texturePackZipFile.getInputStream(zipEntry2);
 			}
-		} catch (Exception exception3) {
+		} catch (Exception ignored) {
 		}
 
 		return TexturePackBase.class.getResourceAsStream(string1);

@@ -11,7 +11,7 @@ public class PlayerControllerTest extends PlayerController {
 	public void func_6473_b(EntityPlayer entityPlayer1) {
 		for(int i2 = 0; i2 < 9; ++i2) {
 			if(entityPlayer1.inventory.mainInventory[i2] == null) {
-				this.mc.thePlayer.inventory.mainInventory[i2] = new ItemStack((Block)Session.registeredBlocksList.get(i2));
+				this.mc.thePlayer.inventory.mainInventory[i2] = new ItemStack(Session.registeredBlocksList.get(i2));
 			} else {
 				this.mc.thePlayer.inventory.mainInventory[i2].stackSize = 1;
 			}
@@ -27,6 +27,4 @@ public class PlayerControllerTest extends PlayerController {
 		super.func_717_a(world1);
 	}
 
-	public void updateController() {
-	}
 }

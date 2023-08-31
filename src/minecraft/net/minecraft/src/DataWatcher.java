@@ -44,7 +44,7 @@ public class DataWatcher {
 		WatchableObject watchableObject3 = (WatchableObject)this.watchedObjects.get(i1);
 		if(!object2.equals(watchableObject3.getObject())) {
 			watchableObject3.setObject(object2);
-			watchableObject3.setWatching(true);
+			watchableObject3.setWatching();
 			this.objectChanged = true;
 		}
 

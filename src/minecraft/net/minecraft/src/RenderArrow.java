@@ -15,12 +15,12 @@ public class RenderArrow extends Render {
 			byte b11 = 0;
 			float f12 = 0.0F;
 			float f13 = 0.5F;
-			float f14 = (float)(0 + b11 * 10) / 32.0F;
-			float f15 = (float)(5 + b11 * 10) / 32.0F;
+			float f14 = (float)(0) / 32.0F;
+			float f15 = (float)(5) / 32.0F;
 			float f16 = 0.0F;
 			float f17 = 0.15625F;
-			float f18 = (float)(5 + b11 * 10) / 32.0F;
-			float f19 = (float)(10 + b11 * 10) / 32.0F;
+			float f18 = (float)(5) / 32.0F;
+			float f19 = (float)(10) / 32.0F;
 			float f20 = 0.05625F;
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 			float f21 = (float)entityArrow1.arrowShake - f9;
@@ -34,27 +34,27 @@ public class RenderArrow extends Render {
 			GL11.glTranslatef(-4.0F, 0.0F, 0.0F);
 			GL11.glNormal3f(f20, 0.0F, 0.0F);
 			tessellator10.startDrawingQuads();
-			tessellator10.addVertexWithUV(-7.0D, -2.0D, -2.0D, (double)f16, (double)f18);
-			tessellator10.addVertexWithUV(-7.0D, -2.0D, 2.0D, (double)f17, (double)f18);
-			tessellator10.addVertexWithUV(-7.0D, 2.0D, 2.0D, (double)f17, (double)f19);
-			tessellator10.addVertexWithUV(-7.0D, 2.0D, -2.0D, (double)f16, (double)f19);
+			tessellator10.addVertexWithUV(-7.0D, -2.0D, -2.0D, f16, f18);
+			tessellator10.addVertexWithUV(-7.0D, -2.0D, 2.0D, f17, f18);
+			tessellator10.addVertexWithUV(-7.0D, 2.0D, 2.0D, f17, f19);
+			tessellator10.addVertexWithUV(-7.0D, 2.0D, -2.0D, f16, f19);
 			tessellator10.draw();
 			GL11.glNormal3f(-f20, 0.0F, 0.0F);
 			tessellator10.startDrawingQuads();
-			tessellator10.addVertexWithUV(-7.0D, 2.0D, -2.0D, (double)f16, (double)f18);
-			tessellator10.addVertexWithUV(-7.0D, 2.0D, 2.0D, (double)f17, (double)f18);
-			tessellator10.addVertexWithUV(-7.0D, -2.0D, 2.0D, (double)f17, (double)f19);
-			tessellator10.addVertexWithUV(-7.0D, -2.0D, -2.0D, (double)f16, (double)f19);
+			tessellator10.addVertexWithUV(-7.0D, 2.0D, -2.0D, f16, f18);
+			tessellator10.addVertexWithUV(-7.0D, 2.0D, 2.0D, f17, f18);
+			tessellator10.addVertexWithUV(-7.0D, -2.0D, 2.0D, f17, f19);
+			tessellator10.addVertexWithUV(-7.0D, -2.0D, -2.0D, f16, f19);
 			tessellator10.draw();
 
 			for(int i23 = 0; i23 < 4; ++i23) {
 				GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
 				GL11.glNormal3f(0.0F, 0.0F, f20);
 				tessellator10.startDrawingQuads();
-				tessellator10.addVertexWithUV(-8.0D, -2.0D, 0.0D, (double)f12, (double)f14);
-				tessellator10.addVertexWithUV(8.0D, -2.0D, 0.0D, (double)f13, (double)f14);
-				tessellator10.addVertexWithUV(8.0D, 2.0D, 0.0D, (double)f13, (double)f15);
-				tessellator10.addVertexWithUV(-8.0D, 2.0D, 0.0D, (double)f12, (double)f15);
+				tessellator10.addVertexWithUV(-8.0D, -2.0D, 0.0D, f12, f14);
+				tessellator10.addVertexWithUV(8.0D, -2.0D, 0.0D, f13, f14);
+				tessellator10.addVertexWithUV(8.0D, 2.0D, 0.0D, f13, f15);
+				tessellator10.addVertexWithUV(-8.0D, 2.0D, 0.0D, f12, f15);
 				tessellator10.draw();
 			}
 

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityMobSpawnerRenderer extends TileEntitySpecialRenderer {
-	private Map entityHashMap = new HashMap();
+	private final Map entityHashMap = new HashMap();
 
 	public void renderTileEntityMobSpawner(TileEntityMobSpawner tileEntityMobSpawner1, double d2, double d4, double d6, float f8) {
 		GL11.glPushMatrix();

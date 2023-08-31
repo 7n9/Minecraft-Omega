@@ -4,13 +4,11 @@ public class WatchableObject {
 	private final int objectType;
 	private final int dataValueId;
 	private Object watchedObject;
-	private boolean isWatching;
 
 	public WatchableObject(int i1, int i2, Object object3) {
 		this.dataValueId = i2;
 		this.watchedObject = object3;
 		this.objectType = i1;
-		this.isWatching = true;
 	}
 
 	public int getDataValueId() {
@@ -29,7 +27,6 @@ public class WatchableObject {
 		return this.objectType;
 	}
 
-	public void setWatching(boolean z1) {
-		this.isWatching = z1;
+	public void setWatching() {
 	}
 }

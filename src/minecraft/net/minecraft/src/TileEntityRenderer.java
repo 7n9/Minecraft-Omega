@@ -7,7 +7,7 @@ import java.util.Map;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityRenderer {
-	private Map specialRendererMap = new HashMap();
+	private final Map specialRendererMap = new HashMap();
 	public static TileEntityRenderer instance = new TileEntityRenderer();
 	private FontRenderer fontRenderer;
 	public static double staticPlayerX;
@@ -87,11 +87,10 @@ public class TileEntityRenderer {
 
 	public void func_31072_a(World world1) {
 		this.worldObj = world1;
-		Iterator iterator2 = this.specialRendererMap.values().iterator();
 
-		while(iterator2.hasNext()) {
-			TileEntitySpecialRenderer tileEntitySpecialRenderer3 = (TileEntitySpecialRenderer)iterator2.next();
-			if(tileEntitySpecialRenderer3 != null) {
+		for (Object o : this.specialRendererMap.values()) {
+			TileEntitySpecialRenderer tileEntitySpecialRenderer3 = (TileEntitySpecialRenderer) o;
+			if (tileEntitySpecialRenderer3 != null) {
 				tileEntitySpecialRenderer3.func_31069_a(world1);
 			}
 		}

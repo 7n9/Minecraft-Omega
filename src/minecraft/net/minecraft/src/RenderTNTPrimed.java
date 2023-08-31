@@ -3,13 +3,13 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class RenderTNTPrimed extends Render {
-	private RenderBlocks blockRenderer = new RenderBlocks();
+	private final RenderBlocks blockRenderer = new RenderBlocks();
 
 	public RenderTNTPrimed() {
 		this.shadowSize = 0.5F;
 	}
 
-	public void func_153_a(EntityTNTPrimed entityTNTPrimed1, double d2, double d4, double d6, float f8, float f9) {
+	public void func_153_a(EntityTNTPrimed entityTNTPrimed1, double d2, double d4, double d6, float f9) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d2, (float)d4, (float)d6);
 		float f10;
@@ -49,6 +49,6 @@ public class RenderTNTPrimed extends Render {
 	}
 
 	public void doRender(Entity entity1, double d2, double d4, double d6, float f8, float f9) {
-		this.func_153_a((EntityTNTPrimed)entity1, d2, d4, d6, f8, f9);
+		this.func_153_a((EntityTNTPrimed)entity1, d2, d4, d6, f9);
 	}
 }

@@ -3,7 +3,7 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntitySignRenderer extends TileEntitySpecialRenderer {
-	private SignModel signModel = new SignModel();
+	private final SignModel signModel = new SignModel();
 
 	public void renderTileEntitySignAt(TileEntitySign tileEntitySign1, double d2, double d4, double d6, float f8) {
 		Block block9 = tileEntitySign1.getBlockType();

@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class RenderSnowball extends Render {
-	private int itemIconIndex;
+	private final int itemIconIndex;
 
 	public RenderSnowball(int i1) {
 		this.itemIconIndex = i1;
@@ -17,9 +17,9 @@ public class RenderSnowball extends Render {
 		GL11.glScalef(0.5F, 0.5F, 0.5F);
 		this.loadTexture("/gui/items.png");
 		Tessellator tessellator10 = Tessellator.instance;
-		float f11 = (float)(this.itemIconIndex % 16 * 16 + 0) / 256.0F;
+		float f11 = (float)(this.itemIconIndex % 16 * 16) / 256.0F;
 		float f12 = (float)(this.itemIconIndex % 16 * 16 + 16) / 256.0F;
-		float f13 = (float)(this.itemIconIndex / 16 * 16 + 0) / 256.0F;
+		float f13 = (float)(this.itemIconIndex / 16 * 16) / 256.0F;
 		float f14 = (float)(this.itemIconIndex / 16 * 16 + 16) / 256.0F;
 		float f15 = 1.0F;
 		float f16 = 0.5F;

@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class WorldGenLiquids extends WorldGenerator {
-	private int liquidBlockId;
+	private final int liquidBlockId;
 
 	public WorldGenLiquids(int i1) {
 		this.liquidBlockId = i1;

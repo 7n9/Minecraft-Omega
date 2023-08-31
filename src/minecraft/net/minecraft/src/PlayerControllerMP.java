@@ -11,7 +11,7 @@ public class PlayerControllerMP extends PlayerController {
 	private float field_9441_h = 0.0F;
 	private int blockHitDelay = 0;
 	private boolean isHittingBlock = false;
-	private NetClientHandler netClientHandler;
+	private final NetClientHandler netClientHandler;
 	private int currentPlayerItem = 0;
 
 	public PlayerControllerMP(Minecraft minecraft1, NetClientHandler netClientHandler2) {
@@ -141,15 +141,13 @@ public class PlayerControllerMP extends PlayerController {
 	public boolean sendPlaceBlock(EntityPlayer entityPlayer1, World world2, ItemStack itemStack3, int i4, int i5, int i6, int i7) {
 		this.syncCurrentPlayItem();
 		this.netClientHandler.addToSendQueue(new Packet15Place(i4, i5, i6, i7, entityPlayer1.inventory.getCurrentItem()));
-		boolean z8 = super.sendPlaceBlock(entityPlayer1, world2, itemStack3, i4, i5, i6, i7);
-		return z8;
+		return super.sendPlaceBlock(entityPlayer1, world2, itemStack3, i4, i5, i6, i7);
 	}
 
 	public boolean sendUseItem(EntityPlayer entityPlayer1, World world2, ItemStack itemStack3) {
 		this.syncCurrentPlayItem();
 		this.netClientHandler.addToSendQueue(new Packet15Place(-1, -1, -1, 255, entityPlayer1.inventory.getCurrentItem()));
-		boolean z4 = super.sendUseItem(entityPlayer1, world2, itemStack3);
-		return z4;
+		return super.sendUseItem(entityPlayer1, world2, itemStack3);
 	}
 
 	public EntityPlayer createPlayer(World world1) {
@@ -176,8 +174,5 @@ public class PlayerControllerMP extends PlayerController {
 	}
 
 	public void func_20086_a(int i1, EntityPlayer entityPlayer2) {
-		if(i1 != -9999) {
-			;
-		}
 	}
 }

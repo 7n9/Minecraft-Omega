@@ -25,11 +25,10 @@ public class ShapelessRecipes implements IRecipe {
 				ItemStack itemStack5 = inventoryCrafting1.func_21103_b(i4, i3);
 				if(itemStack5 != null) {
 					boolean z6 = false;
-					Iterator iterator7 = arrayList2.iterator();
 
-					while(iterator7.hasNext()) {
-						ItemStack itemStack8 = (ItemStack)iterator7.next();
-						if(itemStack5.itemID == itemStack8.itemID && (itemStack8.getItemDamage() == -1 || itemStack5.getItemDamage() == itemStack8.getItemDamage())) {
+					for (Object o : arrayList2) {
+						ItemStack itemStack8 = (ItemStack) o;
+						if (itemStack5.itemID == itemStack8.itemID && (itemStack8.getItemDamage() == -1 || itemStack5.getItemDamage() == itemStack8.getItemDamage())) {
 							z6 = true;
 							arrayList2.remove(itemStack8);
 							break;

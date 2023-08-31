@@ -3,7 +3,7 @@ package net.minecraft.src;
 public class TexturedQuad {
 	public PositionTextureVertex[] vertexPositions;
 	public int nVertices;
-	private boolean invertNormal;
+	private final boolean invertNormal;
 
 	public TexturedQuad(PositionTextureVertex[] positionTextureVertex1) {
 		this.nVertices = 0;

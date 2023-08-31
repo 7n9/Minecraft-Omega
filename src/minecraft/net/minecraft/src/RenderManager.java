@@ -7,7 +7,7 @@ import java.util.Map;
 import org.lwjgl.opengl.GL11;
 
 public class RenderManager {
-	private Map entityRenderMap = new HashMap();
+	private final Map entityRenderMap = new HashMap();
 	public static RenderManager instance = new RenderManager();
 	private FontRenderer fontRenderer;
 	public static double renderPosX;

@@ -6,24 +6,24 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.logging.Logger;
 
 public class SaveHandler implements ISaveHandler {
 	private static final Logger logger = Logger.getLogger("Minecraft");
 	private final File saveDirectory;
-	private final File playersDirectory;
 	private final File field_28114_d;
 	private final long now = System.currentTimeMillis();
 
 	public SaveHandler(File file1, String string2, boolean z3) {
 		this.saveDirectory = new File(file1, string2);
 		this.saveDirectory.mkdirs();
-		this.playersDirectory = new File(this.saveDirectory, "players");
+		File playersDirectory = new File(this.saveDirectory, "players");
 		this.field_28114_d = new File(this.saveDirectory, "data");
 		this.field_28114_d.mkdirs();
 		if(z3) {
-			this.playersDirectory.mkdirs();
+			playersDirectory.mkdirs();
 		}
 
 		this.func_22154_d();
@@ -32,12 +32,9 @@ public class SaveHandler implements ISaveHandler {
 	private void func_22154_d() {
 		try {
 			File file1 = new File(this.saveDirectory, "session.lock");
-			DataOutputStream dataOutputStream2 = new DataOutputStream(new FileOutputStream(file1));
 
-			try {
+			try (DataOutputStream dataOutputStream2 = new DataOutputStream(Files.newOutputStream(file1.toPath()))) {
 				dataOutputStream2.writeLong(this.now);
-			} finally {
-				dataOutputStream2.close();
 			}
 
 		} catch (IOException iOException7) {
@@ -53,14 +50,11 @@ public class SaveHandler implements ISaveHandler {
 	public void func_22150_b() {
 		try {
 			File file1 = new File(this.saveDirectory, "session.lock");
-			DataInputStream dataInputStream2 = new DataInputStream(new FileInputStream(file1));
 
-			try {
-				if(dataInputStream2.readLong() != this.now) {
+			try (DataInputStream dataInputStream2 = new DataInputStream(Files.newInputStream(file1.toPath()))) {
+				if (dataInputStream2.readLong() != this.now) {
 					throw new MinecraftException("The save is being accessed from another location, aborting");
 				}
-			} finally {
-				dataInputStream2.close();
 			}
 
 		} catch (IOException iOException7) {
@@ -84,7 +78,7 @@ public class SaveHandler implements ISaveHandler {
 		NBTTagCompound nBTTagCompound3;
 		if(file1.exists()) {
 			try {
-				nBTTagCompound2 = CompressedStreamTools.func_1138_a(new FileInputStream(file1));
+				nBTTagCompound2 = CompressedStreamTools.func_1138_a(Files.newInputStream(file1.toPath()));
 				nBTTagCompound3 = nBTTagCompound2.getCompoundTag("Data");
 				return new WorldInfo(nBTTagCompound3);
 			} catch (Exception exception5) {
@@ -95,7 +89,7 @@ public class SaveHandler implements ISaveHandler {
 		file1 = new File(this.saveDirectory, "level.dat_old");
 		if(file1.exists()) {
 			try {
-				nBTTagCompound2 = CompressedStreamTools.func_1138_a(new FileInputStream(file1));
+				nBTTagCompound2 = CompressedStreamTools.func_1138_a(Files.newInputStream(file1.toPath()));
 				nBTTagCompound3 = nBTTagCompound2.getCompoundTag("Data");
 				return new WorldInfo(nBTTagCompound3);
 			} catch (Exception exception4) {
@@ -115,7 +109,7 @@ public class SaveHandler implements ISaveHandler {
 			File file5 = new File(this.saveDirectory, "level.dat_new");
 			File file6 = new File(this.saveDirectory, "level.dat_old");
 			File file7 = new File(this.saveDirectory, "level.dat");
-			CompressedStreamTools.writeGzippedCompoundToOutputStream(nBTTagCompound4, new FileOutputStream(file5));
+			CompressedStreamTools.writeGzippedCompoundToOutputStream(nBTTagCompound4, Files.newOutputStream(file5.toPath()));
 			if(file6.exists()) {
 				file6.delete();
 			}
@@ -144,7 +138,7 @@ public class SaveHandler implements ISaveHandler {
 			File file4 = new File(this.saveDirectory, "level.dat_new");
 			File file5 = new File(this.saveDirectory, "level.dat_old");
 			File file6 = new File(this.saveDirectory, "level.dat");
-			CompressedStreamTools.writeGzippedCompoundToOutputStream(nBTTagCompound3, new FileOutputStream(file4));
+			CompressedStreamTools.writeGzippedCompoundToOutputStream(nBTTagCompound3, Files.newOutputStream(file4.toPath()));
 			if(file5.exists()) {
 				file5.delete();
 			}

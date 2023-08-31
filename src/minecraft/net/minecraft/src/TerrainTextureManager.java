@@ -3,20 +3,21 @@ package net.minecraft.src;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 public class TerrainTextureManager {
-	private float[] field_1181_a = new float[768];
-	private int[] field_1180_b = new int[5120];
-	private int[] field_1186_c = new int[5120];
-	private int[] field_1185_d = new int[5120];
-	private int[] field_1184_e = new int[5120];
-	private int[] field_1183_f = new int[34];
-	private int[] field_1182_g = new int[768];
+	private final float[] field_1181_a = new float[768];
+	private final int[] field_1180_b = new int[5120];
+	private final int[] field_1186_c = new int[5120];
+	private final int[] field_1185_d = new int[5120];
+	private final int[] field_1184_e = new int[5120];
+	private final int[] field_1183_f = new int[34];
+	private final int[] field_1182_g = new int[768];
 
 	public TerrainTextureManager() {
 		try {
-			BufferedImage bufferedImage1 = ImageIO.read(TerrainTextureManager.class.getResource("/terrain.png"));
+			BufferedImage bufferedImage1 = ImageIO.read(Objects.requireNonNull(TerrainTextureManager.class.getResource("/terrain.png")));
 			int[] i2 = new int[65536];
 			bufferedImage1.getRGB(0, 0, 256, 256, i2, 0, 256);
 
@@ -44,7 +45,7 @@ public class TerrainTextureManager {
 						++i9;
 					}
 
-					this.field_1181_a[i3 * 3 + 0] = (float)(i4 / i9);
+					this.field_1181_a[i3 * 3] = (float)(i4 / i9);
 					this.field_1181_a[i3 * 3 + 1] = (float)(i5 / i9);
 					this.field_1181_a[i3 * 3 + 2] = (float)(i6 / i9);
 				}
@@ -55,7 +56,7 @@ public class TerrainTextureManager {
 
 		for(int i15 = 0; i15 < 256; ++i15) {
 			if(Block.blocksList[i15] != null) {
-				this.field_1182_g[i15 * 3 + 0] = Block.blocksList[i15].getBlockTextureFromSide(1);
+				this.field_1182_g[i15 * 3] = Block.blocksList[i15].getBlockTextureFromSide(1);
 				this.field_1182_g[i15 * 3 + 1] = Block.blocksList[i15].getBlockTextureFromSide(2);
 				this.field_1182_g[i15 * 3 + 2] = Block.blocksList[i15].getBlockTextureFromSide(3);
 			}
@@ -103,12 +104,12 @@ public class TerrainTextureManager {
 										float f26 = world2.getLightBrightness(i9, i14 + 1, i8) * f25;
 										if(i15 >= 0 && i15 < 160) {
 											int i27 = i12 + i15 * 32;
-											if(i12 >= 0 && i12 <= 32 && this.field_1185_d[i27] <= i14) {
+											if(i12 <= 32 && this.field_1185_d[i27] <= i14) {
 												this.field_1185_d[i27] = i14;
 												this.field_1184_e[i27] = (int)(f26 * 127.0F);
 											}
 
-											if(i12 >= -1 && i12 <= 31 && this.field_1185_d[i27 + 1] <= i14) {
+											if(i12 <= 31 && this.field_1185_d[i27 + 1] <= i14) {
 												this.field_1185_d[i27 + 1] = i14;
 												this.field_1184_e[i27 + 1] = (int)(f26 * 127.0F);
 											}
@@ -134,18 +135,18 @@ public class TerrainTextureManager {
 									float f22;
 									if(i15 >= 0 && i15 < 160) {
 										i18 = i12 + i15 * 32;
-										i19 = this.field_1182_g[block16.blockID * 3 + 0];
+										i19 = this.field_1182_g[block16.blockID * 3];
 										f20 = (world2.getLightBrightness(i9, i14 + 1, i8) * 0.8F + 0.2F) * f17;
 										if(i12 >= 0 && this.field_1186_c[i18] <= i14) {
 											this.field_1186_c[i18] = i14;
-											this.field_1180_b[i18] = 0xFF000000 | (int)(this.field_1181_a[i19 * 3 + 0] * f20) << 16 | (int)(this.field_1181_a[i19 * 3 + 1] * f20) << 8 | (int)(this.field_1181_a[i19 * 3 + 2] * f20);
+											this.field_1180_b[i18] = 0xFF000000 | (int)(this.field_1181_a[i19 * 3] * f20) << 16 | (int)(this.field_1181_a[i19 * 3 + 1] * f20) << 8 | (int)(this.field_1181_a[i19 * 3 + 2] * f20);
 										}
 
 										if(i12 < 31) {
 											f22 = f20 * 0.9F;
 											if(this.field_1186_c[i18 + 1] <= i14) {
 												this.field_1186_c[i18 + 1] = i14;
-												this.field_1180_b[i18 + 1] = 0xFF000000 | (int)(this.field_1181_a[i19 * 3 + 0] * f22) << 16 | (int)(this.field_1181_a[i19 * 3 + 1] * f22) << 8 | (int)(this.field_1181_a[i19 * 3 + 2] * f22);
+												this.field_1180_b[i18 + 1] = 0xFF000000 | (int)(this.field_1181_a[i19 * 3] * f22) << 16 | (int)(this.field_1181_a[i19 * 3 + 1] * f22) << 8 | (int)(this.field_1181_a[i19 * 3 + 2] * f22);
 											}
 										}
 									}
@@ -161,7 +162,7 @@ public class TerrainTextureManager {
 											f23 = f20 * f17 * 0.6F;
 											if(this.field_1186_c[i18] <= i14 - 1) {
 												this.field_1186_c[i18] = i14 - 1;
-												this.field_1180_b[i18] = 0xFF000000 | (int)(this.field_1181_a[i19 * 3 + 0] * f23) << 16 | (int)(this.field_1181_a[i19 * 3 + 1] * f23) << 8 | (int)(this.field_1181_a[i19 * 3 + 2] * f23);
+												this.field_1180_b[i18] = 0xFF000000 | (int)(this.field_1181_a[i19 * 3] * f23) << 16 | (int)(this.field_1181_a[i19 * 3 + 1] * f23) << 8 | (int)(this.field_1181_a[i19 * 3 + 2] * f23);
 											}
 										}
 
@@ -169,7 +170,7 @@ public class TerrainTextureManager {
 											f23 = f22 * 0.9F * f17 * 0.4F;
 											if(this.field_1186_c[i18 + 1] <= i14 - 1) {
 												this.field_1186_c[i18 + 1] = i14 - 1;
-												this.field_1180_b[i18 + 1] = 0xFF000000 | (int)(this.field_1181_a[i21 * 3 + 0] * f23) << 16 | (int)(this.field_1181_a[i21 * 3 + 1] * f23) << 8 | (int)(this.field_1181_a[i21 * 3 + 2] * f23);
+												this.field_1180_b[i18 + 1] = 0xFF000000 | (int)(this.field_1181_a[i21 * 3] * f23) << 16 | (int)(this.field_1181_a[i21 * 3 + 1] * f23) << 8 | (int)(this.field_1181_a[i21 * 3 + 2] * f23);
 											}
 										}
 									}

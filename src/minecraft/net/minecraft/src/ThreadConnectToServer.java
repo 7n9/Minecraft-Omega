@@ -31,20 +31,20 @@ class ThreadConnectToServer extends Thread {
 				return;
 			}
 
-			this.mc.displayGuiScreen(new GuiConnectFailed("connect.failed", "disconnect.genericReason", new Object[]{"Unknown host \'" + this.hostName + "\'"}));
+			this.mc.displayGuiScreen(new GuiConnectFailed("connect.failed", "disconnect.genericReason", "Unknown host '" + this.hostName + "'"));
 		} catch (ConnectException connectException3) {
 			if(GuiConnecting.isCancelled(this.connectingGui)) {
 				return;
 			}
 
-			this.mc.displayGuiScreen(new GuiConnectFailed("connect.failed", "disconnect.genericReason", new Object[]{connectException3.getMessage()}));
+			this.mc.displayGuiScreen(new GuiConnectFailed("connect.failed", "disconnect.genericReason", connectException3.getMessage()));
 		} catch (Exception exception4) {
 			if(GuiConnecting.isCancelled(this.connectingGui)) {
 				return;
 			}
 
 			exception4.printStackTrace();
-			this.mc.displayGuiScreen(new GuiConnectFailed("connect.failed", "disconnect.genericReason", new Object[]{exception4.toString()}));
+			this.mc.displayGuiScreen(new GuiConnectFailed("connect.failed", "disconnect.genericReason", exception4.toString()));
 		}
 
 	}

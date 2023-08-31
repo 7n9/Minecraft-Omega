@@ -6,8 +6,8 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class RenderItem extends Render {
-	private RenderBlocks renderBlocks = new RenderBlocks();
-	private Random random = new Random();
+	private final RenderBlocks renderBlocks = new RenderBlocks();
+	private final Random random = new Random();
 	public boolean field_27004_a = true;
 
 	public RenderItem() {
@@ -15,7 +15,7 @@ public class RenderItem extends Render {
 		this.field_194_c = 0.75F;
 	}
 
-	public void doRenderItem(EntityItem entityItem1, double d2, double d4, double d6, float f8, float f9) {
+	public void doRenderItem(EntityItem entityItem1, double d2, double d4, double d6, float f9) {
 		this.random.setSeed(187L);
 		ItemStack itemStack10 = entityItem1.item;
 		GL11.glPushMatrix();
@@ -71,9 +71,9 @@ public class RenderItem extends Render {
 			}
 
 			Tessellator tessellator15 = Tessellator.instance;
-			f16 = (float)(i14 % 16 * 16 + 0) / 256.0F;
+			f16 = (float)(i14 % 16 * 16) / 256.0F;
 			f17 = (float)(i14 % 16 * 16 + 16) / 256.0F;
-			f18 = (float)(i14 / 16 * 16 + 0) / 256.0F;
+			f18 = (float)(i14 / 16 * 16) / 256.0F;
 			float f19 = (float)(i14 / 16 * 16 + 16) / 256.0F;
 			float f20 = 1.0F;
 			float f21 = 0.5F;
@@ -170,10 +170,10 @@ public class RenderItem extends Render {
 		}
 	}
 
-	public void renderItemOverlayIntoGUI(FontRenderer fontRenderer1, RenderEngine renderEngine2, ItemStack itemStack3, int i4, int i5) {
+	public void renderItemOverlayIntoGUI(FontRenderer fontRenderer1, ItemStack itemStack3, int i4, int i5) {
 		if(itemStack3 != null) {
 			if(itemStack3.stackSize > 1) {
-				String string6 = "" + itemStack3.stackSize;
+				String string6 = String.valueOf(itemStack3.stackSize);
 				GL11.glDisable(GL11.GL_LIGHTING);
 				GL11.glDisable(GL11.GL_DEPTH_TEST);
 				fontRenderer1.drawStringWithShadow(string6, i4 + 19 - 2 - fontRenderer1.getStringWidth(string6), i5 + 6 + 3, 0xFFFFFF);
@@ -205,10 +205,10 @@ public class RenderItem extends Render {
 	private void renderQuad(Tessellator tessellator1, int i2, int i3, int i4, int i5, int i6) {
 		tessellator1.startDrawingQuads();
 		tessellator1.setColorOpaque_I(i6);
-		tessellator1.addVertex((double)(i2 + 0), (double)(i3 + 0), 0.0D);
-		tessellator1.addVertex((double)(i2 + 0), (double)(i3 + i5), 0.0D);
+		tessellator1.addVertex((double)(i2), (double)(i3), 0.0D);
+		tessellator1.addVertex((double)(i2), (double)(i3 + i5), 0.0D);
 		tessellator1.addVertex((double)(i2 + i4), (double)(i3 + i5), 0.0D);
-		tessellator1.addVertex((double)(i2 + i4), (double)(i3 + 0), 0.0D);
+		tessellator1.addVertex((double)(i2 + i4), (double)(i3), 0.0D);
 		tessellator1.draw();
 	}
 
@@ -218,14 +218,14 @@ public class RenderItem extends Render {
 		float f9 = 0.00390625F;
 		Tessellator tessellator10 = Tessellator.instance;
 		tessellator10.startDrawingQuads();
-		tessellator10.addVertexWithUV((double)(i1 + 0), (double)(i2 + i6), (double)f7, (double)((float)(i3 + 0) * f8), (double)((float)(i4 + i6) * f9));
+		tessellator10.addVertexWithUV((double)(i1), (double)(i2 + i6), (double)f7, (double)((float)(i3) * f8), (double)((float)(i4 + i6) * f9));
 		tessellator10.addVertexWithUV((double)(i1 + i5), (double)(i2 + i6), (double)f7, (double)((float)(i3 + i5) * f8), (double)((float)(i4 + i6) * f9));
-		tessellator10.addVertexWithUV((double)(i1 + i5), (double)(i2 + 0), (double)f7, (double)((float)(i3 + i5) * f8), (double)((float)(i4 + 0) * f9));
-		tessellator10.addVertexWithUV((double)(i1 + 0), (double)(i2 + 0), (double)f7, (double)((float)(i3 + 0) * f8), (double)((float)(i4 + 0) * f9));
+		tessellator10.addVertexWithUV((double)(i1 + i5), (double)(i2), (double)f7, (double)((float)(i3 + i5) * f8), (double)((float)(i4) * f9));
+		tessellator10.addVertexWithUV((double)(i1), (double)(i2), (double)f7, (double)((float)(i3) * f8), (double)((float)(i4) * f9));
 		tessellator10.draw();
 	}
 
 	public void doRender(Entity entity1, double d2, double d4, double d6, float f8, float f9) {
-		this.doRenderItem((EntityItem)entity1, d2, d4, d6, f8, f9);
+		this.doRenderItem((EntityItem)entity1, d2, d4, d6, f9);
 	}
 }

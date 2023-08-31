@@ -2,6 +2,7 @@ package net.minecraft.src;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
@@ -17,7 +18,7 @@ public class TexturePackDefault extends TexturePackBase {
 		this.firstDescriptionLine = "The default look of Minecraft";
 
 		try {
-			this.texturePackThumbnail = ImageIO.read(TexturePackDefault.class.getResource("/pack.png"));
+			this.texturePackThumbnail = ImageIO.read(Objects.requireNonNull(TexturePackDefault.class.getResource("/pack.png")));
 		} catch (IOException iOException2) {
 			iOException2.printStackTrace();
 		}

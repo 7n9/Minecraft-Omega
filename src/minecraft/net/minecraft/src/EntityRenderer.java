@@ -257,7 +257,7 @@ public class EntityRenderer {
 		d4 = entityLiving2.prevPosX + (entityLiving2.posX - entityLiving2.prevPosX) * (double)f1;
 		d6 = entityLiving2.prevPosY + (entityLiving2.posY - entityLiving2.prevPosY) * (double)f1 - (double)f3;
 		d8 = entityLiving2.prevPosZ + (entityLiving2.posZ - entityLiving2.prevPosZ) * (double)f1;
-		this.cloudFog = this.mc.renderGlobal.func_27307_a(d4, d6, d8, f1);
+		this.cloudFog = this.mc.renderGlobal.func_27307_a();
 	}
 
 	private void setupCameraTransform(float f1, int i2) {
@@ -483,7 +483,7 @@ public class EntityRenderer {
 
 			Frustrum frustrum19 = new Frustrum();
 			frustrum19.setPosition(d7, d9, d11);
-			this.mc.renderGlobal.clipRenderersByFrustrum(frustrum19, f1);
+			this.mc.renderGlobal.clipRenderersByFrustrum(frustrum19);
 			if(i18 == 0) {
 				while(!this.mc.renderGlobal.updateRenderers(entityLiving4, false) && j2 != 0L) {
 					long j20 = j2 - System.nanoTime();
@@ -537,7 +537,7 @@ public class EntityRenderer {
 				}
 
 				if(i16 > 0) {
-					renderGlobal5.renderAllRenderLists(1, (double)f1);
+					renderGlobal5.renderAllRenderLists();
 				}
 
 				GL11.glShadeModel(GL11.GL_FLAT);

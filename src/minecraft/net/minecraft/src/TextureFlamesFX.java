@@ -67,7 +67,7 @@ public class TextureFlamesFX extends TextureFX {
 				i7 = i11;
 			}
 
-			this.imageData[i2 * 4 + 0] = (byte)i5;
+			this.imageData[i2 * 4] = (byte)i5;
 			this.imageData[i2 * 4 + 1] = (byte)i6;
 			this.imageData[i2 * 4 + 2] = (byte)i7;
 			this.imageData[i2 * 4 + 3] = (byte)s8;

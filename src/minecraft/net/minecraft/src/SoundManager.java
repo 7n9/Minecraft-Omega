@@ -11,13 +11,13 @@ import paulscode.sound.libraries.LibraryLWJGLOpenAL;
 
 public class SoundManager {
 	private static SoundSystem sndSystem;
-	private SoundPool soundPoolSounds = new SoundPool();
-	private SoundPool soundPoolStreaming = new SoundPool();
-	private SoundPool soundPoolMusic = new SoundPool();
+	private final SoundPool soundPoolSounds = new SoundPool();
+	private final SoundPool soundPoolStreaming = new SoundPool();
+	private final SoundPool soundPoolMusic = new SoundPool();
 	private int field_587_e = 0;
 	private GameSettings options;
 	private static boolean loaded = false;
-	private Random rand = new Random();
+	private final Random rand = new Random();
 	private int ticksBeforeMusic = this.rand.nextInt(12000);
 
 	public void loadSoundSettings(GameSettings gameSettings1) {
@@ -127,7 +127,7 @@ public class SoundManager {
 		}
 	}
 
-	public void playStreaming(String string1, float f2, float f3, float f4, float f5, float f6) {
+	public void playStreaming(String string1, float f2, float f3, float f4, float f5) {
 		if(loaded && this.options.soundVolume != 0.0F) {
 			String string7 = "streaming";
 			if(sndSystem.playing("streaming")) {

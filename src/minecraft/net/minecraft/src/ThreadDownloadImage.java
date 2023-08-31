@@ -2,6 +2,7 @@ package net.minecraft.src;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 class ThreadDownloadImage extends Thread {
@@ -36,7 +37,7 @@ class ThreadDownloadImage extends Thread {
 		} catch (Exception exception6) {
 			exception6.printStackTrace();
 		} finally {
-			httpURLConnection1.disconnect();
+			Objects.requireNonNull(httpURLConnection1).disconnect();
 		}
 
 	}

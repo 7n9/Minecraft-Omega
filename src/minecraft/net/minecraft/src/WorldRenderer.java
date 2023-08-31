@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 public class WorldRenderer {
 	public World worldObj;
 	private int glRenderList = -1;
-	private static Tessellator tessellator = Tessellator.instance;
+	private static final Tessellator tessellator = Tessellator.instance;
 	public static int chunksUpdated = 0;
 	public int posX;
 	public int posY;
@@ -38,7 +38,7 @@ public class WorldRenderer {
 	public boolean isChunkLit;
 	private boolean isInitialized = false;
 	public List tileEntityRenderers = new ArrayList();
-	private List tileEntities;
+	private final List tileEntities;
 
 	public WorldRenderer(World world1, List list2, int i3, int i4, int i5, int i6, int i7) {
 		this.worldObj = world1;
@@ -67,9 +67,9 @@ public class WorldRenderer {
 			this.posYMinus = i2 - this.posYClip;
 			this.posZMinus = i3 - this.posZClip;
 			float f4 = 6.0F;
-			this.rendererBoundingBox = AxisAlignedBB.getBoundingBox((double)((float)i1 - f4), (double)((float)i2 - f4), (double)((float)i3 - f4), (double)((float)(i1 + this.sizeWidth) + f4), (double)((float)(i2 + this.sizeHeight) + f4), (double)((float)(i3 + this.sizeDepth) + f4));
+			this.rendererBoundingBox = AxisAlignedBB.getBoundingBox((float)i1 - f4, (float)i2 - f4, (float)i3 - f4, (float)(i1 + this.sizeWidth) + f4, (float)(i2 + this.sizeHeight) + f4, (float)(i3 + this.sizeDepth) + f4);
 			GL11.glNewList(this.glRenderList + 2, GL11.GL_COMPILE);
-			RenderItem.renderAABB(AxisAlignedBB.getBoundingBoxFromPool((double)((float)this.posXClip - f4), (double)((float)this.posYClip - f4), (double)((float)this.posZClip - f4), (double)((float)(this.posXClip + this.sizeWidth) + f4), (double)((float)(this.posYClip + this.sizeHeight) + f4), (double)((float)(this.posZClip + this.sizeDepth) + f4)));
+			RenderItem.renderAABB(AxisAlignedBB.getBoundingBoxFromPool((float)this.posXClip - f4, (float)this.posYClip - f4, (float)this.posZClip - f4, (float)(this.posXClip + this.sizeWidth) + f4, (float)(this.posYClip + this.sizeHeight) + f4, (float)(this.posZClip + this.sizeDepth) + f4));
 			GL11.glEndList();
 			this.markDirty();
 		}
@@ -121,7 +121,7 @@ public class WorldRenderer {
 									GL11.glScalef(f19, f19, f19);
 									GL11.glTranslatef((float)this.sizeDepth / 2.0F, (float)this.sizeHeight / 2.0F, (float)this.sizeDepth / 2.0F);
 									tessellator.startDrawingQuads();
-									tessellator.setTranslationD((double)(-this.posX), (double)(-this.posY), (double)(-this.posZ));
+									tessellator.setTranslationD(-this.posX, -this.posY, -this.posZ);
 								}
 
 								if(i11 == 0 && Block.isBlockContainer[i18]) {
@@ -135,7 +135,7 @@ public class WorldRenderer {
 								int i20 = block24.getRenderBlockPass();
 								if(i20 != i11) {
 									z12 = true;
-								} else if(i20 == i11) {
+								} else {
 									z13 |= renderBlocks10.renderBlockByRenderType(block24, i17, i15, i16);
 								}
 							}
@@ -206,7 +206,7 @@ public class WorldRenderer {
 	}
 
 	public boolean skipAllRenderPasses() {
-		return !this.isInitialized ? false : this.skipRenderPass[0] && this.skipRenderPass[1];
+		return this.isInitialized && this.skipRenderPass[0] && this.skipRenderPass[1];
 	}
 
 	public void markDirty() {

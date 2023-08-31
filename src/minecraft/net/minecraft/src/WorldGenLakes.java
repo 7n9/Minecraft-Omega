@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class WorldGenLakes extends WorldGenerator {
-	private int field_15235_a;
+	private final int field_15235_a;
 
 	public WorldGenLakes(int i1) {
 		this.field_15235_a = i1;

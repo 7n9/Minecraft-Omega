@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import java.util.Objects;
+
 public class Path {
 	private PathPoint[] pathPoints = new PathPoint[1024];
 	private int count = 0;
@@ -104,7 +106,7 @@ public class Path {
 				}
 
 				this.pathPoints[i1] = pathPoint8;
-				pathPoint8.index = i1;
+				Objects.requireNonNull(pathPoint8).index = i1;
 				i1 = i5;
 			}
 		}

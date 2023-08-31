@@ -29,7 +29,7 @@ class GuiSlotStatsGeneral extends GuiSlot {
 	}
 
 	protected void drawSlot(int i1, int i2, int i3, int i4, Tessellator tessellator5) {
-		StatBase statBase6 = (StatBase)StatList.field_25187_b.get(i1);
+		StatBase statBase6 = StatList.field_25187_b.get(i1);
 		this.field_27276_a.drawString(GuiStats.func_27145_b(this.field_27276_a), statBase6.statName, i2 + 2, i3 + 1, i1 % 2 == 0 ? 0xFFFFFF : 9474192);
 		String string7 = statBase6.func_27084_a(GuiStats.func_27142_c(this.field_27276_a).writeStat(statBase6));
 		this.field_27276_a.drawString(GuiStats.func_27140_d(this.field_27276_a), string7, i2 + 2 + 213 - GuiStats.func_27146_e(this.field_27276_a).getStringWidth(string7), i3 + 1, i1 % 2 == 0 ? 0xFFFFFF : 9474192);

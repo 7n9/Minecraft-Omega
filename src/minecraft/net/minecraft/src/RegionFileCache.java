@@ -7,19 +7,18 @@ import java.io.IOException;
 import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class RegionFileCache {
-	private static final Map cache = new HashMap();
+	private static final Map<File, SoftReference<RegionFile>> cache = new HashMap<File, SoftReference<RegionFile>>();
 
 	public static synchronized RegionFile func_22193_a(File file0, int i1, int i2) {
 		File file3 = new File(file0, "region");
 		File file4 = new File(file3, "r." + (i1 >> 5) + "." + (i2 >> 5) + ".mcr");
-		Reference reference5 = (Reference)cache.get(file4);
+		Reference<RegionFile> reference5 = cache.get(file4);
 		RegionFile regionFile6;
 		if(reference5 != null) {
-			regionFile6 = (RegionFile)reference5.get();
+			regionFile6 = reference5.get();
 			if(regionFile6 != null) {
 				return regionFile6;
 			}
@@ -34,19 +33,16 @@ public class RegionFileCache {
 		}
 
 		regionFile6 = new RegionFile(file4);
-		cache.put(file4, new SoftReference(regionFile6));
+		cache.put(file4, new SoftReference<>(regionFile6));
 		return regionFile6;
 	}
 
 	public static synchronized void func_22192_a() {
-		Iterator iterator0 = cache.values().iterator();
 
-		while(iterator0.hasNext()) {
-			Reference reference1 = (Reference)iterator0.next();
-
+		for (Reference<RegionFile> reference1 : cache.values()) {
 			try {
-				RegionFile regionFile2 = (RegionFile)reference1.get();
-				if(regionFile2 != null) {
+				RegionFile regionFile2 = reference1.get();
+				if (regionFile2 != null) {
 					regionFile2.func_22196_b();
 				}
 			} catch (IOException iOException3) {

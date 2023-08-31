@@ -362,7 +362,7 @@ public class GuiIngame extends Gui {
 				GL11.glPopMatrix();
 			}
 
-			itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, itemStack5, i2, i3);
+			itemRenderer.renderItemOverlayIntoGUI(this.mc.fontRenderer, itemStack5, i2, i3);
 		}
 	}
 

@@ -1,10 +1,10 @@
 package net.minecraft.src;
 
 public class ShapedRecipes implements IRecipe {
-	private int recipeWidth;
-	private int recipeHeight;
-	private ItemStack[] recipeItems;
-	private ItemStack recipeOutput;
+	private final int recipeWidth;
+	private final int recipeHeight;
+	private final ItemStack[] recipeItems;
+	private final ItemStack recipeOutput;
 	public final int recipeOutputItemID;
 
 	public ShapedRecipes(int i1, int i2, ItemStack[] itemStack3, ItemStack itemStack4) {
@@ -51,7 +51,7 @@ public class ShapedRecipes implements IRecipe {
 
 				ItemStack itemStack10 = inventoryCrafting1.func_21103_b(i5, i6);
 				if(itemStack10 != null || itemStack9 != null) {
-					if(itemStack10 == null && itemStack9 != null || itemStack10 != null && itemStack9 == null) {
+					if(itemStack10 == null || itemStack9 == null) {
 						return false;
 					}
 

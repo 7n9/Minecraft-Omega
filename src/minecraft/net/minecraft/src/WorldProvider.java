@@ -8,7 +8,7 @@ public abstract class WorldProvider {
 	public boolean hasNoSky = false;
 	public float[] lightBrightnessTable = new float[16];
 	public int worldType = 0;
-	private float[] colorsSunriseSunset = new float[4];
+	private final float[] colorsSunriseSunset = new float[4];
 
 	public final void registerWorld(World world1) {
 		this.worldObj = world1;
@@ -90,7 +90,7 @@ public abstract class WorldProvider {
 		f4 *= f3 * 0.94F + 0.06F;
 		f5 *= f3 * 0.94F + 0.06F;
 		f6 *= f3 * 0.91F + 0.09F;
-		return Vec3D.createVector((double)f4, (double)f5, (double)f6);
+		return Vec3D.createVector(f4, f5, f6);
 	}
 
 	public boolean canRespawnHere() {
@@ -98,7 +98,7 @@ public abstract class WorldProvider {
 	}
 
 	public static WorldProvider getProviderForDimension(int i0) {
-		return (WorldProvider)(i0 == -1 ? new WorldProviderHell() : (i0 == 0 ? new WorldProviderSurface() : (i0 == 1 ? new WorldProviderSky() : null)));
+		return i0 == -1 ? new WorldProviderHell() : (i0 == 0 ? new WorldProviderSurface() : (i0 == 1 ? new WorldProviderSky() : null));
 	}
 
 	public float getCloudHeight() {

@@ -11,7 +11,7 @@ public class RenderList {
 	private float field_1239_d;
 	private float field_1238_e;
 	private float field_1237_f;
-	private IntBuffer field_1236_g = GLAllocation.createDirectIntBuffer(65536);
+	private final IntBuffer field_1236_g = GLAllocation.createDirectIntBuffer(65536);
 	private boolean field_1235_h = false;
 	private boolean field_1234_i = false;
 
@@ -27,7 +27,7 @@ public class RenderList {
 	}
 
 	public boolean func_862_a(int i1, int i2, int i3) {
-		return !this.field_1235_h ? false : i1 == this.field_1242_a && i2 == this.field_1241_b && i3 == this.field_1240_c;
+		return this.field_1235_h && i1 == this.field_1242_a && i2 == this.field_1241_b && i3 == this.field_1240_c;
 	}
 
 	public void func_858_a(int i1) {

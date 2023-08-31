@@ -3,9 +3,9 @@ package net.minecraft.src;
 import java.util.Arrays;
 
 public class WorldChunkManagerHell extends WorldChunkManager {
-	private BiomeGenBase field_4201_e;
-	private double field_4200_f;
-	private double field_4199_g;
+	private final BiomeGenBase field_4201_e;
+	private final double field_4200_f;
+	private final double field_4199_g;
 
 	public WorldChunkManagerHell(BiomeGenBase biomeGenBase1, double d2, double d4) {
 		this.field_4201_e = biomeGenBase1;

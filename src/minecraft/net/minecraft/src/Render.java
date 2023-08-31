@@ -4,8 +4,8 @@ import org.lwjgl.opengl.GL11;
 
 public abstract class Render {
 	protected RenderManager renderManager;
-	private ModelBase modelBase = new ModelBiped();
-	private RenderBlocks renderBlocks = new RenderBlocks();
+	private final ModelBase modelBase = new ModelBiped();
+	private final RenderBlocks renderBlocks = new RenderBlocks();
 	protected float shadowSize = 0.0F;
 	protected float field_194_c = 1.0F;
 

@@ -12,7 +12,7 @@ public class TileEntityPiston extends TileEntity {
 	private boolean field_31023_j;
 	private float field_31022_k;
 	private float field_31020_l;
-	private static List field_31018_m = new ArrayList();
+	private static final List field_31018_m = new ArrayList();
 
 	public TileEntityPiston() {
 	}

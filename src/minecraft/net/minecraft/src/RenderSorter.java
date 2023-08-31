@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Comparator;
 
 public class RenderSorter implements Comparator {
-	private EntityLiving baseEntity;
+	private final EntityLiving baseEntity;
 
 	public RenderSorter(EntityLiving entityLiving1) {
 		this.baseEntity = entityLiving1;

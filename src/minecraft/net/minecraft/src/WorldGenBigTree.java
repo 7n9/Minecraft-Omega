@@ -10,7 +10,6 @@ public class WorldGenBigTree extends WorldGenerator {
 	int field_878_e = 0;
 	int height;
 	double field_876_g = 0.618D;
-	double field_875_h = 1.0D;
 	double field_874_i = 0.381D;
 	double field_873_j = 1.0D;
 	double field_872_k = 1.0D;
@@ -87,17 +86,17 @@ public class WorldGenBigTree extends WorldGenerator {
 		}
 	}
 
-	void func_523_a(int i1, int i2, int i3, float f4, byte b5, int i6) {
+	void func_523_a(int i1, int i2, int i3, float f4) {
 		int i7 = (int)((double)f4 + 0.618D);
-		byte b8 = field_882_a[b5];
-		byte b9 = field_882_a[b5 + 3];
+		byte b8 = field_882_a[(byte) 1];
+		byte b9 = field_882_a[(byte) 1 + 3];
 		int[] i10 = new int[]{i1, i2, i3};
 		int[] i11 = new int[]{0, 0, 0};
 		int i12 = -i7;
 		int i13 = -i7;
 
 		label32:
-		for(i11[b5] = i10[b5]; i12 <= i7; ++i12) {
+		for(i11[(byte) 1] = i10[(byte) 1]; i12 <= i7; ++i12) {
 			i11[b8] = i10[b8] + i12;
 			i13 = -i7;
 
@@ -116,7 +115,7 @@ public class WorldGenBigTree extends WorldGenerator {
 						if(i14 != 0 && i14 != 18) {
 							++i13;
 						} else {
-							this.worldObj.setBlock(i11[0], i11[1], i11[2], i6);
+							this.worldObj.setBlock(i11[0], i11[1], i11[2], 18);
 							++i13;
 						}
 					}
@@ -155,12 +154,12 @@ public class WorldGenBigTree extends WorldGenerator {
 
 		for(int i5 = i2 + this.field_869_n; i4 < i5; ++i4) {
 			float f6 = this.func_526_b(i4 - i2);
-			this.func_523_a(i1, i4, i3, f6, (byte)1, 18);
+			this.func_523_a(i1, i4, i3, f6);
 		}
 
 	}
 
-	void func_522_a(int[] i1, int[] i2, int i3) {
+	void func_522_a(int[] i1, int[] i2) {
 		int[] i4 = new int[]{0, 0, 0};
 		byte b5 = 0;
 
@@ -191,7 +190,7 @@ public class WorldGenBigTree extends WorldGenerator {
 				i14[b6] = MathHelper.floor_double((double)(i1[b6] + i15) + 0.5D);
 				i14[b7] = MathHelper.floor_double((double)i1[b7] + (double)i15 * d10 + 0.5D);
 				i14[b8] = MathHelper.floor_double((double)i1[b8] + (double)i15 * d12 + 0.5D);
-				this.worldObj.setBlock(i14[0], i14[1], i14[2], i3);
+				this.worldObj.setBlock(i14[0], i14[1], i14[2], 17);
 			}
 
 		}
@@ -220,17 +219,17 @@ public class WorldGenBigTree extends WorldGenerator {
 		int i4 = this.basePos[2];
 		int[] i5 = new int[]{i1, i2, i4};
 		int[] i6 = new int[]{i1, i3, i4};
-		this.func_522_a(i5, i6, 17);
+		this.func_522_a(i5, i6);
 		if(this.field_871_l == 2) {
 			++i5[0];
 			++i6[0];
-			this.func_522_a(i5, i6, 17);
+			this.func_522_a(i5, i6);
 			++i5[2];
 			++i6[2];
-			this.func_522_a(i5, i6, 17);
+			this.func_522_a(i5, i6);
 			i5[0] += -1;
 			i6[0] += -1;
-			this.func_522_a(i5, i6, 17);
+			this.func_522_a(i5, i6);
 		}
 
 	}
@@ -245,7 +244,7 @@ public class WorldGenBigTree extends WorldGenerator {
 			i3[1] = i4[3];
 			int i6 = i3[1] - this.basePos[1];
 			if(this.func_527_c(i6)) {
-				this.func_522_a(i3, i5, 17);
+				this.func_522_a(i3, i5);
 			}
 		}
 
