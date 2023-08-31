@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class ChunkLoader implements IChunkLoader {
 	private final File saveDir;
@@ -78,7 +79,7 @@ public class ChunkLoader implements IChunkLoader {
 	public void saveChunk(World world1, Chunk chunk2) throws IOException {
 		world1.checkSessionLock();
 		File file3 = this.chunkFileForXZ(chunk2.xPosition, chunk2.zPosition);
-		if(file3.exists()) {
+		if(Objects.requireNonNull(file3).exists()) {
 			WorldInfo worldInfo4 = world1.getWorldInfo();
 			worldInfo4.setSizeOnDisk(worldInfo4.getSizeOnDisk() - file3.length());
 		}

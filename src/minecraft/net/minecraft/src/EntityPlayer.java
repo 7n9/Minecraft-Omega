@@ -198,9 +198,9 @@ public abstract class EntityPlayer extends EntityLiving {
 		if(this.health > 0) {
 			List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.0D, 0.0D, 1.0D));
 			if(list3 != null) {
-				for(int i4 = 0; i4 < list3.size(); ++i4) {
-					Entity entity5 = (Entity)list3.get(i4);
-					if(!entity5.isDead) {
+				for (Object o : list3) {
+					Entity entity5 = (Entity) o;
+					if (!entity5.isDead) {
 						this.collideWithPlayer(entity5);
 					}
 				}
@@ -661,8 +661,7 @@ public abstract class EntityPlayer extends EntityLiving {
 		if(world0.getBlockId(chunkCoordinates1.x, chunkCoordinates1.y, chunkCoordinates1.z) != Block.blockBed.blockID) {
 			return null;
 		} else {
-			ChunkCoordinates chunkCoordinates3 = BlockBed.getNearestEmptyChunkCoordinates(world0, chunkCoordinates1.x, chunkCoordinates1.y, chunkCoordinates1.z, 0);
-			return chunkCoordinates3;
+			return BlockBed.getNearestEmptyChunkCoordinates(world0, chunkCoordinates1.x, chunkCoordinates1.y, chunkCoordinates1.z, 0);
 		}
 	}
 

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AchievementMap {
 	public static AchievementMap instance = new AchievementMap();
@@ -11,7 +12,7 @@ public class AchievementMap {
 
 	private AchievementMap() {
 		try {
-			BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(AchievementMap.class.getResourceAsStream("/achievement/map.txt")));
+			BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(Objects.requireNonNull(AchievementMap.class.getResourceAsStream("/achievement/map.txt"))));
 
 			String string2;
 			while((string2 = bufferedReader1.readLine()) != null) {

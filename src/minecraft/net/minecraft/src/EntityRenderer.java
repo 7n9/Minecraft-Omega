@@ -2,6 +2,7 @@ package net.minecraft.src;
 
 import java.nio.FloatBuffer;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
@@ -38,8 +39,6 @@ public class EntityRenderer {
 	private float field_22230_A = 0.0F;
 	private boolean cloudFog = false;
 	private final double cameraZoom = 1.0D;
-	private final double cameraYaw = 0.0D;
-	private final double cameraPitch = 0.0D;
 	private long prevFrameTime = System.currentTimeMillis();
 	private long field_28133_I = 0L;
 	private final Random random = new Random();
@@ -107,20 +106,20 @@ public class EntityRenderer {
 				List list10 = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec3D7.xCoord * d2, vec3D7.yCoord * d2, vec3D7.zCoord * d2).expand(f9, f9, f9));
 				double d11 = 0.0D;
 
-				for(int i13 = 0; i13 < list10.size(); ++i13) {
-					Entity entity14 = (Entity)list10.get(i13);
-					if(entity14.canBeCollidedWith()) {
+				for (Object o : list10) {
+					Entity entity14 = (Entity) o;
+					if (entity14.canBeCollidedWith()) {
 						float f15 = entity14.getCollisionBorderSize();
 						AxisAlignedBB axisAlignedBB16 = entity14.boundingBox.expand(f15, f15, f15);
 						MovingObjectPosition movingObjectPosition17 = axisAlignedBB16.func_1169_a(vec3D6, vec3D8);
-						if(axisAlignedBB16.isVecInside(vec3D6)) {
-							if(0.0D < d11 || d11 == 0.0D) {
+						if (axisAlignedBB16.isVecInside(vec3D6)) {
+							if (0.0D < d11 || d11 == 0.0D) {
 								this.pointedEntity = entity14;
 								d11 = 0.0D;
 							}
-						} else if(movingObjectPosition17 != null) {
+						} else if (movingObjectPosition17 != null) {
 							double d18 = vec3D6.distanceTo(movingObjectPosition17.hitVec);
-							if(d18 < d11 || d11 == 0.0D) {
+							if (d18 < d11 || d11 == 0.0D) {
 								this.pointedEntity = entity14;
 								d11 = d18;
 							}
@@ -269,13 +268,7 @@ public class EntityRenderer {
 			GL11.glTranslatef((float)(-(i2 * 2 - 1)) * f3, 0.0F, 0.0F);
 		}
 
-		if(this.cameraZoom != 1.0D) {
-			GL11.glTranslatef((float)this.cameraYaw, (float)(-this.cameraPitch), 0.0F);
-			GL11.glScaled(this.cameraZoom, this.cameraZoom, 1.0D);
-			GLU.gluPerspective(this.getFOVModifier(f1), (float)this.mc.displayWidth / (float)this.mc.displayHeight, 0.05F, this.farPlaneDistance * 2.0F);
-		} else {
-			GLU.gluPerspective(this.getFOVModifier(f1), (float)this.mc.displayWidth / (float)this.mc.displayHeight, 0.05F, this.farPlaneDistance * 2.0F);
-		}
+		GLU.gluPerspective(this.getFOVModifier(f1), (float) this.mc.displayWidth / (float) this.mc.displayHeight, 0.05F, this.farPlaneDistance * 2.0F);
 
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
@@ -548,7 +541,7 @@ public class EntityRenderer {
 			GL11.glDepthMask(true);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glDisable(GL11.GL_BLEND);
-			if(this.cameraZoom == 1.0D && entityLiving4 instanceof EntityPlayer && this.mc.objectMouseOver != null && !entityLiving4.isInsideOfMaterial(Material.water)) {
+			if(entityLiving4 instanceof EntityPlayer && this.mc.objectMouseOver != null && !entityLiving4.isInsideOfMaterial(Material.water)) {
 				entityPlayer21 = (EntityPlayer)entityLiving4;
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				renderGlobal5.drawBlockBreaking(entityPlayer21, this.mc.objectMouseOver, 0, entityPlayer21.inventory.getCurrentItem(), f1);
@@ -566,10 +559,8 @@ public class EntityRenderer {
 			renderGlobal5.renderClouds(f1);
 			GL11.glDisable(GL11.GL_FOG);
 			this.setupFog(1, f1);
-			if(this.cameraZoom == 1.0D) {
-				GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
-				this.func_4135_b(f1, i18);
-			}
+			GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
+			this.func_4135_b(f1, i18);
 
 			if(!this.mc.gameSettings.anaglyph) {
 				return;
@@ -678,10 +669,7 @@ public class EntityRenderer {
 							i22 = 0;
 						}
 
-						i23 = i22;
-						if(i22 < i15) {
-							i23 = i15;
-						}
+						i23 = Math.max(i22, i15);
 
 						i24 = i6 - b16;
 						int i25 = i6 + b16;
@@ -855,15 +843,12 @@ public class EntityRenderer {
 
 	private void setupFog(int i1, float f2) {
 		EntityLiving entityLiving3 = this.mc.renderViewEntity;
-		GL11.glFog(GL11.GL_FOG_COLOR, this.func_908_a(this.fogColorRed, this.fogColorGreen, this.fogColorBlue, 1.0F));
+		GL11.glFog(GL11.GL_FOG_COLOR, this.func_908_a(this.fogColorRed, this.fogColorGreen, this.fogColorBlue));
 		GL11.glNormal3f(0.0F, -1.0F, 0.0F);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float f4;
 		float f5;
 		float f6;
-		float f7;
-		float f8;
-		float f9;
 		if(this.cloudFog) {
 			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
 			GL11.glFogf(GL11.GL_FOG_DENSITY, 0.1F);
@@ -871,9 +856,6 @@ public class EntityRenderer {
 			f5 = 1.0F;
 			f6 = 1.0F;
 			if(this.mc.gameSettings.anaglyph) {
-				f7 = (f4 * 30.0F + f5 * 59.0F + f6 * 11.0F) / 100.0F;
-				f8 = (f4 * 30.0F + f5 * 70.0F) / 100.0F;
-				f9 = (f4 * 30.0F + f6 * 70.0F) / 100.0F;
 			}
 		} else if(entityLiving3.isInsideOfMaterial(Material.water)) {
 			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
@@ -882,9 +864,6 @@ public class EntityRenderer {
 			f5 = 0.4F;
 			f6 = 0.9F;
 			if(this.mc.gameSettings.anaglyph) {
-				f7 = (f4 * 30.0F + f5 * 59.0F + f6 * 11.0F) / 100.0F;
-				f8 = (f4 * 30.0F + f5 * 70.0F) / 100.0F;
-				f9 = (f4 * 30.0F + f6 * 70.0F) / 100.0F;
 			}
 		} else if(entityLiving3.isInsideOfMaterial(Material.lava)) {
 			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
@@ -893,9 +872,6 @@ public class EntityRenderer {
 			f5 = 0.3F;
 			f6 = 0.3F;
 			if(this.mc.gameSettings.anaglyph) {
-				f7 = (f4 * 30.0F + f5 * 59.0F + f6 * 11.0F) / 100.0F;
-				f8 = (f4 * 30.0F + f5 * 70.0F) / 100.0F;
-				f9 = (f4 * 30.0F + f6 * 70.0F) / 100.0F;
 			}
 		} else {
 			GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR);
@@ -910,7 +886,7 @@ public class EntityRenderer {
 				GL11.glFogi(34138, 34139);
 			}
 
-			if(this.mc.theWorld.worldProvider.isNether) {
+			if(Objects.requireNonNull(this.mc.theWorld.worldProvider).isNether) {
 				GL11.glFogf(GL11.GL_FOG_START, 0.0F);
 			}
 		}
@@ -919,9 +895,9 @@ public class EntityRenderer {
 		GL11.glColorMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT);
 	}
 
-	private FloatBuffer func_908_a(float f1, float f2, float f3, float f4) {
+	private FloatBuffer func_908_a(float f1, float f2, float f3) {
 		this.fogColorBuffer.clear();
-		this.fogColorBuffer.put(f1).put(f2).put(f3).put(f4);
+		this.fogColorBuffer.put(f1).put(f2).put(f3).put((float) 1.0);
 		this.fogColorBuffer.flip();
 		return this.fogColorBuffer;
 	}

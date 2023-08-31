@@ -50,10 +50,10 @@ public class EntityPigZombie extends EntityZombie {
 		if(entity1 instanceof EntityPlayer) {
 			List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
 
-			for(int i4 = 0; i4 < list3.size(); ++i4) {
-				Entity entity5 = (Entity)list3.get(i4);
-				if(entity5 instanceof EntityPigZombie) {
-					EntityPigZombie entityPigZombie6 = (EntityPigZombie)entity5;
+			for (Object o : list3) {
+				Entity entity5 = (Entity) o;
+				if (entity5 instanceof EntityPigZombie) {
+					EntityPigZombie entityPigZombie6 = (EntityPigZombie) entity5;
 					entityPigZombie6.becomeAngryAt(entity1);
 				}
 			}

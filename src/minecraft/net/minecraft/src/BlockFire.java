@@ -163,7 +163,7 @@ public class BlockFire extends Block {
 
 	public int getChanceToEncourageFire(World world1, int i2, int i3, int i4, int i5) {
 		int i6 = this.chanceToEncourageFire[world1.getBlockId(i2, i3, i4)];
-		return i6 > i5 ? i6 : i5;
+		return Math.max(i6, i5);
 	}
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {

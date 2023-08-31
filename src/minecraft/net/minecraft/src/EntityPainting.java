@@ -28,11 +28,10 @@ public class EntityPainting extends Entity {
 		EnumArt[] enumArt7 = EnumArt.values();
 		int i8 = enumArt7.length;
 
-		for(int i9 = 0; i9 < i8; ++i9) {
-			EnumArt enumArt10 = enumArt7[i9];
+		for (EnumArt enumArt10 : enumArt7) {
 			this.art = enumArt10;
 			this.func_412_b(i5);
-			if(this.func_410_i()) {
+			if (this.func_410_i()) {
 				arrayList6.add(enumArt10);
 			}
 		}
@@ -52,9 +51,8 @@ public class EntityPainting extends Entity {
 		EnumArt[] enumArt7 = EnumArt.values();
 		int i8 = enumArt7.length;
 
-		for(int i9 = 0; i9 < i8; ++i9) {
-			EnumArt enumArt10 = enumArt7[i9];
-			if(enumArt10.title.equals(string6)) {
+		for (EnumArt enumArt10 : enumArt7) {
+			if (enumArt10.title.equals(string6)) {
 				this.art = enumArt10;
 				break;
 			}
@@ -224,9 +222,8 @@ public class EntityPainting extends Entity {
 		EnumArt[] enumArt3 = EnumArt.values();
 		int i4 = enumArt3.length;
 
-		for(int i5 = 0; i5 < i4; ++i5) {
-			EnumArt enumArt6 = enumArt3[i5];
-			if(enumArt6.title.equals(string2)) {
+		for (EnumArt enumArt6 : enumArt3) {
+			if (enumArt6.title.equals(string2)) {
 				this.art = enumArt6;
 			}
 		}

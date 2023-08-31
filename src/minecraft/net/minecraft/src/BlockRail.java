@@ -5,12 +5,12 @@ import java.util.Random;
 public class BlockRail extends Block {
 	private final boolean isPowered;
 
-	public static final boolean isRailBlockAt(World world0, int i1, int i2, int i3) {
+	public static boolean isRailBlockAt(World world0, int i1, int i2, int i3) {
 		int i4 = world0.getBlockId(i1, i2, i3);
 		return i4 == Block.rail.blockID || i4 == Block.railPowered.blockID || i4 == Block.railDetector.blockID;
 	}
 
-	public static final boolean isRailBlock(int i0) {
+	public static boolean isRailBlock(int i0) {
 		return i0 == Block.rail.blockID || i0 == Block.railPowered.blockID || i0 == Block.railDetector.blockID;
 	}
 
@@ -65,10 +65,6 @@ public class BlockRail extends Block {
 
 	public int getRenderType() {
 		return 9;
-	}
-
-	public int quantityDropped(Random random1) {
-		return 1;
 	}
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {

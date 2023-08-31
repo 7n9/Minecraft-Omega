@@ -262,14 +262,13 @@ public class EntityWolf extends EntityAnimal {
 
 				if(entity1 instanceof EntityLiving) {
 					List list3 = this.worldObj.getEntitiesWithinAABB(EntityWolf.class, AxisAlignedBB.getBoundingBoxFromPool(this.posX, this.posY, this.posZ, this.posX + 1.0D, this.posY + 1.0D, this.posZ + 1.0D).expand(16.0D, 4.0D, 16.0D));
-					Iterator iterator4 = list3.iterator();
 
-					while(iterator4.hasNext()) {
-						Entity entity5 = (Entity)iterator4.next();
-						EntityWolf entityWolf6 = (EntityWolf)entity5;
-						if(!entityWolf6.isWolfTamed() && entityWolf6.playerToAttack == null) {
+					for (Object o : list3) {
+						Entity entity5 = (Entity) o;
+						EntityWolf entityWolf6 = (EntityWolf) entity5;
+						if (!entityWolf6.isWolfTamed() && entityWolf6.playerToAttack == null) {
 							entityWolf6.playerToAttack = entity1;
-							if(entity1 instanceof EntityPlayer) {
+							if (entity1 instanceof EntityPlayer) {
 								entityWolf6.setWolfAngry(true);
 							}
 						}

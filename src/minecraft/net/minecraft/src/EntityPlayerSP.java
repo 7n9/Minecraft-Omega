@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import net.minecraft.client.Minecraft;
 
+import java.util.Objects;
+
 public class EntityPlayerSP extends EntityPlayer {
 	public MovementInput movementInput;
 	protected Minecraft mc;
@@ -17,7 +19,7 @@ public class EntityPlayerSP extends EntityPlayer {
 			this.skinUrl = "https://minotar.net/skin/" + session3.username + ".png";
 		}
 
-		this.username = session3.username;
+		this.username = Objects.requireNonNull(session3).username;
 	}
 
 	public void moveEntity(double d1, double d3, double d5) {

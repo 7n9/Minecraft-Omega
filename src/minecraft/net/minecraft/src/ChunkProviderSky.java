@@ -127,11 +127,7 @@ public class ChunkProviderSky implements IChunkProvider {
 							}
 
 							i11 = i10;
-							if(i14 >= 0) {
-								b3[i15] = b12;
-							} else {
-								b3[i15] = b13;
-							}
+							b3[i15] = b12;
 						} else if(i11 > 0) {
 							--i11;
 							b3[i15] = b13;

@@ -3,6 +3,7 @@ package net.minecraft.src;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.IntBuffer;
+import java.util.Objects;
 import javax.imageio.ImageIO;
 
 import org.lwjgl.opengl.GL11;
@@ -16,7 +17,7 @@ public class FontRenderer {
 	public FontRenderer(GameSettings gameSettings1, String string2, RenderEngine renderEngine3) {
 		BufferedImage bufferedImage4;
 		try {
-			bufferedImage4 = ImageIO.read(RenderEngine.class.getResourceAsStream(string2));
+			bufferedImage4 = ImageIO.read(Objects.requireNonNull(RenderEngine.class.getResourceAsStream(string2)));
 		} catch (IOException iOException18) {
 			throw new RuntimeException(iOException18);
 		}
@@ -85,7 +86,7 @@ public class FontRenderer {
 			i10 = (i9 >> 3 & 1) * 85;
 			i11 = (i9 >> 2 & 1) * 170 + i10;
 			i12 = (i9 >> 1 & 1) * 170 + i10;
-			int i22 = (i9 >> 0 & 1) * 170 + i10;
+			int i22 = (i9 & 1) * 170 + i10;
 			if(i9 == 6) {
 				i11 += 85;
 			}
@@ -149,7 +150,7 @@ public class FontRenderer {
 				int i11;
 				for(; string1.length() > i6 + 1 && string1.charAt(i6) == 167; i6 += 2) {
 					i11 = "0123456789abcdef".indexOf(string1.toLowerCase().charAt(i6 + 1));
-					if(i11 < 0 || i11 > 15) {
+					if(i11 < 0) {
 						i11 = 15;
 					}
 
@@ -205,9 +206,9 @@ public class FontRenderer {
 	public void func_27278_a(String string1, int i2, int i3, int i4, int i5) {
 		String[] string6 = string1.split("\n");
 		if(string6.length > 1) {
-			for(int i11 = 0; i11 < string6.length; ++i11) {
-				this.func_27278_a(string6[i11], i2, i3, i4, i5);
-				i3 += this.func_27277_a(string6[i11], i4);
+			for (String s : string6) {
+				this.func_27278_a(s, i2, i3, i4, i5);
+				i3 += this.func_27277_a(s, i4);
 			}
 
 		} else {

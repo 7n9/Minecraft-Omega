@@ -27,9 +27,6 @@ public class BlockChest extends BlockContainer {
 			if(i6 != this.blockID && i7 != this.blockID) {
 				if(i8 != this.blockID && i9 != this.blockID) {
 					byte b14 = 3;
-					if(Block.opaqueCubeLookup[i6] && !Block.opaqueCubeLookup[i7]) {
-						b14 = 3;
-					}
 
 					if(Block.opaqueCubeLookup[i7] && !Block.opaqueCubeLookup[i6]) {
 						b14 = 2;
@@ -57,9 +54,6 @@ public class BlockChest extends BlockContainer {
 					}
 
 					b13 = 3;
-					if((Block.opaqueCubeLookup[i6] || Block.opaqueCubeLookup[i11]) && !Block.opaqueCubeLookup[i7] && !Block.opaqueCubeLookup[i12]) {
-						b13 = 3;
-					}
 
 					if((Block.opaqueCubeLookup[i7] || Block.opaqueCubeLookup[i12]) && !Block.opaqueCubeLookup[i6] && !Block.opaqueCubeLookup[i11]) {
 						b13 = 2;
@@ -82,9 +76,6 @@ public class BlockChest extends BlockContainer {
 				}
 
 				b13 = 5;
-				if((Block.opaqueCubeLookup[i8] || Block.opaqueCubeLookup[i11]) && !Block.opaqueCubeLookup[i9] && !Block.opaqueCubeLookup[i12]) {
-					b13 = 5;
-				}
 
 				if((Block.opaqueCubeLookup[i9] || Block.opaqueCubeLookup[i12]) && !Block.opaqueCubeLookup[i8] && !Block.opaqueCubeLookup[i11]) {
 					b13 = 4;

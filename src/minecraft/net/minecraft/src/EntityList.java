@@ -72,7 +72,7 @@ public class EntityList {
 	}
 
 	public static int getEntityID(Entity entity0) {
-		return ((Integer)classToIDMapping.get(entity0.getClass())).intValue();
+		return (Integer) classToIDMapping.get(entity0.getClass());
 	}
 
 	public static String getEntityString(Entity entity0) {

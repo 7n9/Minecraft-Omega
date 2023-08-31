@@ -384,22 +384,22 @@ public class CanvasIsomPreview extends Canvas implements KeyListener, MouseListe
 		static {
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS1[EnumOS1.linux.ordinal()] = 1;
-			} catch (NoSuchFieldError noSuchFieldError4) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS1[EnumOS1.solaris.ordinal()] = 2;
-			} catch (NoSuchFieldError noSuchFieldError3) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS1[EnumOS1.windows.ordinal()] = 3;
-			} catch (NoSuchFieldError noSuchFieldError2) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS1[EnumOS1.macos.ordinal()] = 4;
-			} catch (NoSuchFieldError noSuchFieldError1) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 		}

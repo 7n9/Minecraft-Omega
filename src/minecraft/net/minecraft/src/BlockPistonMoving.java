@@ -17,7 +17,7 @@ public class BlockPistonMoving extends BlockContainer {
 
 	public void onBlockRemoval(World world1, int i2, int i3, int i4) {
 		TileEntity tileEntity5 = world1.getBlockTileEntity(i2, i3, i4);
-		if(tileEntity5 != null && tileEntity5 instanceof TileEntityPiston) {
+		if(tileEntity5 instanceof TileEntityPiston) {
 			((TileEntityPiston)tileEntity5).func_31011_l();
 		} else {
 			super.onBlockRemoval(world1, i2, i3, i4);
@@ -68,8 +68,9 @@ public class BlockPistonMoving extends BlockContainer {
 	}
 
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
-		if(!world1.multiplayerWorld && world1.getBlockTileEntity(i2, i3, i4) == null) {
-        }
+		if (!world1.multiplayerWorld) {
+			world1.getBlockTileEntity(i2, i3, i4);
+		}
 
 	}
 
@@ -137,6 +138,6 @@ public class BlockPistonMoving extends BlockContainer {
 
 	private TileEntityPiston func_31034_c(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		TileEntity tileEntity5 = iBlockAccess1.getBlockTileEntity(i2, i3, i4);
-		return tileEntity5 != null && tileEntity5 instanceof TileEntityPiston ? (TileEntityPiston)tileEntity5 : null;
+		return tileEntity5 instanceof TileEntityPiston ? (TileEntityPiston)tileEntity5 : null;
 	}
 }

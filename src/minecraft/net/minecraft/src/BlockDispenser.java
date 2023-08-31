@@ -30,9 +30,6 @@ public class BlockDispenser extends BlockContainer {
 			int i7 = world1.getBlockId(i2 - 1, i3, i4);
 			int i8 = world1.getBlockId(i2 + 1, i3, i4);
 			byte b9 = 3;
-			if(Block.opaqueCubeLookup[i5] && !Block.opaqueCubeLookup[i6]) {
-				b9 = 3;
-			}
 
 			if(Block.opaqueCubeLookup[i6] && !Block.opaqueCubeLookup[i5]) {
 				b9 = 2;

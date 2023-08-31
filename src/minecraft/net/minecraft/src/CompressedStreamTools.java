@@ -25,12 +25,9 @@ public class CompressedStreamTools {
 	}
 
 	public static void writeGzippedCompoundToOutputStream(NBTTagCompound nBTTagCompound0, OutputStream outputStream1) throws IOException {
-		DataOutputStream dataOutputStream2 = new DataOutputStream(new GZIPOutputStream(outputStream1));
 
-		try {
+		try (DataOutputStream dataOutputStream2 = new DataOutputStream(new GZIPOutputStream(outputStream1))) {
 			func_1139_a(nBTTagCompound0, dataOutputStream2);
-		} finally {
-			dataOutputStream2.close();
 		}
 
 	}

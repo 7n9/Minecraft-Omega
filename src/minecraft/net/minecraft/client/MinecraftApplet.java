@@ -98,7 +98,7 @@ public class MinecraftApplet extends Applet {
 		try {
 			this.removeAll();
 			this.validate();
-		} catch (Exception exception2) {
+		} catch (Exception ignored) {
 		}
 
 	}

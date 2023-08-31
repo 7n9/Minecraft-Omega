@@ -84,10 +84,10 @@ public class Explosion {
 		List list9 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this.exploder, AxisAlignedBB.getBoundingBoxFromPool(i3, i5, i7, i4, i29, i30));
 		Vec3D vec3D31 = Vec3D.createVector(this.explosionX, this.explosionY, this.explosionZ);
 
-		for(int i11 = 0; i11 < list9.size(); ++i11) {
-			Entity entity33 = (Entity)list9.get(i11);
-			double d13 = entity33.getDistance(this.explosionX, this.explosionY, this.explosionZ) / (double)this.explosionSize;
-			if(d13 <= 1.0D) {
+		for (Object o : list9) {
+			Entity entity33 = (Entity) o;
+			double d13 = entity33.getDistance(this.explosionX, this.explosionY, this.explosionZ) / (double) this.explosionSize;
+			if (d13 <= 1.0D) {
 				d15 = entity33.posX - this.explosionX;
 				d17 = entity33.posY - this.explosionY;
 				d19 = entity33.posZ - this.explosionZ;
@@ -97,7 +97,7 @@ public class Explosion {
 				d19 /= d39;
 				double d40 = this.worldObj.func_675_a(vec3D31, entity33.boundingBox);
 				double d41 = (1.0D - d13) * d40;
-				entity33.attackEntityFrom(this.exploder, (int)((d41 * d41 + d41) / 2.0D * 8.0D * (double)this.explosionSize + 1.0D));
+				entity33.attackEntityFrom(this.exploder, (int) ((d41 * d41 + d41) / 2.0D * 8.0D * (double) this.explosionSize + 1.0D));
 				entity33.motionX += d15 * d41;
 				entity33.motionY += d17 * d41;
 				entity33.motionZ += d19 * d41;

@@ -12,8 +12,7 @@ public class BlockSponge extends Block {
 		for(int i6 = i2 - b5; i6 <= i2 + b5; ++i6) {
 			for(int i7 = i3 - b5; i7 <= i3 + b5; ++i7) {
 				for(int i8 = i4 - b5; i8 <= i4 + b5; ++i8) {
-					if(world1.getBlockMaterial(i6, i7, i8) == Material.water) {
-                    }
+					world1.getBlockMaterial(i6, i7, i8);
 				}
 			}
 		}

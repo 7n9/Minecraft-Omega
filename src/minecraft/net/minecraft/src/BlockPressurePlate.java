@@ -34,9 +34,6 @@ public class BlockPressurePlate extends Block {
 		return world1.isBlockNormalCube(i2, i3 - 1, i4);
 	}
 
-	public void onBlockAdded(World world1, int i2, int i3, int i4) {
-	}
-
 	public void onNeighborBlockChange(World world1, int i2, int i3, int i4, int i5) {
 		boolean z6 = !world1.isBlockNormalCube(i2, i3 - 1, i4);
 
@@ -80,6 +77,7 @@ public class BlockPressurePlate extends Block {
 			list8 = world1.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBoxFromPool((float)i2 + f7, i3, (float)i4 + f7, (float)(i2 + 1) - f7, (double)i3 + 0.25D, (float)(i4 + 1) - f7));
 		}
 
+		assert list8 != null;
 		if(list8.size() > 0) {
 			z6 = true;
 		}

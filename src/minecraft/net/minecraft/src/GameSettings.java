@@ -247,9 +247,9 @@ public class GameSettings {
 						this.lastServer = string3[1];
 					}
 
-					for(int i4 = 0; i4 < this.keyBindings.length; ++i4) {
-						if(string3[0].equals("key_" + this.keyBindings[i4].keyDescription)) {
-							this.keyBindings[i4].keyCode = Integer.parseInt(string3[1]);
+					for (KeyBinding keyBinding : this.keyBindings) {
+						if (string3[0].equals("key_" + keyBinding.keyDescription)) {
+							keyBinding.keyCode = Integer.parseInt(string3[1]);
 						}
 					}
 				} catch (Exception exception5) {
@@ -288,8 +288,8 @@ public class GameSettings {
 			printWriter1.println("skin:" + this.skin);
 			printWriter1.println("lastServer:" + this.lastServer);
 
-			for(int i2 = 0; i2 < this.keyBindings.length; ++i2) {
-				printWriter1.println("key_" + this.keyBindings[i2].keyDescription + ":" + this.keyBindings[i2].keyCode);
+			for (KeyBinding keyBinding : this.keyBindings) {
+				printWriter1.println("key_" + keyBinding.keyDescription + ":" + keyBinding.keyCode);
 			}
 
 			printWriter1.close();
@@ -306,27 +306,27 @@ public class GameSettings {
 		static {
 			try {
 				$SwitchMap$net$minecraft$src$EnumOptions[EnumOptions.INVERT_MOUSE.ordinal()] = 1;
-			} catch (NoSuchFieldError noSuchFieldError5) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOptions[EnumOptions.VIEW_BOBBING.ordinal()] = 2;
-			} catch (NoSuchFieldError noSuchFieldError4) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOptions[EnumOptions.ANAGLYPH.ordinal()] = 3;
-			} catch (NoSuchFieldError noSuchFieldError3) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOptions[EnumOptions.ADVANCED_OPENGL.ordinal()] = 4;
-			} catch (NoSuchFieldError noSuchFieldError2) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOptions[EnumOptions.AMBIENT_OCCLUSION.ordinal()] = 5;
-			} catch (NoSuchFieldError noSuchFieldError1) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 		}

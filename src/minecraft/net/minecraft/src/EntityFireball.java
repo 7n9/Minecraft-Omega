@@ -99,15 +99,15 @@ public class EntityFireball extends Entity {
 		List list5 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 		double d6 = 0.0D;
 
-		for(int i8 = 0; i8 < list5.size(); ++i8) {
-			Entity entity9 = (Entity)list5.get(i8);
-			if(entity9.canBeCollidedWith() && (entity9 != this.field_9397_j || this.field_9395_l >= 25)) {
+		for (Object o : list5) {
+			Entity entity9 = (Entity) o;
+			if (entity9.canBeCollidedWith() && (entity9 != this.field_9397_j || this.field_9395_l >= 25)) {
 				float f10 = 0.3F;
 				AxisAlignedBB axisAlignedBB11 = entity9.boundingBox.expand(f10, f10, f10);
 				MovingObjectPosition movingObjectPosition12 = axisAlignedBB11.func_1169_a(vec3D15, vec3D2);
-				if(movingObjectPosition12 != null) {
+				if (movingObjectPosition12 != null) {
 					double d13 = vec3D15.distanceTo(movingObjectPosition12.hitVec);
-					if(d13 < d6 || d6 == 0.0D) {
+					if (d13 < d6 || d6 == 0.0D) {
 						entity4 = entity9;
 						d6 = d13;
 					}

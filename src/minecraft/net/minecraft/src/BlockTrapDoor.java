@@ -133,7 +133,6 @@ public class BlockTrapDoor extends Block {
 	public void onBlockPlaced(World world1, int i2, int i3, int i4, int i5) {
 		byte b6 = 0;
 		if(i5 == 2) {
-			b6 = 0;
 		}
 
 		if(i5 == 3) {

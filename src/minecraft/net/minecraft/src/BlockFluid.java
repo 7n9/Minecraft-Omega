@@ -1,5 +1,6 @@
 package net.minecraft.src;
 
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class BlockFluid extends Block {
@@ -11,17 +12,12 @@ public abstract class BlockFluid extends Block {
 		this.setTickOnLoad(true);
 	}
 
-	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
-		return 0xFFFFFF;
-	}
-
 	public static float getPercentAir(int i0) {
 		if(i0 >= 8) {
 			i0 = 0;
 		}
 
-		float f1 = (float)(i0 + 1) / 9.0F;
-		return f1;
+		return (float)(i0 + 1) / 9.0F;
 	}
 
 	public int getBlockTextureFromSide(int i1) {
@@ -113,20 +109,17 @@ public abstract class BlockFluid extends Block {
 					i11 = this.getEffectiveFlowDecay(iBlockAccess1, i8, i3 - 1, i10);
 					if(i11 >= 0) {
 						i12 = i11 - (i6 - 8);
-						vec3D5 = vec3D5.addVector((i8 - i2) * i12, (0) * i12, (i10 - i4) * i12);
+						vec3D5 = vec3D5.addVector((i8 - i2) * i12, 0, (i10 - i4) * i12);
 					}
 				}
-			} else if(i11 >= 0) {
+			} else {
 				i12 = i11 - i6;
-				vec3D5 = vec3D5.addVector((i8 - i2) * i12, (0) * i12, (i10 - i4) * i12);
+				vec3D5 = vec3D5.addVector((i8 - i2) * i12, 0, (i10 - i4) * i12);
 			}
 		}
 
 		if(iBlockAccess1.getBlockMetadata(i2, i3, i4) >= 8) {
-			boolean z13 = false;
-			if(z13 || this.getIsBlockSolid(iBlockAccess1, i2, i3, i4 - 1, 2)) {
-				z13 = true;
-			}
+			boolean z13 = this.getIsBlockSolid(iBlockAccess1, i2, i3, i4 - 1, 2);
 
 			if(z13 || this.getIsBlockSolid(iBlockAccess1, i2, i3, i4 + 1, 3)) {
 				z13 = true;
@@ -179,7 +172,7 @@ public abstract class BlockFluid extends Block {
 	public float getBlockBrightness(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		float f5 = iBlockAccess1.getLightBrightness(i2, i3, i4);
 		float f6 = iBlockAccess1.getLightBrightness(i2, i3 + 1, i4);
-		return f5 > f6 ? f5 : f6;
+		return Math.max(f5, f6);
 	}
 
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
@@ -217,7 +210,7 @@ public abstract class BlockFluid extends Block {
 			vec3D5 = ((BlockFluid)Block.lavaMoving).getFlowVector(iBlockAccess0, i1, i2, i3);
 		}
 
-		return vec3D5.xCoord == 0.0D && vec3D5.zCoord == 0.0D ? -1000.0D : Math.atan2(vec3D5.zCoord, vec3D5.xCoord) - Math.PI / 2D;
+		return Objects.requireNonNull(vec3D5).xCoord == 0.0D && vec3D5.zCoord == 0.0D ? -1000.0D : Math.atan2(vec3D5.zCoord, vec3D5.xCoord) - Math.PI / 2D;
 	}
 
 	public void onBlockAdded(World world1, int i2, int i3, int i4) {
@@ -231,10 +224,7 @@ public abstract class BlockFluid extends Block {
 	private void checkForHarden(World world1, int i2, int i3, int i4) {
 		if(world1.getBlockId(i2, i3, i4) == this.blockID) {
 			if(this.blockMaterial == Material.lava) {
-				boolean z5 = false;
-				if(z5 || world1.getBlockMaterial(i2, i3, i4 - 1) == Material.water) {
-					z5 = true;
-				}
+				boolean z5 = world1.getBlockMaterial(i2, i3, i4 - 1) == Material.water;
 
 				if(z5 || world1.getBlockMaterial(i2, i3, i4 + 1) == Material.water) {
 					z5 = true;

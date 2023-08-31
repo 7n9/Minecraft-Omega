@@ -56,7 +56,7 @@ public class BlockFlowing extends BlockFluid {
 				}
 			}
 
-			if(this.blockMaterial == Material.lava && i6 < 8 && i10 < 8 && i10 > i6 && random5.nextInt(4) != 0) {
+			if(this.blockMaterial == Material.lava && i10 < 8 && i10 > i6 && random5.nextInt(4) != 0) {
 				i10 = i6;
 				z8 = false;
 			}

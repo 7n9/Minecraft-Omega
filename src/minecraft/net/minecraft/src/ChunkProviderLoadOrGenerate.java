@@ -164,23 +164,23 @@ public class ChunkProviderLoadOrGenerate implements IChunkProvider {
 
 		i5 = 0;
 
-		for(int i6 = 0; i6 < this.chunks.length; ++i6) {
-			if(this.chunks[i6] != null) {
-				if(z1 && !this.chunks[i6].neverSave) {
-					this.saveExtraChunkData(this.chunks[i6]);
+		for (Chunk chunk : this.chunks) {
+			if (chunk != null) {
+				if (z1 && !chunk.neverSave) {
+					this.saveExtraChunkData(chunk);
 				}
 
-				if(this.chunks[i6].needsSaving(z1)) {
-					this.saveChunk(this.chunks[i6]);
-					this.chunks[i6].isModified = false;
+				if (chunk.needsSaving(z1)) {
+					this.saveChunk(chunk);
+					chunk.isModified = false;
 					++i3;
-					if(i3 == 2 && !z1) {
+					if (i3 == 2 && !z1) {
 						return false;
 					}
 
-					if(iProgressUpdate2 != null) {
+					if (iProgressUpdate2 != null) {
 						++i5;
-						if(i5 % 10 == 0) {
+						if (i5 % 10 == 0) {
 							iProgressUpdate2.setLoadingProgress(i5 * 100 / i4);
 						}
 					}

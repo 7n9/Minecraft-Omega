@@ -46,10 +46,6 @@ public class EntityMinecart extends Entity implements IInventory {
 		return entity1.boundingBox;
 	}
 
-	public AxisAlignedBB getBoundingBox() {
-		return null;
-	}
-
 	public boolean canBePushed() {
 		return true;
 	}
@@ -172,27 +168,22 @@ public class EntityMinecart extends Entity implements IInventory {
 
 		double d7;
 		if(this.worldObj.multiplayerWorld && this.field_9415_k > 0) {
-			if(this.field_9415_k > 0) {
-				double d46 = this.posX + (this.field_9414_l - this.posX) / (double)this.field_9415_k;
-				double d47 = this.posY + (this.field_9413_m - this.posY) / (double)this.field_9415_k;
-				double d5 = this.posZ + (this.field_9412_n - this.posZ) / (double)this.field_9415_k;
+			double d46 = this.posX + (this.field_9414_l - this.posX) / (double) this.field_9415_k;
+			double d47 = this.posY + (this.field_9413_m - this.posY) / (double)this.field_9415_k;
+			double d5 = this.posZ + (this.field_9412_n - this.posZ) / (double)this.field_9415_k;
 
-				for(d7 = this.field_9411_o - (double)this.rotationYaw; d7 < -180.0D; d7 += 360.0D) {
-				}
-
-				while(d7 >= 180.0D) {
-					d7 -= 360.0D;
-				}
-
-				this.rotationYaw = (float)((double)this.rotationYaw + d7 / (double)this.field_9415_k);
-				this.rotationPitch = (float)((double)this.rotationPitch + (this.field_9410_p - (double)this.rotationPitch) / (double)this.field_9415_k);
-				--this.field_9415_k;
-				this.setPosition(d46, d47, d5);
-				this.setRotation(this.rotationYaw, this.rotationPitch);
-			} else {
-				this.setPosition(this.posX, this.posY, this.posZ);
-				this.setRotation(this.rotationYaw, this.rotationPitch);
+			for(d7 = this.field_9411_o - (double)this.rotationYaw; d7 < -180.0D; d7 += 360.0D) {
 			}
+
+			while(d7 >= 180.0D) {
+				d7 -= 360.0D;
+			}
+
+			this.rotationYaw = (float)((double)this.rotationYaw + d7 / (double)this.field_9415_k);
+			this.rotationPitch = (float)((double)this.rotationPitch + (this.field_9410_p - (double)this.rotationPitch) / (double)this.field_9415_k);
+			--this.field_9415_k;
+			this.setPosition(d46, d47, d5);
+			this.setRotation(this.rotationYaw, this.rotationPitch);
 
 		} else {
 			this.prevPosX = this.posX;
@@ -574,8 +565,7 @@ public class EntityMinecart extends Entity implements IInventory {
 			} else {
 				double d33 = d1 - d15;
 				double d35 = d5 - d19;
-				double d37 = (d33 * d27 + d35 * d31) * 2.0D;
-				d13 = d37;
+				d13 = (d33 * d27 + d35 * d31) * 2.0D;
 			}
 
 			d1 = d15 + d27 * d13;
@@ -631,7 +621,7 @@ public class EntityMinecart extends Entity implements IInventory {
 			for(int i3 = 0; i3 < nBTTagList2.tagCount(); ++i3) {
 				NBTTagCompound nBTTagCompound4 = (NBTTagCompound)nBTTagList2.tagAt(i3);
 				int i5 = nBTTagCompound4.getByte("Slot") & 255;
-				if(i5 >= 0 && i5 < this.cargoItems.length) {
+				if(i5 < this.cargoItems.length) {
 					this.cargoItems[i5] = new ItemStack(nBTTagCompound4);
 				}
 			}

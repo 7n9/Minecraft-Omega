@@ -19,9 +19,6 @@ public class BlockLockedChest extends Block {
 			int i8 = iBlockAccess1.getBlockId(i2 - 1, i3, i4);
 			int i9 = iBlockAccess1.getBlockId(i2 + 1, i3, i4);
 			byte b10 = 3;
-			if(Block.opaqueCubeLookup[i6] && !Block.opaqueCubeLookup[i7]) {
-				b10 = 3;
-			}
 
 			if(Block.opaqueCubeLookup[i7] && !Block.opaqueCubeLookup[i6]) {
 				b10 = 2;

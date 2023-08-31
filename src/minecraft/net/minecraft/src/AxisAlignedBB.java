@@ -253,7 +253,7 @@ public class AxisAlignedBB {
 		}
 
 		Vec3D vec3D9 = null;
-		if(vec3D3 != null && (vec3D9 == null || vec3D1.squareDistanceTo(vec3D3) < vec3D1.squareDistanceTo(vec3D9))) {
+		if(vec3D3 != null) {
 			vec3D9 = vec3D3;
 		}
 

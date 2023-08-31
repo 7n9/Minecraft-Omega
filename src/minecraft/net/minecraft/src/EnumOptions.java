@@ -23,9 +23,8 @@ public enum EnumOptions {
 		EnumOptions[] enumOptions1 = values();
 		int i2 = enumOptions1.length;
 
-		for(int i3 = 0; i3 < i2; ++i3) {
-			EnumOptions enumOptions4 = enumOptions1[i3];
-			if(enumOptions4.returnEnumOrdinal() == i0) {
+		for (EnumOptions enumOptions4 : enumOptions1) {
+			if (enumOptions4.returnEnumOrdinal() == i0) {
 				return enumOptions4;
 			}
 		}

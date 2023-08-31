@@ -3,27 +3,25 @@ package net.minecraft.src;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.awt.image.ImageObserver;
 
 public class ImageBufferDownload implements ImageBuffer {
 	private int[] imageData;
 	private int imageWidth;
-	private int imageHeight;
 
 	public BufferedImage parseUserSkin(BufferedImage bufferedImage1) {
 		if(bufferedImage1 == null) {
 			return null;
 		} else {
 			this.imageWidth = 64;
-			this.imageHeight = 32;
-			BufferedImage bufferedImage2 = new BufferedImage(this.imageWidth, this.imageHeight, 2);
+			int imageHeight = 32;
+			BufferedImage bufferedImage2 = new BufferedImage(this.imageWidth, imageHeight, 2);
 			Graphics graphics3 = bufferedImage2.getGraphics();
 			graphics3.drawImage(bufferedImage1, 0, 0, null);
 			graphics3.dispose();
 			this.imageData = ((DataBufferInt)bufferedImage2.getRaster().getDataBuffer()).getData();
-			this.func_884_b(0, 0, 32, 16);
-			this.func_885_a(32, 0, 64, 32);
-			this.func_884_b(0, 16, 64, 32);
+			this.func_884_b(0, 32, 16);
+			this.func_885_a();
+			this.func_884_b(16, 64, 32);
 			boolean z4 = false;
 
 			int i5;
@@ -53,10 +51,10 @@ public class ImageBufferDownload implements ImageBuffer {
 		}
 	}
 
-	private void func_885_a(int i1, int i2, int i3, int i4) {
-		if(!this.func_886_c(i1, i2, i3, i4)) {
-			for(int i5 = i1; i5 < i3; ++i5) {
-				for(int i6 = i2; i6 < i4; ++i6) {
+	private void func_885_a() {
+		if(!this.func_886_c()) {
+			for(int i5 = 32; i5 < 64; ++i5) {
+				for(int i6 = 0; i6 < 32; ++i6) {
 					this.imageData[i5 + i6 * this.imageWidth] &= 0xFFFFFF;
 				}
 			}
@@ -64,8 +62,8 @@ public class ImageBufferDownload implements ImageBuffer {
 		}
 	}
 
-	private void func_884_b(int i1, int i2, int i3, int i4) {
-		for(int i5 = i1; i5 < i3; ++i5) {
+	private void func_884_b(int i2, int i3, int i4) {
+		for(int i5 = 0; i5 < i3; ++i5) {
 			for(int i6 = i2; i6 < i4; ++i6) {
 				this.imageData[i5 + i6 * this.imageWidth] |= 0xFF000000;
 			}
@@ -73,9 +71,9 @@ public class ImageBufferDownload implements ImageBuffer {
 
 	}
 
-	private boolean func_886_c(int i1, int i2, int i3, int i4) {
-		for(int i5 = i1; i5 < i3; ++i5) {
-			for(int i6 = i2; i6 < i4; ++i6) {
+	private boolean func_886_c() {
+		for(int i5 = 32; i5 < 64; ++i5) {
+			for(int i6 = 0; i6 < 32; ++i6) {
 				int i7 = this.imageData[i5 + i6 * this.imageWidth];
 				if((i7 >> 24 & 255) < 128) {
 					return true;

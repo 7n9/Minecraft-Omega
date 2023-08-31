@@ -130,17 +130,17 @@ public class ChunkProvider implements IChunkProvider {
 	public boolean saveChunks(boolean z1, IProgressUpdate iProgressUpdate2) {
 		int i3 = 0;
 
-		for(int i4 = 0; i4 < this.chunkList.size(); ++i4) {
-			Chunk chunk5 = (Chunk)this.chunkList.get(i4);
-			if(z1 && !chunk5.neverSave) {
+		for (Object o : this.chunkList) {
+			Chunk chunk5 = (Chunk) o;
+			if (z1 && !chunk5.neverSave) {
 				this.func_28063_a(chunk5);
 			}
 
-			if(chunk5.needsSaving(z1)) {
+			if (chunk5.needsSaving(z1)) {
 				this.func_28062_b(chunk5);
 				chunk5.isModified = false;
 				++i3;
-				if(i3 == 24 && !z1) {
+				if (i3 == 24 && !z1) {
 					return false;
 				}
 			}

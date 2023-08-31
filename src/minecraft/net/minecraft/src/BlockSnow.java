@@ -37,13 +37,10 @@ public class BlockSnow extends Block {
 		this.func_314_h(world1, i2, i3, i4);
 	}
 
-	private boolean func_314_h(World world1, int i2, int i3, int i4) {
+	private void func_314_h(World world1, int i2, int i3, int i4) {
 		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
 			this.dropBlockAsItem(world1, i2, i3, i4, world1.getBlockMetadata(i2, i3, i4));
 			world1.setBlockWithNotify(i2, i3, i4, 0);
-			return false;
-		} else {
-			return true;
 		}
 	}
 

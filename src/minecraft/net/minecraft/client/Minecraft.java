@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.io.File;
+import java.util.Objects;
 
 import com.owen2k6.omega.Omega;
 import com.owen2k6.omega.event.impl.EventTick;
@@ -145,7 +146,6 @@ public abstract class Minecraft implements Runnable {
 	public SoundManager sndManager = new SoundManager();
 	public MouseHelper mouseHelper;
 	public TexturePackList texturePackList;
-	private File mcDataDir;
 	private ISaveFormat saveLoader;
 	public static long[] frameTimes = new long[512];
 	public static long[] tickTimes = new long[512];
@@ -234,16 +234,16 @@ public abstract class Minecraft implements Runnable {
 
 			try {
 				Thread.sleep(1000L);
-			} catch (InterruptedException interruptedException5) {
+			} catch (InterruptedException ignored) {
 			}
 
 			Display.create();
 		}
 
-		this.mcDataDir = getMinecraftDir();
-		this.saveLoader = new SaveConverterMcRegion(new File(this.mcDataDir, "saves"));
-		this.gameSettings = new GameSettings(this, this.mcDataDir);
-		this.texturePackList = new TexturePackList(this, this.mcDataDir);
+		File mcDataDir = getMinecraftDir();
+		this.saveLoader = new SaveConverterMcRegion(new File(mcDataDir, "saves"));
+		this.gameSettings = new GameSettings(this, mcDataDir);
+		this.texturePackList = new TexturePackList(this, mcDataDir);
 		this.renderEngine = new RenderEngine(this.texturePackList, this.gameSettings);
 		this.fontRenderer = new FontRenderer(this.gameSettings, "/font/default.png", this.renderEngine);
 		ColorizerWater.func_28182_a(this.renderEngine.func_28149_a("/misc/watercolor.png"));
@@ -251,7 +251,7 @@ public abstract class Minecraft implements Runnable {
 		ColorizerFoliage.func_28152_a(this.renderEngine.func_28149_a("/misc/foliagecolor.png"));
 		this.entityRenderer = new EntityRenderer(this);
 		RenderManager.instance.itemRenderer = new ItemRenderer(this);
-		this.statFileWriter = new StatFileWriter(this.session, this.mcDataDir);
+		this.statFileWriter = new StatFileWriter(this.session, mcDataDir);
 		AchievementList.openInventory.setStatStringFormatter(new StatStringFormatKeyInv(this));
 		this.loadScreen();
 		Keyboard.create();
@@ -293,9 +293,9 @@ public abstract class Minecraft implements Runnable {
 		this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
 
 		try {
-			this.downloadResourcesThread = new ThreadDownloadResources(this.mcDataDir, this);
+			this.downloadResourcesThread = new ThreadDownloadResources(mcDataDir, this);
 			this.downloadResourcesThread.start();
-		} catch (Exception exception3) {
+		} catch (Exception ignored) {
 		}
 
 		this.checkGLError("Post startup");
@@ -462,19 +462,19 @@ public abstract class Minecraft implements Runnable {
 				if(this.downloadResourcesThread != null) {
 					this.downloadResourcesThread.closeMinecraft();
 				}
-			} catch (Exception exception9) {
+			} catch (Exception ignored) {
 			}
 
 			System.out.println("Stopping!");
 
 			try {
 				this.changeWorld1(null);
-			} catch (Throwable throwable8) {
+			} catch (Throwable ignored) {
 			}
 
 			try {
 				GLAllocation.deleteTexturesAndDisplayLists();
-			} catch (Throwable throwable7) {
+			} catch (Throwable ignored) {
 			}
 
 			this.sndManager.closeMinecraft();
@@ -618,7 +618,7 @@ public abstract class Minecraft implements Runnable {
 					System.gc();
 				}
 			}
-		} catch (MinecraftError minecraftError20) {
+		} catch (MinecraftError ignored) {
 		} catch (Throwable throwable21) {
 			this.func_28002_e();
 			throwable21.printStackTrace();
@@ -633,20 +633,20 @@ public abstract class Minecraft implements Runnable {
 		try {
 			field_28006_b = new byte[0];
 			this.renderGlobal.func_28137_f();
-		} catch (Throwable throwable4) {
+		} catch (Throwable ignored) {
 		}
 
 		try {
 			System.gc();
 			AxisAlignedBB.func_28196_a();
 			Vec3D.func_28215_a();
-		} catch (Throwable throwable3) {
+		} catch (Throwable ignored) {
 		}
 
 		try {
 			System.gc();
 			this.changeWorld1(null);
-		} catch (Throwable throwable2) {
+		} catch (Throwable ignored) {
 		}
 
 		System.gc();
@@ -928,7 +928,7 @@ public abstract class Minecraft implements Runnable {
 				i1 = Block.stone.blockID;
 			}
 
-			this.thePlayer.inventory.setCurrentItem(i1, this.playerController instanceof PlayerControllerTest);
+			this.thePlayer.inventory.setCurrentItem(i1);
 		}
 
 	}
@@ -1119,7 +1119,7 @@ public abstract class Minecraft implements Runnable {
 									this.clickMiddleMouseButton();
 								}
 							}
-						} else if(this.currentScreen != null) {
+						} else {
 							this.currentScreen.handleMouseInput();
 						}
 					}
@@ -1230,7 +1230,7 @@ public abstract class Minecraft implements Runnable {
 			}
 
 			world7 = null;
-			world7 = new World(this.theWorld, WorldProvider.getProviderForDimension(-1));
+			world7 = new World(this.theWorld, Objects.requireNonNull(WorldProvider.getProviderForDimension(-1)));
 			this.changeWorld(world7, "Entering the Nether", this.thePlayer);
 		} else {
 			d1 *= d5;
@@ -1241,7 +1241,7 @@ public abstract class Minecraft implements Runnable {
 			}
 
 			world7 = null;
-			world7 = new World(this.theWorld, WorldProvider.getProviderForDimension(0));
+			world7 = new World(this.theWorld, Objects.requireNonNull(WorldProvider.getProviderForDimension(0)));
 			this.changeWorld(world7, "Leaving the Nether", this.thePlayer);
 		}
 
@@ -1282,9 +1282,7 @@ public abstract class Minecraft implements Runnable {
 				}
 			} else if(this.thePlayer != null) {
 				this.thePlayer.preparePlayerToSpawn();
-				if(world1 != null) {
-					world1.entityJoinedWorld(this.thePlayer);
-				}
+				world1.entityJoinedWorld(this.thePlayer);
 			}
 
 			if(!world1.multiplayerWorld) {
@@ -1554,22 +1552,22 @@ public abstract class Minecraft implements Runnable {
 		static {
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS2[EnumOS2.linux.ordinal()] = 1;
-			} catch (NoSuchFieldError noSuchFieldError4) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS2[EnumOS2.solaris.ordinal()] = 2;
-			} catch (NoSuchFieldError noSuchFieldError3) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS2[EnumOS2.windows.ordinal()] = 3;
-			} catch (NoSuchFieldError noSuchFieldError2) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 			try {
 				$SwitchMap$net$minecraft$src$EnumOS2[EnumOS2.macos.ordinal()] = 4;
-			} catch (NoSuchFieldError noSuchFieldError1) {
+			} catch (NoSuchFieldError ignored) {
 			}
 
 		}

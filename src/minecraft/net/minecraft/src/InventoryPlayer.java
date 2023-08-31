@@ -46,7 +46,7 @@ public class InventoryPlayer implements IInventory {
 		return -1;
 	}
 
-	public void setCurrentItem(int i1, boolean z2) {
+	public void setCurrentItem(int i1) {
 		int i3 = this.getInventorySlotContainItem(i1);
 		if(i3 >= 0 && i3 < 9) {
 			this.currentItem = i3;
@@ -86,10 +86,7 @@ public class InventoryPlayer implements IInventory {
 				this.mainInventory[i4] = new ItemStack(i2, 0, itemStack1.getItemDamage());
 			}
 
-			int i5 = i3;
-			if(i3 > this.mainInventory[i4].getMaxStackSize() - this.mainInventory[i4].stackSize) {
-				i5 = this.mainInventory[i4].getMaxStackSize() - this.mainInventory[i4].stackSize;
-			}
+			int i5 = Math.min(i3, this.mainInventory[i4].getMaxStackSize() - this.mainInventory[i4].stackSize);
 
 			if(i5 > this.getInventoryStackLimit() - this.mainInventory[i4].stackSize) {
 				i5 = this.getInventoryStackLimit() - this.mainInventory[i4].stackSize;
@@ -228,7 +225,7 @@ public class InventoryPlayer implements IInventory {
 			int i4 = nBTTagCompound3.getByte("Slot") & 255;
 			ItemStack itemStack5 = new ItemStack(nBTTagCompound3);
 			if(itemStack5.getItem() != null) {
-				if(i4 >= 0 && i4 < this.mainInventory.length) {
+				if(i4 < this.mainInventory.length) {
 					this.mainInventory[i4] = itemStack5;
 				}
 
@@ -285,14 +282,14 @@ public class InventoryPlayer implements IInventory {
 		int i2 = 0;
 		int i3 = 0;
 
-		for(int i4 = 0; i4 < this.armorInventory.length; ++i4) {
-			if(this.armorInventory[i4] != null && this.armorInventory[i4].getItem() instanceof ItemArmor) {
-				int i5 = this.armorInventory[i4].getMaxDamage();
-				int i6 = this.armorInventory[i4].getItemDamageForDisplay();
+		for (ItemStack stack : this.armorInventory) {
+			if (stack != null && stack.getItem() instanceof ItemArmor) {
+				int i5 = stack.getMaxDamage();
+				int i6 = stack.getItemDamageForDisplay();
 				int i7 = i5 - i6;
 				i2 += i7;
 				i3 += i5;
-				int i8 = ((ItemArmor)this.armorInventory[i4].getItem()).damageReduceAmount;
+				int i8 = ((ItemArmor) stack.getItem()).damageReduceAmount;
 				i1 += i8;
 			}
 		}

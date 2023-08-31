@@ -32,7 +32,7 @@ public class BlockSapling extends BlockFlower {
 	public void growTree(World world1, int i2, int i3, int i4, Random random5) {
 		int i6 = world1.getBlockMetadata(i2, i3, i4) & 3;
 		world1.setBlock(i2, i3, i4, 0);
-		Object object7 = null;
+		WorldGenerator object7 = null;
 		if(i6 == 1) {
 			object7 = new WorldGenTaiga2();
 		} else if(i6 == 2) {
@@ -44,7 +44,7 @@ public class BlockSapling extends BlockFlower {
 			}
 		}
 
-		if(!((WorldGenerator)object7).generate(world1, random5, i2, i3, i4)) {
+		if(!object7.generate(world1, random5, i2, i3, i4)) {
 			world1.setBlockAndMetadata(i2, i3, i4, this.blockID, i6);
 		}
 

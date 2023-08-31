@@ -1,6 +1,5 @@
 package net.minecraft.src;
 
-import java.util.Iterator;
 import java.util.Random;
 
 public class BlockBed extends Block {
@@ -47,13 +46,12 @@ public class BlockBed extends Block {
 			} else {
 				if(isBedOccupied(i6)) {
 					EntityPlayer entityPlayer14 = null;
-					Iterator iterator8 = world1.playerEntities.iterator();
 
-					while(iterator8.hasNext()) {
-						EntityPlayer entityPlayer9 = (EntityPlayer)iterator8.next();
-						if(entityPlayer9.isPlayerSleeping()) {
+					for (Object o : world1.playerEntities) {
+						EntityPlayer entityPlayer9 = (EntityPlayer) o;
+						if (entityPlayer9.isPlayerSleeping()) {
 							ChunkCoordinates chunkCoordinates10 = entityPlayer9.bedChunkCoordinates;
-							if(chunkCoordinates10.x == i2 && chunkCoordinates10.y == i3 && chunkCoordinates10.z == i4) {
+							if (chunkCoordinates10.x == i2 && chunkCoordinates10.y == i3 && chunkCoordinates10.z == i4) {
 								entityPlayer14 = entityPlayer9;
 							}
 						}

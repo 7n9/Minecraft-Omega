@@ -110,10 +110,6 @@ public class BlockRedstoneRepeater extends Block {
 		return true;
 	}
 
-	public boolean canProvidePower() {
-		return false;
-	}
-
 	public void onBlockPlacedBy(World world1, int i2, int i3, int i4, EntityLiving entityLiving5) {
 		int i6 = ((MathHelper.floor_double((double)(entityLiving5.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
 		world1.setBlockMetadataWithNotify(i2, i3, i4, i6);

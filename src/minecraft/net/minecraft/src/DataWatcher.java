@@ -12,7 +12,6 @@ import java.util.Map;
 public class DataWatcher {
 	private static final HashMap dataTypes = new HashMap();
 	private final Map watchedObjects = new HashMap();
-	private boolean objectChanged;
 
 	public void addObject(int i1, Object object2) {
 		Integer integer3 = (Integer)dataTypes.get(object2.getClass());
@@ -23,17 +22,17 @@ public class DataWatcher {
 		} else if(this.watchedObjects.containsKey(i1)) {
 			throw new IllegalArgumentException("Duplicate id value for " + i1 + "!");
 		} else {
-			WatchableObject watchableObject4 = new WatchableObject(integer3.intValue(), i1, object2);
+			WatchableObject watchableObject4 = new WatchableObject(integer3, i1, object2);
 			this.watchedObjects.put(i1, watchableObject4);
 		}
 	}
 
 	public byte getWatchableObjectByte(int i1) {
-		return ((Byte)((WatchableObject)this.watchedObjects.get(i1)).getObject()).byteValue();
+		return (Byte) ((WatchableObject) this.watchedObjects.get(i1)).getObject();
 	}
 
 	public int getWatchableObjectInt(int i1) {
-		return ((Integer)((WatchableObject)this.watchedObjects.get(i1)).getObject()).intValue();
+		return (Integer) ((WatchableObject) this.watchedObjects.get(i1)).getObject();
 	}
 
 	public String getWatchableObjectString(int i1) {
@@ -45,17 +44,16 @@ public class DataWatcher {
 		if(!object2.equals(watchableObject3.getObject())) {
 			watchableObject3.setObject(object2);
 			watchableObject3.setWatching();
-			this.objectChanged = true;
+			boolean objectChanged = true;
 		}
 
 	}
 
 	public static void writeObjectsInListToStream(List list0, DataOutputStream dataOutputStream1) throws IOException {
 		if(list0 != null) {
-			Iterator iterator2 = list0.iterator();
 
-			while(iterator2.hasNext()) {
-				WatchableObject watchableObject3 = (WatchableObject)iterator2.next();
+			for (Object o : list0) {
+				WatchableObject watchableObject3 = (WatchableObject) o;
 				writeWatchableObject(dataOutputStream1, watchableObject3);
 			}
 		}
@@ -64,10 +62,9 @@ public class DataWatcher {
 	}
 
 	public void writeWatchableObjects(DataOutputStream dataOutputStream1) throws IOException {
-		Iterator iterator2 = this.watchedObjects.values().iterator();
 
-		while(iterator2.hasNext()) {
-			WatchableObject watchableObject3 = (WatchableObject)iterator2.next();
+		for (Object o : this.watchedObjects.values()) {
+			WatchableObject watchableObject3 = (WatchableObject) o;
 			writeWatchableObject(dataOutputStream1, watchableObject3);
 		}
 
@@ -79,16 +76,16 @@ public class DataWatcher {
 		dataOutputStream0.writeByte(i2);
 		switch(watchableObject1.getObjectType()) {
 		case 0:
-			dataOutputStream0.writeByte(((Byte)watchableObject1.getObject()).byteValue());
+			dataOutputStream0.writeByte((Byte) watchableObject1.getObject());
 			break;
 		case 1:
-			dataOutputStream0.writeShort(((Short)watchableObject1.getObject()).shortValue());
+			dataOutputStream0.writeShort((Short) watchableObject1.getObject());
 			break;
 		case 2:
-			dataOutputStream0.writeInt(((Integer)watchableObject1.getObject()).intValue());
+			dataOutputStream0.writeInt((Integer) watchableObject1.getObject());
 			break;
 		case 3:
-			dataOutputStream0.writeFloat(((Float)watchableObject1.getObject()).floatValue());
+			dataOutputStream0.writeFloat((Float) watchableObject1.getObject());
 			break;
 		case 4:
 			Packet.writeString((String)watchableObject1.getObject(), dataOutputStream0);

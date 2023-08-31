@@ -1,20 +1,18 @@
 package net.minecraft.src;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
 
 class CanvasMojangLogo extends Canvas {
 	private BufferedImage logo;
 
 	public CanvasMojangLogo() {
 		try {
-			this.logo = ImageIO.read(PanelCrashReport.class.getResource("/gui/logo.png"));
-		} catch (IOException iOException2) {
+			this.logo = ImageIO.read(Objects.requireNonNull(PanelCrashReport.class.getResource("/gui/logo.png")));
+		} catch (IOException ignored) {
 		}
 
 		byte b1 = 100;

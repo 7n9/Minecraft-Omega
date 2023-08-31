@@ -27,8 +27,8 @@ public abstract class Container {
 				itemStack3 = itemStack2 == null ? null : itemStack2.copy();
 				this.field_20123_d.set(i1, itemStack3);
 
-				for(int i4 = 0; i4 < this.field_20121_g.size(); ++i4) {
-					((ICrafting)this.field_20121_g.get(i4)).func_20159_a(this, i1, itemStack3);
+				for (Object o : this.field_20121_g) {
+					((ICrafting) o).func_20159_a(this, i1, itemStack3);
 				}
 			}
 		}
@@ -49,7 +49,7 @@ public abstract class Container {
 		if(i2 == 0 || i2 == 1) {
 			InventoryPlayer inventoryPlayer6 = entityPlayer4.inventory;
 			if(i1 == -999) {
-				if(inventoryPlayer6.getItemStack() != null && i1 == -999) {
+				if(inventoryPlayer6.getItemStack() != null) {
 					if(i2 == 0) {
 						entityPlayer4.dropPlayerItem(inventoryPlayer6.getItemStack());
 						inventoryPlayer6.setItemStack(null);

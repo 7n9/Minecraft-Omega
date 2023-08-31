@@ -7,7 +7,7 @@ public class FurnaceRecipes {
 	private static final FurnaceRecipes smeltingBase = new FurnaceRecipes();
 	private final Map smeltingList = new HashMap();
 
-	public static final FurnaceRecipes smelting() {
+	public static FurnaceRecipes smelting() {
 		return smeltingBase;
 	}
 

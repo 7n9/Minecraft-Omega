@@ -801,11 +801,8 @@ public abstract class Entity {
 
 	protected NBTTagList newDoubleNBTList(double... d1) {
 		NBTTagList nBTTagList2 = new NBTTagList();
-		double[] d3 = d1;
-		int i4 = d1.length;
 
-		for(int i5 = 0; i5 < i4; ++i5) {
-			double d6 = d3[i5];
+		for (double d6 : d1) {
 			nBTTagList2.setTag(new NBTTagDouble(d6));
 		}
 
@@ -814,11 +811,8 @@ public abstract class Entity {
 
 	protected NBTTagList newFloatNBTList(float... f1) {
 		NBTTagList nBTTagList2 = new NBTTagList();
-		float[] f3 = f1;
-		int i4 = f1.length;
 
-		for(int i5 = 0; i5 < i4; ++i5) {
-			float f6 = f3[i5];
+		for (float f6 : f1) {
 			nBTTagList2.setTag(new NBTTagFloat(f6));
 		}
 
@@ -850,7 +844,7 @@ public abstract class Entity {
 
 	public boolean isEntityInsideOpaqueBlock() {
 		for(int i1 = 0; i1 < 8; ++i1) {
-			float f2 = ((float)((i1 >> 0) % 2) - 0.5F) * this.width * 0.9F;
+			float f2 = ((float)((i1) % 2) - 0.5F) * this.width * 0.9F;
 			float f3 = ((float)((i1 >> 1) % 2) - 0.5F) * 0.1F;
 			float f4 = ((float)((i1 >> 2) % 2) - 0.5F) * this.width * 0.9F;
 			int i5 = MathHelper.floor_double(this.posX + (double)f2);
@@ -973,9 +967,9 @@ public abstract class Entity {
 		if(list10.size() > 0) {
 			double d11 = 0.0D;
 
-			for(int i13 = 0; i13 < list10.size(); ++i13) {
-				AxisAlignedBB axisAlignedBB14 = (AxisAlignedBB)list10.get(i13);
-				if(axisAlignedBB14.maxY > d11) {
+			for (Object o : list10) {
+				AxisAlignedBB axisAlignedBB14 = (AxisAlignedBB) o;
+				if (axisAlignedBB14.maxY > d11) {
 					d11 = axisAlignedBB14.maxY;
 				}
 			}

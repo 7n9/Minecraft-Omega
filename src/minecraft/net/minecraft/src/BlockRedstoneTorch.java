@@ -19,11 +19,11 @@ public class BlockRedstoneTorch extends BlockTorch {
 
 		int i6 = 0;
 
-		for(int i7 = 0; i7 < torchUpdates.size(); ++i7) {
-			RedstoneUpdateInfo redstoneUpdateInfo8 = (RedstoneUpdateInfo)torchUpdates.get(i7);
-			if(redstoneUpdateInfo8.x == i2 && redstoneUpdateInfo8.y == i3 && redstoneUpdateInfo8.z == i4) {
+		for (Object torchUpdate : torchUpdates) {
+			RedstoneUpdateInfo redstoneUpdateInfo8 = (RedstoneUpdateInfo) torchUpdate;
+			if (redstoneUpdateInfo8.x == i2 && redstoneUpdateInfo8.y == i3 && redstoneUpdateInfo8.z == i4) {
 				++i6;
-				if(i6 >= 8) {
+				if (i6 >= 8) {
 					return true;
 				}
 			}

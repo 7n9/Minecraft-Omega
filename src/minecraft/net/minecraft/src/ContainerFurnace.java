@@ -28,17 +28,17 @@ public class ContainerFurnace extends Container {
 	public void updateCraftingResults() {
 		super.updateCraftingResults();
 
-		for(int i1 = 0; i1 < this.field_20121_g.size(); ++i1) {
-			ICrafting iCrafting2 = (ICrafting)this.field_20121_g.get(i1);
-			if(this.cookTime != this.furnace.furnaceCookTime) {
+		for (Object o : this.field_20121_g) {
+			ICrafting iCrafting2 = (ICrafting) o;
+			if (this.cookTime != this.furnace.furnaceCookTime) {
 				iCrafting2.func_20158_a(this, 0, this.furnace.furnaceCookTime);
 			}
 
-			if(this.burnTime != this.furnace.furnaceBurnTime) {
+			if (this.burnTime != this.furnace.furnaceBurnTime) {
 				iCrafting2.func_20158_a(this, 1, this.furnace.furnaceBurnTime);
 			}
 
-			if(this.itemBurnTime != this.furnace.currentItemBurnTime) {
+			if (this.itemBurnTime != this.furnace.currentItemBurnTime) {
 				iCrafting2.func_20158_a(this, 2, this.furnace.currentItemBurnTime);
 			}
 		}

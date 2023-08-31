@@ -603,9 +603,9 @@ public abstract class EntityLiving extends Entity {
 			if(list9.size() > 0) {
 				double d10 = 0.0D;
 
-				for(int i12 = 0; i12 < list9.size(); ++i12) {
-					AxisAlignedBB axisAlignedBB13 = (AxisAlignedBB)list9.get(i12);
-					if(axisAlignedBB13.maxY > d10) {
+				for (Object o : list9) {
+					AxisAlignedBB axisAlignedBB13 = (AxisAlignedBB) o;
+					if (axisAlignedBB13.maxY > d10) {
 						d10 = axisAlignedBB13.maxY;
 					}
 				}
@@ -642,9 +642,9 @@ public abstract class EntityLiving extends Entity {
 		this.moveEntityWithHeading(this.moveStrafing, this.moveForward);
 		List list15 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.2F, 0.0D, 0.2F));
 		if(list15 != null && list15.size() > 0) {
-			for(int i4 = 0; i4 < list15.size(); ++i4) {
-				Entity entity16 = (Entity)list15.get(i4);
-				if(entity16.canBePushed()) {
+			for (Object o : list15) {
+				Entity entity16 = (Entity) o;
+				if (entity16.canBePushed()) {
 					entity16.applyEntityCollision(this);
 				}
 			}

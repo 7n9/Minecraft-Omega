@@ -1,11 +1,6 @@
 package net.minecraft.src;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Chunk {
 	public static boolean isLit;
@@ -103,7 +98,7 @@ public class Chunk {
 					i1 = i4;
 				}
 
-				if(!this.worldObj.worldProvider.hasNoSky) {
+				if(!Objects.requireNonNull(this.worldObj.worldProvider).hasNoSky) {
 					int i6 = 15;
 					int i7 = 127;
 
@@ -157,10 +152,7 @@ public class Chunk {
 
 	private void func_1003_g(int i1, int i2, int i3) {
 		int i4 = this.heightMap[i3 << 4 | i1] & 255;
-		int i5 = i4;
-		if(i2 > i4) {
-			i5 = i2;
-		}
+		int i5 = Math.max(i2, i4);
 
 		for(int i6 = i1 << 11 | i3 << 7; i5 > 0 && Block.lightOpacity[this.blocks[i6 + i5 - 1] & 255] == 0; --i5) {
 		}
@@ -248,7 +240,7 @@ public class Chunk {
 			}
 
 			this.data.setNibble(i1, i2, i3, i5);
-			if(!this.worldObj.worldProvider.hasNoSky) {
+			if(!Objects.requireNonNull(this.worldObj.worldProvider).hasNoSky) {
 				if(Block.lightOpacity[b6 & 255] != 0) {
 					if(i2 >= i7) {
 						this.func_1003_g(i1, i2 + 1, i3);
@@ -456,23 +448,22 @@ public class Chunk {
 		this.isChunkLoaded = true;
 		this.worldObj.func_31054_a(this.chunkTileEntityMap.values());
 
-		for(int i1 = 0; i1 < this.entities.length; ++i1) {
-			this.worldObj.func_636_a(this.entities[i1]);
+		for (List entity : this.entities) {
+			this.worldObj.func_636_a(entity);
 		}
 
 	}
 
 	public void onChunkUnload() {
 		this.isChunkLoaded = false;
-		Iterator iterator1 = this.chunkTileEntityMap.values().iterator();
 
-		while(iterator1.hasNext()) {
-			TileEntity tileEntity2 = (TileEntity)iterator1.next();
+		for (Object o : this.chunkTileEntityMap.values()) {
+			TileEntity tileEntity2 = (TileEntity) o;
 			tileEntity2.func_31005_i();
 		}
 
-		for(int i3 = 0; i3 < this.entities.length; ++i3) {
-			this.worldObj.func_632_b(this.entities[i3]);
+		for (List entity : this.entities) {
+			this.worldObj.func_632_b(entity);
 		}
 
 	}
@@ -495,9 +486,9 @@ public class Chunk {
 		for(int i6 = i4; i6 <= i5; ++i6) {
 			List list7 = this.entities[i6];
 
-			for(int i8 = 0; i8 < list7.size(); ++i8) {
-				Entity entity9 = (Entity)list7.get(i8);
-				if(entity9 != entity1 && entity9.boundingBox.intersectsWith(axisAlignedBB2)) {
+			for (Object o : list7) {
+				Entity entity9 = (Entity) o;
+				if (entity9 != entity1 && entity9.boundingBox.intersectsWith(axisAlignedBB2)) {
 					list3.add(entity9);
 				}
 			}
@@ -519,9 +510,9 @@ public class Chunk {
 		for(int i6 = i4; i6 <= i5; ++i6) {
 			List list7 = this.entities[i6];
 
-			for(int i8 = 0; i8 < list7.size(); ++i8) {
-				Entity entity9 = (Entity)list7.get(i8);
-				if(class1.isAssignableFrom(entity9.getClass()) && entity9.boundingBox.intersectsWith(axisAlignedBB2)) {
+			for (Object o : list7) {
+				Entity entity9 = (Entity) o;
+				if (class1.isAssignableFrom(entity9.getClass()) && entity9.boundingBox.intersectsWith(axisAlignedBB2)) {
 					list3.add(entity9);
 				}
 			}

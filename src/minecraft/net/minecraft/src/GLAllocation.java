@@ -31,22 +31,22 @@ public class GLAllocation {
 
 	public static synchronized void func_28194_b(int i0) {
 		int i1 = displayLists.indexOf(i0);
-		GL11.glDeleteLists(((Integer)displayLists.get(i1)).intValue(), ((Integer)displayLists.get(i1 + 1)).intValue());
+		GL11.glDeleteLists((Integer) displayLists.get(i1), (Integer) displayLists.get(i1 + 1));
 		displayLists.remove(i1);
 		displayLists.remove(i1);
 	}
 
 	public static synchronized void deleteTexturesAndDisplayLists() {
 		for(int i0 = 0; i0 < displayLists.size(); i0 += 2) {
-			GL11.glDeleteLists(((Integer)displayLists.get(i0)).intValue(), ((Integer)displayLists.get(i0 + 1)).intValue());
+			GL11.glDeleteLists((Integer) displayLists.get(i0), (Integer) displayLists.get(i0 + 1));
 		}
 
 		IntBuffer intBuffer2 = createDirectIntBuffer(textureNames.size());
 		intBuffer2.flip();
 		GL11.glDeleteTextures(intBuffer2);
 
-		for(int i1 = 0; i1 < textureNames.size(); ++i1) {
-			intBuffer2.put(((Integer)textureNames.get(i1)).intValue());
+		for (Object textureName : textureNames) {
+			intBuffer2.put((Integer) textureName);
 		}
 
 		intBuffer2.flip();
@@ -56,8 +56,7 @@ public class GLAllocation {
 	}
 
 	public static synchronized ByteBuffer createDirectByteBuffer(int i0) {
-		ByteBuffer byteBuffer1 = ByteBuffer.allocateDirect(i0).order(ByteOrder.nativeOrder());
-		return byteBuffer1;
+		return ByteBuffer.allocateDirect(i0).order(ByteOrder.nativeOrder());
 	}
 
 	public static IntBuffer createDirectIntBuffer(int i0) {

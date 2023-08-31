@@ -398,7 +398,7 @@ public class Block {
 		}
 
 		Vec3D vec3D13 = null;
-		if(vec3D7 != null && (vec3D13 == null || vec3D5.distanceTo(vec3D7) < vec3D5.distanceTo(vec3D13))) {
+		if(vec3D7 != null) {
 			vec3D13 = vec3D7;
 		}
 

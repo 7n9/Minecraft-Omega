@@ -41,7 +41,7 @@ public class ChunkProviderHell implements IChunkProvider {
 		int i6 = b4 + 1;
 		byte b7 = 17;
 		int i8 = b4 + 1;
-		this.field_4163_o = this.func_4057_a(this.field_4163_o, i1 * b4, 0, i2 * b4, i6, b7, i8);
+		this.field_4163_o = this.func_4057_a(this.field_4163_o, i1 * b4, i2 * b4, i6, b7, i8);
 
 		for(int i9 = 0; i9 < b4; ++i9) {
 			for(int i10 = 0; i10 < b4; ++i10) {
@@ -138,10 +138,6 @@ public class ChunkProviderHell implements IChunkProvider {
 										b13 = (byte)Block.gravel.blockID;
 									}
 
-									if(z10) {
-										b14 = (byte)Block.netherrack.blockID;
-									}
-
 									if(z9) {
 										b13 = (byte)Block.slowSand.blockID;
 									}
@@ -183,22 +179,21 @@ public class ChunkProviderHell implements IChunkProvider {
 		this.func_4059_a(i1, i2, b3);
 		this.func_4058_b(i1, i2, b3);
 		this.field_4159_s.func_867_a(this, this.worldObj, i1, i2, b3);
-		Chunk chunk4 = new Chunk(this.worldObj, b3, i1, i2);
-		return chunk4;
+		return new Chunk(this.worldObj, b3, i1, i2);
 	}
 
-	private double[] func_4057_a(double[] d1, int i2, int i3, int i4, int i5, int i6, int i7) {
+	private double[] func_4057_a(double[] d1, int i2, int i4, int i5, int i6, int i7) {
 		if(d1 == null) {
 			d1 = new double[i5 * i6 * i7];
 		}
 
 		double d8 = 684.412D;
 		double d10 = 2053.236D;
-		this.field_4172_f = this.field_4177_a.generateNoiseOctaves(this.field_4172_f, i2, i3, i4, i5, 1, i7, 1.0D, 0.0D, 1.0D);
-		this.field_4171_g = this.field_4176_b.generateNoiseOctaves(this.field_4171_g, i2, i3, i4, i5, 1, i7, 100.0D, 0.0D, 100.0D);
-		this.field_4175_c = this.field_4167_k.generateNoiseOctaves(this.field_4175_c, i2, i3, i4, i5, i6, i7, d8 / 80.0D, d10 / 60.0D, d8 / 80.0D);
-		this.field_4174_d = this.field_4169_i.generateNoiseOctaves(this.field_4174_d, i2, i3, i4, i5, i6, i7, d8, d10, d8);
-		this.field_4173_e = this.field_4168_j.generateNoiseOctaves(this.field_4173_e, i2, i3, i4, i5, i6, i7, d8, d10, d8);
+		this.field_4172_f = this.field_4177_a.generateNoiseOctaves(this.field_4172_f, i2, 0, i4, i5, 1, i7, 1.0D, 0.0D, 1.0D);
+		this.field_4171_g = this.field_4176_b.generateNoiseOctaves(this.field_4171_g, i2, 0, i4, i5, 1, i7, 100.0D, 0.0D, 100.0D);
+		this.field_4175_c = this.field_4167_k.generateNoiseOctaves(this.field_4175_c, i2, 0, i4, i5, i6, i7, d8 / 80.0D, d10 / 60.0D, d8 / 80.0D);
+		this.field_4174_d = this.field_4169_i.generateNoiseOctaves(this.field_4174_d, i2, 0, i4, i5, i6, i7, d8, d10, d8);
+		this.field_4173_e = this.field_4168_j.generateNoiseOctaves(this.field_4173_e, i2, 0, i4, i5, i6, i7, d8, d10, d8);
 		int i12 = 0;
 		int i13 = 0;
 		double[] d14 = new double[i6];
@@ -224,7 +219,6 @@ public class ChunkProviderHell implements IChunkProvider {
 					d17 = 1.0D;
 				}
 
-				double d19 = 0.0D;
 				double d21 = this.field_4171_g[i13] / 8000.0D;
 				if(d21 < 0.0D) {
 					d21 = -d21;
@@ -270,19 +264,6 @@ public class ChunkProviderHell implements IChunkProvider {
 					double d34;
 					if(i23 > i6 - 4) {
 						d34 = (float)(i23 - (i6 - 4)) / 3.0F;
-						d24 = d24 * (1.0D - d34) + -10.0D * d34;
-					}
-
-					if((double)i23 < d19) {
-						d34 = (d19 - (double)i23) / 4.0D;
-						if(d34 < 0.0D) {
-							d34 = 0.0D;
-						}
-
-						if(d34 > 1.0D) {
-							d34 = 1.0D;
-						}
-
 						d24 = d24 * (1.0D - d34) + -10.0D * d34;
 					}
 
@@ -341,19 +322,17 @@ public class ChunkProviderHell implements IChunkProvider {
 			(new WorldGenGlowStone2()).generate(this.worldObj, this.hellRNG, i8, i9, i10);
 		}
 
-		if(this.hellRNG.nextInt(1) == 0) {
-			i7 = i4 + this.hellRNG.nextInt(16) + 8;
-			i8 = this.hellRNG.nextInt(128);
-			i9 = i5 + this.hellRNG.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.hellRNG, i7, i8, i9);
-		}
+		this.hellRNG.nextInt(1);
+		i7 = i4 + this.hellRNG.nextInt(16) + 8;
+		i8 = this.hellRNG.nextInt(128);
+		i9 = i5 + this.hellRNG.nextInt(16) + 8;
+		(new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.hellRNG, i7, i8, i9);
 
-		if(this.hellRNG.nextInt(1) == 0) {
-			i7 = i4 + this.hellRNG.nextInt(16) + 8;
-			i8 = this.hellRNG.nextInt(128);
-			i9 = i5 + this.hellRNG.nextInt(16) + 8;
-			(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, i7, i8, i9);
-		}
+		this.hellRNG.nextInt(1);
+		i7 = i4 + this.hellRNG.nextInt(16) + 8;
+		i8 = this.hellRNG.nextInt(128);
+		i9 = i5 + this.hellRNG.nextInt(16) + 8;
+		(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, i7, i8, i9);
 
 		BlockSand.fallInstantly = false;
 	}

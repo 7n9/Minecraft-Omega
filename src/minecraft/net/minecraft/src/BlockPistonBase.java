@@ -88,7 +88,7 @@ public class BlockPistonBase extends Block {
 			}
 		} else if(i5 == 1) {
 			TileEntity tileEntity8 = world1.getBlockTileEntity(i2 + PistonBlockTextures.field_31056_b[i6], i3 + PistonBlockTextures.field_31059_c[i6], i4 + PistonBlockTextures.field_31058_d[i6]);
-			if(tileEntity8 != null && tileEntity8 instanceof TileEntityPiston) {
+			if(tileEntity8 instanceof TileEntityPiston) {
 				((TileEntityPiston)tileEntity8).func_31011_l();
 			}
 
@@ -103,7 +103,7 @@ public class BlockPistonBase extends Block {
 				boolean z14 = false;
 				if(i12 == Block.pistonMoving.blockID) {
 					TileEntity tileEntity15 = world1.getBlockTileEntity(i9, i10, i11);
-					if(tileEntity15 != null && tileEntity15 instanceof TileEntityPiston) {
+					if(tileEntity15 instanceof TileEntityPiston) {
 						TileEntityPiston tileEntityPiston16 = (TileEntityPiston)tileEntity15;
 						if(tileEntityPiston16.func_31009_d() == i6 && tileEntityPiston16.func_31015_b()) {
 							tileEntityPiston16.func_31011_l();
@@ -204,7 +204,7 @@ public class BlockPistonBase extends Block {
 		}
 
 		int i7 = MathHelper.floor_double((double)(entityPlayer4.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		return i7 == 0 ? 2 : (i7 == 1 ? 5 : (i7 == 2 ? 3 : (i7 == 3 ? 4 : 0)));
+		return i7 == 0 ? 2 : i7 == 1 ? 5 : i7 == 2 ? 3 : 4;
 	}
 
 	private static boolean canPushBlock(int i0, World world1, int i2, int i3, int i4, boolean z5) {

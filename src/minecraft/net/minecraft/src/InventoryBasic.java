@@ -63,8 +63,8 @@ public class InventoryBasic implements IInventory {
 
 	public void onInventoryChanged() {
 		if(this.field_20073_d != null) {
-			for(int i1 = 0; i1 < this.field_20073_d.size(); ++i1) {
-				((IInvBasic)this.field_20073_d.get(i1)).func_20134_a(this);
+			for (Object o : this.field_20073_d) {
+				((IInvBasic) o).func_20134_a(this);
 			}
 		}
 

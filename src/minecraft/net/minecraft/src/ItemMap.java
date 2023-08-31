@@ -66,9 +66,6 @@ public class ItemMap extends ItemMapBase {
 							boolean z20 = i18 * i18 + i19 * i19 > (i11 - 2) * (i11 - 2);
 							int i21 = (i7 / i6 + i12 - s4 / 2) * i6;
 							int i22 = (i8 / i6 + i17 - s5 / 2) * i6;
-							byte b23 = 0;
-							byte b24 = 0;
-							byte b25 = 0;
 							int[] i26 = new int[256];
 							Chunk chunk27 = world1.getChunkFromBlockCoords(i21, i22);
 							int i28 = i21 & 15;
@@ -113,12 +110,11 @@ public class ItemMap extends ItemMapBase {
 												}
 
 												if(z37) {
-													if(i36 == 0 || !Block.blocksList[i36].blockMaterial.getIsLiquid()) {
+													if(!Block.blocksList[i36].blockMaterial.getIsLiquid()) {
 														break;
 													}
 
 													i38 = i35 - 1;
-													boolean z39 = false;
 
 													while(true) {
 														int i43 = chunk27.getBlockID(i33 + i28, i38--, i34 + i29);
@@ -138,9 +134,6 @@ public class ItemMap extends ItemMapBase {
 							}
 
 							i30 /= i6 * i6;
-							int i10000 = b23 / (i6 * i6);
-							i10000 = b24 / (i6 * i6);
-							i10000 = b25 / (i6 * i6);
 							i33 = 0;
 							i34 = 0;
 

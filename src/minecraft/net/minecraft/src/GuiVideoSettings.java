@@ -1,5 +1,7 @@
 package net.minecraft.src;
 
+import java.util.Objects;
+
 public class GuiVideoSettings extends GuiScreen {
 	private final GuiScreen field_22110_h;
 	protected String field_22107_a = "Video Settings";
@@ -18,9 +20,8 @@ public class GuiVideoSettings extends GuiScreen {
 		EnumOptions[] enumOptions3 = field_22108_k;
 		int i4 = enumOptions3.length;
 
-		for(int i5 = 0; i5 < i4; ++i5) {
-			EnumOptions enumOptions6 = enumOptions3[i5];
-			if(!enumOptions6.getEnumFloat()) {
+		for (EnumOptions enumOptions6 : enumOptions3) {
+			if (!enumOptions6.getEnumFloat()) {
 				this.controlList.add(new GuiSmallButton(enumOptions6.returnEnumOrdinal(), this.width / 2 - 155 + i2 % 2 * 160, this.height / 6 + 24 * (i2 >> 1), enumOptions6, this.guiGameSettings.getKeyBinding(enumOptions6)));
 			} else {
 				this.controlList.add(new GuiSlider(enumOptions6.returnEnumOrdinal(), this.width / 2 - 155 + i2 % 2 * 160, this.height / 6 + 24 * (i2 >> 1), enumOptions6, this.guiGameSettings.getKeyBinding(enumOptions6), this.guiGameSettings.getOptionFloatValue(enumOptions6)));
@@ -36,7 +37,7 @@ public class GuiVideoSettings extends GuiScreen {
 		if(guiButton1.enabled) {
 			if(guiButton1.id < 100 && guiButton1 instanceof GuiSmallButton) {
 				this.guiGameSettings.setOptionValue(((GuiSmallButton)guiButton1).returnEnumOptions(), 1);
-				guiButton1.displayString = this.guiGameSettings.getKeyBinding(EnumOptions.getEnumOptions(guiButton1.id));
+				guiButton1.displayString = this.guiGameSettings.getKeyBinding(Objects.requireNonNull(EnumOptions.getEnumOptions(guiButton1.id)));
 			}
 
 			if(guiButton1.id == 200) {

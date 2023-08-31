@@ -47,8 +47,8 @@ public class BlockRedstoneWire extends Block {
 		ArrayList arrayList5 = new ArrayList(this.field_21031_b);
 		this.field_21031_b.clear();
 
-		for(int i6 = 0; i6 < arrayList5.size(); ++i6) {
-			ChunkPosition chunkPosition7 = (ChunkPosition)arrayList5.get(i6);
+		for (Object o : arrayList5) {
+			ChunkPosition chunkPosition7 = (ChunkPosition) o;
 			world1.notifyBlocksOfNeighborChange(chunkPosition7.x, chunkPosition7.y, chunkPosition7.z, this.blockID);
 		}
 
@@ -135,7 +135,6 @@ public class BlockRedstoneWire extends Block {
 					i14 += 2;
 				}
 
-				boolean z15 = false;
 				int i16 = this.getMaxCurrentStrength(world1, i12, i3, i13, -1);
 				i9 = world1.getBlockMetadata(i2, i3, i4);
 				if(i9 > 0) {
@@ -261,7 +260,7 @@ public class BlockRedstoneWire extends Block {
 			return i5;
 		} else {
 			int i6 = world1.getBlockMetadata(i2, i3, i4);
-			return i6 > i5 ? i6 : i5;
+			return Math.max(i6, i5);
 		}
 	}
 
@@ -334,9 +333,6 @@ public class BlockRedstoneWire extends Block {
 			double d11 = (double)i4 + 0.5D + ((double)random5.nextFloat() - 0.5D) * 0.2D;
 			float f13 = (float)i6 / 15.0F;
 			float f14 = f13 * 0.6F + 0.4F;
-			if(i6 == 0) {
-				f14 = 0.0F;
-			}
 
 			float f15 = f13 * f13 * 0.7F - 0.5F;
 			float f16 = f13 * f13 * 0.6F - 0.7F;
