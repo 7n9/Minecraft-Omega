@@ -302,7 +302,7 @@ public class World implements IBlockAccess {
 	}
 
 	public int getBlockId(int i1, int i2, int i3) {
-		return i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000 ? (i2 < 0 ? 0 : (i2 >= 128 ? 0 : this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4).getBlockID(i1 & 15, i2, i3 & 15))) : 0;
+		return i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000 ? (i2 < 0 ? 0 : (i2 >= 256 ? 0 : this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4).getBlockID(i1 & 15, i2, i3 & 15))) : 0;
 	}
 
 	public boolean isAirBlock(int i1, int i2, int i3) {
@@ -310,7 +310,7 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean blockExists(int i1, int i2, int i3) {
-		return i2 >= 0 && i2 < 128 && this.chunkExists(i1 >> 4, i3 >> 4);
+		return i2 >= 0 && i2 < 256 && this.chunkExists(i1 >> 4, i3 >> 4);
 	}
 
 	public boolean doChunksNearChunkExist(int i1, int i2, int i3, int i4) {
@@ -318,7 +318,7 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean checkChunksExist(int i1, int i2, int i3, int i4, int i5, int i6) {
-		if(i5 >= 0 && i2 < 128) {
+		if(i5 >= 0 && i2 < 256) {
 			i1 >>= 4;
 			i2 >>= 4;
 			i3 >>= 4;
@@ -356,7 +356,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return false;
-			} else if(i2 >= 128) {
+			} else if(i2 >= 256) {
 				return false;
 			} else {
 				Chunk chunk6 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -371,7 +371,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return false;
-			} else if(i2 >= 128) {
+			} else if(i2 >= 256) {
 				return false;
 			} else {
 				Chunk chunk5 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -391,7 +391,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return 0;
-			} else if(i2 >= 128) {
+			} else if(i2 >= 256) {
 				return 0;
 			} else {
 				Chunk chunk4 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -420,7 +420,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return false;
-			} else if(i2 >= 128) {
+			} else if(i2 >= 256) {
 				return false;
 			} else {
 				Chunk chunk5 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -515,8 +515,8 @@ public class World implements IBlockAccess {
 		if(i2 < 0) {
 			return 0;
 		} else {
-			if(i2 >= 128) {
-				i2 = 127;
+			if(i2 >= 256) {
+				i2 = 255;
 			}
 
 			return this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4).getBlockLightValue(i1 & 15, i2, i3 & 15, 0);
@@ -633,8 +633,8 @@ public class World implements IBlockAccess {
 			i3 = 0;
 		}
 
-		if(i3 >= 128) {
-			i3 = 127;
+		if(i3 >= 256) {
+			i3 = 255;
 		}
 
 		if(i2 >= -32000000 && i4 >= -32000000 && i2 < 32000000 && i4 <= 32000000) {
@@ -654,7 +654,7 @@ public class World implements IBlockAccess {
 	public void setLightValue(EnumSkyBlock enumSkyBlock1, int i2, int i3, int i4, int i5) {
 		if(i2 >= -32000000 && i4 >= -32000000 && i2 < 32000000 && i4 <= 32000000) {
 			if(i3 >= 0) {
-				if(i3 < 128) {
+				if(i3 < 256) {
 					if(this.chunkExists(i2 >> 4, i4 >> 4)) {
 						Chunk chunk6 = this.getChunkFromChunkCoords(i2 >> 4, i4 >> 4);
 						chunk6.setLightValue(enumSkyBlock1, i2 & 15, i3, i4 & 15, i5);
@@ -1273,7 +1273,7 @@ public class World implements IBlockAccess {
 		int i3 = MathHelper.floor_double(entity1.posX);
 		int i4 = MathHelper.floor_double(entity1.posZ);
 		byte b5 = 32;
-		if(!z2 || this.checkChunksExist(i3 - b5, 0, i4 - b5, i3 + b5, 128, i4 + b5)) {
+		if(!z2 || this.checkChunksExist(i3 - b5, 0, i4 - b5, i3 + b5, 256, i4 + b5)) {
 			entity1.lastTickPosX = entity1.posX;
 			entity1.lastTickPosY = entity1.posY;
 			entity1.lastTickPosZ = entity1.posZ;
@@ -1916,7 +1916,7 @@ public class World implements IBlockAccess {
 				i7 = i6 & 15;
 				i8 = i6 >> 8 & 15;
 				i9 = this.findTopSolidBlock(i7 + i3, i8 + i4);
-				if (this.getWorldChunkManager().getBiomeGenAt(i7 + i3, i8 + i4).getEnableSnow() && i9 >= 0 && i9 < 128 && chunk14.getSavedLightValue(EnumSkyBlock.Block, i7, i9, i8) < 10) {
+				if (this.getWorldChunkManager().getBiomeGenAt(i7 + i3, i8 + i4).getEnableSnow() && i9 >= 0 && i9 < 256 && chunk14.getSavedLightValue(EnumSkyBlock.Block, i7, i9, i8) < 10) {
 					i10 = chunk14.getBlockID(i7, i9 - 1, i8);
 					i15 = chunk14.getBlockID(i7, i9, i8);
 					if (this.func_27161_C() && i15 == 0 && Block.snow.canPlaceBlockAt(this, i7 + i3, i9, i8 + i4) && i10 != 0 && i10 != Block.ice.blockID && Block.blocksList[i10].blockMaterial.getIsSolid()) {
@@ -2187,8 +2187,8 @@ public class World implements IBlockAccess {
 			i13 = 0;
 		}
 
-		if(i14 > 128) {
-			i14 = 128;
+		if(i14 > 256) {
+			i14 = 256;
 		}
 
 		for(int i15 = i8; i15 <= i10; ++i15) {
