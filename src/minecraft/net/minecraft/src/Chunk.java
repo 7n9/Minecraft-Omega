@@ -87,7 +87,7 @@ public class Chunk {
 		int i3;
 		for(i2 = 0; i2 < 16; ++i2) {
 			for(i3 = 0; i3 < 16; ++i3) {
-				int i4 = 255;
+				int i4 = 127;
 
 				int i5;
 				for(i5 = i2 << 11 | i3 << 7; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
@@ -100,7 +100,7 @@ public class Chunk {
 
 				if(!Objects.requireNonNull(this.worldObj.worldProvider).hasNoSky) {
 					int i6 = 15;
-					int i7 = 255;
+					int i7 = 127;
 
 					do {
 						i6 -= Block.lightOpacity[this.blocks[i5 + i7] & 255];
@@ -166,7 +166,7 @@ public class Chunk {
 			if(i5 < this.lowestBlockHeight) {
 				this.lowestBlockHeight = i5;
 			} else {
-				i7 = 255;
+				i7 = 127;
 
 				for(i8 = 0; i8 < 16; ++i8) {
 					for(i9 = 0; i9 < 16; ++i9) {

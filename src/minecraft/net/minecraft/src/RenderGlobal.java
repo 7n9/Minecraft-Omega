@@ -199,7 +199,7 @@ public class RenderGlobal implements IWorldAccess {
 		}
 
 		this.renderChunksWide = i1 / 16 + 1;
-		this.renderChunksTall = 8;
+		this.renderChunksTall = 16;
 		this.renderChunksDeep = i1 / 16 + 1;
 		this.worldRenderers = new WorldRenderer[this.renderChunksWide * this.renderChunksTall * this.renderChunksDeep];
 		this.sortedWorldRenderers = new WorldRenderer[this.renderChunksWide * this.renderChunksTall * this.renderChunksDeep];
@@ -288,8 +288,8 @@ public class RenderGlobal implements IWorldAccess {
 						i8 = 0;
 					}
 
-					if(i8 >= 128) {
-						i8 = 127;
+					if(i8 >= 256) {
+						i8 = 255;
 					}
 
 					if(this.worldObj.blockExists(MathHelper.floor_double(entity7.posX), i8, MathHelper.floor_double(entity7.posZ))) {
