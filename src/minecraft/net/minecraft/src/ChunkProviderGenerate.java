@@ -69,8 +69,8 @@ public class ChunkProviderGenerate implements IChunkProvider {
 						double d41 = (d22 - d18) * d33;
 
 						for(int i43 = 0; i43 < 4; ++i43) {
-							int i44 = i43 + i11 * 4 << 11 | i12 * 4 << 7 | i13 * 8 + i32;
-							short s45 = 128;
+							int i44 = i43 + i11 * 4 << 12 | i12 * 4 << 8 | i13 * 8 + i32;
+							short s45 = 256;
 							double d46 = 0.32D;
 							double d48 = d35;
 							double d50 = (d37 - d35) * d46;
@@ -127,8 +127,8 @@ public class ChunkProviderGenerate implements IChunkProvider {
 				byte b15 = biomeGenBase10.topBlock;
 				byte b16 = biomeGenBase10.fillerBlock;
 
-				for(int i17 = 127; i17 >= 0; --i17) {
-					int i18 = (i9 * 16 + i8) * 128 + i17;
+				for(int i17 = 255; i17 >= 0; --i17) {
+					int i18 = (i9 * 16 + i8) * 256 + i17;
 					if(i17 <= this.rand.nextInt(5)) {
 						b3[i18] = (byte)Block.bedrock.blockID;
 					} else {
@@ -192,7 +192,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
 	public Chunk provideChunk(int i1, int i2) {
 		this.rand.setSeed((long)i1 * 341873128712L + (long)i2 * 132897987541L);
-		byte[] b3 = new byte[32768];
+		byte[] b3 = new byte[65536];
 		Chunk chunk4 = new Chunk(this.worldObj, b3, i1, i2);
 		this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, i1 * 16, i2 * 16, 16, 16);
 		double[] d5 = this.worldObj.getWorldChunkManager().temperature;

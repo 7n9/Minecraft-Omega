@@ -64,8 +64,8 @@ public class ChunkProviderHell implements IChunkProvider {
 						double d39 = (d20 - d16) * d31;
 
 						for(int i41 = 0; i41 < 4; ++i41) {
-							int i42 = i41 + i9 * 4 << 11 | i10 * 4 << 7 | i11 * 8 + i30;
-							short s43 = 128;
+							int i42 = i41 + i9 * 4 << 12 | i10 * 4 << 8 | i11 * 8 + i30;
+							short s43 = 256;
 							double d44 = 0.25D;
 							double d46 = d33;
 							double d48 = (d35 - d33) * d44;
@@ -116,9 +116,9 @@ public class ChunkProviderHell implements IChunkProvider {
 				byte b13 = (byte)Block.netherrack.blockID;
 				byte b14 = (byte)Block.netherrack.blockID;
 
-				for(int i15 = 127; i15 >= 0; --i15) {
-					int i16 = (i8 * 16 + i7) * 128 + i15;
-					if(i15 >= 127 - this.hellRNG.nextInt(5)) {
+				for(int i15 = 255; i15 >= 0; --i15) {
+					int i16 = (i8 * 16 + i7) * 256 + i15;
+					if(i15 >= 255 - this.hellRNG.nextInt(5)) {
 						b3[i16] = (byte)Block.bedrock.blockID;
 					} else if(i15 <= this.hellRNG.nextInt(5)) {
 						b3[i16] = (byte)Block.bedrock.blockID;
@@ -175,7 +175,7 @@ public class ChunkProviderHell implements IChunkProvider {
 
 	public Chunk provideChunk(int i1, int i2) {
 		this.hellRNG.setSeed((long)i1 * 341873128712L + (long)i2 * 132897987541L);
-		byte[] b3 = new byte[32768];
+		byte[] b3 = new byte[65536];
 		this.func_4059_a(i1, i2, b3);
 		this.func_4058_b(i1, i2, b3);
 		this.field_4159_s.func_867_a(this, this.worldObj, i1, i2, b3);

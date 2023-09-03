@@ -66,7 +66,7 @@ public class Chunk {
 			for(int i3 = 0; i3 < 16; ++i3) {
 				int i4 = 255;
 
-				for(int i5 = i2 << 11 | i3 << 7; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
+				for(int i5 = i2 << 12 | i3 << 8; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
 				}
 
 				this.heightMap[i3 << 4 | i2] = (byte)i4;
@@ -90,7 +90,7 @@ public class Chunk {
 				int i4 = 255;
 
 				int i5;
-				for(i5 = i2 << 11 | i3 << 7; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
+				for(i5 = i2 << 12 | i3 << 8; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
 				}
 
 				this.heightMap[i3 << 4 | i2] = (byte)i4;
@@ -154,7 +154,7 @@ public class Chunk {
 		int i4 = this.heightMap[i3 << 4 | i1] & 255;
 		int i5 = Math.max(i2, i4);
 
-		for(int i6 = i1 << 11 | i3 << 7; i5 > 0 && Block.lightOpacity[this.blocks[i6 + i5 - 1] & 255] == 0; --i5) {
+		for(int i6 = i1 << 12 | i3 << 8; i5 > 0 && Block.lightOpacity[this.blocks[i6 + i5 - 1] & 255] == 0; --i5) {
 		}
 
 		if(i5 != i4) {
@@ -166,7 +166,7 @@ public class Chunk {
 			if(i5 < this.lowestBlockHeight) {
 				this.lowestBlockHeight = i5;
 			} else {
-				i7 = 127;
+				i7 = 255;
 
 				for(i8 = 0; i8 < 16; ++i8) {
 					for(i9 = 0; i9 < 16; ++i9) {
@@ -222,19 +222,19 @@ public class Chunk {
 	}
 
 	public int getBlockID(int i1, int i2, int i3) {
-		return this.blocks[i1 << 11 | i3 << 7 | i2] & 255;
+		return this.blocks[i1 << 12 | i3 << 8 | i2] & 255;
 	}
 
 	public boolean setBlockIDWithMetadata(int i1, int i2, int i3, int i4, int i5) {
 		byte b6 = (byte)i4;
 		int i7 = this.heightMap[i3 << 4 | i1] & 255;
-		int i8 = this.blocks[i1 << 11 | i3 << 7 | i2] & 255;
+		int i8 = this.blocks[i1 << 12 | i3 << 8 | i2] & 255;
 		if(i8 == i4 && this.data.getNibble(i1, i2, i3) == i5) {
 			return false;
 		} else {
 			int i9 = this.xPosition * 16 + i1;
 			int i10 = this.zPosition * 16 + i3;
-			this.blocks[i1 << 11 | i3 << 7 | i2] = (byte)(b6 & 255);
+			this.blocks[i1 << 12 | i3 << 8 | i2] = (byte)(b6 & 255);
 			if(i8 != 0 && !this.worldObj.multiplayerWorld) {
 				Block.blocksList[i8].onBlockRemoval(this.worldObj, i9, i2, i10);
 			}
@@ -267,13 +267,13 @@ public class Chunk {
 	public boolean setBlockID(int i1, int i2, int i3, int i4) {
 		byte b5 = (byte)i4;
 		int i6 = this.heightMap[i3 << 4 | i1] & 255;
-		int i7 = this.blocks[i1 << 11 | i3 << 7 | i2] & 255;
+		int i7 = this.blocks[i1 << 12 | i3 << 8 | i2] & 255;
 		if(i7 == i4) {
 			return false;
 		} else {
 			int i8 = this.xPosition * 16 + i1;
 			int i9 = this.zPosition * 16 + i3;
-			this.blocks[i1 << 11 | i3 << 7 | i2] = (byte)(b5 & 255);
+			this.blocks[i1 << 12 | i3 << 8 | i2] = (byte)(b5 & 255);
 			if(i7 != 0) {
 				Block.blocksList[i7].onBlockRemoval(this.worldObj, i8, i2, i9);
 			}
@@ -543,7 +543,7 @@ public class Chunk {
 		int i12;
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = i9 << 11 | i10 << 7 | i3;
+				i11 = i9 << 12 | i10 << 8 | i3;
 				i12 = i6 - i3;
 				System.arraycopy(b1, i8, this.blocks, i11, i12);
 				i8 += i12;
@@ -554,7 +554,7 @@ public class Chunk {
 
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = (i9 << 11 | i10 << 7 | i3) >> 1;
+				i11 = (i9 << 12 | i10 << 8 | i3) >> 1;
 				i12 = (i6 - i3) / 2;
 				System.arraycopy(b1, i8, this.data.data, i11, i12);
 				i8 += i12;
@@ -563,7 +563,7 @@ public class Chunk {
 
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = (i9 << 11 | i10 << 7 | i3) >> 1;
+				i11 = (i9 << 12 | i10 << 8 | i3) >> 1;
 				i12 = (i6 - i3) / 2;
 				System.arraycopy(b1, i8, this.blocklightMap.data, i11, i12);
 				i8 += i12;
@@ -572,7 +572,7 @@ public class Chunk {
 
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = (i9 << 11 | i10 << 7 | i3) >> 1;
+				i11 = (i9 << 12 | i10 << 8 | i3) >> 1;
 				i12 = (i6 - i3) / 2;
 				System.arraycopy(b1, i8, this.skylightMap.data, i11, i12);
 				i8 += i12;

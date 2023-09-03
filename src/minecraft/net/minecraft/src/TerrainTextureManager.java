@@ -100,18 +100,18 @@ public class TerrainTextureManager {
 								} else if(block16.blockMaterial == Material.water) {
 									int i24 = world2.getBlockId(i9, i14 + 1, i8);
 									if(i24 == 0 || Block.blocksList[i24].blockMaterial != Material.water) {
-										float f25 = (float)i14 / 127.0F * 0.6F + 0.4F;
+										float f25 = (float)i14 / 255.0F * 0.6F + 0.4F;
 										float f26 = world2.getLightBrightness(i9, i14 + 1, i8) * f25;
 										if(i15 >= 0 && i15 < 160) {
 											int i27 = i12 + i15 * 32;
 											if(i12 <= 32 && this.field_1185_d[i27] <= i14) {
 												this.field_1185_d[i27] = i14;
-												this.field_1184_e[i27] = (int)(f26 * 127.0F);
+												this.field_1184_e[i27] = (int)(f26 * 255.0F);
 											}
 
 											if(i12 <= 31 && this.field_1185_d[i27 + 1] <= i14) {
 												this.field_1185_d[i27 + 1] = i14;
-												this.field_1184_e[i27 + 1] = (int)(f26 * 127.0F);
+												this.field_1184_e[i27 + 1] = (int)(f26 * 255.0F);
 											}
 
 											z13 = false;
@@ -128,7 +128,7 @@ public class TerrainTextureManager {
 										}
 									}
 
-									float f17 = (float)i14 / 127.0F * 0.6F + 0.4F;
+									float f17 = (float)i14 / 255.0F * 0.6F + 0.4F;
 									int i18;
 									int i19;
 									float f20;

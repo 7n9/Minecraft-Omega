@@ -1341,7 +1341,7 @@ public abstract class Minecraft implements Runnable {
 	private void func_6255_d(String string1) {
 		this.loadingScreen.printText(string1);
 		this.loadingScreen.displayLoadingString("Building terrain");
-		short s2 = 128;
+		short s2 = 256;
 		int i3 = 0;
 		int i4 = s2 * 2 / 16 + 1;
 		i4 *= i4;

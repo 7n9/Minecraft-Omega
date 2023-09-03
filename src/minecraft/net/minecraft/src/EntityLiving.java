@@ -528,8 +528,11 @@ public abstract class EntityLiving extends Entity {
 			if(this.isCollidedHorizontally && this.isOnLadder()) {
 				this.motionY = 0.2D;
 			}
+			if(isSneaking()){
+				this.motionY -= 0.08D;
+			}
+			this.fallDistance = 0.0F;
 
-			this.motionY -= 0.08D;
 			this.motionY *= 0.98F;
 			this.motionX *= f8;
 			this.motionZ *= f8;
@@ -631,7 +634,7 @@ public abstract class EntityLiving extends Entity {
 				this.motionY += 0.04F;
 			} else if(z2) {
 				this.motionY += 0.04F;
-			} else if(this.onGround) {
+			} else {
 				this.jump();
 			}
 		}

@@ -68,8 +68,8 @@ public class ChunkProviderSky implements IChunkProvider {
 						double d40 = (d21 - d17) * d32;
 
 						for(int i42 = 0; i42 < 8; ++i42) {
-							int i43 = i42 + i10 * 8 << 11 | i11 * 8 << 7 | i12 * 4 + i31;
-							short s44 = 128;
+							int i43 = i42 + i10 * 8 << 12 | i11 * 8 << 8 | i12 * 4 + i31;
+							short s44 = 256;
 							double d45 = 0.125D;
 							double d47 = d34;
 							double d49 = (d36 - d34) * d45;
@@ -114,8 +114,8 @@ public class ChunkProviderSky implements IChunkProvider {
 				byte b12 = biomeGenBase9.topBlock;
 				byte b13 = biomeGenBase9.fillerBlock;
 
-				for(int i14 = 127; i14 >= 0; --i14) {
-					int i15 = (i8 * 16 + i7) * 128 + i14;
+				for(int i14 = 255; i14 >= 0; --i14) {
+					int i15 = (i8 * 16 + i7) * 256 + i14;
 					byte b16 = b3[i15];
 					if(b16 == 0) {
 						i11 = -1;
@@ -149,7 +149,7 @@ public class ChunkProviderSky implements IChunkProvider {
 
 	public Chunk provideChunk(int i1, int i2) {
 		this.field_28087_j.setSeed((long)i1 * 341873128712L + (long)i2 * 132897987541L);
-		byte[] b3 = new byte[32768];
+		byte[] b3 = new byte[65536];
 		Chunk chunk4 = new Chunk(this.field_28081_p, b3, i1, i2);
 		this.field_28075_v = this.field_28081_p.getWorldChunkManager().loadBlockGeneratorData(this.field_28075_v, i1 * 16, i2 * 16, 16, 16);
 		double[] d5 = this.field_28081_p.getWorldChunkManager().temperature;

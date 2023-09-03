@@ -740,7 +740,7 @@ public class EntityRenderer {
 							double d39 = (double)((float)i20 + 0.5F) - entityLiving3.posZ;
 							float f40 = MathHelper.sqrt_double(d38 * d38 + d39 * d39) / (float)b16;
 							tessellator8.startDrawingQuads();
-							float f32 = world4.getLightBrightness(i19, 128, i20) * 0.85F + 0.15F;
+							float f32 = world4.getLightBrightness(i19, 256, i20) * 0.85F + 0.15F;
 							GL11.glColor4f(f32, f32, f32, ((1.0F - f40 * f40) * 0.5F + 0.5F) * f2);
 							tessellator8.setTranslationD(-d9, -d11, -d13);
 							tessellator8.addVertexWithUV(i19, i23, (double)i20 + 0.5D, 0.0F * f37, (float)i23 * f37 / 4.0F + f26 * f37);

@@ -99,7 +99,7 @@ public abstract class Packet {
 	}
 
 	public static void writeString(String string0, DataOutputStream dataOutputStream1) throws IOException {
-		if(string0.length() > 32767) {
+		if(string0.length() > 65536) {
 			throw new IOException("String too big");
 		} else {
 			dataOutputStream1.writeShort(string0.length());

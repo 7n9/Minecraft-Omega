@@ -24,7 +24,7 @@ public class MetadataChunkBlock {
 		int i3 = this.field_1301_f - this.field_1304_c + 1;
 		int i4 = this.field_1300_g - this.field_1303_d + 1;
 		int i5 = i2 * i3 * i4;
-		if(i5 > 32768) {
+		if(i5 > 65536) {
 			System.out.println("Light too large, skipping!");
 		} else {
 			int i6 = 0;

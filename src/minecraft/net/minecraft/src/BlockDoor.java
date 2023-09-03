@@ -182,7 +182,7 @@ public class BlockDoor extends Block {
 	}
 
 	public boolean canPlaceBlockAt(World world1, int i2, int i3, int i4) {
-		return i3 < 127 && world1.isBlockNormalCube(i2, i3 - 1, i4) && super.canPlaceBlockAt(world1, i2, i3, i4) && super.canPlaceBlockAt(world1, i2, i3 + 1, i4);
+		return i3 < 255 && world1.isBlockNormalCube(i2, i3 - 1, i4) && super.canPlaceBlockAt(world1, i2, i3, i4) && super.canPlaceBlockAt(world1, i2, i3 + 1, i4);
 	}
 
 	public static boolean isOpen(int i0) {

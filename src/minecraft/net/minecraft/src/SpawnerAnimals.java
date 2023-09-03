@@ -11,7 +11,7 @@ public final class SpawnerAnimals {
 
 	private static ChunkPosition getRandomSpawningPointInChunk(World world0, int i1, int i2) {
 		int i3 = i1 + world0.rand.nextInt(16);
-		int i4 = world0.rand.nextInt(128);
+		int i4 = world0.rand.nextInt(256);
 		int i5 = i2 + world0.rand.nextInt(16);
 		return new ChunkPosition(i3, i4, i5);
 	}
@@ -188,8 +188,8 @@ public final class SpawnerAnimals {
 				int i11 = MathHelper.floor_double(entityPlayer5.posY) + world0.rand.nextInt(16) - world0.rand.nextInt(16);
 				if(i11 < 1) {
 					i11 = 1;
-				} else if(i11 > 128) {
-					i11 = 128;
+				} else if(i11 > 256) {
+					i11 = 256;
 				}
 
 				int i12 = world0.rand.nextInt(class6.length);
@@ -198,11 +198,11 @@ public final class SpawnerAnimals {
 				for(i13 = i11; i13 > 2 && !world0.isBlockNormalCube(i9, i13 - 1, i10); --i13) {
 				}
 
-				while(!canCreatureTypeSpawnAtLocation(EnumCreatureType.monster, world0, i9, i13, i10) && i13 < i11 + 16 && i13 < 128) {
+				while(!canCreatureTypeSpawnAtLocation(EnumCreatureType.monster, world0, i9, i13, i10) && i13 < i11 + 16 && i13 < 256) {
 					++i13;
 				}
 
-				if(i13 < i11 + 16 && i13 < 128) {
+				if(i13 < i11 + 16 && i13 < 256) {
 					float f14 = (float)i9 + 0.5F;
 					float f15 = (float)i13;
 					float f16 = (float)i10 + 0.5F;

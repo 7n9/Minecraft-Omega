@@ -40,7 +40,7 @@ public class ItemBlock extends Item {
 
 		if(itemStack1.stackSize == 0) {
 			return false;
-		} else if(i5 == 127 && Block.blocksList[this.blockID].blockMaterial.isSolid()) {
+		} else if(i5 == 255 && Block.blocksList[this.blockID].blockMaterial.isSolid()) {
 			return false;
 		} else if(world3.canBlockBePlacedAt(this.blockID, i4, i5, i6, false, i7)) {
 			Block block8 = Block.blocksList[this.blockID];

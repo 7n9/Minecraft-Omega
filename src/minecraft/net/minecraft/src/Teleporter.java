@@ -28,7 +28,7 @@ public class Teleporter {
 			for(int i14 = i10 - s3; i14 <= i10 + s3; ++i14) {
 				double d15 = (double)i14 + 0.5D - entity2.posZ;
 
-				for(int i17 = 127; i17 >= 0; --i17) {
+				for(int i17 = 255; i17 >= 0; --i17) {
 					if(world1.getBlockId(i11, i17, i14) == Block.portal.blockID) {
 						while(world1.getBlockId(i11, i17 - 1, i14) == Block.portal.blockID) {
 							--i17;
@@ -109,7 +109,7 @@ public class Teleporter {
 				d18 = (double)i17 + 0.5D - entity2.posZ;
 
 				label293:
-				for(i20 = 127; i20 >= 0; --i20) {
+				for(i20 = 255; i20 >= 0; --i20) {
 					if(world1.isAirBlock(i14, i20, i17)) {
 						while(i20 > 0 && world1.isAirBlock(i14, i20 - 1, i17)) {
 							--i20;
@@ -159,7 +159,7 @@ public class Teleporter {
 					d18 = (double)i17 + 0.5D - entity2.posZ;
 
 					label231:
-					for(i20 = 127; i20 >= 0; --i20) {
+					for(i20 = 255; i20 >= 0; --i20) {
 						if(world1.isAirBlock(i14, i20, i17)) {
 							while(world1.isAirBlock(i14, i20 - 1, i17)) {
 								--i20;

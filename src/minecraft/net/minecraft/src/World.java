@@ -1102,7 +1102,7 @@ public class World implements IBlockAccess {
 
 	public int findTopSolidBlock(int i1, int i2) {
 		Chunk chunk3 = this.getChunkFromBlockCoords(i1, i2);
-		int i4 = 127;
+		int i4 = 255;
 		i1 &= 15;
 
 		for(i2 &= 15; i4 > 0; --i4) {
@@ -1884,7 +1884,7 @@ public class World implements IBlockAccess {
 				i6 = this.field_9437_g >> 2;
 				i7 = i6 & 15;
 				i8 = i6 >> 8 & 15;
-				i9 = i6 >> 16 & 127;
+				i9 = i6 >> 16 & 255;
 				i10 = chunk14.getBlockID(i7, i9, i8);
 				i7 += i3;
 				i8 += i4;
@@ -1934,8 +1934,8 @@ public class World implements IBlockAccess {
 				i7 = this.field_9437_g >> 2;
 				i8 = i7 & 15;
 				i9 = i7 >> 8 & 15;
-				i10 = i7 >> 16 & 127;
-				i15 = chunk14.blocks[i8 << 11 | i9 << 7 | i10] & 255;
+				i10 = i7 >> 16 & 255;
+				i15 = chunk14.blocks[i8 << 12 | i9 << 8 | i10] & 255;
 				if (Block.tickOnLoad[i15]) {
 					Block.blocksList[i15].updateTick(this, i8 + i3, i10, i9 + i4, this.rand);
 				}

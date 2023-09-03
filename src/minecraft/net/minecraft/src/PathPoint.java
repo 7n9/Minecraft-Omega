@@ -20,7 +20,7 @@ public class PathPoint {
 	}
 
 	public static int func_22329_a(int i0, int i1, int i2) {
-		return i1 & 255 | (i0 & 32767) << 8 | (i2 & 32767) << 24 | (i0 < 0 ? Integer.MIN_VALUE : 0) | (i2 < 0 ? 32768 : 0);
+		return i1 & 255 | (i0 & 65535) << 8 | (i2 & 65535) << 24 | (i0 < 0 ? Integer.MIN_VALUE : 0) | (i2 < 0 ? 65536 : 0);
 	}
 
 	public float distanceTo(PathPoint pathPoint1) {
