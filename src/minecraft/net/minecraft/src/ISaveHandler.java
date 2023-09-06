@@ -8,7 +8,7 @@ public interface ISaveHandler {
 
 	void func_22150_b();
 
-	IChunkLoader getChunkLoader(WorldProvider worldProvider1);
+	IChunkLoader getChunkLoader(WorldProvider worldProvider1, boolean z2);
 
 	void saveWorldInfoAndPlayer(WorldInfo worldInfo1, List list2);
 

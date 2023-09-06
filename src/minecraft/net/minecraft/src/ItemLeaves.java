@@ -8,7 +8,7 @@ public class ItemLeaves extends ItemBlock {
 	}
 
 	public int getPlacedBlockMetadata(int i1) {
-		return i1 | 8;
+		return i1 | 4;
 	}
 
 	public int getIconFromDamage(int i1) {

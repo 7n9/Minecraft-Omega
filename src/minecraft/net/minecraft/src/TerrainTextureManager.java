@@ -6,13 +6,15 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 public class TerrainTextureManager {
-	private float[] field_1181_a = new float[768];
-	private int[] field_1180_b = new int[5120];
-	private int[] field_1186_c = new int[5120];
-	private int[] field_1185_d = new int[5120];
-	private int[] field_1184_e = new int[5120];
-	private int[] field_1183_f = new int[34];
-	private int[] field_1182_g = new int[768];
+	private static final int IMG_WIDTH = IsoImageBuffer.CHUNK_SIZE * 2;
+	private static final int IMG_HEIGHT = IsoImageBuffer.CHUNK_SIZE * 2 + 128;
+	private float[] field_1181_a = new float[256 * 3];
+	private int[] field_1180_b = new int[IMG_WIDTH * IMG_HEIGHT];
+	private int[] field_1186_c = new int[IMG_WIDTH * IMG_HEIGHT];
+	private int[] field_1185_d = new int[IMG_WIDTH * IMG_HEIGHT];
+	private int[] field_1184_e = new int[IMG_WIDTH * IMG_HEIGHT];
+	private int[] field_1183_f = new int[IMG_WIDTH + 2];
+	private int[] field_1182_g = new int[256 * 3];
 
 	public TerrainTextureManager() {
 		try {
@@ -69,10 +71,10 @@ public class TerrainTextureManager {
 			isoImageBuffer1.field_1351_f = true;
 			isoImageBuffer1.field_1352_e = true;
 		} else {
-			int i3 = isoImageBuffer1.field_1354_c * 16;
-			int i4 = isoImageBuffer1.field_1353_d * 16;
-			int i5 = i3 + 16;
-			int i6 = i4 + 16;
+			int i3 = isoImageBuffer1.field_1354_c * IsoImageBuffer.CHUNK_SIZE;
+			int i4 = isoImageBuffer1.field_1353_d * IsoImageBuffer.CHUNK_SIZE;
+			int i5 = i3 + IsoImageBuffer.CHUNK_SIZE;
+			int i6 = i4 + IsoImageBuffer.CHUNK_SIZE;
 			Chunk chunk7 = world2.getChunkFromChunkCoords(isoImageBuffer1.field_1354_c, isoImageBuffer1.field_1353_d);
 			if(chunk7.func_21167_h()) {
 				isoImageBuffer1.field_1351_f = true;
@@ -81,7 +83,7 @@ public class TerrainTextureManager {
 				isoImageBuffer1.field_1351_f = false;
 				Arrays.fill(this.field_1186_c, 0);
 				Arrays.fill(this.field_1185_d, 0);
-				Arrays.fill(this.field_1183_f, 160);
+				Arrays.fill(this.field_1183_f, IMG_HEIGHT);
 
 				for(int i8 = i6 - 1; i8 >= i4; --i8) {
 					for(int i9 = i5 - 1; i9 >= i3; --i9) {
@@ -90,8 +92,8 @@ public class TerrainTextureManager {
 						int i12 = i10 + i11;
 						boolean z13 = true;
 
-						for(int i14 = 0; i14 < 128; ++i14) {
-							int i15 = i11 - i10 - i14 + 160 - 16;
+						for(int i14 = 0; i14 < world2.depth; ++i14) {
+							int i15 = i11 - i10 - i14 + IMG_HEIGHT - IsoImageBuffer.CHUNK_SIZE;
 							if(i15 < this.field_1183_f[i12] || i15 < this.field_1183_f[i12 + 1]) {
 								Block block16 = Block.blocksList[world2.getBlockId(i9, i14, i8)];
 								if(block16 == null) {
@@ -99,16 +101,16 @@ public class TerrainTextureManager {
 								} else if(block16.blockMaterial == Material.water) {
 									int i24 = world2.getBlockId(i9, i14 + 1, i8);
 									if(i24 == 0 || Block.blocksList[i24].blockMaterial != Material.water) {
-										float f25 = (float)i14 / 127.0F * 0.6F + 0.4F;
+										float f25 = (float)i14 / ((float)world2.depth - 1.0F) * 0.6F + 0.4F;
 										float f26 = world2.getLightBrightness(i9, i14 + 1, i8) * f25;
-										if(i15 >= 0 && i15 < 160) {
-											int i27 = i12 + i15 * 32;
-											if(i12 >= 0 && i12 <= 32 && this.field_1185_d[i27] <= i14) {
+										if(i15 >= 0 && i15 < IMG_HEIGHT) {
+											int i27 = i12 + i15 * IMG_WIDTH;
+											if(i12 >= 0 && i12 <= IMG_WIDTH && this.field_1185_d[i27] <= i14) {
 												this.field_1185_d[i27] = i14;
 												this.field_1184_e[i27] = (int)(f26 * 127.0F);
 											}
 
-											if(i12 >= -1 && i12 <= 31 && this.field_1185_d[i27 + 1] <= i14) {
+											if(i12 >= -1 && i12 <= IMG_WIDTH - 1 && this.field_1185_d[i27 + 1] <= i14) {
 												this.field_1185_d[i27 + 1] = i14;
 												this.field_1184_e[i27 + 1] = (int)(f26 * 127.0F);
 											}
@@ -127,13 +129,13 @@ public class TerrainTextureManager {
 										}
 									}
 
-									float f17 = (float)i14 / 127.0F * 0.6F + 0.4F;
+									float f17 = (float)i14 / ((float)world2.depth - 1.0F) * 0.6F + 0.4F;
 									int i18;
 									int i19;
 									float f20;
 									float f22;
-									if(i15 >= 0 && i15 < 160) {
-										i18 = i12 + i15 * 32;
+									if(i15 >= 0 && i15 < IMG_HEIGHT) {
+										i18 = i12 + i15 * IMG_WIDTH;
 										i19 = this.field_1182_g[block16.blockID * 3 + 0];
 										f20 = (world2.getLightBrightness(i9, i14 + 1, i8) * 0.8F + 0.2F) * f17;
 										if(i12 >= 0 && this.field_1186_c[i18] <= i14) {
@@ -141,7 +143,7 @@ public class TerrainTextureManager {
 											this.field_1180_b[i18] = 0xFF000000 | (int)(this.field_1181_a[i19 * 3 + 0] * f20) << 16 | (int)(this.field_1181_a[i19 * 3 + 1] * f20) << 8 | (int)(this.field_1181_a[i19 * 3 + 2] * f20);
 										}
 
-										if(i12 < 31) {
+										if(i12 < IMG_WIDTH - 1) {
 											f22 = f20 * 0.9F;
 											if(this.field_1186_c[i18 + 1] <= i14) {
 												this.field_1186_c[i18 + 1] = i14;
@@ -150,8 +152,8 @@ public class TerrainTextureManager {
 										}
 									}
 
-									if(i15 >= -1 && i15 < 159) {
-										i18 = i12 + (i15 + 1) * 32;
+									if(i15 >= -1 && i15 < IMG_HEIGHT - 1) {
+										i18 = i12 + (i15 + 1) * IMG_WIDTH;
 										i19 = this.field_1182_g[block16.blockID * 3 + 1];
 										f20 = world2.getLightBrightness(i9 - 1, i14, i8) * 0.8F + 0.2F;
 										int i21 = this.field_1182_g[block16.blockID * 3 + 2];
@@ -165,7 +167,7 @@ public class TerrainTextureManager {
 											}
 										}
 
-										if(i12 < 31) {
+										if(i12 < IMG_WIDTH - 1) {
 											f23 = f22 * 0.9F * f17 * 0.4F;
 											if(this.field_1186_c[i18 + 1] <= i14 - 1) {
 												this.field_1186_c[i18 + 1] = i14 - 1;
@@ -181,19 +183,19 @@ public class TerrainTextureManager {
 
 				this.func_800_a();
 				if(isoImageBuffer1.field_1348_a == null) {
-					isoImageBuffer1.field_1348_a = new BufferedImage(32, 160, 2);
+					isoImageBuffer1.field_1348_a = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, BufferedImage.TYPE_INT_ARGB);
 				}
 
-				isoImageBuffer1.field_1348_a.setRGB(0, 0, 32, 160, this.field_1180_b, 0, 32);
+				isoImageBuffer1.field_1348_a.setRGB(0, 0, IMG_WIDTH, IMG_HEIGHT, this.field_1180_b, 0, IMG_WIDTH);
 				isoImageBuffer1.field_1352_e = true;
 			}
 		}
 	}
 
 	private void func_800_a() {
-		for(int i1 = 0; i1 < 32; ++i1) {
-			for(int i2 = 0; i2 < 160; ++i2) {
-				int i3 = i1 + i2 * 32;
+		for(int i1 = 0; i1 < IMG_WIDTH; ++i1) {
+			for(int i2 = 0; i2 < IMG_HEIGHT; ++i2) {
+				int i3 = i1 + i2 * IMG_WIDTH;
 				if(this.field_1186_c[i3] == 0) {
 					this.field_1180_b[i3] = 0;
 				}

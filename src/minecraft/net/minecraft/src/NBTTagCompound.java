@@ -76,6 +76,10 @@ public class NBTTagCompound extends NBTBase {
 		this.tagMap.put(string1, (new NBTTagByteArray(b2)).setKey(string1));
 	}
 
+	public void setIntArray(String string1, int[] b2) {
+		this.tagMap.put(string1, (new NBTTagIntArray(b2)).setKey(string1));
+	}
+
 	public void setCompoundTag(String string1, NBTTagCompound nBTTagCompound2) {
 		this.tagMap.put(string1, nBTTagCompound2.setKey(string1));
 	}
@@ -118,6 +122,10 @@ public class NBTTagCompound extends NBTBase {
 
 	public byte[] getByteArray(String string1) {
 		return !this.tagMap.containsKey(string1) ? new byte[0] : ((NBTTagByteArray)this.tagMap.get(string1)).byteArray;
+	}
+
+	public int[] getIntArray(String string1) {
+		return !this.tagMap.containsKey(string1) ? new int[0] : ((NBTTagIntArray)this.tagMap.get(string1)).getIntArray();
 	}
 
 	public NBTTagCompound getCompoundTag(String string1) {

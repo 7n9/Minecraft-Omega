@@ -3,16 +3,16 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class MapGenCavesHell extends MapGenBase {
-	protected void func_4129_a(int i1, int i2, byte[] b3, double d4, double d6, double d8) {
-		this.func_4128_a(i1, i2, b3, d4, d6, d8, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);
+	protected void func_4129_a(long seed, int i1, int i2, byte[] b3, double d4, double d6, double d8) {
+		this.func_4128_a(seed, i1, i2, b3, d4, d6, d8, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);
 	}
 
-	protected void func_4128_a(int i1, int i2, byte[] b3, double d4, double d6, double d8, float f10, float f11, float f12, int i13, int i14, double d15) {
+	protected void func_4128_a(long seed, int i1, int i2, byte[] b3, double d4, double d6, double d8, float f10, float f11, float f12, int i13, int i14, double d15) {
 		double d17 = (double)(i1 * 16 + 8);
 		double d19 = (double)(i2 * 16 + 8);
 		float f21 = 0.0F;
 		float f22 = 0.0F;
-		Random random23 = new Random(this.rand.nextLong());
+		Random random23 = new Random(seed);
 		if(i14 <= 0) {
 			int i24 = this.field_1306_a * 16 - 16;
 			i14 = i24 - random23.nextInt(i24 / 4);
@@ -47,8 +47,8 @@ public class MapGenCavesHell extends MapGenBase {
 			f22 += (random23.nextFloat() - random23.nextFloat()) * random23.nextFloat() * 2.0F;
 			f21 += (random23.nextFloat() - random23.nextFloat()) * random23.nextFloat() * 4.0F;
 			if(!z51 && i13 == i25 && f10 > 1.0F) {
-				this.func_4128_a(i1, i2, b3, d4, d6, d8, random23.nextFloat() * 0.5F + 0.5F, f11 - (float)Math.PI / 2F, f12 / 3.0F, i13, i14, 1.0D);
-				this.func_4128_a(i1, i2, b3, d4, d6, d8, random23.nextFloat() * 0.5F + 0.5F, f11 + (float)Math.PI / 2F, f12 / 3.0F, i13, i14, 1.0D);
+				this.func_4128_a(random23.nextLong(), i1, i2, b3, d4, d6, d8, random23.nextFloat() * 0.5F + 0.5F, f11 - (float)Math.PI / 2F, f12 / 3.0F, i13, i14, 1.0D);
+				this.func_4128_a(random23.nextLong(), i1, i2, b3, d4, d6, d8, random23.nextFloat() * 0.5F + 0.5F, f11 + (float)Math.PI / 2F, f12 / 3.0F, i13, i14, 1.0D);
 				return;
 			}
 
@@ -80,8 +80,8 @@ public class MapGenCavesHell extends MapGenBase {
 						i53 = 1;
 					}
 
-					if(i36 > 120) {
-						i36 = 120;
+					if(i36 > this.worldObj.depth - 8) {
+						i36 = this.worldObj.depth - 8;
 					}
 
 					if(i54 < 0) {
@@ -99,8 +99,8 @@ public class MapGenCavesHell extends MapGenBase {
 					for(i40 = i52; !z55 && i40 < i34; ++i40) {
 						for(int i41 = i54; !z55 && i41 < i38; ++i41) {
 							for(int i42 = i36 + 1; !z55 && i42 >= i53 - 1; --i42) {
-								i43 = (i40 * 16 + i41) * 128 + i42;
-								if(i42 >= 0 && i42 < 128) {
+								i43 = (i40 * 16 + i41) * this.worldObj.depth + i42;
+								if(i42 >= 0 && i42 < this.worldObj.depth) {
 									if(b3[i43] == Block.lavaMoving.blockID || b3[i43] == Block.lavaStill.blockID) {
 										z55 = true;
 									}
@@ -119,7 +119,7 @@ public class MapGenCavesHell extends MapGenBase {
 
 							for(i43 = i54; i43 < i38; ++i43) {
 								double d44 = ((double)(i43 + i2 * 16) + 0.5D - d8) / d27;
-								int i46 = (i40 * 16 + i43) * 128 + i36;
+								int i46 = (i40 * 16 + i43) * this.worldObj.depth + i36;
 
 								for(int i47 = i36 - 1; i47 >= i53; --i47) {
 									double d48 = ((double)i47 + 0.5D - d6) / d29;
@@ -153,11 +153,11 @@ public class MapGenCavesHell extends MapGenBase {
 
 		for(int i8 = 0; i8 < i7; ++i8) {
 			double d9 = (double)(i2 * 16 + this.rand.nextInt(16));
-			double d11 = (double)this.rand.nextInt(128);
+			double d11 = (double)this.rand.nextInt(world1.depth);
 			double d13 = (double)(i3 * 16 + this.rand.nextInt(16));
 			int i15 = 1;
 			if(this.rand.nextInt(4) == 0) {
-				this.func_4129_a(i4, i5, b6, d9, d11, d13);
+				this.func_4129_a(this.rand.nextLong(), i4, i5, b6, d9, d11, d13);
 				i15 += this.rand.nextInt(4);
 			}
 
@@ -165,7 +165,7 @@ public class MapGenCavesHell extends MapGenBase {
 				float f17 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
 				float f18 = (this.rand.nextFloat() - 0.5F) * 2.0F / 8.0F;
 				float f19 = this.rand.nextFloat() * 2.0F + this.rand.nextFloat();
-				this.func_4128_a(i4, i5, b6, d9, d11, d13, f19 * 2.0F, f17, f18, 0, 0, 0.5D);
+				this.func_4128_a(this.rand.nextLong(), i4, i5, b6, d9, d11, d13, f19 * 2.0F, f17, f18, 0, 0, 0.5D);
 			}
 		}
 

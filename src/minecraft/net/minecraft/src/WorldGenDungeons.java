@@ -76,19 +76,21 @@ public class WorldGenDungeons extends WorldGenerator {
 						if(i15 == 1) {
 							world1.setBlockWithNotify(i12, i4, i14, Block.chest.blockID);
 							TileEntityChest tileEntityChest16 = (TileEntityChest)world1.getBlockTileEntity(i12, i4, i14);
-							int i17 = 0;
+							if(tileEntityChest16 != null) {
+								int i17 = 0;
 
-							while(true) {
-								if(i17 >= 8) {
-									continue label110;
+								while(true) {
+									if(i17 >= 8) {
+										continue label110;
+									}
+
+									ItemStack itemStack18 = this.pickCheckLootItem(random2);
+									if(itemStack18 != null) {
+										tileEntityChest16.setInventorySlotContents(random2.nextInt(tileEntityChest16.getSizeInventory()), itemStack18);
+									}
+
+									++i17;
 								}
-
-								ItemStack itemStack18 = this.pickCheckLootItem(random2);
-								if(itemStack18 != null) {
-									tileEntityChest16.setInventorySlotContents(random2.nextInt(tileEntityChest16.getSizeInventory()), itemStack18);
-								}
-
-								++i17;
 							}
 						}
 					}
@@ -97,7 +99,12 @@ public class WorldGenDungeons extends WorldGenerator {
 
 			world1.setBlockWithNotify(i3, i4, i5, Block.mobSpawner.blockID);
 			TileEntityMobSpawner tileEntityMobSpawner19 = (TileEntityMobSpawner)world1.getBlockTileEntity(i3, i4, i5);
-			tileEntityMobSpawner19.setMobID(this.pickMobSpawner(random2));
+			if(tileEntityMobSpawner19 != null) {
+				tileEntityMobSpawner19.setMobID(this.pickMobSpawner(random2));
+			} else {
+				System.err.println("Failed to fetch mob spawner entity at (" + i3 + ", " + i4 + ", " + i5 + ")");
+			}
+
 			return true;
 		} else {
 			return false;

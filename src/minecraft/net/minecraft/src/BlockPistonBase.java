@@ -240,7 +240,7 @@ public class BlockPistonBase extends Block {
 
 		while(true) {
 			if(i8 < 13) {
-				if(i6 <= 0 || i6 >= 127) {
+				if(i6 <= 0 || i6 >= world0.depth - 1) {
 					return false;
 				}
 
@@ -276,7 +276,7 @@ public class BlockPistonBase extends Block {
 
 		int i10;
 		while(i9 < 13) {
-			if(i7 > 0 && i7 < 127) {
+			if(i7 > 0 && i7 < world1.depth - 1) {
 				i10 = world1.getBlockId(i6, i7, i8);
 				if(i10 != 0) {
 					if(!canPushBlock(i10, world1, i6, i7, i8, true)) {

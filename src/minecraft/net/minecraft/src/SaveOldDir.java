@@ -8,10 +8,15 @@ public class SaveOldDir extends SaveHandler {
 		super(file1, string2, z3);
 	}
 
-	public IChunkLoader getChunkLoader(WorldProvider worldProvider1) {
+	public IChunkLoader getChunkLoader(WorldProvider worldProvider1, boolean z2) {
 		File file2 = this.getSaveDirectory();
+		File file3;
 		if(worldProvider1 instanceof WorldProviderHell) {
-			File file3 = new File(file2, "DIM-1");
+			file3 = new File(file2, "DIM-1");
+			file3.mkdirs();
+			return new McRegionChunkLoader(file3);
+		} else if(worldProvider1 instanceof WorldProviderSky) {
+			file3 = new File(file2, "DIM1");
 			file3.mkdirs();
 			return new McRegionChunkLoader(file3);
 		} else {

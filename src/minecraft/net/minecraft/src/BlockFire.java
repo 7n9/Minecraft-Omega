@@ -21,6 +21,10 @@ public class BlockFire extends Block {
 		this.setBurnRate(Block.tnt.blockID, 15, 100);
 		this.setBurnRate(Block.tallGrass.blockID, 60, 100);
 		this.setBurnRate(Block.cloth.blockID, 30, 60);
+		this.setBurnRate(Block.plantYellow.blockID, 60, 100);
+		this.setBurnRate(Block.plantRed.blockID, 60, 100);
+		this.setBurnRate(Block.deadBush.blockID, 60, 100);
+		this.setBurnRate(Block.sapling.blockID, 60, 100);
 	}
 
 	private void setBurnRate(int i1, int i2, int i3) {
@@ -49,11 +53,15 @@ public class BlockFire extends Block {
 	}
 
 	public int tickRate() {
-		return 40;
+		return 10;
 	}
 
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
 		boolean z6 = world1.getBlockId(i2, i3 - 1, i4) == Block.netherrack.blockID;
+		if(world1.worldProvider instanceof WorldProviderSky && world1.getBlockId(i2, i3 - 1, i4) == Block.bedrock.blockID) {
+			z6 = true;
+		}
+
 		if(!this.canPlaceBlockAt(world1, i2, i3, i4)) {
 			world1.setBlockWithNotify(i2, i3, i4, 0);
 		}
@@ -63,10 +71,10 @@ public class BlockFire extends Block {
 		} else {
 			int i7 = world1.getBlockMetadata(i2, i3, i4);
 			if(i7 < 15) {
-				world1.setBlockMetadata(i2, i3, i4, i7 + random5.nextInt(3) / 2);
+				world1.setBlockMetadataWithNotify(i2, i3, i4, i7 + 1);
+				world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate());
 			}
 
-			world1.scheduleBlockUpdate(i2, i3, i4, this.blockID, this.tickRate());
 			if(!z6 && !this.func_263_h(world1, i2, i3, i4)) {
 				if(!world1.isBlockNormalCube(i2, i3 - 1, i4) || i7 > 3) {
 					world1.setBlockWithNotify(i2, i3, i4, 0);
@@ -75,32 +83,35 @@ public class BlockFire extends Block {
 			} else if(!z6 && !this.canBlockCatchFire(world1, i2, i3 - 1, i4) && i7 == 15 && random5.nextInt(4) == 0) {
 				world1.setBlockWithNotify(i2, i3, i4, 0);
 			} else {
-				this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 300, random5, i7);
-				this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 300, random5, i7);
-				this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 250, random5, i7);
-				this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 250, random5, i7);
-				this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 300, random5, i7);
-				this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 300, random5, i7);
+				if(i7 % 2 == 0 && i7 > 2) {
+					world1.getWorldChunkManager().func_4069_a(i2, i4, 1, 1);
+					double d4 = world1.getWorldChunkManager().temperature[0];
+					double d6 = world1.getWorldChunkManager().humidity[0] * d4;
+					boolean z8 = d6 > 0.85D;
+					byte b9 = 0;
+					if(z8) {
+						b9 = -50;
+					}
 
-				for(int i8 = i2 - 1; i8 <= i2 + 1; ++i8) {
-					for(int i9 = i4 - 1; i9 <= i4 + 1; ++i9) {
-						for(int i10 = i3 - 1; i10 <= i3 + 4; ++i10) {
-							if(i8 != i2 || i10 != i3 || i9 != i4) {
-								int i11 = 100;
-								if(i10 > i3 + 1) {
-									i11 += (i10 - (i3 + 1)) * 100;
-								}
+					this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 300 + b9, random5, 4);
+					this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 300 + b9, random5, 5);
+					this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 200 + b9, random5, 1);
+					this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 250 + b9, random5, 0);
+					this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 300 + b9, random5, 3);
+					this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 300 + b9, random5, 2);
 
-								int i12 = this.getChanceOfNeighborsEncouragingFire(world1, i8, i10, i9);
-								if(i12 > 0) {
-									int i13 = (i12 + 40) / (i7 + 30);
-									if(i13 > 0 && random5.nextInt(i11) <= i13 && (!world1.func_27161_C() || !world1.canBlockBeRainedOn(i8, i10, i9)) && !world1.canBlockBeRainedOn(i8 - 1, i10, i4) && !world1.canBlockBeRainedOn(i8 + 1, i10, i9) && !world1.canBlockBeRainedOn(i8, i10, i9 - 1) && !world1.canBlockBeRainedOn(i8, i10, i9 + 1)) {
-										int i14 = i7 + random5.nextInt(5) / 4;
-										if(i14 > 15) {
-											i14 = 15;
-										}
+					for(int i8 = i2 - 1; i8 <= i2 + 1; ++i8) {
+						for(int i9 = i4 - 1; i9 <= i4 + 1; ++i9) {
+							for(int i10 = i3 - 1; i10 <= i3 + 4; ++i10) {
+								if(i8 != i2 || i10 != i3 || i9 != i4) {
+									int i11 = 100;
+									if(i10 > i3 + 1) {
+										i11 += (i10 - (i3 + 1)) * 100;
+									}
 
-										world1.setBlockAndMetadataWithNotify(i8, i10, i9, this.blockID, i14);
+									int i12 = this.getChanceOfNeighborsEncouragingFire(world1, i8, i10, i9);
+									if(i12 > 0 && random5.nextInt(i11) <= i12 && (!world1.func_27161_C() || !world1.canBlockBeRainedOn(i8, i10, i9)) && !world1.canBlockBeRainedOn(i8 - 1, i10, i4) && !world1.canBlockBeRainedOn(i8 + 1, i10, i9) && !world1.canBlockBeRainedOn(i8, i10, i9 - 1) && !world1.canBlockBeRainedOn(i8, i10, i9 + 1)) {
+										world1.setBlockWithNotify(i8, i10, i9, this.blockID);
 									}
 								}
 							}
@@ -108,21 +119,52 @@ public class BlockFire extends Block {
 					}
 				}
 
+				z6 = world1.getBlockId(i2, i3 - 1, i4) == Block.wood.blockID;
+				if(z6) {
+					for(int face = 1; z6 && face <= 5; ++face) {
+						int x = i2;
+						int y = i3 - 1;
+						int z = i4;
+						if(face == 0) {
+							++y;
+						} else if(face == 1) {
+							--y;
+						} else if(face == 2) {
+							++z;
+						} else if(face == 3) {
+							--z;
+						} else if(face == 4) {
+							++x;
+						} else if(face == 5) {
+							--x;
+						}
+
+						int id = world1.getBlockId(x, y, z);
+						if(Block.blocksList[id] == null || !Block.blocksList[id].isOpaqueCube() || !Block.blocksList[id].renderAsNormalBlock() || this.chanceToEncourageFire[id] > 0) {
+							z6 = false;
+						}
+					}
+				}
+
+				if(!z6 && i7 == 15) {
+					this.tryToCatchBlockOnFire(world1, i2 + 1, i3, i4, 1, random5, 4);
+					this.tryToCatchBlockOnFire(world1, i2 - 1, i3, i4, 1, random5, 5);
+					this.tryToCatchBlockOnFire(world1, i2, i3 - 1, i4, 1, random5, 1);
+					this.tryToCatchBlockOnFire(world1, i2, i3 + 1, i4, 1, random5, 0);
+					this.tryToCatchBlockOnFire(world1, i2, i3, i4 - 1, 1, random5, 3);
+					this.tryToCatchBlockOnFire(world1, i2, i3, i4 + 1, 1, random5, 2);
+				}
 			}
 		}
+
 	}
 
 	private void tryToCatchBlockOnFire(World world1, int i2, int i3, int i4, int i5, Random random6, int i7) {
 		int i8 = this.abilityToCatchFire[world1.getBlockId(i2, i3, i4)];
 		if(random6.nextInt(i5) < i8) {
 			boolean z9 = world1.getBlockId(i2, i3, i4) == Block.tnt.blockID;
-			if(random6.nextInt(i7 + 10) < 5 && !world1.canBlockBeRainedOn(i2, i3, i4)) {
-				int i10 = i7 + random6.nextInt(5) / 4;
-				if(i10 > 15) {
-					i10 = 15;
-				}
-
-				world1.setBlockAndMetadataWithNotify(i2, i3, i4, this.blockID, i10);
+			if(random6.nextInt(2) == 0 && !world1.canBlockBeRainedOn(i2, i3, i4)) {
+				world1.setBlockWithNotify(i2, i3, i4, this.blockID);
 			} else {
 				world1.setBlockWithNotify(i2, i3, i4, 0);
 			}
@@ -177,7 +219,7 @@ public class BlockFire extends Block {
 	}
 
 	public void onBlockAdded(World world1, int i2, int i3, int i4) {
-		if(world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || !Block.portal.tryToCreatePortal(world1, i2, i3, i4)) {
+		if(world1.worldProvider.worldType > 0 || world1.getBlockId(i2, i3 - 1, i4) != Block.obsidian.blockID || !Block.portal.tryToCreatePortal(world1, i2, i3, i4)) {
 			if(!world1.isBlockNormalCube(i2, i3 - 1, i4) && !this.func_263_h(world1, i2, i3, i4)) {
 				world1.setBlockWithNotify(i2, i3, i4, 0);
 			} else {

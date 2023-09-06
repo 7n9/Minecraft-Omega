@@ -11,7 +11,7 @@ public class SaveHandlerMP implements ISaveHandler {
 	public void func_22150_b() {
 	}
 
-	public IChunkLoader getChunkLoader(WorldProvider worldProvider1) {
+	public IChunkLoader getChunkLoader(WorldProvider worldProvider1, boolean z2) {
 		return null;
 	}
 

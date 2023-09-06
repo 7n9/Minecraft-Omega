@@ -102,7 +102,7 @@ public abstract class WorldProvider {
 	}
 
 	public float getCloudHeight() {
-		return 108.0F;
+		return (float)(this.worldObj.depth - 8);
 	}
 
 	public boolean func_28112_c() {

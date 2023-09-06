@@ -34,13 +34,13 @@ public class BlockSapling extends BlockFlower {
 		world1.setBlock(i2, i3, i4, 0);
 		Object object7 = null;
 		if(i6 == 1) {
-			object7 = new WorldGenTaiga2();
+			object7 = new WorldGenTaiga2(true);
 		} else if(i6 == 2) {
-			object7 = new WorldGenForest();
+			object7 = new WorldGenForest(true);
 		} else {
-			object7 = new WorldGenTrees();
+			object7 = new WorldGenTrees(true);
 			if(random5.nextInt(10) == 0) {
-				object7 = new WorldGenBigTree();
+				object7 = new WorldGenBigTree(true);
 			}
 		}
 

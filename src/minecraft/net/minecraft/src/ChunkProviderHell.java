@@ -39,13 +39,13 @@ public class ChunkProviderHell implements IChunkProvider {
 		byte b4 = 4;
 		byte b5 = 32;
 		int i6 = b4 + 1;
-		byte b7 = 17;
+		int b7 = this.worldObj.depth / 8 + 1;
 		int i8 = b4 + 1;
 		this.field_4163_o = this.func_4057_a(this.field_4163_o, i1 * b4, 0, i2 * b4, i6, b7, i8);
 
 		for(int i9 = 0; i9 < b4; ++i9) {
 			for(int i10 = 0; i10 < b4; ++i10) {
-				for(int i11 = 0; i11 < 16; ++i11) {
+				for(int i11 = 0; i11 < this.worldObj.depth / 8; ++i11) {
 					double d12 = 0.125D;
 					double d14 = this.field_4163_o[((i9 + 0) * i8 + i10 + 0) * b7 + i11 + 0];
 					double d16 = this.field_4163_o[((i9 + 0) * i8 + i10 + 1) * b7 + i11 + 0];
@@ -64,8 +64,8 @@ public class ChunkProviderHell implements IChunkProvider {
 						double d39 = (d20 - d16) * d31;
 
 						for(int i41 = 0; i41 < 4; ++i41) {
-							int i42 = i41 + i9 * 4 << 11 | 0 + i10 * 4 << 7 | i11 * 8 + i30;
-							short s43 = 128;
+							int i42 = i41 + i9 * 4 << this.worldObj.depthBitsPlusFour | 0 + i10 * 4 << this.worldObj.depthBits | i11 * 8 + i30;
+							int s43 = 1 << this.worldObj.depthBits;
 							double d44 = 0.25D;
 							double d46 = d33;
 							double d48 = (d35 - d33) * d44;
@@ -101,7 +101,7 @@ public class ChunkProviderHell implements IChunkProvider {
 	}
 
 	public void func_4058_b(int i1, int i2, byte[] b3) {
-		byte b4 = 64;
+		int b4 = this.worldObj.depth - 64;
 		double d5 = 8.0D / 256D;
 		this.field_4162_p = this.field_4166_l.generateNoiseOctaves(this.field_4162_p, (double)(i1 * 16), (double)(i2 * 16), 0.0D, 16, 16, 1, d5, d5, 1.0D);
 		this.field_4161_q = this.field_4166_l.generateNoiseOctaves(this.field_4161_q, (double)(i1 * 16), 109.0134D, (double)(i2 * 16), 16, 1, 16, d5, 1.0D, d5);
@@ -116,9 +116,9 @@ public class ChunkProviderHell implements IChunkProvider {
 				byte b13 = (byte)Block.netherrack.blockID;
 				byte b14 = (byte)Block.netherrack.blockID;
 
-				for(int i15 = 127; i15 >= 0; --i15) {
-					int i16 = (i8 * 16 + i7) * 128 + i15;
-					if(i15 >= 127 - this.hellRNG.nextInt(5)) {
+				for(int i15 = this.worldObj.maxHeight; i15 >= 0; --i15) {
+					int i16 = (i8 * 16 + i7) * this.worldObj.depth + i15;
+					if(i15 >= this.worldObj.maxHeight - this.hellRNG.nextInt(5)) {
 						b3[i16] = (byte)Block.bedrock.blockID;
 					} else if(i15 <= 0 + this.hellRNG.nextInt(5)) {
 						b3[i16] = (byte)Block.bedrock.blockID;
@@ -179,7 +179,7 @@ public class ChunkProviderHell implements IChunkProvider {
 
 	public Chunk provideChunk(int i1, int i2) {
 		this.hellRNG.setSeed((long)i1 * 341873128712L + (long)i2 * 132897987541L);
-		byte[] b3 = new byte[32768];
+		byte[] b3 = new byte[16 * this.worldObj.depth * 16];
 		this.func_4059_a(i1, i2, b3);
 		this.func_4058_b(i1, i2, b3);
 		this.field_4159_s.func_867_a(this, this.worldObj, i1, i2, b3);
@@ -310,7 +310,7 @@ public class ChunkProviderHell implements IChunkProvider {
 		int i9;
 		for(i6 = 0; i6 < 8; ++i6) {
 			i7 = i4 + this.hellRNG.nextInt(16) + 8;
-			i8 = this.hellRNG.nextInt(120) + 4;
+			i8 = this.hellRNG.nextInt(this.worldObj.depth - 8) + 4;
 			i9 = i5 + this.hellRNG.nextInt(16) + 8;
 			(new WorldGenHellLava(Block.lavaMoving.blockID)).generate(this.worldObj, this.hellRNG, i7, i8, i9);
 		}
@@ -320,7 +320,7 @@ public class ChunkProviderHell implements IChunkProvider {
 		int i10;
 		for(i7 = 0; i7 < i6; ++i7) {
 			i8 = i4 + this.hellRNG.nextInt(16) + 8;
-			i9 = this.hellRNG.nextInt(120) + 4;
+			i9 = this.hellRNG.nextInt(this.worldObj.depth - 8) + 4;
 			i10 = i5 + this.hellRNG.nextInt(16) + 8;
 			(new WorldGenFire()).generate(this.worldObj, this.hellRNG, i8, i9, i10);
 		}
@@ -329,28 +329,28 @@ public class ChunkProviderHell implements IChunkProvider {
 
 		for(i7 = 0; i7 < i6; ++i7) {
 			i8 = i4 + this.hellRNG.nextInt(16) + 8;
-			i9 = this.hellRNG.nextInt(120) + 4;
+			i9 = this.hellRNG.nextInt(this.worldObj.depth - 8) + 4;
 			i10 = i5 + this.hellRNG.nextInt(16) + 8;
 			(new WorldGenGlowStone1()).generate(this.worldObj, this.hellRNG, i8, i9, i10);
 		}
 
 		for(i7 = 0; i7 < 10; ++i7) {
 			i8 = i4 + this.hellRNG.nextInt(16) + 8;
-			i9 = this.hellRNG.nextInt(128);
+			i9 = this.hellRNG.nextInt(this.worldObj.depth);
 			i10 = i5 + this.hellRNG.nextInt(16) + 8;
 			(new WorldGenGlowStone2()).generate(this.worldObj, this.hellRNG, i8, i9, i10);
 		}
 
 		if(this.hellRNG.nextInt(1) == 0) {
 			i7 = i4 + this.hellRNG.nextInt(16) + 8;
-			i8 = this.hellRNG.nextInt(128);
+			i8 = this.hellRNG.nextInt(this.worldObj.depth);
 			i9 = i5 + this.hellRNG.nextInt(16) + 8;
 			(new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.hellRNG, i7, i8, i9);
 		}
 
 		if(this.hellRNG.nextInt(1) == 0) {
 			i7 = i4 + this.hellRNG.nextInt(16) + 8;
-			i8 = this.hellRNG.nextInt(128);
+			i8 = this.hellRNG.nextInt(this.worldObj.depth);
 			i9 = i5 + this.hellRNG.nextInt(16) + 8;
 			(new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, i7, i8, i9);
 		}

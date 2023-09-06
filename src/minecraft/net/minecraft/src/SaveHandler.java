@@ -68,13 +68,18 @@ public class SaveHandler implements ISaveHandler {
 		}
 	}
 
-	public IChunkLoader getChunkLoader(WorldProvider worldProvider1) {
+	public IChunkLoader getChunkLoader(WorldProvider worldProvider1, boolean z2) {
+		File file2;
 		if(worldProvider1 instanceof WorldProviderHell) {
-			File file2 = new File(this.saveDirectory, "DIM-1");
+			file2 = new File(this.saveDirectory, "DIM-1");
 			file2.mkdirs();
-			return new ChunkLoader(file2, true);
+			return new ChunkLoader(file2, z2);
+		} else if(worldProvider1 instanceof WorldProviderSky) {
+			file2 = new File(this.saveDirectory, "DIM1");
+			file2.mkdirs();
+			return new ChunkLoader(file2, z2);
 		} else {
-			return new ChunkLoader(this.saveDirectory, true);
+			return new ChunkLoader(this.saveDirectory, z2);
 		}
 	}
 

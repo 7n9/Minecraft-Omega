@@ -114,7 +114,7 @@ public class ChunkLoader implements IChunkLoader {
 		nBTTagCompound2.setByteArray("Data", chunk0.data.data);
 		nBTTagCompound2.setByteArray("SkyLight", chunk0.skylightMap.data);
 		nBTTagCompound2.setByteArray("BlockLight", chunk0.blocklightMap.data);
-		nBTTagCompound2.setByteArray("HeightMap", chunk0.heightMap);
+		nBTTagCompound2.setIntArray("HeightMap", chunk0.heightMap);
 		nBTTagCompound2.setBoolean("TerrainPopulated", chunk0.isTerrainPopulated);
 		chunk0.hasEntities = false;
 		NBTTagList nBTTagList3 = new NBTTagList();
@@ -153,23 +153,23 @@ public class ChunkLoader implements IChunkLoader {
 		int i3 = nBTTagCompound1.getInteger("zPos");
 		Chunk chunk4 = new Chunk(world0, i2, i3);
 		chunk4.blocks = nBTTagCompound1.getByteArray("Blocks");
-		chunk4.data = new NibbleArray(nBTTagCompound1.getByteArray("Data"));
-		chunk4.skylightMap = new NibbleArray(nBTTagCompound1.getByteArray("SkyLight"));
-		chunk4.blocklightMap = new NibbleArray(nBTTagCompound1.getByteArray("BlockLight"));
-		chunk4.heightMap = nBTTagCompound1.getByteArray("HeightMap");
+		chunk4.data = new NibbleArray(nBTTagCompound1.getByteArray("Data"), world0.depthBits);
+		chunk4.skylightMap = new NibbleArray(nBTTagCompound1.getByteArray("SkyLight"), world0.depthBits);
+		chunk4.blocklightMap = new NibbleArray(nBTTagCompound1.getByteArray("BlockLight"), world0.depthBits);
+		chunk4.heightMap = nBTTagCompound1.getIntArray("HeightMap");
 		chunk4.isTerrainPopulated = nBTTagCompound1.getBoolean("TerrainPopulated");
 		if(!chunk4.data.isValid()) {
-			chunk4.data = new NibbleArray(chunk4.blocks.length);
+			chunk4.data = new NibbleArray(chunk4.blocks.length, world0.depthBits);
 		}
 
 		if(chunk4.heightMap == null || !chunk4.skylightMap.isValid()) {
-			chunk4.heightMap = new byte[256];
-			chunk4.skylightMap = new NibbleArray(chunk4.blocks.length);
+			chunk4.heightMap = new int[256];
+			chunk4.skylightMap = new NibbleArray(chunk4.blocks.length, world0.depthBits);
 			chunk4.func_1024_c();
 		}
 
 		if(!chunk4.blocklightMap.isValid()) {
-			chunk4.blocklightMap = new NibbleArray(chunk4.blocks.length);
+			chunk4.blocklightMap = new NibbleArray(chunk4.blocks.length, world0.depthBits);
 			chunk4.func_1014_a();
 		}
 

@@ -9,7 +9,7 @@ public class WorldGenTaiga1 extends WorldGenerator {
 		int i8 = i6 - i7;
 		int i9 = 1 + random2.nextInt(i8 + 1);
 		boolean z10 = true;
-		if(i4 >= 1 && i4 + i6 + 1 <= 128) {
+		if(i4 >= 1 && i4 + i6 + 1 <= world1.depth) {
 			int i11;
 			int i13;
 			int i14;
@@ -25,7 +25,7 @@ public class WorldGenTaiga1 extends WorldGenerator {
 
 				for(i13 = i3 - i18; i13 <= i3 + i18 && z10; ++i13) {
 					for(i14 = i5 - i18; i14 <= i5 + i18 && z10; ++i14) {
-						if(i11 >= 0 && i11 < 128) {
+						if(i11 >= 0 && i11 < world1.depth) {
 							i15 = world1.getBlockId(i13, i11, i14);
 							if(i15 != 0 && i15 != Block.leaves.blockID) {
 								z10 = false;
@@ -41,8 +41,8 @@ public class WorldGenTaiga1 extends WorldGenerator {
 				return false;
 			} else {
 				i11 = world1.getBlockId(i3, i4 - 1, i5);
-				if((i11 == Block.grass.blockID || i11 == Block.dirt.blockID) && i4 < 128 - i6 - 1) {
-					world1.setBlock(i3, i4 - 1, i5, Block.dirt.blockID);
+				if((i11 == Block.grass.blockID || i11 == Block.dirt.blockID) && i4 < world1.depth - i6 - 1) {
+					this.setBlock(world1, i3, i4 - 1, i5, Block.dirt.blockID);
 					i18 = 0;
 
 					for(i13 = i4 + i6; i13 >= i4 + i7; --i13) {
@@ -52,7 +52,7 @@ public class WorldGenTaiga1 extends WorldGenerator {
 							for(int i16 = i5 - i18; i16 <= i5 + i18; ++i16) {
 								int i17 = i16 - i5;
 								if((Math.abs(i15) != i18 || Math.abs(i17) != i18 || i18 <= 0) && !Block.opaqueCubeLookup[world1.getBlockId(i14, i13, i16)]) {
-									world1.setBlockAndMetadata(i14, i13, i16, Block.leaves.blockID, 1);
+									this.setBlockAndMetadata(world1, i14, i13, i16, Block.leaves.blockID, 1);
 								}
 							}
 						}
@@ -67,7 +67,7 @@ public class WorldGenTaiga1 extends WorldGenerator {
 					for(i13 = 0; i13 < i6 - 1; ++i13) {
 						i14 = world1.getBlockId(i3, i4 + i13, i5);
 						if(i14 == 0 || i14 == Block.leaves.blockID) {
-							world1.setBlockAndMetadata(i3, i4 + i13, i5, Block.wood.blockID, 1);
+							this.setBlockAndMetadata(world1, i3, i4 + i13, i5, Block.wood.blockID, 1);
 						}
 					}
 

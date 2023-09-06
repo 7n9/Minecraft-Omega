@@ -139,13 +139,13 @@ public class EntityRenderer {
 	private float getFOVModifier(float f1) {
 		EntityLiving entityLiving2 = this.mc.renderViewEntity;
 		float f3 = 70.0F;
-		if(entityLiving2.isInsideOfMaterial(Material.water)) {
-			f3 = 60.0F;
-		}
-
 		if(entityLiving2.health <= 0) {
 			float f4 = (float)entityLiving2.deathTime + f1;
 			f3 /= (1.0F - 500.0F / (f4 + 500.0F)) * 2.0F + 1.0F;
+		}
+
+		if(entityLiving2.isInsideOfMaterial(Material.water)) {
+			f3 *= 0.857143F;
 		}
 
 		return f3 + this.field_22221_y + (this.field_22222_x - this.field_22221_y) * f1;
@@ -218,6 +218,11 @@ public class EntityRenderer {
 			} else {
 				f28 = entityLiving2.rotationYaw;
 				f13 = entityLiving2.rotationPitch;
+				if(this.mc.gameSettings.hideGUI) {
+					f13 += 180.0F;
+					d27 += 2.0D;
+				}
+
 				double d14 = (double)(-MathHelper.sin(f28 / 180.0F * (float)Math.PI) * MathHelper.cos(f13 / 180.0F * (float)Math.PI)) * d27;
 				double d16 = (double)(MathHelper.cos(f28 / 180.0F * (float)Math.PI) * MathHelper.cos(f13 / 180.0F * (float)Math.PI)) * d27;
 				double d18 = (double)(-MathHelper.sin(f13 / 180.0F * (float)Math.PI)) * d27;
@@ -229,13 +234,17 @@ public class EntityRenderer {
 					f21 *= 0.1F;
 					f22 *= 0.1F;
 					f23 *= 0.1F;
-					MovingObjectPosition movingObjectPosition24 = this.mc.theWorld.rayTraceBlocks(Vec3D.createVector(d4 + (double)f21, d6 + (double)f22, d8 + (double)f23), Vec3D.createVector(d4 - d14 + (double)f21 + (double)f23, d6 - d18 + (double)f22, d8 - d16 + (double)f23));
+					MovingObjectPosition movingObjectPosition24 = this.mc.theWorld.func_28105_a(Vec3D.createVector(d4 + (double)f21, d6 + (double)f22, d8 + (double)f23), Vec3D.createVector(d4 - d14 + (double)f21 + (double)f23, d6 - d18 + (double)f22, d8 - d16 + (double)f23), false, true);
 					if(movingObjectPosition24 != null) {
 						double d25 = movingObjectPosition24.hitVec.distanceTo(Vec3D.createVector(d4, d6, d8));
 						if(d25 < d27) {
 							d27 = d25;
 						}
 					}
+				}
+
+				if(this.mc.gameSettings.hideGUI) {
+					GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 				}
 
 				GL11.glRotatef(entityLiving2.rotationPitch - f13, 1.0F, 0.0F, 0.0F);
@@ -272,11 +281,9 @@ public class EntityRenderer {
 		if(this.cameraZoom != 1.0D) {
 			GL11.glTranslatef((float)this.cameraYaw, (float)(-this.cameraPitch), 0.0F);
 			GL11.glScaled(this.cameraZoom, this.cameraZoom, 1.0D);
-			GLU.gluPerspective(this.getFOVModifier(f1), (float)this.mc.displayWidth / (float)this.mc.displayHeight, 0.05F, this.farPlaneDistance * 2.0F);
-		} else {
-			GLU.gluPerspective(this.getFOVModifier(f1), (float)this.mc.displayWidth / (float)this.mc.displayHeight, 0.05F, this.farPlaneDistance * 2.0F);
 		}
 
+		GLU.gluPerspective(this.getFOVModifier(f1), (float)this.mc.displayWidth / (float)this.mc.displayHeight, 0.05F, this.farPlaneDistance * 2.0F);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 		if(this.mc.gameSettings.anaglyph) {
@@ -301,6 +308,20 @@ public class EntityRenderer {
 	}
 
 	private void func_4135_b(float f1, int i2) {
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glLoadIdentity();
+		float f3 = 0.07F;
+		if(this.mc.gameSettings.anaglyph) {
+			GL11.glTranslatef((float)(i2 * 2 - 1) * f3, 0.0F, 0.0F);
+		}
+
+		if(this.cameraZoom != 1.0D) {
+			GL11.glTranslatef((float)this.cameraYaw, (float)(-this.cameraPitch), 0.0F);
+			GL11.glScaled(this.cameraZoom, this.cameraZoom, 1.0D);
+		}
+
+		GLU.gluPerspective(this.getFOVModifier(f1), (float)this.mc.displayWidth / (float)this.mc.displayHeight, 0.05F, this.farPlaneDistance * 2.0F);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 		if(this.mc.gameSettings.anaglyph) {
 			GL11.glTranslatef((float)(i2 * 2 - 1) * 0.1F, 0.0F, 0.0F);
@@ -510,7 +531,10 @@ public class EntityRenderer {
 				entityPlayer21 = (EntityPlayer)entityLiving4;
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				renderGlobal5.drawBlockBreaking(entityPlayer21, this.mc.objectMouseOver, 0, entityPlayer21.inventory.getCurrentItem(), f1);
-				renderGlobal5.drawSelectionBox(entityPlayer21, this.mc.objectMouseOver, 0, entityPlayer21.inventory.getCurrentItem(), f1);
+				if(this.cameraZoom == 1.0D && !this.mc.gameSettings.hideGUI) {
+					renderGlobal5.drawSelectionBox(entityPlayer21, this.mc.objectMouseOver, 0, entityPlayer21.inventory.getCurrentItem(), f1);
+				}
+
 				GL11.glEnable(GL11.GL_ALPHA_TEST);
 			}
 
@@ -548,11 +572,14 @@ public class EntityRenderer {
 			GL11.glDepthMask(true);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glDisable(GL11.GL_BLEND);
-			if(this.cameraZoom == 1.0D && entityLiving4 instanceof EntityPlayer && this.mc.objectMouseOver != null && !entityLiving4.isInsideOfMaterial(Material.water)) {
+			if(entityLiving4 instanceof EntityPlayer && this.mc.objectMouseOver != null && !entityLiving4.isInsideOfMaterial(Material.water)) {
 				entityPlayer21 = (EntityPlayer)entityLiving4;
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				renderGlobal5.drawBlockBreaking(entityPlayer21, this.mc.objectMouseOver, 0, entityPlayer21.inventory.getCurrentItem(), f1);
-				renderGlobal5.drawSelectionBox(entityPlayer21, this.mc.objectMouseOver, 0, entityPlayer21.inventory.getCurrentItem(), f1);
+				if(this.cameraZoom == 1.0D && !this.mc.gameSettings.hideGUI) {
+					renderGlobal5.drawSelectionBox(entityPlayer21, this.mc.objectMouseOver, 0, entityPlayer21.inventory.getCurrentItem(), f1);
+				}
+
 				GL11.glEnable(GL11.GL_ALPHA_TEST);
 			}
 
@@ -672,13 +699,13 @@ public class EntityRenderer {
 			float f26;
 			for(i19 = i5 - b16; i19 <= i5 + b16; ++i19) {
 				for(i20 = i7 - b16; i20 <= i7 + b16; ++i20) {
+					i22 = world4.findTopSolidBlock(i19, i20);
+					if(i22 < 0) {
+						i22 = 0;
+					}
+
 					biomeGenBase21 = biomeGenBase17[i18++];
 					if(biomeGenBase21.getEnableSnow()) {
-						i22 = world4.findTopSolidBlock(i19, i20);
-						if(i22 < 0) {
-							i22 = 0;
-						}
-
 						i23 = i22;
 						if(i22 < i15) {
 							i23 = i15;
@@ -732,9 +759,9 @@ public class EntityRenderer {
 
 			for(i19 = i5 - b16; i19 <= i5 + b16; ++i19) {
 				for(i20 = i7 - b16; i20 <= i7 + b16; ++i20) {
+					i22 = world4.findTopSolidBlock(i19, i20);
 					biomeGenBase21 = biomeGenBase17[i18++];
 					if(biomeGenBase21.canSpawnLightningBolt()) {
-						i22 = world4.findTopSolidBlock(i19, i20);
 						i23 = i6 - b16;
 						i24 = i6 + b16;
 						if(i23 < i22) {
@@ -753,7 +780,7 @@ public class EntityRenderer {
 							double d39 = (double)((float)i20 + 0.5F) - entityLiving3.posZ;
 							float f40 = MathHelper.sqrt_double(d38 * d38 + d39 * d39) / (float)b16;
 							tessellator8.startDrawingQuads();
-							float f32 = world4.getLightBrightness(i19, 128, i20) * 0.85F + 0.15F;
+							float f32 = world4.getLightBrightness(i19, i23, i20) * 0.85F + 0.15F;
 							GL11.glColor4f(f32, f32, f32, ((1.0F - f40 * f40) * 0.5F + 0.5F) * f2);
 							tessellator8.setTranslationD(-d9 * 1.0D, -d11 * 1.0D, -d13 * 1.0D);
 							tessellator8.addVertexWithUV((double)(i19 + 0), (double)i23, (double)i20 + 0.5D, (double)(0.0F * f37), (double)((float)i23 * f37 / 4.0F + f26 * f37));
@@ -912,7 +939,16 @@ public class EntityRenderer {
 			}
 
 			if(this.mc.theWorld.worldProvider.isNether) {
-				GL11.glFogf(GL11.GL_FOG_START, 0.0F);
+				if(this.mc.gameSettings.fancyGraphics) {
+					GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+					GL11.glFogf(GL11.GL_FOG_DENSITY, 4.60517018598809F / this.farPlaneDistance * 0.99F);
+				} else {
+					GL11.glFogf(GL11.GL_FOG_START, 0.0F);
+				}
+			} else if(this.mc.theWorld.worldProvider instanceof WorldProviderSky) {
+				if(this.mc.gameSettings.fancyGraphics) {
+					GL11.glFogf(GL11.GL_FOG_START, 0.0F);
+				}
 			}
 		}
 

@@ -49,9 +49,9 @@ public class BlockFlowing extends BlockFluid {
 			}
 
 			if(this.numAdjacentSources >= 2 && this.blockMaterial == Material.water) {
-				if(world1.getBlockMaterial(i2, i3 - 1, i4).isSolid()) {
+				if(this.blockBlocksFlow(world1, i2, i3 - 1, i4)) {
 					i10 = 0;
-				} else if(world1.getBlockMaterial(i2, i3 - 1, i4) == this.blockMaterial && world1.getBlockMetadata(i2, i3, i4) == 0) {
+				} else if(world1.getBlockMaterial(i2, i3 - 1, i4) == this.blockMaterial && world1.getBlockMetadata(i2, i3 - 1, i4) == 0) {
 					i10 = 0;
 				}
 			}
@@ -78,6 +78,12 @@ public class BlockFlowing extends BlockFluid {
 		}
 
 		if(this.liquidCanDisplaceBlock(world1, i2, i3 - 1, i4)) {
+			if(this.blockMaterial == Material.lava && world1.getBlockMaterial(i2, i3 - 1, i4) == Material.water) {
+				world1.setBlockWithNotify(i2, i3 - 1, i4, Block.stone.blockID);
+				this.triggerLavaMixEffects(world1, i2, i3 - 1, i4);
+				return;
+			}
+
 			if(i6 >= 8) {
 				world1.setBlockAndMetadataWithNotify(i2, i3 - 1, i4, this.blockID, i6);
 			} else {
@@ -221,6 +227,20 @@ public class BlockFlowing extends BlockFluid {
 		int i5 = world1.getBlockId(i2, i3, i4);
 		if(i5 != Block.doorWood.blockID && i5 != Block.doorSteel.blockID && i5 != Block.signPost.blockID && i5 != Block.ladder.blockID && i5 != Block.reed.blockID) {
 			if(i5 == 0) {
+				if(this.blockMaterial == Material.water) {
+					byte b5 = 2;
+
+					for(int i6 = i2 - b5; i6 <= i2 + b5; ++i6) {
+						for(int i7 = i3 - b5; i7 <= i3 + b5; ++i7) {
+							for(int i8 = i4 - b5; i8 <= i4 + b5; ++i8) {
+								if(world1.getBlockId(i6, i7, i8) == Block.sponge.blockID) {
+									return true;
+								}
+							}
+						}
+					}
+				}
+
 				return false;
 			} else {
 				Material material6 = Block.blocksList[i5].blockMaterial;

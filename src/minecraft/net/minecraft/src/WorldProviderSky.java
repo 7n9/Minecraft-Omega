@@ -43,7 +43,7 @@ public class WorldProviderSky extends WorldProvider {
 	}
 
 	public float getCloudHeight() {
-		return 8.0F;
+		return 20.0F;
 	}
 
 	public boolean canCoordinateBeSpawn(int i1, int i2) {

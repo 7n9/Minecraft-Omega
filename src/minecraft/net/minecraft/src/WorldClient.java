@@ -20,6 +20,7 @@ public class WorldClient extends World {
 	}
 
 	public void tick() {
+		this.updateWeather();
 		this.setWorldTime(this.getWorldTime() + 1L);
 		int i1 = this.calculateSkylightSubtracted(1.0F);
 		int i2;
@@ -88,7 +89,7 @@ public class WorldClient extends World {
 		}
 
 		if(!z3) {
-			this.markBlocksDirty(i1 * 16, 0, i2 * 16, i1 * 16 + 15, 128, i2 * 16 + 15);
+			this.markBlocksDirty(i1 * 16, 0, i2 * 16, i1 * 16 + 15, this.depth, i2 * 16 + 15);
 		}
 
 	}

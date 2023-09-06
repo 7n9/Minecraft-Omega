@@ -28,6 +28,18 @@ public class NoiseGeneratorOctaves extends NoiseGenerator {
 		return d5;
 	}
 
+	public double generateNoise(double d1, double d3, double d5) {
+		double d7 = 0.0D;
+		double d9 = 1.0D;
+
+		for(int i11 = 0; i11 < this.field_1191_b; ++i11) {
+			d7 += this.generatorCollection[i11].generateNoise(d1 * d9, d3 * d9, d5 * d9) / d9;
+			d9 /= 2.0D;
+		}
+
+		return d7;
+	}
+
 	public double[] generateNoiseOctaves(double[] d1, double d2, double d4, double d6, int i8, int i9, int i10, double d11, double d13, double d15) {
 		if(d1 == null) {
 			d1 = new double[i8 * i9 * i10];

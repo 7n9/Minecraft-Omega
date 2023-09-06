@@ -202,7 +202,7 @@ public class RenderGlobal implements IWorldAccess {
 		}
 
 		this.renderChunksWide = i1 / 16 + 1;
-		this.renderChunksTall = 8;
+		this.renderChunksTall = this.worldObj.depth / 16;
 		this.renderChunksDeep = i1 / 16 + 1;
 		this.worldRenderers = new WorldRenderer[this.renderChunksWide * this.renderChunksTall * this.renderChunksDeep];
 		this.sortedWorldRenderers = new WorldRenderer[this.renderChunksWide * this.renderChunksTall * this.renderChunksDeep];
@@ -291,8 +291,8 @@ public class RenderGlobal implements IWorldAccess {
 						i8 = 0;
 					}
 
-					if(i8 >= 128) {
-						i8 = 127;
+					if(i8 >= this.worldObj.depth) {
+						i8 = this.worldObj.depth - 1;
 					}
 
 					if(this.worldObj.blockExists(MathHelper.floor_double(entity7.posX), i8, MathHelper.floor_double(entity7.posZ))) {
@@ -793,7 +793,7 @@ public class RenderGlobal implements IWorldAccess {
 		float f5 = 4.0F;
 		double d6 = (this.mc.renderViewEntity.prevPosX + (this.mc.renderViewEntity.posX - this.mc.renderViewEntity.prevPosX) * (double)f1 + (double)(((float)this.cloudOffsetX + f1) * 0.03F)) / (double)f4;
 		double d8 = (this.mc.renderViewEntity.prevPosZ + (this.mc.renderViewEntity.posZ - this.mc.renderViewEntity.prevPosZ) * (double)f1) / (double)f4 + (double)0.33F;
-		float f10 = this.worldObj.worldProvider.getCloudHeight() - f2 + 0.33F;
+		float f10 = this.worldObj.worldProvider.getCloudHeight() - 12.0F - f2 + 0.33F;
 		int i11 = MathHelper.floor_double(d6 / 2048.0D);
 		int i12 = MathHelper.floor_double(d8 / 2048.0D);
 		d6 -= (double)(i11 * 2048);

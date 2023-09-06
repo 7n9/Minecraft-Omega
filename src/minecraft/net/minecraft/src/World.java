@@ -10,6 +10,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class World implements IBlockAccess {
+	public int depthBits = 9;
+	public int depthBitsPlusFour = this.depthBits + 4;
+	public int depth = 1 << this.depthBits;
+	public int maxHeight = this.depth - 1;
+	public int seaLevel = this.depth / 2;
 	public boolean scheduledUpdatesAreImmediate;
 	private List lightingToUpdate;
 	public List loadedEntityList;
@@ -208,14 +213,14 @@ public class World implements IBlockAccess {
 	}
 
 	protected IChunkProvider getChunkProvider() {
-		IChunkLoader iChunkLoader1 = this.saveHandler.getChunkLoader(this.worldProvider);
+		IChunkLoader iChunkLoader1 = this.saveHandler.getChunkLoader(this.worldProvider, true);
 		return new ChunkProvider(this, iChunkLoader1, this.worldProvider.getChunkProvider());
 	}
 
 	protected void getInitialSpawnLocation() {
 		this.findingSpawnPoint = true;
 		int i1 = 0;
-		byte b2 = 64;
+		int b2 = this.seaLevel;
 
 		int i3;
 		for(i3 = 0; !this.worldProvider.canCoordinateBeSpawn(i1, i3); i3 += this.rand.nextInt(64) - this.rand.nextInt(64)) {
@@ -228,7 +233,7 @@ public class World implements IBlockAccess {
 
 	public void setSpawnLocation() {
 		if(this.worldInfo.getSpawnY() <= 0) {
-			this.worldInfo.setSpawnY(64);
+			this.worldInfo.setSpawnY(this.seaLevel);
 		}
 
 		int i1 = this.worldInfo.getSpawnX();
@@ -244,7 +249,7 @@ public class World implements IBlockAccess {
 
 	public int getFirstUncoveredBlock(int i1, int i2) {
 		int i3;
-		for(i3 = 63; !this.isAirBlock(i1, i3 + 1, i2); ++i3) {
+		for(i3 = this.seaLevel - 1; !this.isAirBlock(i1, i3 + 1, i2); ++i3) {
 		}
 
 		return this.getBlockId(i1, i3, i2);
@@ -309,7 +314,7 @@ public class World implements IBlockAccess {
 	}
 
 	public int getBlockId(int i1, int i2, int i3) {
-		return i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000 ? (i2 < 0 ? 0 : (i2 >= 128 ? 0 : this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4).getBlockID(i1 & 15, i2, i3 & 15))) : 0;
+		return i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000 ? (i2 < 0 ? 0 : (i2 >= this.depth ? 0 : this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4).getBlockID(i1 & 15, i2, i3 & 15))) : 0;
 	}
 
 	public boolean isAirBlock(int i1, int i2, int i3) {
@@ -317,7 +322,7 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean blockExists(int i1, int i2, int i3) {
-		return i2 >= 0 && i2 < 128 ? this.chunkExists(i1 >> 4, i3 >> 4) : false;
+		return i2 >= 0 && i2 < this.depth ? this.chunkExists(i1 >> 4, i3 >> 4) : false;
 	}
 
 	public boolean doChunksNearChunkExist(int i1, int i2, int i3, int i4) {
@@ -325,7 +330,7 @@ public class World implements IBlockAccess {
 	}
 
 	public boolean checkChunksExist(int i1, int i2, int i3, int i4, int i5, int i6) {
-		if(i5 >= 0 && i2 < 128) {
+		if(i5 >= 0 && i2 < this.depth) {
 			i1 >>= 4;
 			i2 >>= 4;
 			i3 >>= 4;
@@ -363,7 +368,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return false;
-			} else if(i2 >= 128) {
+			} else if(i2 >= this.depth) {
 				return false;
 			} else {
 				Chunk chunk6 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -378,7 +383,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return false;
-			} else if(i2 >= 128) {
+			} else if(i2 >= this.depth) {
 				return false;
 			} else {
 				Chunk chunk5 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -398,7 +403,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return 0;
-			} else if(i2 >= 128) {
+			} else if(i2 >= this.depth) {
 				return 0;
 			} else {
 				Chunk chunk4 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -427,7 +432,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return false;
-			} else if(i2 >= 128) {
+			} else if(i2 >= this.depth) {
 				return false;
 			} else {
 				Chunk chunk5 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -522,8 +527,8 @@ public class World implements IBlockAccess {
 		if(i2 < 0) {
 			return 0;
 		} else {
-			if(i2 >= 128) {
-				i2 = 127;
+			if(i2 >= this.depth) {
+				i2 = this.depth - 1;
 			}
 
 			return this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4).getBlockLightValue(i1 & 15, i2, i3 & 15, 0);
@@ -567,8 +572,8 @@ public class World implements IBlockAccess {
 			if(i2 < 0) {
 				return 0;
 			} else {
-				if(i2 >= 128) {
-					i2 = 127;
+				if(i2 >= this.depth) {
+					i2 = this.depth - 1;
 				}
 
 				Chunk chunk11 = this.getChunkFromChunkCoords(i1 >> 4, i3 >> 4);
@@ -585,7 +590,7 @@ public class World implements IBlockAccess {
 		if(i1 >= -32000000 && i3 >= -32000000 && i1 < 32000000 && i3 <= 32000000) {
 			if(i2 < 0) {
 				return false;
-			} else if(i2 >= 128) {
+			} else if(i2 >= this.depth) {
 				return true;
 			} else if(!this.chunkExists(i1 >> 4, i3 >> 4)) {
 				return false;
@@ -640,11 +645,11 @@ public class World implements IBlockAccess {
 			i3 = 0;
 		}
 
-		if(i3 >= 128) {
-			i3 = 127;
+		if(i3 >= this.depth) {
+			i3 = this.depth - 1;
 		}
 
-		if(i3 >= 0 && i3 < 128 && i2 >= -32000000 && i4 >= -32000000 && i2 < 32000000 && i4 <= 32000000) {
+		if(i3 >= 0 && i3 < this.depth && i2 >= -32000000 && i4 >= -32000000 && i2 < 32000000 && i4 <= 32000000) {
 			int i5 = i2 >> 4;
 			int i6 = i4 >> 4;
 			if(!this.chunkExists(i5, i6)) {
@@ -661,7 +666,7 @@ public class World implements IBlockAccess {
 	public void setLightValue(EnumSkyBlock enumSkyBlock1, int i2, int i3, int i4, int i5) {
 		if(i2 >= -32000000 && i4 >= -32000000 && i2 < 32000000 && i4 <= 32000000) {
 			if(i3 >= 0) {
-				if(i3 < 128) {
+				if(i3 < this.depth) {
 					if(this.chunkExists(i2 >> 4, i4 >> 4)) {
 						Chunk chunk6 = this.getChunkFromChunkCoords(i2 >> 4, i4 >> 4);
 						chunk6.setLightValue(enumSkyBlock1, i2 & 15, i3, i4 & 15, i5);
@@ -959,7 +964,7 @@ public class World implements IBlockAccess {
 
 		for(int i9 = i3; i9 < i4; ++i9) {
 			for(int i10 = i7; i10 < i8; ++i10) {
-				if(this.blockExists(i9, 64, i10)) {
+				if(this.blockExists(i9, this.seaLevel, i10)) {
 					for(int i11 = i5 - 1; i11 < i6; ++i11) {
 						Block block12 = Block.blocksList[this.getBlockId(i9, i11, i10)];
 						if(block12 != null) {
@@ -1113,7 +1118,7 @@ public class World implements IBlockAccess {
 
 	public int findTopSolidBlock(int i1, int i2) {
 		Chunk chunk3 = this.getChunkFromBlockCoords(i1, i2);
-		int i4 = 127;
+		int i4 = this.depth - 1;
 		i1 &= 15;
 
 		for(i2 &= 15; i4 > 0; --i4) {
@@ -1284,7 +1289,7 @@ public class World implements IBlockAccess {
 		int i3 = MathHelper.floor_double(entity1.posX);
 		int i4 = MathHelper.floor_double(entity1.posZ);
 		byte b5 = 32;
-		if(!z2 || this.checkChunksExist(i3 - b5, 0, i4 - b5, i3 + b5, 128, i4 + b5)) {
+		if(!z2 || this.checkChunksExist(i3 - b5, 0, i4 - b5, i3 + b5, this.depth, i4 + b5)) {
 			entity1.lastTickPosX = entity1.posX;
 			entity1.lastTickPosY = entity1.posY;
 			entity1.lastTickPosZ = entity1.posZ;
@@ -1686,7 +1691,7 @@ public class World implements IBlockAccess {
 
 				int i9 = (i5 + i2) / 2;
 				int i10 = (i7 + i4) / 2;
-				if(this.blockExists(i9, 64, i10)) {
+				if(this.blockExists(i9, this.seaLevel, i10)) {
 					if(this.getChunkFromBlockCoords(i9, i10).func_21167_h()) {
 						return;
 					}
@@ -1708,7 +1713,7 @@ public class World implements IBlockAccess {
 					}
 
 					this.lightingToUpdate.add(new MetadataChunkBlock(enumSkyBlock1, i2, i3, i4, i5, i6, i7));
-					i12 = 1000000;
+					i12 = 100000000;
 					if(this.lightingToUpdate.size() > 1000000) {
 						System.out.println("More than " + i12 + " updates, aborting lighting updates");
 						this.lightingToUpdate.clear();
@@ -1898,7 +1903,7 @@ public class World implements IBlockAccess {
 				i6 = this.field_9437_g >> 2;
 				i7 = i6 & 15;
 				i8 = i6 >> 8 & 15;
-				i9 = i6 >> 16 & 127;
+				i9 = i6 >> 16 & this.maxHeight;
 				i10 = chunk14.getBlockID(i7, i9, i8);
 				i7 += i3;
 				i8 += i4;
@@ -1930,7 +1935,7 @@ public class World implements IBlockAccess {
 				i7 = i6 & 15;
 				i8 = i6 >> 8 & 15;
 				i9 = this.findTopSolidBlock(i7 + i3, i8 + i4);
-				if(this.getWorldChunkManager().getBiomeGenAt(i7 + i3, i8 + i4).getEnableSnow() && i9 >= 0 && i9 < 128 && chunk14.getSavedLightValue(EnumSkyBlock.Block, i7, i9, i8) < 10) {
+				if(this.getWorldChunkManager().getBiomeGenAt(i7 + i3, i8 + i4).getEnableSnow() && i9 >= 0 && i9 < this.depth && chunk14.getSavedLightValue(EnumSkyBlock.Block, i7, i9, i8) < 10) {
 					i10 = chunk14.getBlockID(i7, i9 - 1, i8);
 					i15 = chunk14.getBlockID(i7, i9, i8);
 					if(this.func_27161_C() && i15 == 0 && Block.snow.canPlaceBlockAt(this, i7 + i3, i9, i8 + i4) && i10 != 0 && i10 != Block.ice.blockID && Block.blocksList[i10].blockMaterial.getIsSolid()) {
@@ -1948,8 +1953,8 @@ public class World implements IBlockAccess {
 				i7 = this.field_9437_g >> 2;
 				i8 = i7 & 15;
 				i9 = i7 >> 8 & 15;
-				i10 = i7 >> 16 & 127;
-				i15 = chunk14.blocks[i8 << 11 | i9 << 7 | i10] & 255;
+				i10 = i7 >> 16 & this.maxHeight;
+				i15 = chunk14.blocks[i8 << this.depthBitsPlusFour | i9 << this.depthBits | i10] & 255;
 				if(Block.tickOnLoad[i15]) {
 					Block.blocksList[i15].updateTick(this, i8 + i3, i10, i9 + i4, this.rand);
 				}
@@ -2201,8 +2206,8 @@ public class World implements IBlockAccess {
 			i13 = 0;
 		}
 
-		if(i14 > 128) {
-			i14 = 128;
+		if(i14 > this.depth) {
+			i14 = this.depth;
 		}
 
 		for(int i15 = i8; i15 <= i10; ++i15) {
@@ -2396,10 +2401,18 @@ public class World implements IBlockAccess {
 	}
 
 	public float func_27166_f(float f1) {
+		if(this.worldProvider.hasNoSky || this.worldProvider instanceof WorldProviderSky) {
+			return 0.0F;
+		}
+
 		return (this.prevThunderingStrength + (this.thunderingStrength - this.prevThunderingStrength) * f1) * this.func_27162_g(f1);
 	}
 
 	public float func_27162_g(float f1) {
+		if(this.worldProvider.hasNoSky || this.worldProvider instanceof WorldProviderSky) {
+			return 0.0F;
+		}
+
 		return this.prevRainingStrength + (this.rainingStrength - this.prevRainingStrength) * f1;
 	}
 
@@ -2450,5 +2463,9 @@ public class World implements IBlockAccess {
 			((IWorldAccess)this.worldAccesses.get(i7)).func_28136_a(entityPlayer1, i2, i3, i4, i5, i6);
 		}
 
+	}
+
+	public int getHeight() {
+		return this.depth;
 	}
 }

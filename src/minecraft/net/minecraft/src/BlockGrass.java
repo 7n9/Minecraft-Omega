@@ -9,6 +9,10 @@ public class BlockGrass extends Block {
 		this.setTickOnLoad(true);
 	}
 
+	public int getBlockTextureFromSideAndMetadata(int i1, int i2) {
+		return i1 == 1 ? 0 : (i1 == 0 ? 2 : 3);
+	}
+
 	public int getBlockTexture(IBlockAccess iBlockAccess1, int i2, int i3, int i4, int i5) {
 		if(i5 == 1) {
 			return 0;
@@ -18,6 +22,12 @@ public class BlockGrass extends Block {
 			Material material6 = iBlockAccess1.getBlockMaterial(i2, i3 + 1, i4);
 			return material6 != Material.snow && material6 != Material.builtSnow ? 3 : 68;
 		}
+	}
+
+	public int getRenderColor(int i1) {
+		double d1 = 0.5D;
+		double d3 = 1.0D;
+		return ColorizerGrass.getGrassColor(d1, d3);
 	}
 
 	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {

@@ -61,7 +61,7 @@ public class EntitySquid extends EntityWaterMob {
 	}
 
 	public boolean interact(EntityPlayer entityPlayer1) {
-		return false;
+		return super.interact(entityPlayer1);
 	}
 
 	public boolean isInWater() {
@@ -76,13 +76,19 @@ public class EntitySquid extends EntityWaterMob {
 		this.field_21082_j = this.field_21083_i;
 		this.field_21085_g += this.field_21080_l;
 		if(this.field_21085_g > 6.2831855F) {
-			this.field_21085_g -= 6.2831855F;
-			if(this.rand.nextInt(10) == 0) {
-				this.field_21080_l = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
+			if(this.isMultiplayerEntity) {
+				this.field_21085_g = 6.2831855F;
+			} else {
+				this.field_21085_g -= 6.2831855F;
+				if(this.rand.nextInt(10) == 0) {
+					this.field_21080_l = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
+				}
+
+				this.worldObj.func_9425_a(this, (byte)19);
 			}
 		}
 
-		if(this.isInWater()) {
+		if(this.inWater) {
 			float f1;
 			if(this.field_21085_g < (float)Math.PI) {
 				f1 = this.field_21085_g / (float)Math.PI;
@@ -115,7 +121,7 @@ public class EntitySquid extends EntityWaterMob {
 			if(!this.isMultiplayerEntity) {
 				this.motionX = 0.0D;
 				this.motionY -= 0.08D;
-				this.motionY *= (double)0.98F;
+				this.motionY *= 0.98D;
 				this.motionZ = 0.0D;
 			}
 
@@ -128,8 +134,20 @@ public class EntitySquid extends EntityWaterMob {
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
 	}
 
+	public void handleHealthUpdate(byte b1) {
+		if(b1 == 19) {
+			this.field_21085_g = 0.0F;
+		} else {
+			super.handleHealthUpdate(b1);
+		}
+
+	}
+
 	protected void updatePlayerActionState() {
-		if(this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F) {
+		++this.entityAge;
+		if(this.entityAge > 100) {
+			this.randomMotionVecX = this.randomMotionVecY = this.randomMotionVecZ = 0.0F;
+		} else if(this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F) {
 			float f1 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
 			this.randomMotionVecX = MathHelper.cos(f1) * 0.2F;
 			this.randomMotionVecY = -0.1F + this.rand.nextFloat() * 0.2F;

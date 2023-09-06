@@ -8,19 +8,20 @@ public class BlockLeaves extends BlockLeavesBase {
 
 	protected BlockLeaves(int i1, int i2) {
 		super(i1, i2, Material.leaves, false);
+		this.blockParticleGravity = 0.4F;
 		this.baseIndexInPNG = i2;
 		this.setTickOnLoad(true);
 	}
 
 	public int getRenderColor(int i1) {
-		return (i1 & 1) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((i1 & 2) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.func_31073_c());
+		return (i1 & 3) == 1 ? ColorizerFoliage.getFoliageColorPine() : ((i1 & 3) == 2 ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.func_31073_c());
 	}
 
 	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		int i5 = iBlockAccess1.getBlockMetadata(i2, i3, i4);
-		if((i5 & 1) == 1) {
+		if((i5 & 3) == 1) {
 			return ColorizerFoliage.getFoliageColorPine();
-		} else if((i5 & 2) == 2) {
+		} else if((i5 & 3) == 2) {
 			return ColorizerFoliage.getFoliageColorBirch();
 		} else {
 			iBlockAccess1.getWorldChunkManager().func_4069_a(i2, i4, 1, 1);
@@ -52,7 +53,7 @@ public class BlockLeaves extends BlockLeavesBase {
 	public void updateTick(World world1, int i2, int i3, int i4, Random random5) {
 		if(!world1.multiplayerWorld) {
 			int i6 = world1.getBlockMetadata(i2, i3, i4);
-			if((i6 & 8) != 0) {
+			if((i6 & 8) != 0 && (i6 & 4) == 0) {
 				byte b7 = 4;
 				int i8 = b7 + 1;
 				byte b9 = 32;
@@ -156,6 +157,25 @@ public class BlockLeaves extends BlockLeavesBase {
 		return Block.sapling.blockID;
 	}
 
+	public void dropBlockAsItemWithChance(World world1, int i2, int i3, int i4, int i5, float f6) {
+		if(!world1.multiplayerWorld) {
+			byte b8 = 20;
+			if((i5 & 3) == 3) {
+				b8 = 40;
+			}
+
+			if(world1.rand.nextInt(b8) == 0) {
+				int i9 = this.idDropped(i5, world1.rand);
+				this.dropBlockAsItem_do(world1, i2, i3, i4, new ItemStack(i9, 1, this.damageDropped(i5)));
+			}
+
+			if((i5 & 3) == 0 && world1.rand.nextInt(200) == 0) {
+				this.dropBlockAsItem_do(world1, i2, i3, i4, new ItemStack(Item.appleRed, 1, 0));
+			}
+		}
+
+	}
+
 	public void harvestBlock(World world1, EntityPlayer entityPlayer2, int i3, int i4, int i5, int i6) {
 		if(!world1.multiplayerWorld && entityPlayer2.getCurrentEquippedItem() != null && entityPlayer2.getCurrentEquippedItem().itemID == Item.shears.shiftedIndex) {
 			entityPlayer2.addStat(StatList.mineBlockStatArray[this.blockID], 1);
@@ -171,7 +191,7 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public boolean isOpaqueCube() {
-		return !this.graphicsLevel;
+		return super.isOpaqueCube();
 	}
 
 	public int getBlockTextureFromSideAndMetadata(int i1, int i2) {
@@ -179,7 +199,7 @@ public class BlockLeaves extends BlockLeavesBase {
 	}
 
 	public void setGraphicsLevel(boolean z1) {
-		this.graphicsLevel = z1;
+		super.setGraphicsLevel(z1);
 		this.blockIndexInTexture = this.baseIndexInPNG + (z1 ? 0 : 1);
 	}
 

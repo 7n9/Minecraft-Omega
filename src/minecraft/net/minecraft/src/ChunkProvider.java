@@ -18,7 +18,7 @@ public class ChunkProvider implements IChunkProvider {
 	private World field_28066_g;
 
 	public ChunkProvider(World world1, IChunkLoader iChunkLoader2, IChunkProvider iChunkProvider3) {
-		this.field_28064_b = new EmptyChunk(world1, new byte[32768], 0, 0);
+		this.field_28064_b = new EmptyChunk(world1, new byte[256 * world1.depth], 0, 0);
 		this.field_28066_g = world1;
 		this.chunkLoader = iChunkLoader2;
 		this.chunkProvider = iChunkProvider3;

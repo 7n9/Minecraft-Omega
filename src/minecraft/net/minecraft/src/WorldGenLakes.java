@@ -12,7 +12,11 @@ public class WorldGenLakes extends WorldGenerator {
 	public boolean generate(World world1, Random random2, int i3, int i4, int i5) {
 		i3 -= 8;
 
-		for(i5 -= 8; i4 > 0 && world1.isAirBlock(i3, i4, i5); --i4) {
+		for(i5 -= 8; i4 > 5 && world1.isAirBlock(i3, i4, i5); --i4) {
+		}
+
+		if(i4 <= 4) {
+			return false;
 		}
 
 		i4 -= 4;
@@ -91,6 +95,20 @@ public class WorldGenLakes extends WorldGenerator {
 						z33 = !z6[(i8 * 16 + i32) * 8 + i10] && (i8 < 15 && z6[((i8 + 1) * 16 + i32) * 8 + i10] || i8 > 0 && z6[((i8 - 1) * 16 + i32) * 8 + i10] || i32 < 15 && z6[(i8 * 16 + i32 + 1) * 8 + i10] || i32 > 0 && z6[(i8 * 16 + (i32 - 1)) * 8 + i10] || i10 < 7 && z6[(i8 * 16 + i32) * 8 + i10 + 1] || i10 > 0 && z6[(i8 * 16 + i32) * 8 + (i10 - 1)]);
 						if(z33 && (i10 < 4 || random2.nextInt(2) != 0) && world1.getBlockMaterial(i3 + i8, i4 + i10, i5 + i32).isSolid()) {
 							world1.setBlock(i3 + i8, i4 + i10, i5 + i32, Block.stone.blockID);
+						}
+					}
+				}
+			}
+		}
+
+		if(Block.blocksList[this.field_15235_a].blockMaterial == Material.water) {
+			for(i8 = 0; i8 < 16; ++i8) {
+				for(i32 = 0; i32 < 16; ++i32) {
+					for(i10 = 0; i10 < 8; ++i10) {
+						byte b35 = 4;
+						world1.getWorldChunkManager().func_4069_a(i3 + i8, i5 + i32, 1, 1);
+						if(world1.getWorldChunkManager().temperature[0] < 0.5D && i4 + b35 >= 0 && i4 + b35 < world1.depth && world1.getBlockMaterial(i3 + i8, i4 + b35, i5 + i32) == Material.water && world1.getBlockMetadata(i3 + i8, i4 + b35, i5 + i32) == 0) {
+							world1.setBlock(i3 + i8, i4 + b35, i5 + i32, Block.ice.blockID);
 						}
 					}
 				}

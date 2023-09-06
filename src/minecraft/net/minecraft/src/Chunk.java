@@ -15,7 +15,7 @@ public class Chunk {
 	public NibbleArray data;
 	public NibbleArray skylightMap;
 	public NibbleArray blocklightMap;
-	public byte[] heightMap;
+	public int[] heightMap;
 	public int lowestBlockHeight;
 	public final int xPosition;
 	public final int zPosition;
@@ -29,7 +29,7 @@ public class Chunk {
 
 	public Chunk(World world1, int i2, int i3) {
 		this.chunkTileEntityMap = new HashMap();
-		this.entities = new List[8];
+		this.entities = new List[world1.depth / 16];
 		this.isTerrainPopulated = false;
 		this.isModified = false;
 		this.hasEntities = false;
@@ -37,7 +37,7 @@ public class Chunk {
 		this.worldObj = world1;
 		this.xPosition = i2;
 		this.zPosition = i3;
-		this.heightMap = new byte[256];
+		this.heightMap = new int[256];
 
 		for(int i4 = 0; i4 < this.entities.length; ++i4) {
 			this.entities[i4] = new ArrayList();
@@ -48,9 +48,9 @@ public class Chunk {
 	public Chunk(World world1, byte[] b2, int i3, int i4) {
 		this(world1, i3, i4);
 		this.blocks = b2;
-		this.data = new NibbleArray(b2.length);
-		this.skylightMap = new NibbleArray(b2.length);
-		this.blocklightMap = new NibbleArray(b2.length);
+		this.data = new NibbleArray(b2.length, world1.depthBits);
+		this.skylightMap = new NibbleArray(b2.length, world1.depthBits);
+		this.blocklightMap = new NibbleArray(b2.length, world1.depthBits);
 	}
 
 	public boolean isAtLocation(int i1, int i2) {
@@ -58,23 +58,23 @@ public class Chunk {
 	}
 
 	public int getHeightValue(int i1, int i2) {
-		return this.heightMap[i2 << 4 | i1] & 255;
+		return this.heightMap[i2 << 4 | i1];
 	}
 
 	public void func_1014_a() {
 	}
 
 	public void generateHeightMap() {
-		int i1 = 127;
+		int i1 = this.worldObj.depth - 1;
 
 		for(int i2 = 0; i2 < 16; ++i2) {
 			for(int i3 = 0; i3 < 16; ++i3) {
-				int i4 = 127;
+				int i4 = this.worldObj.depth - 1;
 
-				for(int i5 = i2 << 11 | i3 << 7; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
+				for(int i5 = i2 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
 				}
 
-				this.heightMap[i3 << 4 | i2] = (byte)i4;
+				this.heightMap[i3 << 4 | i2] = i4;
 				if(i4 < i1) {
 					i1 = i4;
 				}
@@ -86,26 +86,26 @@ public class Chunk {
 	}
 
 	public void func_1024_c() {
-		int i1 = 127;
+		int i1 = this.worldObj.depth - 1;
 
 		int i2;
 		int i3;
 		for(i2 = 0; i2 < 16; ++i2) {
 			for(i3 = 0; i3 < 16; ++i3) {
-				int i4 = 127;
+				int i4 = this.worldObj.depth - 1;
 
 				int i5;
-				for(i5 = i2 << 11 | i3 << 7; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
+				for(i5 = i2 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits; i4 > 0 && Block.lightOpacity[this.blocks[i5 + i4 - 1] & 255] == 0; --i4) {
 				}
 
-				this.heightMap[i3 << 4 | i2] = (byte)i4;
+				this.heightMap[i3 << 4 | i2] = i4;
 				if(i4 < i1) {
 					i1 = i4;
 				}
 
 				if(!this.worldObj.worldProvider.hasNoSky) {
 					int i6 = 15;
-					int i7 = 127;
+					int i7 = this.worldObj.depth - 1;
 
 					do {
 						i6 -= Block.lightOpacity[this.blocks[i5 + i7] & 255];
@@ -156,30 +156,30 @@ public class Chunk {
 	}
 
 	private void func_1003_g(int i1, int i2, int i3) {
-		int i4 = this.heightMap[i3 << 4 | i1] & 255;
+		int i4 = this.heightMap[i3 << 4 | i1];
 		int i5 = i4;
 		if(i2 > i4) {
 			i5 = i2;
 		}
 
-		for(int i6 = i1 << 11 | i3 << 7; i5 > 0 && Block.lightOpacity[this.blocks[i6 + i5 - 1] & 255] == 0; --i5) {
+		for(int i6 = i1 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits; i5 > 0 && Block.lightOpacity[this.blocks[i6 + i5 - 1] & 255] == 0; --i5) {
 		}
 
 		if(i5 != i4) {
 			this.worldObj.markBlocksDirtyVertical(i1, i3, i5, i4);
-			this.heightMap[i3 << 4 | i1] = (byte)i5;
+			this.heightMap[i3 << 4 | i1] = i5;
 			int i7;
 			int i8;
 			int i9;
 			if(i5 < this.lowestBlockHeight) {
 				this.lowestBlockHeight = i5;
 			} else {
-				i7 = 127;
+				i7 = this.worldObj.depth - 1;
 
 				for(i8 = 0; i8 < 16; ++i8) {
 					for(i9 = 0; i9 < 16; ++i9) {
-						if((this.heightMap[i9 << 4 | i8] & 255) < i7) {
-							i7 = this.heightMap[i9 << 4 | i8] & 255;
+						if((this.heightMap[i9 << 4 | i8]) < i7) {
+							i7 = this.heightMap[i9 << 4 | i8];
 						}
 					}
 				}
@@ -230,19 +230,19 @@ public class Chunk {
 	}
 
 	public int getBlockID(int i1, int i2, int i3) {
-		return this.blocks[i1 << 11 | i3 << 7 | i2] & 255;
+		return this.blocks[i1 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits | i2] & 255;
 	}
 
 	public boolean setBlockIDWithMetadata(int i1, int i2, int i3, int i4, int i5) {
 		byte b6 = (byte)i4;
-		int i7 = this.heightMap[i3 << 4 | i1] & 255;
-		int i8 = this.blocks[i1 << 11 | i3 << 7 | i2] & 255;
+		int i7 = this.heightMap[i3 << 4 | i1];
+		int i8 = this.blocks[i1 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits | i2] & 255;
 		if(i8 == i4 && this.data.getNibble(i1, i2, i3) == i5) {
 			return false;
 		} else {
 			int i9 = this.xPosition * 16 + i1;
 			int i10 = this.zPosition * 16 + i3;
-			this.blocks[i1 << 11 | i3 << 7 | i2] = (byte)(b6 & 255);
+			this.blocks[i1 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits | i2] = (byte)(b6 & 255);
 			if(i8 != 0 && !this.worldObj.multiplayerWorld) {
 				Block.blocksList[i8].onBlockRemoval(this.worldObj, i9, i2, i10);
 			}
@@ -274,14 +274,14 @@ public class Chunk {
 
 	public boolean setBlockID(int i1, int i2, int i3, int i4) {
 		byte b5 = (byte)i4;
-		int i6 = this.heightMap[i3 << 4 | i1] & 255;
-		int i7 = this.blocks[i1 << 11 | i3 << 7 | i2] & 255;
+		int i6 = this.heightMap[i3 << 4 | i1];
+		int i7 = this.blocks[i1 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits | i2] & 255;
 		if(i7 == i4) {
 			return false;
 		} else {
 			int i8 = this.xPosition * 16 + i1;
 			int i9 = this.zPosition * 16 + i3;
-			this.blocks[i1 << 11 | i3 << 7 | i2] = (byte)(b5 & 255);
+			this.blocks[i1 << this.worldObj.depthBitsPlusFour | i3 << this.worldObj.depthBits | i2] = (byte)(b5 & 255);
 			if(i7 != 0) {
 				Block.blocksList[i7].onBlockRemoval(this.worldObj, i8, i2, i9);
 			}
@@ -391,7 +391,7 @@ public class Chunk {
 	}
 
 	public boolean canBlockSeeTheSky(int i1, int i2, int i3) {
-		return i2 >= (this.heightMap[i3 << 4 | i1] & 255);
+		return i2 >= (this.heightMap[i3 << 4 | i1]);
 	}
 
 	public TileEntity getChunkBlockTileEntity(int i1, int i2, int i3) {
@@ -552,7 +552,7 @@ public class Chunk {
 		int i12;
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = i9 << 11 | i10 << 7 | i3;
+				i11 = i9 << this.worldObj.depthBitsPlusFour | i10 << this.worldObj.depthBits | i3;
 				i12 = i6 - i3;
 				System.arraycopy(b1, i8, this.blocks, i11, i12);
 				i8 += i12;
@@ -563,7 +563,7 @@ public class Chunk {
 
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = (i9 << 11 | i10 << 7 | i3) >> 1;
+				i11 = (i9 << this.worldObj.depthBitsPlusFour | i10 << this.worldObj.depthBits | i3) >> 1;
 				i12 = (i6 - i3) / 2;
 				System.arraycopy(b1, i8, this.data.data, i11, i12);
 				i8 += i12;
@@ -572,7 +572,7 @@ public class Chunk {
 
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = (i9 << 11 | i10 << 7 | i3) >> 1;
+				i11 = (i9 << this.worldObj.depthBitsPlusFour | i10 << this.worldObj.depthBits | i3) >> 1;
 				i12 = (i6 - i3) / 2;
 				System.arraycopy(b1, i8, this.blocklightMap.data, i11, i12);
 				i8 += i12;
@@ -581,7 +581,7 @@ public class Chunk {
 
 		for(i9 = i2; i9 < i5; ++i9) {
 			for(i10 = i4; i10 < i7; ++i10) {
-				i11 = (i9 << 11 | i10 << 7 | i3) >> 1;
+				i11 = (i9 << this.worldObj.depthBitsPlusFour | i10 << this.worldObj.depthBits | i3) >> 1;
 				i12 = (i6 - i3) / 2;
 				System.arraycopy(b1, i8, this.skylightMap.data, i11, i12);
 				i8 += i12;

@@ -13,6 +13,10 @@ public class BlockTallGrass extends BlockFlower {
 		return i2 == 1 ? this.blockIndexInTexture : (i2 == 2 ? this.blockIndexInTexture + 16 + 1 : (i2 == 0 ? this.blockIndexInTexture + 16 : this.blockIndexInTexture));
 	}
 
+	public int getRenderColor(int i1) {
+		return i1 == 0 ? 0xFFFFFF : ColorizerFoliage.func_31073_c();
+	}
+
 	public int colorMultiplier(IBlockAccess iBlockAccess1, int i2, int i3, int i4) {
 		int i5 = iBlockAccess1.getBlockMetadata(i2, i3, i4);
 		if(i5 == 0) {

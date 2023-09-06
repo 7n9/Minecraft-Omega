@@ -3,6 +3,7 @@ package net.minecraft.src;
 import java.awt.image.BufferedImage;
 
 public class IsoImageBuffer {
+	public static final int CHUNK_SIZE = 16;
 	public BufferedImage field_1348_a;
 	public World worldObj;
 	public int field_1354_c;

@@ -81,7 +81,12 @@ public class EntityMob extends EntityCreature implements IMob {
 				this.worldObj.skylightSubtracted = i5;
 			}
 
-			return i4 <= this.rand.nextInt(8) && super.getCanSpawnHere();
+			int i6 = 16 - i2 * 16 / this.worldObj.depth;
+			if(i6 < 1) {
+				i6 = 1;
+			}
+
+			return i4 <= this.rand.nextInt(i6) && super.getCanSpawnHere();
 		}
 	}
 }

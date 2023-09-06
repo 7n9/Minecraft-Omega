@@ -4,6 +4,7 @@ public class BlockSponge extends Block {
 	protected BlockSponge(int i1) {
 		super(i1, Material.sponge);
 		this.blockIndexInTexture = 48;
+		this.blockParticleGravity = 0.9F;
 	}
 
 	public void onBlockAdded(World world1, int i2, int i3, int i4) {
@@ -13,7 +14,7 @@ public class BlockSponge extends Block {
 			for(int i7 = i3 - b5; i7 <= i3 + b5; ++i7) {
 				for(int i8 = i4 - b5; i8 <= i4 + b5; ++i8) {
 					if(world1.getBlockMaterial(i6, i7, i8) == Material.water) {
-						;
+						world1.setBlockWithNotify(i6, i7, i8, 0);
 					}
 				}
 			}
