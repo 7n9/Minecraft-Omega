@@ -56,11 +56,8 @@ public class WorldGenForest extends WorldGenerator {
 
 							for(int i14 = i5 - i11; i14 <= i5 + i11; ++i14) {
 								int i15 = i14 - i5;
-								if(Math.abs(i13) != i11 || Math.abs(i15) != i11 || random2.nextInt(2) != 0 && i10 != 0) {
-									int i18 = world1.getBlockId(i12, i16, i14);
-									if(i18 == 0 || i18 == Block.leaves.blockID) {
-										this.setBlockAndMetadata(world1, i12, i16, i14, Block.leaves.blockID, 2);
-									}
+								if((Math.abs(i13) != i11 || Math.abs(i15) != i11 || random2.nextInt(2) != 0 && i10 != 0) && !Block.opaqueCubeLookup[world1.getBlockId(i12, i16, i14)]) {
+									world1.setBlockAndMetadata(i12, i16, i14, Block.leaves.blockID, 2);
 								}
 							}
 						}
@@ -69,7 +66,7 @@ public class WorldGenForest extends WorldGenerator {
 					for(i16 = 0; i16 < i6; ++i16) {
 						i10 = world1.getBlockId(i3, i4 + i16, i5);
 						if(i10 == 0 || i10 == Block.leaves.blockID) {
-							this.setBlockAndMetadata(world1, i3, i4 + i16, i5, Block.wood.blockID, 2);
+							world1.setBlockAndMetadata(i3, i4 + i16, i5, Block.wood.blockID, 2);
 						}
 					}
 

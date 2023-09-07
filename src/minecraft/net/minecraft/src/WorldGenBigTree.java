@@ -120,7 +120,7 @@ public class WorldGenBigTree extends WorldGenerator {
 						if(i14 != 0 && i14 != 18) {
 							++i13;
 						} else {
-							this.setBlockAndMetadata(this.worldObj, i11[0], i11[1], i11[2], i6, 0);
+							this.worldObj.setBlock(i11[0], i11[1], i11[2], i6);
 							++i13;
 						}
 					}
@@ -195,19 +195,7 @@ public class WorldGenBigTree extends WorldGenerator {
 				i14[b6] = MathHelper.floor_double((double)(i1[b6] + i15) + 0.5D);
 				i14[b7] = MathHelper.floor_double((double)i1[b7] + (double)i15 * d10 + 0.5D);
 				i14[b8] = MathHelper.floor_double((double)i1[b8] + (double)i15 * d12 + 0.5D);
-				byte b17 = 0;
-				int i18 = Math.abs(i14[0] - i1[0]);
-				int i19 = Math.abs(i14[2] - i1[2]);
-				int i20 = Math.max(i18, i19);
-				if(i20 > 0) {
-					if(i18 == i20) {
-						b17 = 4;
-					} else if(i19 == i20) {
-						b17 = 8;
-					}
-				}
-
-				this.setBlockAndMetadata(this.worldObj, i14[0], i14[1], i14[2], i3, b17);
+				this.worldObj.setBlock(i14[0], i14[1], i14[2], i3);
 			}
 
 		}

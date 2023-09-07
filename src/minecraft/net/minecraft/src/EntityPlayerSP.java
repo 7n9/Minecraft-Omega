@@ -13,7 +13,7 @@ public class EntityPlayerSP extends EntityPlayer {
 		super(world2);
 		this.mc = minecraft1;
 		this.dimension = i4;
-		this.noClip = true;
+		//this.noClip = true;
 		if(session3 != null && session3.username != null && session3.username.length() > 0) {
 			this.skinUrl = "http://s3.amazonaws.com/MinecraftSkins/" + session3.username + ".png";
 		}
